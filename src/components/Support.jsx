@@ -2,8 +2,8 @@ import React from 'react';
 
 const Support = () => {
   return (
-    <main style={{ 
-      backgroundColor: '#f8fafc',
+    <div style={{ 
+      backgroundColor: 'transparent',
       minHeight: '80vh'
     }}>
       <section style={{
@@ -33,7 +33,7 @@ const Support = () => {
           Content coming soon...
         </p>
       </section>
-    </main>
+    </div>
   );
 };
 

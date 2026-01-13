@@ -3,7 +3,7 @@ import React from 'react';
 const HowItWorks = () => {
   return (
     <main style={{ 
-      backgroundColor: '#f8fafc',
+      backgroundColor: 'transparent',
       minHeight: '80vh'
     }}>
       <section style={{

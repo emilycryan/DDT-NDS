@@ -672,7 +672,7 @@ const Chatbot = ({ onNavigate }) => {
   // Function to search for programs via API
   const searchProgramsFromDatabase = async (searchTerm) => {
     try {
-      const response = await fetch(`http://localhost:3004/api/programs/search-by-name?name=${encodeURIComponent(searchTerm)}`);
+      const response = await fetch(`http://localhost:3006/api/programs/search-by-name?name=${encodeURIComponent(searchTerm)}`);
       if (!response.ok) {
         throw new Error('Failed to fetch programs');
       }
@@ -687,7 +687,7 @@ const Chatbot = ({ onNavigate }) => {
   // Function to perform semantic search using vector embeddings
   const performSemanticSearch = async (query, conversationHistory = []) => {
     try {
-      const response = await fetch('http://localhost:3004/api/programs/semantic-search', {
+      const response = await fetch('http://localhost:3006/api/programs/semantic-search', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -714,7 +714,7 @@ const Chatbot = ({ onNavigate }) => {
   // Function to search programs by delivery mode (fallback)
   const searchProgramsByDeliveryMode = async (deliveryMode) => {
     try {
-      const response = await fetch(`http://localhost:3004/api/programs/all`);
+      const response = await fetch(`http://localhost:3006/api/programs/all`);
       if (!response.ok) {
         throw new Error('Failed to fetch programs');
       }
@@ -1644,7 +1644,7 @@ Available resources to mention:
         }}>
           {/* Header */}
           <div style={{
-            backgroundColor: 'var(--mood-dark-navy)',
+            backgroundColor: 'var(--green-primary)',
             color: 'white',
             padding: '16px',
             borderTopLeftRadius: '12px',
@@ -1701,7 +1701,7 @@ Available resources to mention:
                   }}
                 >
                   <div style={{
-                    backgroundColor: message.sender === 'user' ? 'var(--mood-dark-navy)' : '#f1f5f9',
+                    backgroundColor: message.sender === 'user' ? 'var(--green-primary)' : 'var(--bg-page)',
                     color: message.sender === 'user' ? 'white' : '#334155',
                     padding: '12px 16px',
                     borderRadius: '18px',
@@ -1739,7 +1739,7 @@ Available resources to mention:
                           alignSelf: 'flex-start'
                         }}
                         onMouseOver={(e) => {
-                          e.target.style.backgroundColor = '#f8fafc';
+                          e.target.style.backgroundColor = 'var(--green-light-bg)';
                           e.target.style.borderColor = '#cbd5e1';
                         }}
                         onMouseOut={(e) => {
@@ -1851,7 +1851,7 @@ Available resources to mention:
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim()}
                 style={{
-                  backgroundColor: inputValue.trim() ? 'var(--mood-dark-navy)' : '#94a3b8',
+                  backgroundColor: inputValue.trim() ? 'var(--green-primary)' : 'var(--text-secondary)',
                   color: 'white',
                   border: 'none',
                   borderRadius: '50%',
@@ -1882,7 +1882,7 @@ Available resources to mention:
           right: '20px',
           width: '60px',
           height: '60px',
-          backgroundColor: 'var(--mood-dark-navy)',
+          backgroundColor: 'var(--green-primary)',
           color: 'white',
           border: 'none',
           borderRadius: '50%',
@@ -1890,7 +1890,6 @@ Available resources to mention:
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
           zIndex: 1001,
           transition: 'all 0.2s ease',
           transform: isOpen ? 'scale(0.9)' : 'scale(1)'

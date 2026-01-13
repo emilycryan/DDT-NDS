@@ -59,7 +59,7 @@ const LifestylePrograms = () => {
   useEffect(() => {
     const loadAllPrograms = async () => {
       try {
-        const response = await fetch('http://localhost:3004/api/programs/all');
+        const response = await fetch('http://localhost:3006/api/programs/all');
         if (response.ok) {
           const data = await response.json();
           if (data.programs && data.programs.length > 0) {
@@ -276,7 +276,7 @@ const LifestylePrograms = () => {
         const queryParams = new URLSearchParams();
         queryParams.append('deliveryMode', finalDeliveryMode);
         
-        const url = `http://localhost:3004/api/programs/search?${queryParams}`;
+        const url = `http://localhost:3006/api/programs/search?${queryParams}`;
         console.log('✅ Fetching URL:', url);
         console.log('✅ Query params:', queryParams.toString());
         console.log('✅ Delivery mode being sent:', deliveryMode);
@@ -373,7 +373,7 @@ const LifestylePrograms = () => {
         if (locationParams.state) queryParams.append('state', locationParams.state);
         if (locationParams.city) queryParams.append('city', locationParams.city);
 
-        const response = await fetch(`http://localhost:3004/api/programs/search?${queryParams}`);
+        const response = await fetch(`http://localhost:3006/api/programs/search?${queryParams}`);
         
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
@@ -444,7 +444,7 @@ const LifestylePrograms = () => {
 
   return (
     <main style={{ 
-      backgroundColor: '#f8fafc',
+      backgroundColor: 'transparent',
       minHeight: '80vh'
     }}>
       {/* Hero Section */}
@@ -513,7 +513,7 @@ const LifestylePrograms = () => {
 
           {/* Search Form Placeholder */}
           <div style={{
-            backgroundColor: '#f8fafc',
+            backgroundColor: 'var(--bg-content)',
             padding: '2rem',
             borderRadius: '0.75rem',
             border: '1px solid #e2e8f0',
@@ -557,7 +557,7 @@ const LifestylePrograms = () => {
                 onClick={searchPrograms}
                 disabled={isLoading || !searchInput.trim()}
                 style={{
-                  backgroundColor: isLoading || !searchInput.trim() ? '#9ca3af' : '#1e40af',
+                  backgroundColor: isLoading || !searchInput.trim() ? 'var(--text-secondary)' : 'var(--green-primary)',
                   color: 'white',
                   padding: '0.75rem 2rem',
                   borderRadius: '0.375rem',
@@ -727,7 +727,7 @@ const LifestylePrograms = () => {
                 }}>
                   {searchResults.map((program, index) => (
                     <div key={program.program_id || index} style={{
-                      backgroundColor: '#f8fafc',
+                      backgroundColor: 'var(--bg-content)',
                       border: '1px solid #e2e8f0',
                       borderRadius: '0.5rem',
                       padding: '1.5rem'
@@ -868,7 +868,7 @@ const LifestylePrograms = () => {
               <div style={{
                 width: '60px',
                 height: '60px',
-                backgroundColor: '#1e40af',
+                backgroundColor: 'var(--green-primary)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -984,64 +984,6 @@ const LifestylePrograms = () => {
             </div>
           </div>
 
-          {/* At a Glance Info */}
-          <div style={{
-            backgroundColor: '#eff6ff',
-            padding: '2rem',
-            borderRadius: '0.75rem',
-            border: '1px solid #bfdbfe'
-          }}>
-            <h3 style={{
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-              color: '#1e40af',
-              marginBottom: '1rem'
-            }}>
-              About the National Diabetes Prevention Program
-            </h3>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-              gap: '1.5rem'
-            }}>
-              <div>
-                <h4 style={{
-                  fontSize: '1.125rem',
-                  fontWeight: '600',
-                  color: '#1e293b',
-                  marginBottom: '0.5rem'
-                }}>
-                  Proven Results
-                </h4>
-                <p style={{
-                  fontSize: '0.95rem',
-                  color: '#64748b',
-                  lineHeight: '1.5',
-                  margin: 0
-                }}>
-                  CDC-recognized programs have been proven to reduce the risk of developing type 2 diabetes by 58% through lifestyle changes.
-                </p>
-              </div>
-              <div>
-                <h4 style={{
-                  fontSize: '1.125rem',
-                  fontWeight: '600',
-                  color: '#1e293b',
-                  marginBottom: '0.5rem'
-                }}>
-                  Expert Support
-                </h4>
-                <p style={{
-                  fontSize: '0.95rem',
-                  color: '#64748b',
-                  lineHeight: '1.5',
-                  margin: 0
-                }}>
-                  Trained lifestyle coaches guide you through evidence-based curriculum focused on healthy eating and physical activity.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </main>

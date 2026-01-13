@@ -125,7 +125,7 @@ const RiskAssessment = () => {
               <div style={{
                 width: '60px',
                 height: '60px',
-                backgroundColor: 'var(--mood-dark-navy)',
+                backgroundColor: 'var(--green-primary)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -169,7 +169,7 @@ const RiskAssessment = () => {
               <div style={{
                 width: '60px',
                 height: '60px',
-                backgroundColor: 'var(--mood-golden-yellow)',
+                backgroundColor: 'var(--green-secondary)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -213,7 +213,7 @@ const RiskAssessment = () => {
               <div style={{
                 width: '60px',
                 height: '60px',
-                backgroundColor: 'var(--mood-dark-grey)',
+                backgroundColor: 'var(--green-primary)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',

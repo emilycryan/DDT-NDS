@@ -9,7 +9,7 @@ import { getProgramStats } from './lib/pgvector-db.js';
 dotenv.config({ path: '.env.local' });
 
 const app = express();
-const PORT = 3004;
+const PORT = 3006;
 
 // Middleware
 app.use(cors());

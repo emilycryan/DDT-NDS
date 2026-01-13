@@ -13,8 +13,8 @@ const Resources = ({ onNavigate }) => {
   }, []);
 
   return (
-    <main style={{ 
-      backgroundColor: '#f8fafc',
+    <div style={{ 
+      backgroundColor: 'transparent',
       minHeight: '80vh'
     }}>
       {/* Hero Section */}
@@ -86,9 +86,6 @@ const Resources = ({ onNavigate }) => {
           onClick={() => {
             if (onNavigate) {
               onNavigate('lifestyle-programs');
-              setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }, 100);
             }
           }}
           onMouseOver={(e) => {
@@ -102,7 +99,7 @@ const Resources = ({ onNavigate }) => {
             <div style={{
               width: '60px',
               height: '60px',
-              backgroundColor: '#1e40af',
+              backgroundColor: 'var(--green-primary)',
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
@@ -133,7 +130,7 @@ const Resources = ({ onNavigate }) => {
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              color: '#1e40af',
+              color: 'var(--green-primary)',
               fontWeight: '600',
               fontSize: '0.95rem'
             }}>
@@ -157,9 +154,6 @@ const Resources = ({ onNavigate }) => {
           onClick={() => {
             if (onNavigate) {
               onNavigate('risk-assessment');
-              setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }, 100);
             }
           }}
           onMouseOver={(e) => {
@@ -239,7 +233,7 @@ const Resources = ({ onNavigate }) => {
           }}>
             <div style={{
               padding: '1.5rem',
-              backgroundColor: '#f8fafc',
+              backgroundColor: 'transparent',
               borderRadius: '0.5rem',
               border: '1px solid #e2e8f0'
             }}>
@@ -262,7 +256,7 @@ const Resources = ({ onNavigate }) => {
 
             <div style={{
               padding: '1.5rem',
-              backgroundColor: '#f8fafc',
+              backgroundColor: 'transparent',
               borderRadius: '0.5rem',
               border: '1px solid #e2e8f0'
             }}>
@@ -285,7 +279,7 @@ const Resources = ({ onNavigate }) => {
 
             <div style={{
               padding: '1.5rem',
-              backgroundColor: '#f8fafc',
+              backgroundColor: 'transparent',
               borderRadius: '0.5rem',
               border: '1px solid #e2e8f0'
             }}>
@@ -308,7 +302,7 @@ const Resources = ({ onNavigate }) => {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 

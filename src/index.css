@@ -1,54 +1,30 @@
-/* Import fonts - New branding typography */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap');
+/* Import fonts - Instrument Sans */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap');
 
-/* CSS Custom Properties - New Brand Colors */
+/* CSS Custom Properties - Design System Colors */
 :root {
-  /* Primary Colors */
-  --primary-dark: #1a4480;
-  --primary-darker: #0f2749;
-  --primary-medium: #2563eb;
-  --primary-light: #3b82f6;
+  /* Core Neutrals */
+  --bg-page: #F7F6F2;
+  --bg-content: #FFFFFF;
+  --text-primary: #1F2933;
+  --text-secondary: #4B5563;
   
-  /* Secondary Accent */
-  --accent-yellow: #face00;
-  --accent-yellow-light: #fde047;
-  --accent-yellow-dark: #eab308;
-  --accent-yellow-darker: #ca8a04;
+  /* Primary Greens */
+  --green-primary: #2F6B4F;
+  --green-secondary: #4E8F6F;
+  --green-light-bg: #D8E6DD;
   
-  /* Support Neutrals */
-  --neutral-off-white: #f1f3f6;
-  --neutral-light-grey: #dfe1e2;
-  --neutral-medium-grey: #64748b;
-  --neutral-dark-grey: #374151;
-  --neutral-charcoal: #1e293b;
-  
-  /* Accent Warm */
-  --accent-warm: #f97316;
-  --accent-warm-light: #fb923c;
-  --accent-warm-muted: #fed7aa;
-  
-  /* Mood Board Colors */
-  --mood-dark-navy: #1a4480;
-  --mood-dark-navy-darker: #0f2749;
-  --mood-golden-yellow: #face00;
-  --mood-golden-yellow-darker: #ca8a04;
-  --mood-dark-grey: #374151;
-  --mood-dark-grey-darker: #1f2937;
+  /* Accent Colors (SPARING USE ONLY) */
+  --accent-red: #B23A2F;
+  --accent-orange: #D97706;
+  --accent-yellow: #EAB308;
   
   /* Text Colors */
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
   --text-white: #ffffff;
   
-  /* Background Colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f1f3f6;
-  --bg-accent: #1a4480;
-  
   /* Typography */
-  --font-header: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-body: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-header: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Base styles */
@@ -56,6 +32,10 @@
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html, body {
@@ -66,7 +46,7 @@ html, body {
   font-size: 16px;
   line-height: 1.6;
   color: var(--text-primary);
-  background-color: var(--bg-primary);
+  background-color: var(--bg-page);
 }
 
 #root {
@@ -86,33 +66,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 800;
   letter-spacing: -0.025em;
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
 }
 
 h3 {
-  font-size: 1.875rem;
+  font-size: 2.5rem;
   font-weight: 600;
 }
 
 h4 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
 }
 
 h5 {
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   font-weight: 600;
 }
 
 h6 {
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
@@ -142,62 +122,49 @@ p {
 }
 
 .btn:focus {
-  outline: 2px solid var(--accent-yellow);
+  outline: 2px solid var(--green-primary);
   outline-offset: 2px;
 }
 
 .btn-primary {
-  background-color: var(--primary-dark);
+  background-color: var(--green-primary);
   color: var(--text-white);
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-darker);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(15, 39, 73, 0.25);
+  background-color: var(--green-secondary);
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: var(--primary-dark);
-  border: 2px solid var(--primary-dark);
+  color: var(--green-primary);
+  border: 2px solid var(--green-primary);
 }
 
 .btn-secondary:hover {
-  background-color: var(--primary-dark);
+  background-color: var(--green-primary);
   color: var(--text-white);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(26, 68, 128, 0.25);
 }
 
 .btn-accent {
-  background-color: var(--accent-yellow);
-  color: var(--text-primary);
+  background-color: var(--accent-red);
+  color: var(--text-white);
 }
 
 .btn-accent:hover {
-  background-color: var(--accent-yellow-darker);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(202, 138, 4, 0.25);
+  background-color: var(--accent-orange);
 }
 
 /* Card System */
 .card {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-content);
   border-radius: 0.75rem;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border: 1px solid var(--neutral-light-grey);
-  transition: all 0.2s ease-in-out;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--green-light-bg);
 }
 
 .card-featured {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+  background-color: var(--green-primary);
   color: var(--text-white);
   border: none;
 }
@@ -209,7 +176,7 @@ p {
 }
 
 .card-featured p {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-white);
 }
 
 /* Image Overlays */
@@ -217,17 +184,6 @@ p {
   position: relative;
   overflow: hidden;
   border-radius: 0.75rem;
-}
-
-.image-overlay::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(26, 68, 128, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
-  z-index: 1;
 }
 
 .image-overlay img {
@@ -249,27 +205,27 @@ p {
 }
 
 .icon-circle-primary {
-  background-color: var(--primary-dark);
+  background-color: var(--green-primary);
 }
 
 .icon-circle-accent {
-  background-color: var(--mood-golden-yellow);
+  background-color: var(--green-secondary);
 }
 
 .icon-circle-warm {
-  background-color: var(--accent-warm);
+  background-color: var(--accent-orange);
 }
 
 .icon-circle-success {
-  background-color: var(--mood-golden-yellow);
+  background-color: var(--green-secondary);
 }
 
 .icon-circle-info {
-  background-color: var(--mood-dark-grey);
+  background-color: var(--text-secondary);
 }
 
 .icon-circle-grey {
-  background-color: var(--mood-dark-grey);
+  background-color: var(--text-secondary);
 }
 
 /* Mobile optimizations */
@@ -279,19 +235,19 @@ p {
   }
   
   h1 {
-    font-size: 2.25rem;
+    font-size: 3rem;
   }
   
   h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
   h3 {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   
   h4 {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
   }
   
   .btn {
@@ -328,27 +284,27 @@ p {
 }
 
 .text-primary {
-  color: var(--primary-dark);
+  color: var(--green-primary);
 }
 
 .text-accent {
-  color: var(--accent-yellow-dark);
+  color: var(--accent-red);
 }
 
 .text-muted {
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .bg-primary {
-  background-color: var(--primary-dark);
+  background-color: var(--green-primary);
 }
 
 .bg-secondary {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-page);
 }
 
 .bg-accent {
-  background-color: var(--accent-yellow);
+  background-color: var(--green-light-bg);
 }
 
 /* Loading animation */
@@ -361,14 +317,31 @@ p {
   animation: spin 1s linear infinite;
 }
 
+/* Hero Button Pulse Animation */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.hero-btn {
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.hero-btn-white:hover {
+  background-color: var(--green-light-bg);
+  color: var(--green-primary);
+}
+
 /* Hero Section Styles */
 .hero-overlay {
-  background: linear-gradient(135deg, rgba(26, 68, 128, 0.9) 0%, rgba(37, 99, 235, 0.8) 100%);
+  background-color: var(--green-primary);
   color: var(--text-white);
   padding: 4rem 2rem;
   border-radius: 1rem;
-  position: relative;
-  overflow: hidden;
 }
 
 .hero-overlay h1,
@@ -378,17 +351,22 @@ p {
 }
 
 .hero-overlay p {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-white);
 }
 
 /* Quote/Testimonial Styles */
 .quote-card {
-  background-color: var(--bg-secondary);
+  background-color: var(--green-light-bg);
   padding: 1.5rem;
   border-radius: 0.5rem;
-  border-left: 4px solid var(--accent-yellow);
+  border-left: 4px solid var(--green-primary);
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+/* Footer Link Hover States */
+.footer-link:hover {
+  text-decoration: underline !important;
 }
 
 /* Leaflet Map Styles */

@@ -17,6 +17,6 @@ export default function Rotate() {
 const box = {
   width: 100,
   height: 100,
-  backgroundColor: "var(--primary-dark)",
+  backgroundColor: "var(--green-primary)",
   borderRadius: 5,
 }

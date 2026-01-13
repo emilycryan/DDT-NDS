@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import CDCHeader from './components/CDCHeader'
 import CDCFooter from './components/CDCFooter'
 import Chatbot from './components/Chatbot'
 import RiskAssessment from './components/RiskAssessment'
@@ -9,11 +8,34 @@ import Resources from './components/Resources'
 import Support from './components/Support'
 import HowItWorks from './components/HowItWorks'
 import LifestylePrograms from './components/LifestylePrograms'
+import FAQs from './components/FAQs'
+
+// Helper function to scroll to section
+const scrollToSection = (sectionId) => {
+  // Use requestAnimationFrame to ensure DOM is ready
+  requestAnimationFrame(() => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      // Small offset for banner and separator
+      const offset = 30
+      
+      // Calculate position
+      const elementTop = element.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementTop - offset
+
+      // Scroll to position
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      })
+    } else {
+      console.warn(`Section with id "${sectionId}" not found`)
+    }
+  })
+}
 
 function App() {
-  const [count, setCount] = useState(0)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
-  const [currentPage, setCurrentPage] = useState('home') // home or risk-assessment
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,156 +48,169 @@ function App() {
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: 'white', margin: 0, padding: 0 }}>
-      {/* CDC Header */}
-      <CDCHeader onNavigate={setCurrentPage} currentPage={currentPage} />
-
-      {/* Main Content */}
-      {currentPage === 'home' ? (
-        <main style={{ 
-          backgroundColor: 'var(--bg-secondary)',
-          minHeight: '80vh'
-        }}>
-        {/* Hero Section */}
-        <section style={{
+      {/* Official US Government Banner */}
+      <div style={{
+        backgroundColor: 'var(--bg-page)',
+        fontSize: '13px',
+        padding: '8px 0'
+      }}>
+        <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
+          padding: '0 15px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px'
+        }}>
+          <svg width="20" height="11" viewBox="0 0 20 11" style={{ marginRight: '8px' }}>
+            {/* Blue canton */}
+            <rect x="0" y="0" width="8" height="6" fill="#012169"/>
+            {/* Red stripes */}
+            <rect x="0" y="0" width="20" height="0.85" fill="#C8102E"/>
+            <rect x="0" y="1.7" width="20" height="0.85" fill="#C8102E"/>
+            <rect x="0" y="3.4" width="20" height="0.85" fill="#C8102E"/>
+            <rect x="0" y="5.1" width="20" height="0.85" fill="#C8102E"/>
+            <rect x="0" y="6.8" width="20" height="0.85" fill="#C8102E"/>
+            <rect x="0" y="8.5" width="20" height="0.85" fill="#C8102E"/>
+            <rect x="0" y="10.2" width="20" height="0.8" fill="#C8102E"/>
+            {/* White stripes */}
+            <rect x="0" y="0.85" width="20" height="0.85" fill="white"/>
+            <rect x="0" y="2.55" width="20" height="0.85" fill="white"/>
+            <rect x="0" y="4.25" width="20" height="0.85" fill="white"/>
+            <rect x="0" y="5.95" width="20" height="0.85" fill="white"/>
+            <rect x="0" y="7.65" width="20" height="0.85" fill="white"/>
+            <rect x="0" y="9.35" width="20" height="0.85" fill="white"/>
+            {/* Stars (simplified as small circles) */}
+            <circle cx="1" cy="1" r="0.3" fill="white"/>
+            <circle cx="2.5" cy="1.5" r="0.3" fill="white"/>
+            <circle cx="1" cy="2" r="0.3" fill="white"/>
+            <circle cx="2.5" cy="2.5" r="0.3" fill="white"/>
+            <circle cx="1" cy="3" r="0.3" fill="white"/>
+            <circle cx="2.5" cy="3.5" r="0.3" fill="white"/>
+            <circle cx="1" cy="4" r="0.3" fill="white"/>
+            <circle cx="2.5" cy="4.5" r="0.3" fill="white"/>
+            <circle cx="1" cy="5" r="0.3" fill="white"/>
+            <circle cx="4" cy="1" r="0.3" fill="white"/>
+            <circle cx="5.5" cy="1.5" r="0.3" fill="white"/>
+            <circle cx="4" cy="2" r="0.3" fill="white"/>
+            <circle cx="5.5" cy="2.5" r="0.3" fill="white"/>
+            <circle cx="4" cy="3" r="0.3" fill="white"/>
+            <circle cx="5.5" cy="3.5" r="0.3" fill="white"/>
+            <circle cx="4" cy="4" r="0.3" fill="white"/>
+            <circle cx="5.5" cy="4.5" r="0.3" fill="white"/>
+            <circle cx="4" cy="5" r="0.3" fill="white"/>
+            <circle cx="7" cy="1" r="0.3" fill="white"/>
+            <circle cx="7" cy="2" r="0.3" fill="white"/>
+            <circle cx="7" cy="3" r="0.3" fill="white"/>
+            <circle cx="7" cy="4" r="0.3" fill="white"/>
+            <circle cx="7" cy="5" r="0.3" fill="white"/>
+          </svg>
+          <span style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
+            An official website of the United States government
+          </span>
+          <button style={{
+            background: 'none',
+            border: 'none',
+            color: 'var(--green-primary)',
+            textDecoration: 'underline',
+            cursor: 'pointer',
+            fontSize: '13px',
+            padding: '0',
+            marginLeft: '8px',
+            fontFamily: 'var(--font-body)'
+          }}>
+            Here's how you know
+          </button>
+        </div>
+      </div>
+
+      {/* Green Separator Line */}
+      <div style={{
+        height: '2px',
+        backgroundColor: 'var(--green-primary)',
+        width: '100%'
+      }}></div>
+
+      {/* Main Content - Single Page */}
+      <main>
+        {/* Hero Section */}
+        <section id="home" style={{
+          backgroundImage: 'url(/diverse-group-eating.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
           padding: isMobile ? '3rem 1rem' : '4rem 2rem',
-          display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-          gap: isMobile ? '2rem' : '4rem',
+          scrollMarginTop: '100px',
+          minHeight: '500px',
+          display: 'flex',
           alignItems: 'center'
         }}>
-          {/* Left Content */}
           <div style={{
-            textAlign: isMobile ? 'center' : 'left'
+            maxWidth: '1200px',
+            margin: '0 auto',
+            width: '100%'
           }}>
-
-
-            {/* Main Heading */}
-            <h1 style={{
-              fontSize: isMobile ? '2.25rem' : '3rem',
-              fontFamily: 'var(--font-header)',
-              fontWeight: '800',
-              color: 'var(--text-primary)',
-              lineHeight: '1.1',
-              marginBottom: '1.5rem',
-              margin: '0 0 1.5rem 0',
-              letterSpacing: '-0.025em'
-            }}>
-              Start Your CDC: Path2Prevention
-            </h1>
-
-            {/* Description */}
-            <p style={{
-              fontSize: isMobile ? '1rem' : '1.125rem',
-              fontFamily: 'var(--font-body)',
-              color: 'var(--text-secondary)',
-              lineHeight: '1.6',
-              marginBottom: '2rem',
-              maxWidth: '500px',
-              margin: isMobile ? '0 auto 2rem auto' : '0 0 2rem 0'
-            }}>
-              Get started on your CDC: Path2Prevention journey to prevent chronic diseases. Find videos, interactive tools, and personalized information to help you learn more about preventing conditions like heart disease, stroke, diabetes, COPD, and obesity in your life.
-            </p>
-
-            {/* CTA Buttons */}
             <div style={{
-              display: 'flex',
-              gap: '1rem',
-              flexDirection: isMobile ? 'column' : 'row',
-              alignItems: 'center',
-              justifyContent: isMobile ? 'center' : 'flex-start'
+              textAlign: isMobile ? 'center' : 'left',
+              maxWidth: '600px'
             }}>
-              <button 
-                onClick={() => setCurrentPage('risk-assessment')}
-                className="btn btn-primary"
-                style={{
-                  minWidth: isMobile ? '200px' : 'auto'
-                }}
-              >
-                Am I at Risk?
-              </button>
-              <button 
-                onClick={() => {
-                  setCurrentPage('how-it-works');
-                  setTimeout(() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }, 100);
-                }}
-                className="btn btn-secondary"
-                style={{
-                  minWidth: isMobile ? '200px' : 'auto'
-                }}
-              >
-                How It Works
-              </button>
-            </div>
-
-
-          </div>
-
-          {/* Right Content - Personalized Health Journey Card */}
-          <div className="card" style={{
-            padding: '2rem'
-          }}>
-            {/* Diverse Group Healthy Meal Image */}
-            <div className="image-overlay" style={{
-              height: '200px',
-              marginBottom: '1.5rem'
-            }}>
-              <img 
-                src="/diverse-group-eating.jpg" 
-                alt="Diverse group of people sharing a healthy meal together around a wooden table"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center'
-                }}
-              />
-            </div>
-
-            <h3 style={{
-              fontSize: '1.25rem',
-              fontFamily: 'var(--font-header)',
-              fontWeight: '600',
-              color: 'var(--text-primary)',
-              marginBottom: '1rem',
-              margin: '0 0 1rem 0'
-            }}>
-              Why CDC: Path2Prevention?
-            </h3>
-
-            <p style={{
-              fontSize: '0.95rem',
-              fontFamily: 'var(--font-body)',
-              color: 'var(--text-secondary)',
-              lineHeight: '1.5',
-              marginBottom: '1.5rem',
-              margin: '0 0 1.5rem 0'
-            }}>
-              CDC: Path2Prevention is an online resource for people who may be at risk for developing chronic diseases. Find videos, games, and other personalized information to help you learn more about prevention.
-            </p>
-
-            <div className="quote-card">
-              <p style={{
-                fontSize: '0.875rem',
-                fontFamily: 'var(--font-body)',
-                color: 'var(--text-secondary)',
-                margin: 0,
-                fontWeight: '500'
+              {/* Main Heading */}
+              <h1 style={{
+                fontSize: isMobile ? '4.5rem' : '6rem',
+                fontFamily: 'var(--font-header)',
+                fontWeight: '800',
+                color: 'var(--text-white)',
+                lineHeight: '0.88',
+                marginBottom: '2rem',
+                margin: '0 0 2rem 0',
+                letterSpacing: '-0.025em'
               }}>
-                "Many chronic diseases are preventable through lifestyle changes and early intervention."
-              </p>
+                Start Your CDC: Path2{' '}Prevention
+              </h1>
+
+              {/* CTA Buttons */}
+              <div style={{
+                display: 'flex',
+                gap: '1rem',
+                flexDirection: isMobile ? 'column' : 'row',
+                alignItems: 'center',
+                justifyContent: isMobile ? 'center' : 'flex-start'
+              }}>
+                <button 
+                  onClick={() => scrollToSection('risk-assessment')}
+                  className="btn btn-primary hero-btn"
+                  style={{
+                    minWidth: isMobile ? '200px' : 'auto'
+                  }}
+                >
+                  Am I at Risk?
+                </button>
+                <button 
+                  onClick={() => scrollToSection('how-it-works')}
+                  className="btn hero-btn hero-btn-white"
+                  style={{
+                    minWidth: isMobile ? '200px' : 'auto',
+                    backgroundColor: 'var(--bg-content)',
+                    color: 'var(--text-primary)',
+                    border: 'none'
+                  }}
+                >
+                  How It Works
+                </button>
+              </div>
             </div>
           </div>
         </section>
 
+        {/* Spacing between sections */}
+        <div style={{ height: '4rem' }}></div>
+
         {/* How It Works Section */}
-        <section style={{
-          backgroundColor: 'var(--bg-primary)',
+        <section id="how-it-works" style={{
+          backgroundColor: 'var(--bg-content)',
           padding: isMobile ? '3rem 1rem' : '4rem 2rem',
-          textAlign: 'center'
+          textAlign: 'center',
+          scrollMarginTop: '100px'
         }}>
           <div style={{
             maxWidth: '1200px',
@@ -211,12 +246,7 @@ function App() {
             }}>
               {/* What is The Path? */}
               <div 
-                onClick={() => {
-                  setCurrentPage('about');
-                  setTimeout(() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }, 100);
-                }}
+                onClick={() => scrollToSection('about')}
                 className="card"
                 style={{
                   textAlign: 'center',
@@ -252,12 +282,7 @@ function App() {
 
               {/* Get the Facts */}
               <div 
-                onClick={() => {
-                  setCurrentPage('resources');
-                  setTimeout(() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }, 100);
-                }}
+                onClick={() => scrollToSection('resources')}
                 className="card"
                 style={{
                   textAlign: 'center',
@@ -293,7 +318,7 @@ function App() {
 
               {/* Start Your Plan */}
               <div 
-                onClick={() => setCurrentPage('risk-assessment')}
+                onClick={() => scrollToSection('risk-assessment')}
                 className="card"
                 style={{
                   textAlign: 'center',
@@ -329,28 +354,79 @@ function App() {
             </div>
           </div>
         </section>
+
+        {/* Spacing between sections */}
+        <div style={{ height: '4rem' }}></div>
+
+        {/* Risk Assessment Section */}
+        <section id="risk-assessment" style={{
+          backgroundColor: 'var(--bg-content)',
+          scrollMarginTop: '100px'
+        }}>
+          <RiskAssessment />
+        </section>
+
+        {/* Spacing between sections */}
+        <div style={{ height: '4rem' }}></div>
+
+        {/* Resources Section */}
+        <section id="resources" style={{
+          scrollMarginTop: '100px'
+        }}>
+          <Resources onNavigate={scrollToSection} />
+        </section>
+
+        {/* Spacing between sections */}
+        <div style={{ height: '4rem' }}></div>
+
+        {/* Lifestyle Programs Section */}
+        <section id="lifestyle-programs" style={{
+          backgroundColor: 'var(--bg-content)',
+          scrollMarginTop: '100px'
+        }}>
+          <LifestylePrograms />
+        </section>
+
+        {/* Spacing between sections */}
+        <div style={{ height: '4rem' }}></div>
+
+        {/* Support Section */}
+        <section id="support" style={{
+          scrollMarginTop: '100px'
+        }}>
+          <Support />
+        </section>
+
+        {/* Spacing between sections */}
+        <div style={{ height: '4rem' }}></div>
+
+        {/* About Section */}
+        <section id="about" style={{
+          backgroundColor: 'var(--bg-page)',
+          padding: isMobile ? '3rem 1rem' : '4rem 2rem',
+          scrollMarginTop: '100px'
+        }}>
+          <About />
+        </section>
+
+        {/* Spacing between sections */}
+        <div style={{ height: '4rem' }}></div>
+
+        {/* FAQs Section */}
+        <section id="faqs" style={{
+          backgroundColor: 'var(--bg-content)',
+          padding: isMobile ? '3rem 1rem' : '4rem 2rem',
+          scrollMarginTop: '100px'
+        }}>
+          <FAQs />
+        </section>
       </main>
-      ) : currentPage === 'risk-assessment' ? (
-        <RiskAssessment />
-      ) : currentPage === 'about' ? (
-        <About />
-      ) : currentPage === 'resources' ? (
-        <Resources onNavigate={setCurrentPage} />
-      ) : currentPage === 'support' ? (
-        <Support />
-      ) : currentPage === 'how-it-works' ? (
-        <HowItWorks />
-      ) : currentPage === 'lifestyle-programs' ? (
-        <LifestylePrograms />
-      ) : (
-        <div>Page not found</div>
-      )}
 
       {/* CDC Footer */}
       <CDCFooter />
       
       {/* Chatbot */}
-      <Chatbot onNavigate={setCurrentPage} />
+      <Chatbot onNavigate={scrollToSection} />
     </div>
   )
 }

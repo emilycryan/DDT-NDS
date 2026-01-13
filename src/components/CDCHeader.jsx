@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const CDCHeader = ({ onNavigate, currentPage }) => {
+const CDCHeader = ({ onNavigate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -20,8 +20,8 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
     <>
       {/* Official US Government Banner */}
       <div style={{
-        backgroundColor: 'var(--neutral-off-white)',
-        borderBottom: '1px solid var(--neutral-light-grey)',
+        backgroundColor: 'var(--bg-page)',
+        borderBottom: '1px solid var(--green-light-bg)',
         fontSize: '13px',
         padding: '8px 0'
       }}>
@@ -82,7 +82,7 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
           <button style={{
             background: 'none',
             border: 'none',
-            color: 'var(--primary-dark)',
+            color: 'var(--green-primary)',
             textDecoration: 'underline',
             cursor: 'pointer',
             fontSize: '13px',
@@ -98,7 +98,7 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
       {/* CDC Header */}
       <header style={{
         backgroundColor: 'var(--bg-primary)',
-        borderBottom: '1px solid var(--neutral-light-grey)',
+        borderBottom: '1px solid var(--green-light-bg)',
         padding: '15px 0',
         position: 'relative'
       }}>
@@ -125,16 +125,15 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
                 onClick={() => {
                   if (onNavigate) {
                     onNavigate('home');
-                    setTimeout(() => {
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }, 100);
+                  } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }
                 }}
                 style={{
                   fontSize: isMobile ? '18px' : '24px',
                   fontFamily: 'var(--font-header)',
                   fontWeight: '700',
-                  color: 'var(--primary-dark)',
+                  color: 'var(--green-primary)',
                   lineHeight: '1.2',
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
@@ -166,9 +165,6 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
             <a onClick={() => {
               if (onNavigate) {
                 onNavigate('about');
-                setTimeout(() => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 100);
               }
             }} style={{
               color: 'var(--text-secondary)',
@@ -184,9 +180,6 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
             <a onClick={() => {
               if (onNavigate) {
                 onNavigate('resources');
-                setTimeout(() => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 100);
               }
             }} style={{
               color: 'var(--text-secondary)',
@@ -202,9 +195,6 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
             <a onClick={() => {
               if (onNavigate) {
                 onNavigate('support');
-                setTimeout(() => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 100);
               }
             }} style={{
               color: 'var(--text-secondary)',
@@ -220,7 +210,7 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
             <button 
               onClick={() => onNavigate && onNavigate('risk-assessment')}
               style={{
-                backgroundColor: '#1e40af',
+                backgroundColor: 'var(--green-primary)',
                 color: 'white',
                 padding: '0.5rem 1rem',
                 borderRadius: '0.375rem',
@@ -248,7 +238,7 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
             }}
             aria-label="Toggle navigation menu"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--primary-dark)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--green-primary)">
               <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
           </button>
@@ -262,7 +252,7 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
             left: 0,
             right: 0,
             backgroundColor: 'var(--bg-primary)',
-            borderBottom: '1px solid var(--neutral-light-grey)',
+            borderBottom: '1px solid var(--green-light-bg)',
             boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
             zIndex: 1000,
             display: isMobile ? 'block' : 'none'
@@ -275,9 +265,6 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
               <a onClick={() => {
                 if (onNavigate) {
                   onNavigate('about');
-                  setTimeout(() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }, 100);
                 }
                 setIsMenuOpen(false);
               }} style={{
@@ -287,7 +274,7 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
                 fontSize: '16px',
                 fontWeight: '500',
                 padding: '12px 0',
-                borderBottom: '1px solid var(--neutral-off-white)',
+                borderBottom: '1px solid var(--green-light-bg)',
                 cursor: 'pointer'
               }}>
                 About
@@ -295,9 +282,6 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
               <a onClick={() => {
                 if (onNavigate) {
                   onNavigate('resources');
-                  setTimeout(() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }, 100);
                 }
                 setIsMenuOpen(false);
               }} style={{
@@ -307,7 +291,7 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
                 fontSize: '16px',
                 fontWeight: '500',
                 padding: '12px 0',
-                borderBottom: '1px solid var(--neutral-off-white)',
+                borderBottom: '1px solid var(--green-light-bg)',
                 cursor: 'pointer'
               }}>
                 Resources
@@ -315,9 +299,6 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
               <a onClick={() => {
                 if (onNavigate) {
                   onNavigate('support');
-                  setTimeout(() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }, 100);
                 }
                 setIsMenuOpen(false);
               }} style={{
@@ -327,7 +308,7 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
                 fontSize: '16px',
                 fontWeight: '500',
                 padding: '12px 0',
-                borderBottom: '1px solid var(--neutral-off-white)',
+                borderBottom: '1px solid var(--green-light-bg)',
                 cursor: 'pointer'
               }}>
                 Support
@@ -335,7 +316,7 @@ const CDCHeader = ({ onNavigate, currentPage }) => {
               <button 
                 onClick={() => {onNavigate && onNavigate('risk-assessment'); setIsMenuOpen(false);}}
                 style={{
-                  backgroundColor: '#1e40af',
+                  backgroundColor: 'var(--green-primary)',
                   color: 'white',
                   padding: '0.75rem 1.5rem',
                   borderRadius: '0.375rem',
