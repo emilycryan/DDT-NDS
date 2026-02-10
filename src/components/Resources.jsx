@@ -41,7 +41,7 @@ const Resources = ({ onNavigate }) => {
 
           <p style={{
             fontSize: '1.25rem',
-            color: '#0f766e',
+            color: 'var(--coral)',
             fontWeight: '600',
             marginBottom: '1.5rem',
             margin: '0 0 1.5rem 0'
@@ -167,7 +167,7 @@ const Resources = ({ onNavigate }) => {
             <div style={{
               width: '60px',
               height: '60px',
-              backgroundColor: '#059669',
+              backgroundColor: 'var(--coral)',
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
@@ -197,7 +197,7 @@ const Resources = ({ onNavigate }) => {
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              color: '#059669',
+              color: 'var(--coral)',
               fontWeight: '600',
               fontSize: '0.95rem'
             }}>

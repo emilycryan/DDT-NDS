@@ -10,7 +10,7 @@ const About = () => {
     }}>
       <h1 style={{
         fontSize: '3rem',
-        fontFamily: 'var(--font-header)',
+        fontFamily: 'var(--font-serif)',
         fontWeight: '700',
         color: 'var(--text-primary)',
         lineHeight: '1.1',
@@ -39,7 +39,7 @@ const About = () => {
 
         <h2 style={{
           fontSize: '1.5rem',
-          fontFamily: 'var(--font-header)',
+          fontFamily: 'var(--font-serif)',
           fontWeight: '600',
           color: 'var(--green-primary)',
           marginBottom: '1rem',

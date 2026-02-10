@@ -471,7 +471,7 @@ const LifestylePrograms = () => {
 
           <p style={{
             fontSize: '1.25rem',
-            color: '#0f766e',
+            color: 'var(--coral)',
             fontWeight: '600',
             marginBottom: '1.5rem',
             margin: '0 0 1.5rem 0'
@@ -910,7 +910,7 @@ const LifestylePrograms = () => {
               <div style={{
                 width: '60px',
                 height: '60px',
-                backgroundColor: '#059669',
+                backgroundColor: 'var(--coral)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -953,7 +953,7 @@ const LifestylePrograms = () => {
               <div style={{
                 width: '60px',
                 height: '60px',
-                backgroundColor: '#0ea5e9',
+                backgroundColor: 'var(--coral)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',

@@ -1,33 +1,48 @@
-/* Import fonts - Instrument Sans */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap');
+/* Coral & Ink design system — matches provided design */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap');
 
-/* CSS Custom Properties - Design System Colors */
 :root {
-  /* Core Neutrals */
-  --bg-page: #F7F6F2;
+  /* Primary */
+  --coral: #EF4623;
+  --ink: #2D3B42;
+  --ink-70: rgba(45, 59, 66, 0.7);
+  --ink-10: rgba(45, 59, 66, 0.1);
+
+  /* Backgrounds */
+  --bg-page: #FFFFFF;
   --bg-content: #FFFFFF;
-  --text-primary: #1F2933;
-  --text-secondary: #4B5563;
-  
-  /* Primary Greens */
-  --green-primary: #2F6B4F;
-  --green-secondary: #4E8F6F;
-  --green-light-bg: #D8E6DD;
-  
-  /* Accent Colors (SPARING USE ONLY) */
-  --accent-red: #B23A2F;
-  --accent-orange: #D97706;
-  --accent-yellow: #EAB308;
-  
-  /* Text Colors */
+  --soft-peach: #FDF1EE;
+  --gov-bar: #E7F2F5;
+
+  /* Text */
+  --text-primary: #2D3B42;
+  --text-secondary: #2D3B42;
   --text-white: #ffffff;
-  
+  --text-muted: rgba(45, 59, 66, 0.7);
+
   /* Typography */
-  --font-header: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-body: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-header: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Radii (large per design) */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-2xl: 40px;
+  --radius-3xl: 48px;
+  --radius-pill: 9999px;
+
+  /* Legacy aliases for components that still reference them */
+  --green-primary: #EF4623;
+  --green-secondary: #f06b4a;
+  --green-light-bg: #FDF1EE;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFB;
+  --primary-dark: #2D3B42;
 }
 
-/* Base styles */
 * {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -56,44 +71,26 @@ html, body {
   min-height: 100vh;
 }
 
-/* Typography System */
+/* Typography — section headers use serif (same as title), sizes unchanged */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-header);
+  font-family: var(--font-serif);
   font-weight: 700;
   line-height: 1.2;
   margin: 0;
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
-h1 {
-  font-size: 4rem;
-  font-weight: 800;
-  letter-spacing: -0.025em;
+.hero-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
-h2 {
-  font-size: 3.5rem;
-  font-weight: 700;
-}
-
-h3 {
-  font-size: 2.5rem;
-  font-weight: 600;
-}
-
-h4 {
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-h5 {
-  font-size: 1.75rem;
-  font-weight: 600;
-}
-
-h6 {
-  font-size: 1.5rem;
-  font-weight: 500;
+.hero-serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--coral);
 }
 
 p {
@@ -103,16 +100,16 @@ p {
   color: var(--text-secondary);
 }
 
-/* Button System */
+/* Buttons — 30px radius, pill for primary CTA */
 .btn {
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 1rem;
   padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 30px;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease, background-color 0.2s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -121,69 +118,56 @@ p {
   outline: none;
 }
 
+.btn:hover {
+  transform: scale(1.04);
+}
+
 .btn:focus {
-  outline: 2px solid var(--green-primary);
+  outline: 2px solid var(--coral);
   outline-offset: 2px;
 }
 
 .btn-primary {
-  background-color: var(--green-primary);
+  background-color: var(--coral);
   color: var(--text-white);
+  box-shadow: 0 10px 15px -3px rgba(239, 70, 35, 0.2);
 }
 
 .btn-primary:hover {
-  background-color: var(--green-secondary);
+  filter: brightness(1.05);
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: var(--green-primary);
-  border: 2px solid var(--green-primary);
+  color: var(--ink);
+  border: 2px solid var(--ink);
 }
 
 .btn-secondary:hover {
-  background-color: var(--green-primary);
-  color: var(--text-white);
+  background-color: var(--ink-10);
 }
 
-.btn-accent {
-  background-color: var(--accent-red);
-  color: var(--text-white);
+.btn-white {
+  background-color: var(--text-white);
+  color: var(--coral);
 }
 
-.btn-accent:hover {
-  background-color: var(--accent-orange);
+.btn-white:hover {
+  background-color: var(--soft-peach);
 }
 
-/* Card System */
+/* Cards — large corner radii */
 .card {
   background-color: var(--bg-content);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-3xl);
   padding: 1.5rem;
-  border: 1px solid var(--green-light-bg);
+  border: 1px solid rgba(45, 59, 66, 0.08);
 }
 
-.card-featured {
-  background-color: var(--green-primary);
-  color: var(--text-white);
-  border: none;
-}
-
-.card-featured h3,
-.card-featured h4,
-.card-featured h5 {
-  color: var(--text-white);
-}
-
-.card-featured p {
-  color: var(--text-white);
-}
-
-/* Image Overlays */
 .image-overlay {
   position: relative;
   overflow: hidden;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-3xl);
 }
 
 .image-overlay img {
@@ -193,76 +177,24 @@ p {
   object-position: center;
 }
 
-/* Icon System */
+/* Small coral circle icons (feature list) */
 .icon-circle {
-  width: 80px;
-  height: 80px;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.5rem auto;
+  flex-shrink: 0;
 }
 
-.icon-circle-primary {
-  background-color: var(--green-primary);
+.icon-circle-coral {
+  background-color: var(--coral);
+  color: white;
 }
 
-.icon-circle-accent {
-  background-color: var(--green-secondary);
-}
-
-.icon-circle-warm {
-  background-color: var(--accent-orange);
-}
-
-.icon-circle-success {
-  background-color: var(--green-secondary);
-}
-
-.icon-circle-info {
-  background-color: var(--text-secondary);
-}
-
-.icon-circle-grey {
-  background-color: var(--text-secondary);
-}
-
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  html, body {
-    font-size: 16px;
-  }
-  
-  h1 {
-    font-size: 3rem;
-  }
-  
-  h2 {
-    font-size: 2.5rem;
-  }
-  
-  h3 {
-    font-size: 2rem;
-  }
-  
-  h4 {
-    font-size: 1.75rem;
-  }
-  
-  .btn {
-    font-size: 1rem;
-    min-height: 44px;
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .card {
-    padding: 1.25rem;
-  }
-}
-
-/* Utility classes */
+/* Utility */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -275,112 +207,19 @@ p {
   border: 0;
 }
 
-.text-center {
-  text-align: center;
-}
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-primary { color: var(--coral); }
+.text-muted { color: var(--text-muted); }
+.bg-primary { background-color: var(--coral); }
 
-.text-left {
-  text-align: left;
-}
-
-.text-primary {
-  color: var(--green-primary);
-}
-
-.text-accent {
-  color: var(--accent-red);
-}
-
-.text-muted {
-  color: var(--text-secondary);
-}
-
-.bg-primary {
-  background-color: var(--green-primary);
-}
-
-.bg-secondary {
-  background-color: var(--bg-page);
-}
-
-.bg-accent {
-  background-color: var(--green-light-bg);
-}
-
-/* Loading animation */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.loading {
-  animation: spin 1s linear infinite;
-}
-
-/* Hero Button Pulse Animation */
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-.hero-btn {
-  transition: all 0.3s ease;
-}
-
-.hero-btn:hover {
-  animation: pulse 1s ease-in-out infinite;
-}
-
-.hero-btn-white:hover {
-  background-color: var(--green-light-bg);
-  color: var(--green-primary);
-}
-
-/* Hero Section Styles */
-.hero-overlay {
-  background-color: var(--green-primary);
-  color: var(--text-white);
-  padding: 4rem 2rem;
-  border-radius: 1rem;
-}
-
-.hero-overlay h1,
-.hero-overlay h2,
-.hero-overlay h3 {
-  color: var(--text-white);
-}
-
-.hero-overlay p {
-  color: var(--text-white);
-}
-
-/* Quote/Testimonial Styles */
-.quote-card {
-  background-color: var(--green-light-bg);
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  border-left: 4px solid var(--green-primary);
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-/* Footer Link Hover States */
+/* Footer link hover */
 .footer-link:hover {
   text-decoration: underline !important;
 }
 
-/* Leaflet Map Styles */
-.leaflet-container {
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-}
-
-.leaflet-popup-content-wrapper {
-  border-radius: 0.5rem;
-}
-
-.leaflet-popup-content {
-  margin: 0.75rem;
-  font-family: var(--font-body);
+@media (max-width: 768px) {
+  html, body { font-size: 16px; }
+  .btn { width: 100%; max-width: 300px; }
+  .card { padding: 1.25rem; }
 }

@@ -27,7 +27,7 @@ const RiskAssessment = () => {
         {/* Main Heading */}
         <h1 style={{
           fontSize: isMobile ? '2.25rem' : '3rem',
-          fontFamily: 'var(--font-header)',
+          fontFamily: 'var(--font-serif)',
           fontWeight: '800',
           color: 'var(--text-primary)',
           lineHeight: '1.1',
@@ -87,7 +87,7 @@ const RiskAssessment = () => {
         }}>
           <h2 style={{
             fontSize: isMobile ? '2rem' : '2.5rem',
-            fontFamily: 'var(--font-header)',
+            fontFamily: 'var(--font-serif)',
             fontWeight: '700',
             color: 'var(--text-primary)',
             marginBottom: '1rem',
@@ -138,7 +138,7 @@ const RiskAssessment = () => {
               </div>
               <h3 style={{
                 fontSize: '1.25rem',
-                fontFamily: 'var(--font-header)',
+                fontFamily: 'var(--font-serif)',
                 fontWeight: '600',
                 color: 'var(--text-primary)',
                 marginBottom: '1rem',
@@ -182,7 +182,7 @@ const RiskAssessment = () => {
               </div>
               <h3 style={{
                 fontSize: '1.25rem',
-                fontFamily: 'var(--font-header)',
+                fontFamily: 'var(--font-serif)',
                 fontWeight: '600',
                 color: 'var(--text-primary)',
                 marginBottom: '1rem',
@@ -226,7 +226,7 @@ const RiskAssessment = () => {
               </div>
               <h3 style={{
                 fontSize: '1.25rem',
-                fontFamily: 'var(--font-header)',
+                fontFamily: 'var(--font-serif)',
                 fontWeight: '600',
                 color: 'var(--text-primary)',
                 marginBottom: '1rem',
@@ -253,7 +253,7 @@ const RiskAssessment = () => {
           }}>
             <h3 style={{
               fontSize: '1.25rem',
-              fontFamily: 'var(--font-header)',
+              fontFamily: 'var(--font-serif)',
               fontWeight: '600',
               color: 'var(--text-primary)',
               marginBottom: '1rem',
@@ -271,7 +271,7 @@ const RiskAssessment = () => {
                 <h4 style={{
                   fontSize: '1rem',
                   fontWeight: '600',
-                  fontFamily: 'var(--font-header)',
+                  fontFamily: 'var(--font-serif)',
                   color: 'var(--primary-dark)',
                   marginBottom: '0.5rem',
                   margin: '0 0 0.5rem 0'
@@ -291,7 +291,7 @@ const RiskAssessment = () => {
                 <h4 style={{
                   fontSize: '1rem',
                   fontWeight: '600',
-                  fontFamily: 'var(--font-header)',
+                  fontFamily: 'var(--font-serif)',
                   color: 'var(--primary-dark)',
                   marginBottom: '0.5rem',
                   margin: '0 0 0.5rem 0'
@@ -311,7 +311,7 @@ const RiskAssessment = () => {
                 <h4 style={{
                   fontSize: '1rem',
                   fontWeight: '600',
-                  fontFamily: 'var(--font-header)',
+                  fontFamily: 'var(--font-serif)',
                   color: 'var(--primary-dark)',
                   marginBottom: '0.5rem',
                   margin: '0 0 0.5rem 0'

@@ -30,7 +30,7 @@ const FAQs = () => {
     }}>
       <h2 style={{
         fontSize: '2.5rem',
-        fontFamily: 'var(--font-header)',
+        fontFamily: 'var(--font-serif)',
         fontWeight: '700',
         color: 'var(--text-primary)',
         marginBottom: '2rem',
@@ -71,7 +71,7 @@ const FAQs = () => {
             >
               <h3 style={{
                 fontSize: '1.25rem',
-                fontFamily: 'var(--font-header)',
+                fontFamily: 'var(--font-serif)',
                 fontWeight: '600',
                 color: 'var(--text-primary)',
                 margin: 0

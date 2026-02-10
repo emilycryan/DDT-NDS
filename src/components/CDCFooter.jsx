@@ -4,310 +4,69 @@ const CDCFooter = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const footerBg = '#2D3B42';
+  const linkColor = 'rgba(255, 255, 255, 0.75)';
+  const linkStyle = { color: linkColor, textDecoration: 'none', fontSize: '14px', fontFamily: 'var(--font-body)' };
+  const iconWrap = {
+    width: 40,
+    height: 40,
+    borderRadius: '50%',
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#fff',
+  };
+
   return (
-    <>
-      {/* Main Footer - Dark Bar */}
-      <footer style={{
-        backgroundColor: '#1F4A35',
-        color: 'var(--text-white)',
-        padding: '40px 0 20px 0'
+    <footer style={{
+      backgroundColor: footerBg,
+      color: '#fff',
+      padding: isMobile ? '2rem 24px' : '2.5rem 24px',
+    }}>
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
+        alignItems: isMobile ? 'center' : 'center',
+        justifyContent: 'space-between',
+        gap: isMobile ? '1.5rem' : '2rem',
+        flexWrap: 'wrap',
       }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 15px'
-        }}>
-          {/* Top Section with About CDC and Social Media */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            marginBottom: '30px',
-            flexWrap: 'wrap',
-            gap: '20px',
-            flexDirection: isMobile ? 'column' : 'row'
-          }}>
-            {/* About CDC Section */}
-            <div style={{ 
-              flex: '1', 
-              minWidth: isMobile ? '100%' : '300px' 
-            }}>
-              <h3 style={{
-                fontSize: '18px',
-                fontWeight: 'bold',
-                marginBottom: '15px',
-                color: '#fff'
-              }}>
-                About CDC
-              </h3>
-              <p style={{
-                fontSize: '14px',
-                lineHeight: '1.6',
-                color: 'var(--text-white)',
-                marginBottom: '15px'
-              }}>
-                CDC works 24/7 to protect America from health, safety and security threats, both foreign and domestic. Whether diseases start at home or abroad, are chronic or acute, curable or preventable, human error or deliberate attack, CDC fights disease and supports communities and citizens to do the same.
-              </p>
-              <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                textDecoration: 'none',
-                fontSize: '14px'
-              }}>
-                Learn more about CDC →
-              </a>
-            </div>
-
-            {/* Social Media Section */}
-            <div style={{ 
-              flex: '0 0 auto',
-              width: isMobile ? '100%' : 'auto'
-            }}>
-              <h3 style={{
-                fontSize: '18px',
-                fontWeight: 'bold',
-                marginBottom: '15px',
-                color: '#fff'
-              }}>
-                Connect with CDC
-              </h3>
-              <div style={{
-                display: 'flex',
-                gap: '15px',
-                alignItems: 'center',
-                justifyContent: isMobile ? 'flex-start' : 'center',
-                flexWrap: 'wrap'
-              }}>
-                {/* Facebook */}
-                <a href="#" style={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  display: 'block'
-                }} aria-label="Facebook">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                </a>
-                {/* Twitter/X */}
-                <a href="#" style={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  display: 'block'
-                }} aria-label="Twitter">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
-                  </svg>
-                </a>
-                {/* YouTube */}
-                <a href="#" style={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  display: 'block'
-                }} aria-label="YouTube">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                  </svg>
-                </a>
-                {/* Instagram */}
-                <a href="#" style={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  display: 'block'
-                }} aria-label="Instagram">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                  </svg>
-                </a>
-                {/* LinkedIn */}
-                <a href="#" style={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  display: 'block'
-                }} aria-label="LinkedIn">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                </a>
-                {/* Email */}
-                <a href="#" style={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  display: 'block'
-                }} aria-label="Email Updates">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.342L12 10.77l10.022-6.949h.342c.904 0 1.636.732 1.636 1.636Z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer Links Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: isMobile 
-              ? '1fr' 
-              : 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: isMobile ? '20px' : '30px',
-            marginBottom: '30px',
-            borderTop: '1px solid rgba(255, 255, 255, 0.2)',
-            paddingTop: '30px'
-          }}>
-            {/* Column 1 */}
-            <div>
-              <ul style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0
-              }}>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    About CDC
-                  </a>
-                </li>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    Jobs
-                  </a>
-                </li>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    Funding
-                  </a>
-                </li>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    Policies
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 2 */}
-            <div>
-              <ul style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0
-              }}>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    File Viewers & Players
-                  </a>
-                </li>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    Privacy
-                  </a>
-                </li>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    FOIA
-                  </a>
-                </li>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    No Fear Act
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 3 */}
-            <div>
-              <ul style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0
-              }}>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    OIG
-                  </a>
-                </li>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    Nondiscrimination
-                  </a>
-                </li>
-                <li style={{ marginBottom: '8px' }}>
-                  <a href="#" className="footer-link" style={{
-                    color: 'var(--text-white)',
-                    textDecoration: 'none',
-                    fontSize: '14px'
-                  }}>
-                    Accessibility
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Copyright */}
-          <div style={{
-            textAlign: 'center',
-            paddingTop: '20px',
-            borderTop: '1px solid rgba(255, 255, 255, 0.2)',
-            fontSize: '12px',
-            color: 'var(--text-white)'
-          }}>
-            <p style={{ margin: 0, color: 'var(--text-white)' }}>
-              U.S. Department of Health & Human Services | CDC
-            </p>
-            <p style={{ margin: '5px 0 0 0', color: 'var(--text-white)' }}>
-              Page last reviewed: 1/13/2026
-            </p>
-          </div>
+        <a href="https://www.cdc.gov/about/default.htm" className="footer-link" style={linkStyle}>About CDC</a>
+        <a href="https://www.cdc.gov/cdc-info/index.html" className="footer-link" style={linkStyle}>Contact Us</a>
+        <a href="tel:800-232-4636" style={linkStyle}>800-232-4636</a>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap', justifyContent: isMobile ? 'center' : 'flex-end' }}>
+          <a href="https://www.facebook.com/CDC" aria-label="Facebook" style={iconWrap}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://twitter.com/CDCgov" aria-label="X (Twitter)" style={iconWrap}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/cdcgov/" aria-label="Instagram" style={iconWrap}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.403 0-3.794.016-5.119.077-3.467.159-5.016 1.802-5.119 5.119-.061 1.325-.077 1.716-.077 5.119 0 3.403.016 3.794.077 5.119.103 3.317 1.652 4.96 5.119 5.119 1.325.061 1.716.077 5.119.077 3.403 0 3.794-.016 5.119-.077 3.467-.159 5.016-1.802 5.119-5.119.061-1.325.077-1.716.077-5.119 0-3.403-.016-3.794-.077-5.119-.103-3.317-1.652-4.96-5.119-5.119-1.325-.061-1.716-.077-5.119-.077zm0 5.188a3.188 3.188 0 1 0 0 6.376 3.188 3.188 0 0 0 0-6.376zm0 5.25a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm4.125-7.125a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/cdc" aria-label="LinkedIn" style={iconWrap}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/user/CDCstreamingHealth" aria-label="YouTube" style={iconWrap}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://www.pinterest.com/cdcgov/" aria-label="Pinterest" style={iconWrap}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.012-4.869-3.414 0-5.418 2.561-5.418 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+          </a>
+          <a href="https://www.snapchat.com/add/cdc" aria-label="Snapchat" style={iconWrap}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-1.189.149-2.565.404-3.883.404-1.332 0-2.254-.21-3.563-.404-.331-.061-.652-.089-.958-.089-.494 0-.839.089-1.168.224-.255.104-.435.164-.539.164-.135 0-.24-.045-.345-.149-.104-.09-.149-.224-.149-.419 0-.224.061-.524.149-.988.061-.36.135-.748.224-1.181.029-.149.074-.36.134-.569.045-.24.104-.465.149-.66-.019-.015-.03-.03-.045-.045-1.273-.285-2.399-.675-2.991-1.005-.36-.195-.569-.42-.644-.674-.06-.225-.029-.465.12-.764.135-.27.391-.674.871-1.004.36-.24.779-.42 1.198-.54.075-.015.165-.045.24-.06.27-.075.42-.24.435-.465.015-.09-.015-.18-.045-.27-.195-.435-.599-.66-1.168-.66-.24 0-.509.06-.793.149-.42.134-.839.36-1.198.674-.42.36-.675.81-.675 1.274 0 .24.061.465.164.674-.494.015-1.273-.135-1.768-.405-.465-.27-.81-.66-.975-1.125-.119-.33-.09-.645.09-.9.24-.36.674-.555 1.273-.555.195 0 .375.03.54.075.465.149.765.36 1.02.629.195.21.33.42.405.599.045.09.06.149.06.194 0 .135-.12.27-.345.405-.27.149-.645.27-1.139.36-.42.09-.869.135-1.348.135-.36 0-.719-.03-1.063-.104-.465-.104-.81-.27-1.048-.495-.27-.27-.42-.615-.42-1.004 0-.465.21-.9.629-1.273.465-.42 1.138-.765 1.958-1.004.27-.09.555-.149.81-.209.06-.015.105-.03.149-.045.36-.09.555-.27.63-.495.06-.195.03-.42-.12-.66-.21-.36-.599-.645-1.168-.81-.36-.12-.765-.18-1.198-.18-.6 0-1.123.12-1.548.36-.42.24-.674.555-.779.9-.045.165-.06.33-.06.465 0 .24.09.42.255.555.149.12.39.21.674.24.27.03.555.045.81.045.465 0 .81-.075 1.048-.24.21-.149.345-.36.42-.615.03-.12.045-.24.045-.36 0-.24-.12-.42-.345-.555-.24-.149-.569-.24-.988-.33-.42-.09-.855-.149-1.273-.179-.36-.03-.72-.045-1.063-.045-1.407 0-2.469.36-3.183 1.064-.72.72-1.074 1.649-1.074 2.784 0 .465.075.9.24 1.319.15.405.36.765.645 1.095.27.315.599.57.988.765.36.18.765.315 1.198.42.42.104.855.179 1.273.239.36.045.72.09 1.074.149.42.075.81.18 1.168.33.36.149.674.36.943.629.27.27.494.599.659.988.18.42.27.885.27 1.38 0 .675-.135 1.305-.404 1.875-.27.57-.659 1.074-1.168 1.5-.54.465-1.168.81-1.888 1.049-.72.24-1.5.36-2.349.36-1.407 0-2.649-.36-3.723-1.074-1.074-.72-1.614-1.649-1.614-2.784 0-.42.06-.81.18-1.199.12-.39.27-.72.465-1.005.195-.27.42-.495.675-.674.27-.18.555-.33.855-.435.33-.12.674-.195 1.034-.24.36-.045.72-.075 1.074-.075.57 0 1.125.06 1.649.18.54.12 1.049.315 1.499.599.465.27.869.629 1.199 1.064.36.42.629.93.809 1.499.18.57.27 1.199.27 1.888 0 .96-.24 1.815-.72 2.565-.48.75-1.14 1.35-1.979 1.784-.84.42-1.784.645-2.834.645-.6 0-1.199-.09-1.784-.27-.6-.18-1.139-.435-1.614-.765-.494-.345-.899-.765-1.214-1.259-.33-.494-.494-1.049-.494-1.649 0-.42.075-.81.27-1.199.18-.39.42-.72.72-1.005.3-.27.63-.494.99-.659.36-.165.72-.285 1.104-.36.39-.075.765-.12 1.139-.12.57 0 1.065.105 1.484.315.42.21.765.494 1.029.748.27.255.465.54.585.855.12.315.18.645.18.99 0 .36-.075.69-.24.989-.15.3-.36.555-.629.764-.27.21-.57.36-.914.465-.36.104-.72.149-1.104.149-.81 0-1.444-.27-1.914-.81-.48-.54-.72-1.244-.72-2.109 0-.855.27-1.574.81-2.154.54-.57 1.244-.855 2.109-.855.36 0 .72.06 1.074.18.36.12.704.285 1.029.494.33.21.614.465.854.75.24.27.42.57.54.885.12.33.18.675.18 1.044 0 .36-.075.704-.24 1.029-.15.33-.375.6-.674.81-.285.21-.645.36-1.059.45-.42.09-.855.135-1.314.135-.6 0-1.095-.09-1.484-.27-.39-.18-.69-.42-.9-.72-.21-.3-.315-.645-.315-1.029 0-.42.09-.81.27-1.164.18-.36.42-.66.72-.9.3-.24.645-.42 1.029-.54.39-.12.81-.18 1.254-.18.72 0 1.35.18 1.884.54.54.36.969.855 1.284 1.484.33.63.494 1.359.494 2.184 0 .9-.21 1.724-.629 2.469-.42.75-1.005 1.38-1.754 1.884-.75.51-1.635.765-2.654.765-1.275 0-2.324-.435-3.149-1.305-.825-.87-1.237-1.935-1.237-3.194 0-1.275.42-2.355 1.26-3.24.84-.885 1.905-1.329 3.194-1.329.72 0 1.425.15 2.109.435.69.285 1.314.675 1.869 1.164.555.494.99 1.059 1.314 1.704.33.645.494 1.344.494 2.094 0 .54-.09 1.035-.27 1.484-.18.45-.42.855-.72 1.199-.3.345-.645.63-1.029.855-.39.225-.81.39-1.269.494-.465.105-.945.165-1.444.165-.81 0-1.484-.24-2.019-.72-.54-.48-.81-1.11-.81-1.884 0-.42.075-.81.24-1.164.165-.36.39-.66.675-.9.27-.24.6-.42.975-.54.39-.12.81-.18 1.269-.18.555 0 1.02.09 1.404.27.39.18.69.42.9.72.21.3.315.645.315 1.044 0 .33-.06.63-.18.9-.12.27-.27.495-.45.675-.18.18-.39.315-.63.405-.24.09-.495.135-.765.135-.36 0-.675-.09-.945-.27-.27-.18-.48-.42-.63-.72-.15-.3-.225-.63-.225-.99 0-.495.12-.93.36-1.305.24-.375.57-.66.99-.855.42-.195.9-.3 1.434-.3.765 0 1.425.21 1.98.63.555.42.99.975 1.314 1.644.33.675.494 1.434.494 2.289 0 1.02-.24 1.95-.72 2.784-.48.84-1.14 1.53-1.98 2.069-.84.54-1.785.81-2.829.81z"/></svg>
+          </a>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
 };
 
