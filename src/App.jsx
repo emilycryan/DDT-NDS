@@ -5,6 +5,9 @@ import CDCHeader from './components/CDCHeader'
 import CDCFooter from './components/CDCFooter'
 import Chatbot from './components/Chatbot'
 import RiskAssessment from './components/RiskAssessment'
+import AssessmentChronicConditions from './components/AssessmentChronicConditions'
+import AssessmentCaregiver from './components/AssessmentCaregiver'
+import AssessmentJustCurious from './components/AssessmentJustCurious'
 import About from './components/About'
 import Resources from './components/Resources'
 import Support from './components/Support'
@@ -98,7 +101,13 @@ function App() {
           <ForPractitioners />
         </main>
       ) : currentPage === 'risk-assessment' ? (
-        <RiskAssessment />
+        <RiskAssessment onNavigate={onNavigate} />
+      ) : currentPage === 'assessment-chronic' ? (
+        <AssessmentChronicConditions onBack={() => onNavigate('risk-assessment')} />
+      ) : currentPage === 'assessment-caregiver' ? (
+        <AssessmentCaregiver onBack={() => onNavigate('risk-assessment')} />
+      ) : currentPage === 'assessment-just-curious' ? (
+        <AssessmentJustCurious onBack={() => onNavigate('risk-assessment')} />
       ) : currentPage === 'lifestyle-programs' ? (
         <LifestylePrograms />
       ) : (
