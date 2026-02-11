@@ -250,8 +250,8 @@ function App() {
                   position: 'absolute',
                   top: '1rem',
                   right: '1rem',
-                  backgroundColor: 'rgba(144, 238, 144, 0.95)',
-                  color: 'var(--ink)',
+                  backgroundColor: '#0F4C5C',
+                  color: '#FFFFFF',
                   fontSize: '0.75rem',
                   fontWeight: '700',
                   padding: '6px 12px',
@@ -272,7 +272,7 @@ function App() {
           viewport={{ once: true, amount: 0.1 }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.08 } } }}
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#F4F6F8',
             padding: isMobile ? '4rem 1.5rem' : '5rem 2rem',
             textAlign: 'center',
             scrollMarginTop: '100px',
@@ -313,21 +313,42 @@ function App() {
               }}
               variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
             >
-              <motion.div variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} onClick={() => onNavigate('about')} className="card" style={{ textAlign: 'center', padding: '2rem', cursor: 'pointer' }}>
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ scale: 1.04, transition: { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] } }}
+                onClick={() => onNavigate('about')}
+                className="card card-clickable"
+                style={{ textAlign: 'center', padding: '2rem', cursor: 'pointer', transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+              >
                 <div className="icon-circle icon-circle-coral" style={{ margin: '0 auto 1.25rem' }}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                 </div>
                 <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: '700', fontSize: '1.125rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>What is The Path?</h3>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)', lineHeight: 1.5, margin: 0 }}>Learn about chronic disease risk factors and how lifestyle changes can help prevent conditions like heart disease, stroke, and diabetes.</p>
               </motion.div>
-              <motion.div variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} onClick={() => onNavigate('resources')} className="card" style={{ textAlign: 'center', padding: '2rem', cursor: 'pointer' }}>
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ scale: 1.04, transition: { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] } }}
+                onClick={() => onNavigate('resources')}
+                className="card card-clickable"
+                style={{ textAlign: 'center', padding: '2rem', cursor: 'pointer', transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+              >
                 <div className="icon-circle icon-circle-coral" style={{ margin: '0 auto 1.25rem' }}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                 </div>
                 <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: '700', fontSize: '1.125rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>Get the Facts</h3>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)', lineHeight: 1.5, margin: 0 }}>Access evidence-based information about preventing chronic diseases including obesity, COPD, and cardiovascular conditions.</p>
               </motion.div>
-              <motion.div variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} onClick={() => onNavigate('risk-assessment')} className="card" style={{ textAlign: 'center', padding: '2rem', cursor: 'pointer' }}>
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ scale: 1.04, transition: { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] } }}
+                onClick={() => onNavigate('risk-assessment')}
+                className="card card-clickable"
+                style={{ textAlign: 'center', padding: '2rem', cursor: 'pointer', transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+              >
                 <div className="icon-circle icon-circle-coral" style={{ margin: '0 auto 1.25rem' }}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
                 </div>

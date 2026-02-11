@@ -17,58 +17,131 @@ const RiskAssessment = () => {
       backgroundColor: 'var(--bg-secondary)',
       minHeight: '80vh'
     }}>
-      {/* Hero Section */}
+      {/* Hero Section — two columns: left text + bullets + CTA, right image (matches homepage Why CDC layout) */}
       <section style={{
-        maxWidth: '800px',
+        maxWidth: '1200px',
         margin: '0 auto',
-        padding: isMobile ? '3rem 1rem' : '4rem 2rem',
-        textAlign: 'center'
+        padding: isMobile ? '3rem 1rem' : '5rem 2rem',
+        backgroundColor: '#FFFFFF',
       }}>
-        {/* Main Heading */}
-        <h1 style={{
-          fontSize: isMobile ? '2.25rem' : '3rem',
-          fontFamily: 'var(--font-serif)',
-          fontWeight: '800',
-          color: 'var(--text-primary)',
-          lineHeight: '1.1',
-          marginBottom: '1.5rem',
-          margin: '0 0 1.5rem 0'
-        }}>
-          Am I at Risk?
-        </h1>
-
-        {/* Description */}
-        <p style={{
-          fontSize: isMobile ? '1rem' : '1.125rem',
-          fontFamily: 'var(--font-body)',
-          color: 'var(--text-secondary)',
-          lineHeight: '1.6',
-          marginBottom: '2rem',
-          maxWidth: '600px',
-          margin: '0 auto 2rem auto'
-        }}>
-          Take our comprehensive risk assessments to learn about your personal risk factors for chronic diseases. These evidence-based screening tools help identify areas where lifestyle changes can make a difference.
-        </p>
-
-        {/* CTA Button */}
         <div style={{
-          display: 'flex',
-          justifyContent: 'center'
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+          gap: isMobile ? '2.5rem' : '4rem',
+          alignItems: 'center',
         }}>
-          <button 
-            onClick={() => {
-              const element = document.getElementById('assessment-selection');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }}
-            className="btn btn-primary"
-            style={{
-              minWidth: '200px'
-            }}
-          >
-            Start Assessment
-          </button>
+          <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
+            <h1 style={{
+              fontSize: isMobile ? '2.25rem' : '3rem',
+              fontFamily: 'var(--font-serif)',
+              fontWeight: '800',
+              color: 'var(--text-primary)',
+              lineHeight: '1.1',
+              marginBottom: '1rem',
+              margin: '0 0 1rem 0'
+            }}>
+              Am I at Risk?
+            </h1>
+            <p style={{
+              fontSize: isMobile ? '1rem' : '1.125rem',
+              fontFamily: 'var(--font-body)',
+              color: 'var(--ink-70)',
+              lineHeight: 1.6,
+              marginBottom: '2rem',
+              margin: isMobile ? '0 auto 2rem auto' : '0 0 2rem 0'
+            }}>
+              Take our comprehensive risk assessments to learn about your personal risk factors for chronic diseases. These evidence-based screening tools help identify areas where lifestyle changes can make a difference.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '2rem' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <div className="icon-circle icon-circle-coral">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                </div>
+                <div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Evidence-Based Screening</div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)' }}>Identify key risk factors for diabetes, heart disease, stroke, and more.</div>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <div className="icon-circle icon-circle-coral">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+                </div>
+                <div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Personalized Results</div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)' }}>Get recommendations tailored to your health and lifestyle responses.</div>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                <div className="icon-circle icon-circle-coral">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Take the Next Step</div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)' }}>Connect to programs and resources that support your prevention journey.</div>
+                </div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', justifyContent: isMobile ? 'center' : 'flex-start' }}>
+              <button
+                onClick={() => {
+                  const element = document.getElementById('assessment-selection');
+                  if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                className="btn btn-primary"
+                style={{ minWidth: '200px' }}
+              >
+                Start Assessment
+              </button>
+            </div>
+          </div>
+          <div style={{ position: 'relative' }}>
+            <div className="image-overlay" style={{
+              borderRadius: 'var(--radius-3xl)',
+              overflow: 'hidden',
+              boxShadow: '0 20px 60px rgba(15, 76, 92, 0.15)',
+              aspectRatio: '4/3',
+            }}>
+              <img src="/worriedcouple.png" alt="It's important to take care of myself for my family and my friends" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                top: 0,
+                padding: '1.5rem 2rem 2rem 1.5rem',
+                background: 'linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)',
+                color: '#fff',
+                textAlign: 'left',
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'flex-start',
+              }}>
+                <blockquote style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontWeight: '400',
+                  fontSize: isMobile ? '1.625rem' : '2.5rem',
+                  lineHeight: 1.15,
+                  margin: 0,
+                  maxWidth: '72%',
+                }}>
+                  &ldquo;It&rsquo;s important to take care of myself for my family and my friends.&rdquo;
+                </blockquote>
+              </div>
+              <div style={{
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                backgroundColor: '#0F4C5C',
+                color: '#FFFFFF',
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                padding: '6px 12px',
+                borderRadius: '20px',
+              }}>
+                FOCUS ON Understanding.
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -115,17 +188,19 @@ const RiskAssessment = () => {
           }}>
             {/* For Myself - Concerned */}
             <div 
-              className="card"
+              className="card card-clickable"
               style={{
                 textAlign: 'center',
                 padding: '2rem',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                backgroundColor: 'var(--gov-bar)',
+                border: 'none'
               }}
             >
               <div style={{
                 width: '60px',
                 height: '60px',
-                backgroundColor: 'var(--green-primary)',
+                backgroundColor: '#0F4C5C',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -159,17 +234,19 @@ const RiskAssessment = () => {
 
             {/* For Someone Else - Caregiver */}
             <div 
-              className="card"
+              className="card card-clickable"
               style={{
                 textAlign: 'center',
                 padding: '2rem',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                backgroundColor: 'var(--gov-bar)',
+                border: 'none'
               }}
             >
               <div style={{
                 width: '60px',
                 height: '60px',
-                backgroundColor: 'var(--green-secondary)',
+                backgroundColor: '#0F4C5C',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -203,17 +280,19 @@ const RiskAssessment = () => {
 
             {/* Just Curious - Denial Friendly */}
             <div 
-              className="card"
+              className="card card-clickable"
               style={{
                 textAlign: 'center',
                 padding: '2rem',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                backgroundColor: 'var(--gov-bar)',
+                border: 'none'
               }}
             >
               <div style={{
                 width: '60px',
                 height: '60px',
-                backgroundColor: 'var(--green-primary)',
+                backgroundColor: '#0F4C5C',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -243,90 +322,6 @@ const RiskAssessment = () => {
               }}>
                 I'm generally interested in learning about chronic disease prevention. I feel pretty healthy but want to see what this is all about.
               </p>
-            </div>
-          </div>
-
-          {/* Additional Info */}
-          <div className="quote-card" style={{
-            marginTop: '3rem',
-            padding: '2rem'
-          }}>
-            <h3 style={{
-              fontSize: '1.25rem',
-              fontFamily: 'var(--font-serif)',
-              fontWeight: '600',
-              color: 'var(--text-primary)',
-              marginBottom: '1rem',
-              margin: '0 0 1rem 0'
-            }}>
-              What Happens Next?
-            </h3>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-              gap: '2rem',
-              textAlign: 'left'
-            }}>
-              <div>
-                <h4 style={{
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  fontFamily: 'var(--font-serif)',
-                  color: 'var(--primary-dark)',
-                  marginBottom: '0.5rem',
-                  margin: '0 0 0.5rem 0'
-                }}>
-                  1. Complete Assessment
-                </h4>
-                <p style={{
-                  fontSize: '0.875rem',
-                  fontFamily: 'var(--font-body)',
-                  color: 'var(--text-secondary)',
-                  margin: 0
-                }}>
-                  Answer questions about your health, lifestyle, and family history.
-                </p>
-              </div>
-              <div>
-                <h4 style={{
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  fontFamily: 'var(--font-serif)',
-                  color: 'var(--primary-dark)',
-                  marginBottom: '0.5rem',
-                  margin: '0 0 0.5rem 0'
-                }}>
-                  2. Get Your Results
-                </h4>
-                <p style={{
-                  fontSize: '0.875rem',
-                  fontFamily: 'var(--font-body)',
-                  color: 'var(--text-secondary)',
-                  margin: 0
-                }}>
-                  Receive personalized risk assessment and prevention recommendations.
-                </p>
-              </div>
-              <div>
-                <h4 style={{
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  fontFamily: 'var(--font-serif)',
-                  color: 'var(--primary-dark)',
-                  marginBottom: '0.5rem',
-                  margin: '0 0 0.5rem 0'
-                }}>
-                  3. Take Action
-                </h4>
-                <p style={{
-                  fontSize: '0.875rem',
-                  fontFamily: 'var(--font-body)',
-                  color: 'var(--text-secondary)',
-                  margin: 0
-                }}>
-                  Access resources, programs, and tools to support your prevention journey.
-                </p>
-              </div>
             </div>
           </div>
         </div>

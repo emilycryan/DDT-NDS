@@ -12,7 +12,7 @@
   --bg-page: #FFFFFF;
   --bg-content: #FFFFFF;
   --soft-peach: #FDF1EE;
-  --gov-bar: #E7F2F5;
+  --gov-bar: #F4F6F8;
 
   /* Text */
   --text-primary: #2D3B42;
@@ -162,6 +162,14 @@ p {
   border-radius: var(--radius-3xl);
   padding: 1.5rem;
   border: 1px solid rgba(45, 59, 66, 0.08);
+}
+
+/* Clickable cards — same hover bounce as buttons */
+.card-clickable {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.card-clickable:hover {
+  transform: scale(1.04);
 }
 
 .image-overlay {
