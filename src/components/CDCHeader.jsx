@@ -14,7 +14,7 @@ const CDCHeader = ({ onNavigate, goToHomeSection, scrollToSection, currentPage }
   }, []);
 
   const goTo = (target) => {
-    if (['about', 'resources', 'support', 'home', 'risk-assessment', 'lifestyle-programs'].includes(target) && onNavigate) {
+    if (['about', 'resources', 'support', 'for-practitioners', 'home', 'risk-assessment', 'lifestyle-programs'].includes(target) && onNavigate) {
       onNavigate(target);
     } else if (goToHomeSection && typeof goToHomeSection === 'function') {
       goToHomeSection(target);
@@ -130,6 +130,18 @@ const CDCHeader = ({ onNavigate, goToHomeSection, scrollToSection, currentPage }
             }}>
               Support
             </button>
+            <button type="button" onClick={() => goTo('for-practitioners')} style={{
+              background: 'none',
+              border: 'none',
+              fontFamily: 'var(--font-body)',
+              fontWeight: '600',
+              fontSize: '14px',
+              color: 'var(--ink)',
+              cursor: 'pointer',
+              padding: 0,
+            }}>
+              For Practitioners
+            </button>
             <button
               type="button"
               onClick={() => goTo('risk-assessment')}
@@ -177,6 +189,7 @@ const CDCHeader = ({ onNavigate, goToHomeSection, scrollToSection, currentPage }
             <button type="button" onClick={() => goTo('about')} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}>About</button>
             <button type="button" onClick={() => goTo('resources')} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}>Resources</button>
             <button type="button" onClick={() => goTo('support')} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}>Support</button>
+            <button type="button" onClick={() => goTo('for-practitioners')} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}>For Practitioners</button>
             <button type="button" onClick={() => goTo('risk-assessment')} className="btn btn-primary" style={{ width: '100%', marginTop: 8 }}>GET STARTED</button>
           </div>
         )}

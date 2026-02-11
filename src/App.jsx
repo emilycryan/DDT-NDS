@@ -8,6 +8,7 @@ import RiskAssessment from './components/RiskAssessment'
 import About from './components/About'
 import Resources from './components/Resources'
 import Support from './components/Support'
+import ForPractitioners from './components/ForPractitioners'
 import LifestylePrograms from './components/LifestylePrograms'
 import FAQs from './components/FAQs'
 
@@ -37,7 +38,7 @@ const scrollToSection = (sectionId) => {
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
-  const [currentPage, setCurrentPage] = useState('home') // 'home' | 'about' | 'resources' | 'support' | 'risk-assessment' | 'lifestyle-programs'
+  const [currentPage, setCurrentPage] = useState('home') // 'home' | 'about' | 'resources' | 'support' | 'for-practitioners' | 'risk-assessment' | 'lifestyle-programs'
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,12 +60,12 @@ function App() {
   }
 
   const handleChatbotNavigate = (target) => {
-    if (['about', 'resources', 'support', 'risk-assessment', 'lifestyle-programs'].includes(target)) onNavigate(target)
+    if (['about', 'resources', 'support', 'for-practitioners', 'risk-assessment', 'lifestyle-programs'].includes(target)) onNavigate(target)
     else goToHomeSection(target)
   }
 
   const navigateTo = (target) => {
-    if (['about', 'resources', 'support', 'risk-assessment', 'lifestyle-programs'].includes(target)) onNavigate(target)
+    if (['about', 'resources', 'support', 'for-practitioners', 'risk-assessment', 'lifestyle-programs'].includes(target)) onNavigate(target)
     else goToHomeSection(target)
   }
 
@@ -91,6 +92,10 @@ function App() {
           <section style={{ backgroundColor: 'var(--bg-content)', padding: isMobile ? '3rem 1rem' : '4rem 2rem' }}>
             <FAQs />
           </section>
+        </main>
+      ) : currentPage === 'for-practitioners' ? (
+        <main style={{ minHeight: '80vh' }}>
+          <ForPractitioners />
         </main>
       ) : currentPage === 'risk-assessment' ? (
         <RiskAssessment />
@@ -360,8 +365,8 @@ function App() {
                 Take the first step toward better health. Complete your assessment in under 10 minutes and get instant results.
               </p>
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <button onClick={() => onNavigate('risk-assessment')} className="btn btn-white">Begin Assessment</button>
-                <button className="btn btn-white">Watch Demo</button>
+                <button onClick={() => onNavigate('risk-assessment')} className="btn btn-white">Get Started</button>
+                <button className="btn btn-white">Learn More</button>
               </div>
               <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(255,255,255,0.9)', fontSize: '0.875rem', marginTop: '1.25rem', marginBottom: 0 }}>
                 You're not alone. We've helped thousands get started on their path to prevention.
