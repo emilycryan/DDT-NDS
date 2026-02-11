@@ -1644,7 +1644,7 @@ Available resources to mention:
         }}>
           {/* Header */}
           <div style={{
-            backgroundColor: 'var(--green-primary)',
+            backgroundColor: '#0F4C5C',
             color: 'white',
             padding: '16px',
             borderTopLeftRadius: '12px',
@@ -1654,7 +1654,7 @@ Available resources to mention:
             alignItems: 'center'
           }}>
             <div>
-              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600', color: 'white' }}>
+              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600', color: 'white', fontFamily: 'var(--font-body)' }}>
                 Prevention Assistant
               </h3>
               <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, color: 'white' }}>
@@ -1701,7 +1701,7 @@ Available resources to mention:
                   }}
                 >
                   <div style={{
-                    backgroundColor: message.sender === 'user' ? 'var(--green-primary)' : 'var(--bg-page)',
+                    backgroundColor: message.sender === 'user' ? '#0F4C5C' : 'var(--bg-page)',
                     color: message.sender === 'user' ? 'white' : '#334155',
                     padding: '12px 16px',
                     borderRadius: '18px',
@@ -1882,7 +1882,7 @@ Available resources to mention:
           right: '20px',
           width: '60px',
           height: '60px',
-          backgroundColor: 'var(--green-primary)',
+          backgroundColor: '#0F4C5C',
           color: 'white',
           border: 'none',
           borderRadius: '50%',

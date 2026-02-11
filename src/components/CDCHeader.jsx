@@ -82,15 +82,23 @@ const CDCHeader = ({ onNavigate, goToHomeSection, scrollToSection, currentPage }
           <div
             onClick={() => goTo('home')}
             style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '10px',
+              cursor: 'pointer',
+            }}
+          >
+            <img src="/cdc-round.png" alt="CDC" style={{ height: isMobile ? '36px' : '40px', width: 'auto', display: 'block' }} />
+            <span style={{
               fontFamily: 'var(--font-body)',
               fontWeight: '700',
               fontSize: isMobile ? '18px' : '20px',
               color: 'var(--ink)',
-              cursor: 'pointer',
               letterSpacing: '-0.01em',
-            }}
-          >
-            CDC Path2Prevention
+            }}>
+              Path2Prevention
+            </span>
           </div>
 
           <nav style={{ display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: '32px' }}>
