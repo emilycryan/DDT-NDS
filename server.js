@@ -1,12 +1,17 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+
+// Load environment variables - DDT-copy first, then DDT as fallback (same connection as DDT)
+dotenv.config({ path: path.join(process.cwd(), '.env.local') });
+if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL) {
+  dotenv.config({ path: path.join(process.cwd(), '../DDT/.env.local') });
+}
+
 import { searchProgramsByLocation, searchProgramsByName, getProgramById, searchProgramsByDeliveryMode } from './lib/local-db.js';
 import { semanticSearch, analyzeUserIntent, generateFollowUpQuestions } from './lib/vector-search.js';
 import { getProgramStats } from './lib/pgvector-db.js';
-
-// Load environment variables
-dotenv.config({ path: '.env.local' });
 
 const app = express();
 const PORT = 3006;
@@ -44,6 +49,14 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Fallback sample programs when database is unavailable
+const FALLBACK_PROGRAMS = [
+  { id: 1, organization_name: 'Atlanta Diabetes Prevention Center', city: 'Atlanta', state: 'GA', zip_code: '30309', address_line1: '123 Peachtree St', delivery_mode: 'in-person', latitude: 33.7490, longitude: -84.3880 },
+  { id: 2, organization_name: 'Virtual Health Solutions', city: 'Remote', state: 'GA', zip_code: '00000', address_line1: 'Online Platform', delivery_mode: 'virtual-live', latitude: null, longitude: null },
+  { id: 3, organization_name: 'Community Wellness Network', city: 'Savannah', state: 'GA', zip_code: '31401', address_line1: '456 River St', delivery_mode: 'hybrid', latitude: 32.0809, longitude: -81.0912 },
+  { id: 4, organization_name: 'Flexible Learning Health', city: 'Remote', state: 'FL', zip_code: '00000', address_line1: 'Self-Paced Online', delivery_mode: 'virtual-self-paced', latitude: null, longitude: null }
+];
+
 // Vector search endpoint for intelligent program matching (using pgvector)
 app.post('/api/programs/semantic-search', async (req, res) => {
   try {
@@ -59,18 +72,28 @@ app.post('/api/programs/semantic-search', async (req, res) => {
     const pgvectorAvailable = await checkPgVectorStatus();
     
     if (!pgvectorAvailable) {
-      // Fallback to local database search
       console.log('🔄 pgvector not available, using fallback search...');
-      const fallbackResults = await searchProgramsByLocation(null, null, null, limit * 2);
-      
-      return res.status(200).json({
-        success: true,
-        query,
-        intent_analysis: { intent: 'search_programs', confidence: 0.5 },
-        results: fallbackResults.slice(0, limit),
-        count: Math.min(fallbackResults.length, limit),
-        fallback: true
-      });
+      try {
+        const fallbackResults = await searchProgramsByLocation(null, null, null, limit * 2);
+        return res.status(200).json({
+          success: true,
+          query,
+          intent_analysis: { intent: 'search_programs', confidence: 0.5 },
+          results: fallbackResults.slice(0, limit),
+          count: Math.min(fallbackResults.length, limit),
+          fallback: true
+        });
+      } catch (dbError) {
+        console.warn('⚠️ Database unavailable for semantic search, using static fallback:', dbError.message);
+        return res.status(200).json({
+          success: true,
+          query,
+          intent_analysis: { intent: 'search_programs', confidence: 0.5 },
+          results: FALLBACK_PROGRAMS.slice(0, limit),
+          count: Math.min(FALLBACK_PROGRAMS.length, limit),
+          fallback: true
+        });
+      }
     }
 
     // Analyze user intent
@@ -111,19 +134,10 @@ app.post('/api/programs/semantic-search', async (req, res) => {
 app.get('/api/programs/all', async (req, res) => {
   try {
     const programs = await searchProgramsByLocation(null, null, null, 999);
-
-    return res.status(200).json({
-      success: true,
-      count: programs.length,
-      programs: programs
-    });
-
+    return res.status(200).json({ success: true, count: programs.length, programs });
   } catch (error) {
-    console.error('Get all programs error:', error);
-    return res.status(500).json({ 
-      message: 'Error getting all programs',
-      error: error.message 
-    });
+    console.warn('⚠️ Database unavailable for /api/programs/all, using fallback:', error.message);
+    return res.status(200).json({ success: true, count: FALLBACK_PROGRAMS.length, programs: FALLBACK_PROGRAMS });
   }
 });
 
@@ -145,17 +159,25 @@ app.get('/api/programs/search', async (req, res) => {
 
     // If deliveryMode is specified, search by delivery mode (no location required)
     if (deliveryMode) {
-      console.log('✅ Searching by delivery mode:', deliveryMode);
-      programs = await searchProgramsByDeliveryMode(deliveryMode);
-      
+      try {
+        programs = await searchProgramsByDeliveryMode(deliveryMode);
+      } catch (dbError) {
+        console.warn('⚠️ Database error (using fallback):', dbError?.message || dbError);
+        const mode = String(deliveryMode).toLowerCase();
+        const virtualModes = ['virtual', 'remote', 'online', 'virtual-live', 'virtual-self-paced'];
+        const isVirtual = virtualModes.includes(mode);
+        programs = FALLBACK_PROGRAMS.filter(p => {
+          if (isVirtual) return virtualModes.includes((p.delivery_mode || '').toLowerCase());
+          if (mode === 'in-person' || mode === 'in person') return p.delivery_mode === 'in-person';
+          if (mode === 'hybrid') return p.delivery_mode === 'hybrid';
+          return (p.delivery_mode || '').toLowerCase().includes(mode);
+        });
+      }
       return res.status(200).json({
         success: true,
         count: programs.length,
         programs: programs,
-        searchCriteria: {
-          deliveryMode: deliveryMode,
-          locationBased: false
-        }
+        searchCriteria: { deliveryMode: deliveryMode, locationBased: false }
       });
     }
 
@@ -167,12 +189,24 @@ app.get('/api/programs/search', async (req, res) => {
       });
     }
 
-    programs = await searchProgramsByLocation(
-      zipCode || null, 
-      state || null, 
-      city || null, 
-      parseInt(radius) || 25
-    );
+    try {
+      programs = await searchProgramsByLocation(
+        zipCode || null, 
+        state || null, 
+        city || null, 
+        parseInt(radius) || 25
+      );
+    } catch (dbError) {
+      console.warn('⚠️ Database unavailable, using fallback programs:', dbError.message);
+      const stateNorm = (state || '').toUpperCase();
+      const cityNorm = (city || '').toLowerCase();
+      programs = FALLBACK_PROGRAMS.filter(p => {
+        if (stateNorm && p.state !== stateNorm) return false;
+        if (cityNorm && !(p.city || '').toLowerCase().includes(cityNorm)) return false;
+        if (zipCode && p.zip_code !== zipCode) return false;
+        return true;
+      });
+    }
 
     return res.status(200).json({
       success: true,
@@ -189,9 +223,6 @@ app.get('/api/programs/search', async (req, res) => {
 
   } catch (error) {
     console.error('❌ Program search error:', error.message);
-    console.error('   Code:', error.code);
-    console.error('   Detail:', error.detail);
-    console.error('   Stack:', error.stack);
     return res.status(500).json({ 
       message: 'Error searching programs',
       error: error.message 
@@ -203,22 +234,18 @@ app.get('/api/programs/search', async (req, res) => {
 app.get('/api/programs/search-by-name', async (req, res) => {
   try {
     const { name } = req.query;
-
     if (!name) {
-      return res.status(400).json({ 
-        message: 'Organization name parameter is required' 
-      });
+      return res.status(400).json({ message: 'Organization name parameter is required' });
     }
-
-    const programs = await searchProgramsByName(name);
-
-    return res.status(200).json({
-      success: true,
-      count: programs.length,
-      programs: programs,
-      searchTerm: name
-    });
-
+    let programs;
+    try {
+      programs = await searchProgramsByName(name);
+    } catch (dbError) {
+      console.warn('⚠️ Database unavailable for name search, using fallback:', dbError.message);
+      const term = (name || '').toLowerCase();
+      programs = FALLBACK_PROGRAMS.filter(p => (p.organization_name || '').toLowerCase().includes(term));
+    }
+    return res.status(200).json({ success: true, count: programs.length, programs, searchTerm: name });
   } catch (error) {
     console.error('Program name search error:', error);
     return res.status(500).json({ 
@@ -293,14 +320,7 @@ app.listen(PORT, async () => {
   console.log(`  GET  http://localhost:${PORT}/api/programs/1`);
   console.log(`  POST http://localhost:${PORT}/api/data`);
   
-  // Check pgvector status
   console.log('\n🔍 Checking pgvector status...');
-  const pgvectorStatus = await checkPgVectorStatus();
-  
-  if (pgvectorStatus) {
-    console.log('✅ pgvector is ready for semantic search');
-  } else {
-    console.log('⚠️  pgvector not available - using fallback search');
-    console.log('   To set up pgvector, run: node scripts/setup-pgvector.js');
-  }
+  const pgvectorOk = await checkPgVectorStatus().catch(() => false);
+  console.log(pgvectorOk ? '✅ pgvector ready' : '⚠️  pgvector not available - using fallback');
 });

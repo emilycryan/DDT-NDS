@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "setup-pgvector": "node scripts/setup-pgvector.js",
     "test-pgvector": "node scripts/test-pgvector.js",
-    "populate-sample-data": "node scripts/populate-sample-data.js"
+    "populate-sample-data": "node scripts/populate-sample-data.js",
+    "test-db": "node scripts/test-db-connection.js"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

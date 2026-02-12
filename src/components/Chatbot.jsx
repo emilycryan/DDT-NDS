@@ -672,7 +672,7 @@ const Chatbot = ({ onNavigate }) => {
   // Function to search for programs via API
   const searchProgramsFromDatabase = async (searchTerm) => {
     try {
-      const response = await fetch(`http://localhost:3006/api/programs/search-by-name?name=${encodeURIComponent(searchTerm)}`);
+      const response = await fetch(`/api/programs/search-by-name?name=${encodeURIComponent(searchTerm)}`);
       if (!response.ok) {
         throw new Error('Failed to fetch programs');
       }
@@ -687,7 +687,7 @@ const Chatbot = ({ onNavigate }) => {
   // Function to perform semantic search using vector embeddings
   const performSemanticSearch = async (query, conversationHistory = []) => {
     try {
-      const response = await fetch('http://localhost:3006/api/programs/semantic-search', {
+      const response = await fetch('/api/programs/semantic-search', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -714,7 +714,7 @@ const Chatbot = ({ onNavigate }) => {
   // Function to search programs by delivery mode (fallback)
   const searchProgramsByDeliveryMode = async (deliveryMode) => {
     try {
-      const response = await fetch(`http://localhost:3006/api/programs/all`);
+      const response = await fetch(`/api/programs/all`);
       if (!response.ok) {
         throw new Error('Failed to fetch programs');
       }

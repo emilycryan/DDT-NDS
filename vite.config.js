@@ -7,5 +7,11 @@ export default defineConfig({
   server: {
     port: 3005,
     strictPort: true, // This will fail if port 3005 is not available
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3006',
+        changeOrigin: true,
+      },
+    },
   },
 })

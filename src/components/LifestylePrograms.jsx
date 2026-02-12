@@ -59,7 +59,7 @@ const LifestylePrograms = () => {
   useEffect(() => {
     const loadAllPrograms = async () => {
       try {
-        const response = await fetch('http://localhost:3006/api/programs/all');
+        const response = await fetch('/api/programs/all');
         if (response.ok) {
           const data = await response.json();
           if (data.programs && data.programs.length > 0) {
@@ -276,7 +276,7 @@ const LifestylePrograms = () => {
         const queryParams = new URLSearchParams();
         queryParams.append('deliveryMode', finalDeliveryMode);
         
-        const url = `http://localhost:3006/api/programs/search?${queryParams}`;
+        const url = `/api/programs/search?${queryParams}`;
         console.log('✅ Fetching URL:', url);
         console.log('✅ Query params:', queryParams.toString());
         console.log('✅ Delivery mode being sent:', deliveryMode);
@@ -373,7 +373,7 @@ const LifestylePrograms = () => {
         if (locationParams.state) queryParams.append('state', locationParams.state);
         if (locationParams.city) queryParams.append('city', locationParams.city);
 
-        const response = await fetch(`http://localhost:3006/api/programs/search?${queryParams}`);
+        const response = await fetch(`/api/programs/search?${queryParams}`);
         
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
@@ -425,9 +425,11 @@ const LifestylePrograms = () => {
       
     } catch (error) {
       console.error('Error searching programs:', error);
-      // Only show generic error if it's an actual error (not 0 results)
-      // 0 results are handled above with specific messages
-      setError(error.message || 'Unable to search programs. Please try again.');
+      const isNetworkError = error.message === 'Failed to fetch' || error.name === 'TypeError';
+      const message = isNetworkError
+        ? 'Cannot connect to the program search service. Please make sure the API server is running (npm run dev).'
+        : (error.message || 'Unable to search programs. Please try again.');
+      setError(message);
       setSearchResults([]);
       setMapBounds(null);
     } finally {
