@@ -133,7 +133,7 @@ function App() {
               lineHeight: 1.1,
               marginBottom: '0.25rem',
             }}>
-              Start Your CDC:
+              Start Your
             </h1>
             <h1 className="hero-serif-italic" style={{
               fontSize: isMobile ? '3.5rem' : 'clamp(3rem, 8vw, 6rem)',
