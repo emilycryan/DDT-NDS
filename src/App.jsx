@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import * as motion from 'motion/react-client'
 import './App.css'
 import CDCHeader from './components/CDCHeader'
@@ -39,26 +40,39 @@ const scrollToSection = (sectionId) => {
   })
 }
 
+const PAGE_TO_PATH = {
+  'about': '/about',
+  'resources': '/resources',
+  'support': '/support',
+  'for-practitioners': '/for-practitioners',
+  'risk-assessment': '/get-started',
+  'lifestyle-programs': '/lifestyle-programs',
+  'assessment-chronic': '/get-started/for-myself',
+  'assessment-caregiver': '/get-started/for-someone',
+  'assessment-just-curious': '/get-started/just-curious',
+}
+
+const PATH_TO_PAGE = Object.fromEntries(Object.entries(PAGE_TO_PATH).map(([k, v]) => [v, k]))
+
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
-  const [currentPage, setCurrentPage] = useState('home') // 'home' | 'about' | 'resources' | 'support' | 'for-practitioners' | 'risk-assessment' | 'lifestyle-programs'
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768)
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   const onNavigate = (page) => {
-    setCurrentPage(page)
+    const path = PAGE_TO_PATH[page] || (page === 'home' ? '/' : `/${page}`)
+    navigate(path)
     window.scrollTo(0, 0)
   }
 
   const goToHomeSection = (sectionId) => {
-    setCurrentPage('home')
+    navigate('/')
     setTimeout(() => scrollToSection(sectionId), 150)
   }
 
@@ -72,45 +86,54 @@ function App() {
     else goToHomeSection(target)
   }
 
+  const currentPage = location.pathname === '/' ? 'home' : (PATH_TO_PAGE[location.pathname] || 'home')
+
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#FFFFFF', margin: 0, padding: 0 }}>
       <CDCHeader
         scrollToSection={scrollToSection}
-        onNavigate={onNavigate}
         goToHomeSection={goToHomeSection}
         currentPage={currentPage}
       />
 
-      {currentPage === 'about' ? (
+      <Routes>
+      <Route path="/about" element={
         <main style={{ minHeight: '80vh' }}>
           <About />
         </main>
-      ) : currentPage === 'resources' ? (
+      } />
+      <Route path="/resources" element={
         <main style={{ minHeight: '80vh' }}>
           <Resources onNavigate={navigateTo} />
         </main>
-      ) : currentPage === 'support' ? (
+      } />
+      <Route path="/support" element={
         <main style={{ minHeight: '80vh' }}>
           <Support />
           <section style={{ backgroundColor: 'var(--bg-content)', padding: isMobile ? '3rem 1rem' : '4rem 2rem' }}>
             <FAQs />
           </section>
         </main>
-      ) : currentPage === 'for-practitioners' ? (
+      } />
+      <Route path="/for-practitioners" element={
         <main style={{ minHeight: '80vh' }}>
           <ForPractitioners />
         </main>
-      ) : currentPage === 'risk-assessment' ? (
+      } />
+      <Route path="/get-started" element={
         <RiskAssessment onNavigate={onNavigate} />
-      ) : currentPage === 'assessment-chronic' ? (
+      } />
+      <Route path="/get-started/for-myself" element={
         <AssessmentChronicConditions onBack={() => onNavigate('risk-assessment')} />
-      ) : currentPage === 'assessment-caregiver' ? (
+      } />
+      <Route path="/get-started/for-someone" element={
         <AssessmentCaregiver onBack={() => onNavigate('risk-assessment')} />
-      ) : currentPage === 'assessment-just-curious' ? (
+      } />
+      <Route path="/get-started/just-curious" element={
         <AssessmentJustCurious onBack={() => onNavigate('risk-assessment')} />
-      ) : currentPage === 'lifestyle-programs' ? (
-        <LifestylePrograms />
-      ) : (
+      } />
+      <Route path="/lifestyle-programs" element={<LifestylePrograms />} />
+      <Route path="/" element={
       <main>
         {/* Hero — white bg, two-line serif + coral italic */}
         <motion.section
@@ -406,7 +429,8 @@ function App() {
         </motion.section>
 
       </main>
-      )}
+      } />
+      </Routes>
 
       {/* CDC Footer */}
       <CDCFooter />

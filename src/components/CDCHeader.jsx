@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-const CDCHeader = ({ onNavigate, goToHomeSection, scrollToSection, currentPage }) => {
+const navLinkStyle = {
+  background: 'none',
+  border: 'none',
+  fontFamily: 'var(--font-body)',
+  fontWeight: '600',
+  fontSize: '14px',
+  color: 'var(--ink)',
+  cursor: 'pointer',
+  padding: 0,
+  textDecoration: 'none',
+};
+
+const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -13,10 +26,18 @@ const CDCHeader = ({ onNavigate, goToHomeSection, scrollToSection, currentPage }
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const navigate = useNavigate();
+
   const goTo = (target) => {
-    if (['about', 'resources', 'support', 'for-practitioners', 'home', 'risk-assessment', 'lifestyle-programs'].includes(target) && onNavigate) {
-      onNavigate(target);
-    } else if (goToHomeSection && typeof goToHomeSection === 'function') {
+    if (target === 'home') {
+      navigate('/');
+    } else if (target === 'about') navigate('/about');
+    else if (target === 'resources') navigate('/resources');
+    else if (target === 'support') navigate('/support');
+    else if (target === 'for-practitioners') navigate('/for-practitioners');
+    else if (target === 'risk-assessment') navigate('/get-started');
+    else if (target === 'lifestyle-programs') navigate('/lifestyle-programs');
+    else if (goToHomeSection && typeof goToHomeSection === 'function') {
       goToHomeSection(target);
     } else if (scrollToSection && typeof scrollToSection === 'function') {
       scrollToSection(target);
@@ -79,8 +100,8 @@ const CDCHeader = ({ onNavigate, goToHomeSection, scrollToSection, currentPage }
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-          <div
-            onClick={() => goTo('home')}
+          <Link
+            to="/"
             style={{
               fontFamily: 'var(--font-body)',
               fontWeight: '700',
@@ -88,73 +109,33 @@ const CDCHeader = ({ onNavigate, goToHomeSection, scrollToSection, currentPage }
               color: 'var(--ink)',
               cursor: 'pointer',
               letterSpacing: '-0.01em',
+              textDecoration: 'none',
             }}
           >
             CDC Path2Prevention
-          </div>
+          </Link>
 
           <nav style={{ display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: '32px' }}>
-            <button type="button" onClick={() => goTo('about')} style={{
-              background: 'none',
-              border: 'none',
-              fontFamily: 'var(--font-body)',
-              fontWeight: '600',
-              fontSize: '14px',
-              color: 'var(--ink)',
-              cursor: 'pointer',
-              padding: 0,
-            }}>
-              About
-            </button>
-            <button type="button" onClick={() => goTo('resources')} style={{
-              background: 'none',
-              border: 'none',
-              fontFamily: 'var(--font-body)',
-              fontWeight: '600',
-              fontSize: '14px',
-              color: 'var(--ink)',
-              cursor: 'pointer',
-              padding: 0,
-            }}>
-              Resources
-            </button>
-            <button type="button" onClick={() => goTo('support')} style={{
-              background: 'none',
-              border: 'none',
-              fontFamily: 'var(--font-body)',
-              fontWeight: '600',
-              fontSize: '14px',
-              color: 'var(--ink)',
-              cursor: 'pointer',
-              padding: 0,
-            }}>
-              Support
-            </button>
-            <button type="button" onClick={() => goTo('for-practitioners')} style={{
-              background: 'none',
-              border: 'none',
-              fontFamily: 'var(--font-body)',
-              fontWeight: '600',
-              fontSize: '14px',
-              color: 'var(--ink)',
-              cursor: 'pointer',
-              padding: 0,
-            }}>
-              For Practitioners
-            </button>
-            <button
-              type="button"
-              onClick={() => goTo('risk-assessment')}
+            <Link to="/about" style={navLinkStyle}>About</Link>
+            <Link to="/resources" style={navLinkStyle}>Resources</Link>
+            <Link to="/support" style={navLinkStyle}>Support</Link>
+            <Link to="/for-practitioners" style={navLinkStyle}>For Practitioners</Link>
+            <Link
+              to="/get-started"
               className="btn btn-primary"
               style={{
+                ...navLinkStyle,
                 padding: '10px 20px',
                 fontSize: '12px',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
+                color: 'white',
+                backgroundColor: 'var(--coral)',
+                borderRadius: 'var(--radius-md)',
               }}
             >
               GET STARTED
-            </button>
+            </Link>
           </nav>
 
           <button
@@ -186,11 +167,11 @@ const CDCHeader = ({ onNavigate, goToHomeSection, scrollToSection, currentPage }
             zIndex: 999,
             padding: '16px 24px',
           }}>
-            <button type="button" onClick={() => goTo('about')} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}>About</button>
-            <button type="button" onClick={() => goTo('resources')} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}>Resources</button>
-            <button type="button" onClick={() => goTo('support')} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}>Support</button>
-            <button type="button" onClick={() => goTo('for-practitioners')} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}>For Practitioners</button>
-            <button type="button" onClick={() => goTo('risk-assessment')} className="btn btn-primary" style={{ width: '100%', marginTop: 8 }}>GET STARTED</button>
+            <Link to="/about" onClick={() => setIsMenuOpen(false)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', textDecoration: 'none' }}>About</Link>
+            <Link to="/resources" onClick={() => setIsMenuOpen(false)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', textDecoration: 'none' }}>Resources</Link>
+            <Link to="/support" onClick={() => setIsMenuOpen(false)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', textDecoration: 'none' }}>Support</Link>
+            <Link to="/for-practitioners" onClick={() => setIsMenuOpen(false)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', textDecoration: 'none' }}>For Practitioners</Link>
+            <Link to="/get-started" onClick={() => setIsMenuOpen(false)} className="btn btn-primary" style={{ display: 'block', width: '100%', marginTop: 8, textAlign: 'center', textDecoration: 'none', color: 'white' }}>GET STARTED</Link>
           </div>
         )}
       </header>
