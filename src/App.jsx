@@ -13,6 +13,7 @@ import About from './components/About'
 import Resources from './components/Resources'
 import Support from './components/Support'
 import ForPractitioners from './components/ForPractitioners'
+import PractitionerFeedback from './components/PractitionerFeedback'
 import LifestylePrograms from './components/LifestylePrograms'
 import FAQs from './components/FAQs'
 
@@ -118,6 +119,11 @@ function App() {
       <Route path="/for-practitioners" element={
         <main style={{ minHeight: '80vh' }}>
           <ForPractitioners />
+        </main>
+      } />
+      <Route path="/for-practitioners/feedback" element={
+        <main style={{ minHeight: '80vh' }}>
+          <PractitionerFeedback />
         </main>
       } />
       <Route path="/get-started" element={

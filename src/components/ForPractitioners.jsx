@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ForPractitioners = () => {
+  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -256,9 +258,9 @@ const ForPractitioners = () => {
         }}>
           We&apos;re building this site with input from clinicians and public health partners. Please share your suggestions, challenges, and success stories through our feedback form.
         </p>
-        <a href="#feedback" className="btn btn-primary" style={{ display: 'inline-block', marginBottom: '3rem' }}>
+        <button type="button" onClick={() => navigate('/for-practitioners/feedback')} className="btn btn-primary" style={{ display: 'inline-block', marginBottom: '3rem' }}>
           Share Your Feedback
-        </a>
+        </button>
       </section>
     </div>
   );
