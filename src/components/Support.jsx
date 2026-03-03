@@ -1,4 +1,50 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+const conditionCards = [
+  {
+    bgColor: '#fff8f7',
+    iconColor: '#ffaa9d',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+      </svg>
+    ),
+    title: 'What Is Type 2 Diabetes?',
+    description: 'Overview, risk factors, symptoms, and how to manage your risk.',
+    link: { href: 'https://www.cdc.gov/diabetes/basics/type2.html', text: 'Learn more →' },
+    links: null,
+  },
+  {
+    bgColor: '#fcfcfc',
+    iconColor: '#777777',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    ),
+    title: 'Heart Disease & Stroke',
+    description: 'Key facts about prevention, screening, and living well.',
+    link: null,
+    links: [
+      { label: 'Heart disease', href: 'https://www.cdc.gov/heartdisease/index.htm' },
+      { label: 'Stroke', href: 'https://www.cdc.gov/stroke' },
+    ],
+  },
+  {
+    bgColor: '#e8f4ef',
+    iconColor: '#1f9660',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    ),
+    title: 'Preventing Chronic Disease',
+    description: 'Lifestyle steps that lower risk — from healthy eating to staying active.',
+    link: { href: 'https://www.cdc.gov/chronicdisease/index.htm', text: 'Learn more →' },
+    links: null,
+  },
+];
 
 const Support = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -10,7 +56,7 @@ const Support = () => {
   }, []);
 
   const sectionStyles = {
-    maxWidth: '900px',
+    maxWidth: 1200,
     margin: '0 auto',
     padding: isMobile ? '2rem 1rem' : '3rem 2rem',
   };
@@ -47,207 +93,777 @@ const Support = () => {
   };
 
   return (
-    <div style={{
-      backgroundColor: 'var(--bg-page)',
-      minHeight: '80vh',
-    }}>
-      {/* Hero Section */}
-      <section style={{
-        backgroundColor: 'var(--soft-peach)',
-        padding: isMobile ? '3rem 1rem' : '4rem 2rem',
-        textAlign: 'center',
-        borderBottom: '1px solid var(--ink-10)',
-      }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h1 style={{
+    <div style={{ backgroundColor: 'white', minHeight: '80vh' }}>
+      {/* Top Section */}
+      <div style={sectionStyles}>
+        <nav
+          style={{
+            marginBottom: '1.5rem',
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.875rem',
+            color: 'var(--ink-70)',
+          }}
+          aria-label="Breadcrumb"
+        >
+          <Link to="/" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+            Home
+          </Link>
+          <span style={{ margin: '0 0.5rem' }}>/</span>
+          <span style={{ color: 'var(--ink)', fontWeight: 600 }}>Support</span>
+        </nav>
+
+        <span
+          style={{
+            display: 'inline-block',
+            backgroundColor: '#FFEDE9',
+            color: '#DC5A42',
+            fontSize: '0.75rem',
+            fontWeight: '600',
+            letterSpacing: '0.05em',
+            padding: '0.4rem 1.125rem',
+            borderRadius: 'var(--radius-pill)',
+            marginBottom: '1.25rem',
+            fontFamily: 'var(--font-body)',
+            textTransform: 'uppercase',
+          }}
+        >
+          Support
+        </span>
+
+        <h1
+          style={{
             fontSize: isMobile ? '2.25rem' : '3rem',
             fontFamily: 'var(--font-serif)',
-            fontWeight: '700',
-            color: 'var(--ink)',
-            lineHeight: '1.2',
-            marginBottom: '1.5rem',
-          }}>
-            Support — Learn, Connect, and Take Action
-          </h1>
+            fontWeight: '600',
+            color: '#333333',
+            lineHeight: 1.15,
+            margin: '0 0 0.5rem 0',
+          }}
+        >
+          Learn, Connect, and Take Action
+        </h1>
 
-          <p style={{
-            fontSize: '1.125rem',
+        <h2
+          style={{
+            fontSize: '1.25rem',
             fontFamily: 'var(--font-body)',
-            color: 'var(--text-secondary)',
-            lineHeight: '1.7',
-            maxWidth: '700px',
-            margin: '0 auto',
-          }}>
-            Chronic conditions like diabetes, heart disease, and stroke don&apos;t define you — they&apos;re part of a journey. This page brings together trusted information, tools, and support to help you understand your health, take informed steps, and connect with resources that meet you where you are.
-          </p>
-        </div>
-      </section>
-
-      {/* Content Sections */}
-      <section style={sectionStyles}>
-        <h2 style={{ ...h2Styles, marginTop: 0 }}>
+            fontWeight: '700',
+            color: '#333333',
+            margin: '0 0 1rem 0',
+          }}
+        >
           Your Health Journey Starts Here
         </h2>
 
-        <h3 style={{
-          fontSize: '1.25rem',
-          fontFamily: 'var(--font-serif)',
-          fontWeight: '600',
-          color: 'var(--ink)',
-          marginBottom: '1rem',
-        }}>
+        <p
+          style={{
+            fontSize: '1rem',
+            fontFamily: 'var(--font-body)',
+            color: '#555555',
+            lineHeight: 1.6,
+            margin: '0 0 2rem 0',
+          }}
+        >
+          Chronic conditions like diabetes, heart disease, and stroke don&apos;t define you — they&apos;re part of a journey. This page brings together trusted information, tools, and support to help you understand your health, take informed steps, and connect with resources that meet you where you are.
+        </p>
+
+        <h3
+          style={{
+            fontSize: '1.375rem',
+            fontFamily: 'var(--font-body)',
+            fontWeight: '700',
+            color: '#333333',
+            margin: '0 0 0.5rem 0',
+          }}
+        >
           Understand Chronic Conditions
         </h3>
-        <p style={{
-          fontSize: '1rem',
-          fontFamily: 'var(--font-body)',
-          color: 'var(--text-secondary)',
-          lineHeight: '1.6',
-          marginBottom: '1rem',
-        }}>
+        <p
+          style={{
+            fontSize: '1rem',
+            fontFamily: 'var(--font-body)',
+            color: '#555555',
+            lineHeight: 1.6,
+            margin: '0 0 1.5rem 0',
+          }}
+        >
           Learn the basics and find practical steps for prevention and management.
         </p>
 
-        <ul style={{ listStyle: 'none', padding: 0, marginBottom: '2rem' }}>
-          <li style={listItemStyles}>
-            <span style={bulletStyles} />
-            <strong style={{ color: 'var(--ink)' }}>What Is Type 2 Diabetes?</strong>
-            {' '}Overview, risk factors, symptoms, and how to manage your risk.{' '}
-            <a href="https://www.cdc.gov/diabetes/basics/type2.html" target="_blank" rel="noopener noreferrer" style={linkStyles}>Learn more</a>
-          </li>
-          <li style={listItemStyles}>
-            <span style={bulletStyles} />
-            <strong style={{ color: 'var(--ink)' }}>Heart Disease &amp; Stroke</strong>
-            {' '}Key facts about prevention, screening, and living well.{' '}
-            <a href="https://www.cdc.gov/heartdisease/index.htm" target="_blank" rel="noopener noreferrer" style={linkStyles}>Heart disease</a>
-            {' · '}
-            <a href="https://www.cdc.gov/stroke" target="_blank" rel="noopener noreferrer" style={linkStyles}>Stroke</a>
-          </li>
-          <li style={listItemStyles}>
-            <span style={bulletStyles} />
-            <strong style={{ color: 'var(--ink)' }}>Preventing Chronic Disease</strong>
-            {' '}Lifestyle steps that lower risk — from healthy eating to staying active.{' '}
-            <a href="https://www.cdc.gov/chronicdisease/index.htm" target="_blank" rel="noopener noreferrer" style={linkStyles}>Learn more</a>
-          </li>
-        </ul>
+        {/* Three Informational Cards */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+            gap: '1.5rem',
+            marginBottom: '2rem',
+          }}
+        >
+          {conditionCards.map((card, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundColor: card.bgColor,
+                borderRadius: 'var(--radius-md)',
+                padding: '1.5rem',
+                border: '1px solid #e0e0e0',
+              }}
+            >
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: '50%',
+                  border: `2px solid ${card.iconColor}`,
+                  backgroundColor: card.bgColor,
+                  color: card.iconColor,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '1rem',
+                }}
+              >
+                {card.icon}
+              </div>
+              <h4
+                style={{
+                  fontSize: '1.0625rem',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: '700',
+                  color: '#333333',
+                  margin: '0 0 0.5rem 0',
+                }}
+              >
+                {card.title}
+              </h4>
+              <p
+                style={{
+                  fontSize: '0.9375rem',
+                  fontFamily: 'var(--font-body)',
+                  color: '#555555',
+                  lineHeight: 1.5,
+                  margin: '0 0 1rem 0',
+                }}
+              >
+                {card.description}
+              </p>
+              {card.links && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
+                  {card.links.map((item, j) => (
+                    <a
+                      key={j}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        fontFamily: 'var(--font-body)',
+                        fontWeight: '600',
+                        fontSize: '0.9375rem',
+                        color: card.iconColor,
+                        textDecoration: 'none',
+                      }}
+                    >
+                      {item.label} →
+                    </a>
+                  ))}
+                </div>
+              )}
+              {card.link && (
+                <a
+                  href={card.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontWeight: '600',
+                    fontSize: '0.9375rem',
+                    color: card.iconColor,
+                    textDecoration: 'none',
+                  }}
+                >
+                  {card.link.text}
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
 
-        <h2 style={h2Styles}>
+      {/* Content Sections */}
+      <section style={{ ...sectionStyles, maxWidth: 1200, backgroundColor: '#F8F7F5', padding: isMobile ? '2rem 1rem' : '3rem 2rem', borderRadius: 'var(--radius-md)' }}>
+        <h2 style={{
+          fontSize: isMobile ? '1.75rem' : '2rem',
+          fontFamily: 'var(--font-serif)',
+          fontWeight: '600',
+          color: '#333333',
+          margin: '0 0 1.5rem 0',
+        }}>
           Tools and Resources You Can Use Now
         </h2>
 
-        <h3 style={{
-          fontSize: '1.25rem',
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+          gap: '1.5rem',
+          marginBottom: '2rem',
+        }}>
+          {/* Left Panel: Interactive Tools & Self-Assessments */}
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: 16,
+            padding: '1.5rem',
+            boxShadow: '0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06)',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+              <div style={{
+                width: 36,
+                height: 36,
+                borderRadius: 8,
+                backgroundColor: '#F45E4C',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
+                  <rect x="2" y="2" width="20" height="14" rx="1"/>
+                  <rect x="5" y="5" width="14" height="8"/>
+                  <path d="M8 20h8M12 16v4" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <h3 style={{
+                fontSize: '1.125rem',
+                fontFamily: 'var(--font-body)',
+                fontWeight: 600,
+                color: '#333333',
+                margin: 0,
+              }}>
+                Interactive Tools & Self-Assessments
+              </h3>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{
+                backgroundColor: '#F7F7F7',
+                borderRadius: 12,
+                padding: '1rem 1.25rem',
+              }}>
+                <div style={{ marginBottom: '0.5rem' }}>
+                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Diabetes Risk Test</strong>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
+                    A quick quiz to learn your risk for type 2 diabetes.
+                  </p>
+                  <a
+                    href="https://www.cdc.gov/diabetes/risk-test/index.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-block',
+                      padding: '0.5rem 1rem',
+                      backgroundColor: '#EE6C4E',
+                      color: 'white',
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: 500,
+                      fontSize: '0.9375rem',
+                      borderRadius: 999,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    Take the test
+                  </a>
+                </div>
+              </div>
+
+              <div style={{
+                backgroundColor: '#F7F7F7',
+                borderRadius: 12,
+                padding: '1rem 1.25rem',
+              }}>
+                <div style={{ marginBottom: '0.5rem' }}>
+                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Make a Plan: Healthy Living Tools</strong>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
+                    Printable trackers, goal planners, and habit tips.
+                  </p>
+                  <a
+                    href="#"
+                    style={{
+                      display: 'inline-block',
+                      padding: '0.5rem 1rem',
+                      backgroundColor: '#EFEFEF',
+                      color: '#333333',
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: 500,
+                      fontSize: '0.9375rem',
+                      borderRadius: 999,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    Get tools
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Panel: Learn With Video */}
+          <div style={{
+            backgroundColor: '#2D3748',
+            borderRadius: 16,
+            padding: '1.5rem',
+            boxShadow: '0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06)',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <h3 style={{
+                fontSize: '1.125rem',
+                fontFamily: 'var(--font-body)',
+                fontWeight: 600,
+                color: 'white',
+                margin: 0,
+              }}>
+                Learn With Video
+              </h3>
+            </div>
+            <p style={{
+              margin: '0 0 1.25rem 0',
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.9375rem',
+              color: '#CBD5E0',
+              lineHeight: 1.5,
+            }}>
+              CDC educational videos to help you understand prevention.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {[
+                'What Is Prediabetes?',
+                'Steps to Heart-Healthy Eating',
+                'Moving More: Physical Activity Basics',
+              ].map((title, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    padding: '0.75rem 1rem',
+                    backgroundColor: '#4A5568',
+                    borderRadius: 12,
+                    textDecoration: 'none',
+                  }}
+                >
+                  <div style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: '50%',
+                    backgroundColor: '#F45E4C',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 2 }}>
+                      <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                  </div>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'white' }}>
+                    &quot;{title}&quot;
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ ...sectionStyles, maxWidth: 1200 }}>
+        <h2 style={{
+          fontSize: isMobile ? '1.75rem' : '2rem',
           fontFamily: 'var(--font-serif)',
           fontWeight: '600',
-          color: 'var(--ink)',
-          marginBottom: '1rem',
+          color: '#333333',
+          margin: '0 0 0.5rem 0',
         }}>
-          Interactive Tools &amp; Self-Assessments
-        </h3>
-
-        <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem' }}>
-          <li style={listItemStyles}>
-            <span style={bulletStyles} />
-            <strong style={{ color: 'var(--ink)' }}>Diabetes Risk Test</strong>
-            {' '}A quick quiz to learn your risk for type 2 diabetes.{' '}
-            <a href="https://www.cdc.gov/diabetes/risk-test/index.html" target="_blank" rel="noopener noreferrer" style={linkStyles}>Take the test</a>
-          </li>
-          <li style={listItemStyles}>
-            <span style={bulletStyles} />
-            <strong style={{ color: 'var(--ink)' }}>Make a Plan: Healthy Living Tools</strong>
-            {' '}Printable trackers, goal planners, and habit tips.
-          </li>
-        </ul>
-
-        <h3 style={{
-          fontSize: '1.25rem',
-          fontFamily: 'var(--font-serif)',
-          fontWeight: '600',
-          color: 'var(--ink)',
-          marginBottom: '1rem',
-        }}>
-          Learn With Video
-        </h3>
+          Connect With Support
+        </h2>
         <p style={{
           fontSize: '1rem',
           fontFamily: 'var(--font-body)',
-          color: 'var(--text-secondary)',
-          lineHeight: '1.6',
-          marginBottom: '0.5rem',
+          color: '#555555',
+          lineHeight: 1.5,
+          margin: '0 0 1.5rem 0',
         }}>
-          CDC educational videos to help you understand prevention:
+          Programs, communities, and direct help when you need it.
         </p>
-        <ul style={{ listStyle: 'none', padding: 0, marginBottom: '2rem' }}>
-          <li style={listItemStyles}><span style={bulletStyles} />&quot;What Is Prediabetes?&quot;</li>
-          <li style={listItemStyles}><span style={bulletStyles} />&quot;Steps to Heart-Healthy Eating&quot;</li>
-          <li style={listItemStyles}><span style={bulletStyles} />&quot;Moving More: Physical Activity Basics&quot;</li>
-        </ul>
 
-        <h2 style={h2Styles}>
-          Connect With Support
-        </h2>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+          gap: '1.5rem',
+          marginBottom: '2rem',
+        }}>
+          {/* Left Card - National Diabetes Prevention Program */}
+          <div
+            style={{
+              backgroundColor: '#2D363D',
+              backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 0.5px, transparent 1px)',
+              backgroundSize: '24px 24px',
+              borderRadius: 'var(--radius-lg)',
+              padding: '2rem',
+              overflow: 'hidden',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.15)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                backgroundColor: '#B0B5BA',
+                color: '#2D363D',
+                fontSize: '0.7rem',
+                fontWeight: '600',
+                letterSpacing: '0.05em',
+                padding: '0.35rem 0.875rem',
+                borderRadius: 'var(--radius-pill)',
+                marginBottom: '1.25rem',
+                fontFamily: 'var(--font-body)',
+                textTransform: 'uppercase',
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              Local &amp; Online Programs
+            </span>
 
-        <h3 style={{
-          fontSize: '1.25rem',
+            <h3
+              style={{
+                fontSize: '2.5rem',
+                fontFamily: 'var(--font-serif)',
+                fontWeight: '600',
+                color: 'white',
+                margin: '0 0 1rem 0',
+                lineHeight: 1.2,
+              }}
+            >
+              National Diabetes Prevention Program
+            </h3>
+
+            <p
+              style={{
+                fontSize: '1rem',
+                fontFamily: 'var(--font-body)',
+                color: 'rgba(255,255,255,0.9)',
+                lineHeight: 1.6,
+                margin: '0 0 1.5rem 0',
+              }}
+            >
+              CDC-recognized evidence-based lifestyle change program proven to prevent or delay type 2 diabetes. Find a program that fits your schedule — in person or online.
+            </p>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+              <a
+                href="https://www.cdc.gov/diabetes/prevention/index.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  backgroundColor: 'white',
+                  color: '#2D363D',
+                  borderRadius: 30,
+                  padding: '0.75rem 1.25rem',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: '600',
+                  fontSize: '0.9375rem',
+                  textDecoration: 'none',
+                }}
+              >
+                Find a program
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <a
+                href="#"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  color: 'white',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: '600',
+                  fontSize: '0.9375rem',
+                  textDecoration: 'none',
+                }}
+              >
+                Support Groups &amp; Coaching →
+              </a>
+            </div>
+          </div>
+
+          {/* Right Card - CDC Chronic Disease Contact Center */}
+          <div
+            style={{
+              backgroundColor: '#F35831',
+              backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 1px)',
+              backgroundSize: '24px 24px',
+              borderRadius: 'var(--radius-lg)',
+              padding: '2rem',
+              overflow: 'hidden',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(239, 70, 35, 0.35)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                backgroundColor: '#FBE0D7',
+                color: '#F35831',
+                fontSize: '0.7rem',
+                fontWeight: '600',
+                letterSpacing: '0.05em',
+                padding: '0.35rem 0.875rem',
+                borderRadius: 'var(--radius-pill)',
+                marginBottom: '1.25rem',
+                fontFamily: 'var(--font-body)',
+                textTransform: 'uppercase',
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              Direct Help
+            </span>
+
+            <h3
+              style={{
+                fontSize: '2.5rem',
+                fontFamily: 'var(--font-serif)',
+                fontWeight: '600',
+                color: 'white',
+                margin: '0 0 1rem 0',
+                lineHeight: 1.2,
+              }}
+            >
+              CDC Chronic Disease Contact Center
+            </h3>
+
+            <p
+              style={{
+                fontSize: '1rem',
+                fontFamily: 'var(--font-body)',
+                color: 'rgba(255,255,255,0.95)',
+                lineHeight: 1.6,
+                margin: '0 0 1.5rem 0',
+              }}
+            >
+              Email and call-in support for questions, tools, and referrals. Our team can help connect you with local resources and answer your prevention questions.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1rem' }}>
+              <a
+                href="tel:800-232-4636"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  backgroundColor: 'white',
+                  color: '#F35831',
+                  borderRadius: 30,
+                  padding: '0.75rem 1.25rem',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: '600',
+                  fontSize: '0.9375rem',
+                  textDecoration: 'none',
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+                800-232-4636
+              </a>
+              <a
+                href="mailto:cdcinfo@cdc.gov"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  color: 'white',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: '600',
+                  fontSize: '0.9375rem',
+                  textDecoration: 'none',
+                }}
+              >
+                Send us an email →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{
+        ...sectionStyles,
+        maxWidth: 1200,
+        backgroundColor: '#fdfaf7',
+        padding: isMobile ? '2rem 1rem' : '3rem 2rem',
+        borderRadius: 'var(--radius-md)',
+      }}>
+        <h2 style={{
+          fontSize: isMobile ? '1.75rem' : '2rem',
           fontFamily: 'var(--font-serif)',
           fontWeight: '600',
-          color: 'var(--ink)',
-          marginBottom: '1rem',
+          color: '#333333',
+          margin: '0 0 0.5rem 0',
         }}>
-          Find Local &amp; Online Support
-        </h3>
-
-        <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem' }}>
-          <li style={listItemStyles}>
-            <span style={bulletStyles} />
-            <strong style={{ color: 'var(--ink)' }}>National Diabetes Prevention Program (DPP)</strong>
-            {' '}Evidence-based lifestyle change program.{' '}
-            <a href="https://www.cdc.gov/diabetes/prevention/index.html" target="_blank" rel="noopener noreferrer" style={linkStyles}>Find a program</a>
-          </li>
-          <li style={listItemStyles}>
-            <span style={bulletStyles} />
-            <strong style={{ color: 'var(--ink)' }}>Support Groups &amp; Coaching</strong>
-            {' '}Community groups, peer support forums, and coaching services.
-          </li>
-        </ul>
-
-        <h3 style={{
-          fontSize: '1.25rem',
-          fontFamily: 'var(--font-serif)',
-          fontWeight: '600',
-          color: 'var(--ink)',
-          marginBottom: '1rem',
-        }}>
-          Get Help
-        </h3>
-        <ul style={{ listStyle: 'none', padding: 0, marginBottom: '2rem' }}>
-          <li style={listItemStyles}>
-            <span style={bulletStyles} />
-            <strong style={{ color: 'var(--ink)' }}>CDC Chronic Disease Contact Center</strong>
-            {' '}Email and call-in support for questions, tools, and referrals.
-          </li>
-        </ul>
-
-        <h2 style={h2Styles}>
           Tips That Fit Your Life
         </h2>
 
-        <h3 style={{
-          fontSize: '1.25rem',
-          fontFamily: 'var(--font-serif)',
-          fontWeight: '600',
-          color: 'var(--ink)',
-          marginBottom: '1rem',
+        <p style={{
+          fontSize: '1rem',
+          fontFamily: 'var(--font-body)',
+          fontWeight: 400,
+          color: '#555555',
+          lineHeight: 1.5,
+          margin: '0 0 1.5rem 0',
         }}>
-          Everyday Habits That Make a Difference
-        </h3>
+          Everyday habits that make a difference — practical, actionable, and realistic.
+        </p>
 
-        <ul style={{ listStyle: 'none', padding: 0, marginBottom: '3rem' }}>
-          <li style={listItemStyles}><span style={bulletStyles} />How to read food labels</li>
-          <li style={listItemStyles}><span style={bulletStyles} />Meal planning on a budget</li>
-          <li style={listItemStyles}><span style={bulletStyles} />Moving more when you&apos;re busy</li>
-          <li style={listItemStyles}><span style={bulletStyles} />Setting realistic goals you can stick with</li>
-        </ul>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+          gap: '1.5rem',
+        }}>
+          {[
+            {
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                  <polyline points="10 9 9 9 8 9"/>
+                </svg>
+              ),
+              title: 'How to Read Food Labels',
+              description: 'Decode nutrition facts to make smarter choices at the grocery store — without guesswork.',
+            },
+            {
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+                  <line x1="8" y1="6" x2="21" y2="6"/>
+                  <line x1="8" y1="12" x2="21" y2="12"/>
+                  <line x1="8" y1="18" x2="21" y2="18"/>
+                  <line x1="3" y1="6" x2="3.01" y2="6"/>
+                  <line x1="3" y1="12" x2="3.01" y2="12"/>
+                  <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+              ),
+              title: 'Meal Planning on a Budget',
+              description: 'Healthy eating doesn\'t have to be expensive. Simple strategies for nutritious meals that fit your wallet.',
+            },
+            {
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              ),
+              title: "Moving More When You're Busy",
+              description: "Small amounts of activity add up. Find easy ways to move throughout your day without a gym or extra time.",
+            },
+            {
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              ),
+              title: 'Setting Realistic Goals',
+              description: 'Goals you can stick with start small. Learn how to build momentum through achievable milestones.',
+            },
+          ].map((tip, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundColor: 'white',
+                borderRadius: 12,
+                padding: '1.5rem',
+                border: '1px solid #e8e8e8',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+              }}
+            >
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <div
+                  style={{
+                    width: 44,
+                    height: 44,
+                    minWidth: 44,
+                    borderRadius: 10,
+                    backgroundColor: '#f7a79e',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {tip.icon}
+                </div>
+                <div>
+                  <h4
+                    style={{
+                      fontSize: '1.0625rem',
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: '700',
+                      color: '#333333',
+                      margin: '0 0 0.5rem 0',
+                    }}
+                  >
+                    {tip.title}
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: '0.9375rem',
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: 400,
+                      color: '#555555',
+                      lineHeight: 1.5,
+                      margin: 0,
+                    }}
+                  >
+                    {tip.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );

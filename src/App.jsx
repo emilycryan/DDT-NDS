@@ -100,7 +100,7 @@ function App() {
       <Routes>
       <Route path="/about" element={
         <main style={{ minHeight: '80vh' }}>
-          <About />
+          <About onNavigate={navigateTo} />
         </main>
       } />
       <Route path="/resources" element={

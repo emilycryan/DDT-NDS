@@ -664,7 +664,7 @@ const LifestylePrograms = () => {
                             <p style={{ 
                               fontSize: '0.875rem', 
                               margin: '0.25rem 0',
-                              color: program.enrollment_status === 'open' ? '#166534' : 
+                              color: program.enrollment_status === 'open' ? '#1f9660' : 
                                      program.enrollment_status === 'closed' ? '#dc2626' : '#92400e',
                               fontWeight: '500'
                             }}>
@@ -815,9 +815,9 @@ const LifestylePrograms = () => {
                               textAlign: 'center',
                               fontSize: '0.875rem',
                               fontWeight: '600',
-                              backgroundColor: program.enrollment_status === 'open' ? '#dcfce7' : 
+                              backgroundColor: program.enrollment_status === 'open' ? '#e8f4ef' : 
                                              program.enrollment_status === 'closed' ? '#fee2e2' : '#fef3c7',
-                              color: program.enrollment_status === 'open' ? '#166534' : 
+                              color: program.enrollment_status === 'open' ? '#1f9660' : 
                                      program.enrollment_status === 'closed' ? '#dc2626' : '#92400e'
                             }}>
                               {program.enrollment_status === 'open' ? '✅ Open' : 

@@ -9,16 +9,16 @@ const FAQs = () => {
 
   const faqs = [
     {
-      question: "Question 1",
-      answer: "Placeholder answer text for the first frequently asked question. This is where the answer content will go."
+      question: "What is a Lifestyle Change Intervention (LCI) program?",
+      answer: "A Lifestyle Change Intervention program is a CDC-recognized program designed to help people with prediabetes prevent or delay type 2 diabetes. Participants work with a trained lifestyle coach over 12 months to make modest changes to diet and physical activity — typically losing 5-7% of body weight and increasing activity to 150 minutes per week."
     },
     {
-      question: "Question 2",
-      answer: "Placeholder answer text for the second frequently asked question. This is where the answer content will go."
+      question: "How do I know if I'm at risk for a chronic condition?",
+      answer: "The best starting point is our free risk assessment, which takes under 10 minutes and covers key risk factors including age, weight, family history, physical activity levels, and existing health conditions. You can also speak with your primary care provider for clinical screenings like blood glucose and blood pressure tests."
     },
     {
-      question: "Question 3",
-      answer: "Placeholder answer text for the third frequently asked question. This is where the answer content will go."
+      question: "Is the information on this site specific to my state or location?",
+      answer: "General health information on this site applies nationally. However, the program finder allows you to search for CDC-recognized Lifestyle Change Intervention programs by zip code, making it easy to find local options near you. Virtual programs are also available for those who prefer online participation."
     }
   ];
 
@@ -33,11 +33,19 @@ const FAQs = () => {
         fontFamily: 'var(--font-serif)',
         fontWeight: '700',
         color: 'var(--text-primary)',
-        marginBottom: '2rem',
+        margin: '0 0 0.5rem 0'
+      }}>
+        Frequently Asked Questions
+      </h2>
+      <p style={{
+        fontSize: '1rem',
+        fontFamily: 'var(--font-body)',
+        color: 'var(--ink-70)',
+        lineHeight: 1.5,
         margin: '0 0 2rem 0'
       }}>
-        FAQs
-      </h2>
+        Common questions about chronic disease prevention and this site.
+      </p>
 
       <div style={{
         display: 'flex',
