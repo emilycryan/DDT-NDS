@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -446,58 +447,96 @@ const LifestylePrograms = () => {
 
   return (
     <main style={{ 
-      backgroundColor: 'transparent',
+      backgroundColor: 'white',
       minHeight: '80vh'
     }}>
-      {/* Hero Section */}
-      <section style={{
-        backgroundColor: 'white',
-        padding: isMobile ? '3rem 1rem' : '4rem 2rem',
-        textAlign: 'center',
-        borderBottom: '1px solid #e2e8f0'
+      <div style={{
+        maxWidth: 1200,
+        margin: '0 auto',
+        padding: isMobile ? '2rem 1rem' : '3rem 2rem',
       }}>
-        <div style={{
-          maxWidth: '800px',
-          margin: '0 auto'
-        }}>
-          <h1 style={{
-            fontSize: isMobile ? '2.5rem' : '3.5rem',
-            fontWeight: 'bold',
-            color: '#1e293b',
-            lineHeight: '1.1',
-            marginBottom: '1rem',
-            margin: '0 0 1rem 0'
-          }}>
+        {/* Breadcrumbs */}
+        <nav
+          style={{
+            marginBottom: '1.5rem',
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.875rem',
+            color: 'var(--ink-70)',
+          }}
+          aria-label="Breadcrumb"
+        >
+          <Link to="/" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+            Home
+          </Link>
+          <span style={{ margin: '0 0.5rem' }}>/</span>
+          <span style={{ color: 'var(--ink)', fontWeight: 600 }}>Lifestyle Programs</span>
+        </nav>
+
+        {/* Hero Section */}
+        <section style={{ marginBottom: '1.5rem', textAlign: 'left' }}>
+          <span
+            style={{
+              display: 'inline-block',
+              backgroundColor: '#FFEDE9',
+              color: '#DC5A42',
+              fontSize: '0.75rem',
+              fontWeight: '600',
+              letterSpacing: '0.05em',
+              padding: '0.4rem 1.125rem',
+              borderRadius: 'var(--radius-pill)',
+              marginBottom: '1.25rem',
+              fontFamily: 'var(--font-body)',
+              textTransform: 'uppercase',
+            }}
+          >
+            Lifestyle Programs
+          </span>
+
+          <h1
+            style={{
+              fontSize: isMobile ? '2.25rem' : '3rem',
+              fontFamily: 'var(--font-serif)',
+              fontWeight: '600',
+              color: '#333333',
+              lineHeight: 1.15,
+              margin: '0 0 0.5rem 0',
+            }}
+          >
             Lifestyle Change Programs
           </h1>
 
-          <p style={{
-            fontSize: '1.25rem',
-            color: 'var(--coral)',
-            fontWeight: '600',
-            marginBottom: '1.5rem',
-            margin: '0 0 1.5rem 0'
-          }}>
+          <p
+            style={{
+              fontSize: '1.125rem',
+              fontFamily: 'var(--font-body)',
+              fontWeight: 700,
+              color: '#555555',
+              lineHeight: 1.5,
+              margin: '0 0 0.75rem 0',
+            }}
+          >
             Find the perfect program for you
           </p>
 
-          <p style={{
-            fontSize: '1.125rem',
-            color: '#64748b',
-            lineHeight: '1.6',
-            maxWidth: '600px',
-            margin: '0 auto'
-          }}>
-            Connect with CDC-recognized lifestyle change programs in your area. These evidence-based programs are proven to reduce the risk of type 2 diabetes by 58%.
+          <p
+            style={{
+              fontSize: '1rem',
+              fontFamily: 'var(--font-body)',
+              color: '#555555',
+              lineHeight: 1.6,
+              margin: 0,
+            }}
+          >
+            Connect with CDC-recognized lifestyle change programs in your area or online. These evidence-based programs are proven to reduce the risk of chronic diseases by 58% or more when integrated into a healthy lifestyle.
           </p>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Program Finder Section */}
       <section style={{
-        backgroundColor: 'white',
-        padding: isMobile ? '3rem 1rem' : '4rem 2rem',
-        margin: '2rem 0'
+        backgroundColor: '#FFEDE9',
+        padding: isMobile ? '1.5rem 1rem' : '2rem 2rem',
+        margin: '0'
       }}>
         <div style={{
           maxWidth: '1000px',
@@ -851,139 +890,143 @@ const LifestylePrograms = () => {
             </div>
           )}
 
-          {/* Program Types */}
+          {/* Program Types - matching Resources educational cards style */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-            gap: '2rem',
-            marginBottom: '3rem'
+            gap: '1.5rem',
+            marginBottom: '3rem',
           }}>
-            {/* In-Person Programs */}
-            <div style={{
-              backgroundColor: 'white',
-              padding: '2rem',
-              borderRadius: '0.75rem',
-              border: '1px solid #e2e8f0',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-              textAlign: 'center'
-            }}>
-              <div style={{
-                width: '60px',
-                height: '60px',
-                backgroundColor: 'var(--green-primary)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 1.5rem auto'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+          {[
+            {
+              accentColor: '#DB3636',
+              iconBgColor: '#FDE8E5',
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                   <circle cx="9" cy="7" r="4"/>
-                  <path d="m22 21-3-3m0 0-3-3m3 3 3-3m-3 3-3 3"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
                 </svg>
-              </div>
-              <h3 style={{
-                fontSize: '1.25rem',
-                fontWeight: 'bold',
-                color: '#1e293b',
-                marginBottom: '1rem'
-              }}>
-                In-Person Programs
-              </h3>
-              <p style={{
-                fontSize: '0.95rem',
-                color: '#64748b',
-                lineHeight: '1.5'
-              }}>
-                Meet with a lifestyle coach and other participants in a classroom setting for interactive group sessions.
-              </p>
-            </div>
-
-            {/* Live Virtual Programs */}
-            <div style={{
-              backgroundColor: 'white',
-              padding: '2rem',
-              borderRadius: '0.75rem',
-              border: '1px solid #e2e8f0',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-              textAlign: 'center'
-            }}>
-              <div style={{
-                width: '60px',
-                height: '60px',
-                backgroundColor: 'var(--coral)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 1.5rem auto'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              ),
+              title: 'In-Person Programs',
+              description: 'Meet with a lifestyle coach and other participants in a classroom setting for interactive group sessions and community-based learning.',
+              bullets: ['Group Coaching Sessions', 'Community Support Network', 'Hands-On Learning Activities', 'Local Program Finder'],
+              linkText: 'Explore in-person programs →',
+            },
+            {
+              accentColor: '#49534E',
+              iconBgColor: '#E8E8E8',
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23 7l-7 5 7 5V7z"/>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                </svg>
+              ),
+              title: 'Live Virtual Programs',
+              description: 'Join interactive group sessions from home using video conferencing platforms like Zoom, with a real-time coach and live peer support.',
+              bullets: ['Live Video Conferencing', 'Interactive Q&A Sessions', 'Digital Resource Library', 'Flexible Scheduling'],
+              linkText: 'Explore virtual programs →',
+            },
+            {
+              accentColor: '#1f9660',
+              iconBgColor: '#e8f4ef',
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/>
                   <line x1="8" y1="21" x2="16" y2="21"/>
                   <line x1="12" y1="17" x2="12" y2="21"/>
-                  <circle cx="12" cy="10" r="3"/>
                 </svg>
-              </div>
-              <h3 style={{
-                fontSize: '1.25rem',
-                fontWeight: 'bold',
-                color: '#1e293b',
-                marginBottom: '1rem'
-              }}>
-                Live Virtual Programs
-              </h3>
-              <p style={{
-                fontSize: '0.95rem',
-                color: '#64748b',
-                lineHeight: '1.5'
-              }}>
-                Join interactive group sessions from home using video conferencing platforms like Zoom.
-              </p>
-            </div>
-
-            {/* On-Demand Programs */}
-            <div style={{
-              backgroundColor: 'white',
-              padding: '2rem',
-              borderRadius: '0.75rem',
-              border: '1px solid #e2e8f0',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-              textAlign: 'center'
-            }}>
-              <div style={{
-                width: '60px',
-                height: '60px',
-                backgroundColor: 'var(--coral)',
-                borderRadius: '50%',
+              ),
+              title: 'On-Demand Programs',
+              description: 'Complete sessions at your own pace using a smartphone, tablet, or computer — with no set meeting times and flexible scheduling.',
+              bullets: ['Self-Paced Learning', 'Mobile & Tablet Friendly', 'Progress Tracking Tools', '24/7 Content Access'],
+              linkText: 'Explore on-demand programs →',
+            },
+          ].map((card, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundColor: 'white',
+                borderRadius: 'var(--radius-md)',
+                padding: '1.5rem',
+                border: '1px solid #e5e5e5',
+                borderTop: `3px solid ${card.accentColor}`,
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 1.5rem auto'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                  <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
-                  <circle cx="12" cy="10" r="2"/>
-                  <path d="M12 14l-3 3h6l-3-3z"/>
-                </svg>
+                flexDirection: 'column',
+              }}
+            >
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 8,
+                  backgroundColor: card.iconBgColor,
+                  color: card.accentColor,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '1rem',
+                }}
+              >
+                {card.icon}
               </div>
-              <h3 style={{
-                fontSize: '1.25rem',
-                fontWeight: 'bold',
-                color: '#1e293b',
-                marginBottom: '1rem'
-              }}>
-                On-Demand Programs
+              <h3
+                style={{
+                  fontSize: '1.5rem',
+                  fontFamily: 'var(--font-serif)',
+                  fontWeight: 600,
+                  color: '#2e2e2e',
+                  margin: '0 0 0.75rem 0',
+                }}
+              >
+                {card.title}
               </h3>
-              <p style={{
-                fontSize: '0.95rem',
-                color: '#64748b',
-                lineHeight: '1.5'
-              }}>
-                Complete sessions at your own pace using a smartphone, tablet, or computer with flexible scheduling.
+              <p
+                style={{
+                  fontSize: '0.9375rem',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: 400,
+                  color: '#6B7280',
+                  lineHeight: 1.55,
+                  margin: '0 0 1rem 0',
+                }}
+              >
+                {card.description}
               </p>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  paddingLeft: 0,
+                  margin: '0 0 1rem 0',
+                  fontSize: '0.9375rem',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: 400,
+                  color: '#6B7280',
+                  lineHeight: 1.6,
+                }}
+              >
+                {card.bullets.map((bullet, j) => (
+                  <li key={j} style={{ marginBottom: '0.25rem', paddingLeft: '1.25rem', position: 'relative' }}>
+                    <span style={{ position: 'absolute', left: 0, top: '0.65em', width: 6, height: 6, borderRadius: '50%', backgroundColor: '#9CA3AF', display: 'inline-block' }} />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="#"
+                style={{
+                  marginTop: 'auto',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: 600,
+                  fontSize: '0.875rem',
+                  color: card.accentColor,
+                  textDecoration: 'none',
+                }}
+              >
+                {card.linkText}
+              </Link>
             </div>
+          ))}
           </div>
 
         </div>

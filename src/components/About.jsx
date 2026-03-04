@@ -64,8 +64,8 @@ const About = ({ onNavigate }) => {
     if (onNavigate) onNavigate('risk-assessment');
   };
 
-  const handleBackToHome = () => {
-    if (onNavigate) onNavigate('home');
+  const handleExploreResources = () => {
+    if (onNavigate) onNavigate('resources');
   };
 
   const sidebar = (
@@ -121,7 +121,7 @@ const About = ({ onNavigate }) => {
         </button>
         <button
           type="button"
-          onClick={handleBackToHome}
+          onClick={handleExploreResources}
           style={{
             width: '100%',
             fontFamily: 'var(--font-body)',
@@ -136,7 +136,7 @@ const About = ({ onNavigate }) => {
             transition: 'background-color 0.2s ease, border-color 0.2s ease',
           }}
         >
-          Back to Home
+          Explore Resources
         </button>
       </div>
 
