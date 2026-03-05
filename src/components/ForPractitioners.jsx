@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const ForPractitioners = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const ForPractitioners = () => {
   }, []);
 
   const sectionStyles = {
-    maxWidth: '900px',
+    maxWidth: 1200,
     margin: '0 auto',
     padding: isMobile ? '2rem 1rem' : '3rem 2rem',
   };
@@ -49,44 +49,90 @@ const ForPractitioners = () => {
   };
 
   return (
-    <div style={{
-      backgroundColor: 'var(--bg-page)',
-      minHeight: '80vh',
-    }}>
+    <div
+      style={{
+        backgroundColor: 'white',
+        minHeight: '80vh',
+      }}
+    >
       {/* Hero Section */}
-      <section style={{
-        backgroundColor: 'var(--soft-peach)',
-        padding: isMobile ? '3rem 1rem' : '4rem 2rem',
-        textAlign: 'center',
-        borderBottom: '1px solid var(--ink-10)',
-      }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h1 style={{
+      <section style={sectionStyles}>
+        <nav
+          style={{
+            marginBottom: '1.5rem',
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.875rem',
+            color: 'var(--ink-70)',
+          }}
+          aria-label="Breadcrumb"
+        >
+          <Link to="/" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+            Home
+          </Link>
+          <span style={{ margin: '0 0.5rem' }}>/</span>
+          <span style={{ color: 'var(--ink)', fontWeight: 600 }}>For Practitioners</span>
+        </nav>
+
+        <span
+          style={{
+            display: 'inline-block',
+            backgroundColor: '#FFEDE9',
+            color: '#DC5A42',
+            fontSize: '0.75rem',
+            fontWeight: '600',
+            letterSpacing: '0.05em',
+            padding: '0.4rem 1.125rem',
+            borderRadius: 'var(--radius-pill)',
+            marginBottom: '1.25rem',
+            fontFamily: 'var(--font-body)',
+            textTransform: 'uppercase',
+          }}
+        >
+          For Practitioners
+        </span>
+
+        <h1
+          style={{
             fontSize: isMobile ? '2.25rem' : '3rem',
             fontFamily: 'var(--font-serif)',
-            fontWeight: '700',
-            color: 'var(--ink)',
-            lineHeight: '1.2',
-            marginBottom: '1.5rem',
-          }}>
-            For Practitioners — Tools, Evidence &amp; Practice Support
-          </h1>
+            fontWeight: '600',
+            color: '#333333',
+            lineHeight: 1.15,
+            margin: '0 0 0.5rem 0',
+          }}
+        >
+          For Practitioners: Tools, Evidence &amp; Practice Support
+        </h1>
 
-          <p style={{
-            fontSize: '1.125rem',
+        <h2
+          style={{
+            fontSize: '1.25rem',
             fontFamily: 'var(--font-body)',
-            color: 'var(--text-secondary)',
-            lineHeight: '1.7',
-            maxWidth: '700px',
-            margin: '0 auto',
-          }}>
-            This site is designed to support both people on their health journey and the practitioners who guide them. Below are starter resources to help you integrate this prototype into patient care, education, and prevention strategies.
-          </p>
-        </div>
+            fontWeight: '700',
+            color: '#333333',
+            margin: '0 0 1rem 0',
+          }}
+        >
+          Support for clinicians and public health partners
+        </h2>
+
+        <p
+          style={{
+            fontSize: '1rem',
+            fontFamily: 'var(--font-body)',
+            color: '#555555',
+            lineHeight: 1.6,
+            margin: '0 0 1rem 0',
+          }}
+        >
+          This site is designed to support both people on their health journey and the practitioners who
+          guide them. Below are starter resources to help you integrate this prototype into patient care,
+          education, and prevention strategies.
+        </p>
       </section>
 
       {/* Content Sections */}
-      <section style={sectionStyles}>
+      <section style={{ ...sectionStyles, paddingTop: 0 }}>
         <h2 style={{ ...h2Styles, marginTop: 0 }}>
           How This Resource Fits Into Care
         </h2>

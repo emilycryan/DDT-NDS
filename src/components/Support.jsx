@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const conditionCards = [
   {
-    bgColor: '#fff8f7',
-    iconColor: '#ffaa9d',
+    accentColor: '#E05A4D',
+    iconBgColor: '#FDE8E5',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
@@ -12,12 +12,13 @@ const conditionCards = [
     ),
     title: 'What Is Type 2 Diabetes?',
     description: 'Overview, risk factors, symptoms, and how to manage your risk.',
-    link: { href: 'https://www.cdc.gov/diabetes/basics/type2.html', text: 'Learn more →' },
-    links: null,
+    bullets: ['What prediabetes means', 'Key risk factors to watch', 'Screening and diagnosis options', 'Steps you can take today'],
+    linkHref: 'https://www.cdc.gov/diabetes/basics/type2.html',
+    linkText: 'Explore diabetes resources →',
   },
   {
-    bgColor: '#fcfcfc',
-    iconColor: '#777777',
+    accentColor: '#3C4449',
+    iconBgColor: '#E8E8E8',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -25,24 +26,24 @@ const conditionCards = [
     ),
     title: 'Heart Disease & Stroke',
     description: 'Key facts about prevention, screening, and living well.',
-    link: null,
-    links: [
-      { label: 'Heart disease', href: 'https://www.cdc.gov/heartdisease/index.htm' },
-      { label: 'Stroke', href: 'https://www.cdc.gov/stroke' },
-    ],
+    bullets: ['Know your numbers', 'Blood pressure & cholesterol', 'Heart-healthy eating', 'Stroke warning signs'],
+    linkHref: 'https://www.cdc.gov/heartdisease/index.htm',
+    linkText: 'Explore heart health resources →',
   },
   {
-    bgColor: '#e8f4ef',
-    iconColor: '#1f9660',
+    accentColor: '#1f9660',
+    iconBgColor: '#e8f4ef',
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 6v6l4 2" strokeLinecap="round"/>
       </svg>
     ),
     title: 'Preventing Chronic Disease',
     description: 'Lifestyle steps that lower risk — from healthy eating to staying active.',
-    link: { href: 'https://www.cdc.gov/chronicdisease/index.htm', text: 'Learn more →' },
-    links: null,
+    bullets: ['Building healthy habits', 'Sleep & recovery', 'Mental health & resilience', 'Staying connected socially'],
+    linkHref: 'https://www.cdc.gov/chronicdisease/index.htm',
+    linkText: 'Explore healthy living guides →',
   },
 ];
 
@@ -161,132 +162,118 @@ const Support = () => {
             fontFamily: 'var(--font-body)',
             color: '#555555',
             lineHeight: 1.6,
-            margin: '0 0 2rem 0',
+            margin: '0 0 1rem 0',
           }}
         >
           Chronic conditions like diabetes, heart disease, and stroke don&apos;t define you — they&apos;re part of a journey. This page brings together trusted information, tools, and support to help you understand your health, take informed steps, and connect with resources that meet you where you are.
         </p>
 
-        <h3
-          style={{
-            fontSize: '1.375rem',
-            fontFamily: 'var(--font-body)',
-            fontWeight: '700',
-            color: '#333333',
-            margin: '0 0 0.5rem 0',
-          }}
-        >
-          Understand Chronic Conditions
-        </h3>
-        <p
-          style={{
-            fontSize: '1rem',
-            fontFamily: 'var(--font-body)',
-            color: '#555555',
-            lineHeight: 1.6,
-            margin: '0 0 1.5rem 0',
-          }}
-        >
-          Learn the basics and find practical steps for prevention and management.
-        </p>
-
-        {/* Three Informational Cards */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-            gap: '1.5rem',
-            marginBottom: '2rem',
-          }}
-        >
-          {conditionCards.map((card, i) => (
-            <div
-              key={i}
+        {false && (
+          <>
+            <h3
               style={{
-                backgroundColor: card.bgColor,
-                borderRadius: 'var(--radius-md)',
-                padding: '1.5rem',
-                border: '1px solid #e0e0e0',
+                fontSize: '1.375rem',
+                fontFamily: 'var(--font-body)',
+                fontWeight: '700',
+                color: '#333333',
+                margin: '0 0 0.5rem 0',
               }}
             >
-              <div
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: '50%',
-                  border: `2px solid ${card.iconColor}`,
-                  backgroundColor: card.bgColor,
-                  color: card.iconColor,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1rem',
-                }}
-              >
-                {card.icon}
-              </div>
-              <h4
-                style={{
-                  fontSize: '1.0625rem',
-                  fontFamily: 'var(--font-body)',
-                  fontWeight: '700',
-                  color: '#333333',
-                  margin: '0 0 0.5rem 0',
-                }}
-              >
-                {card.title}
-              </h4>
-              <p
-                style={{
-                  fontSize: '0.9375rem',
-                  fontFamily: 'var(--font-body)',
-                  color: '#555555',
-                  lineHeight: 1.5,
-                  margin: '0 0 1rem 0',
-                }}
-              >
-                {card.description}
-              </p>
-              {card.links && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
-                  {card.links.map((item, j) => (
-                    <a
-                      key={j}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        fontFamily: 'var(--font-body)',
-                        fontWeight: '600',
-                        fontSize: '0.9375rem',
-                        color: card.iconColor,
-                        textDecoration: 'none',
-                      }}
-                    >
-                      {item.label} →
-                    </a>
-                  ))}
-                </div>
-              )}
-              {card.link && (
-                <a
-                  href={card.link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+              Understand Chronic Conditions
+            </h3>
+            <p
+              style={{
+                fontSize: '1rem',
+                fontFamily: 'var(--font-body)',
+                color: '#555555',
+                lineHeight: 1.6,
+                margin: '0 0 1.5rem 0',
+              }}
+            >
+              Learn the basics and find practical steps for prevention and management.
+            </p>
+
+            {/* Three Informational Cards */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+                gap: '1.5rem',
+                marginBottom: '2rem',
+              }}
+            >
+              {conditionCards.map((card, i) => (
+                <div
+                  key={i}
                   style={{
-                    fontFamily: 'var(--font-body)',
-                    fontWeight: '600',
-                    fontSize: '0.9375rem',
-                    color: card.iconColor,
-                    textDecoration: 'none',
+                    backgroundColor: 'white',
+                    borderRadius: 'var(--radius-md)',
+                    padding: '1.5rem',
+                    border: '1px solid #e5e5e5',
+                    borderTop: `3px solid ${card.accentColor}`,
+                    display: 'flex',
+                    flexDirection: 'column',
                   }}
                 >
-                  {card.link.text}
-                </a>
-              )}
+                  <div
+                    style={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: 8,
+                      backgroundColor: card.iconBgColor,
+                      color: card.accentColor,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: '1rem',
+                    }}
+                  >
+                    {card.icon}
+                  </div>
+                  <h4
+                    style={{
+                      fontSize: '1.5rem',
+                      fontFamily: 'var(--font-serif)',
+                      fontWeight: 600,
+                      color: '#2e2e2e',
+                      margin: '0 0 0.75rem 0',
+                    }}
+                  >
+                    {card.title}
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: '0.9375rem',
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: 400,
+                      color: '#6B7280',
+                      lineHeight: 1.55,
+                      margin: '0 0 1rem 0',
+                    }}
+                  >
+                    {card.description}
+                  </p>
+
+                  <a
+                    href={card.linkHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      marginTop: 'auto',
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: 600,
+                      fontSize: '0.875rem',
+                      color: card.accentColor,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    {card.linkText}
+                  </a>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        )}
       </div>
 
       {/* Content Sections */}
@@ -348,16 +335,14 @@ const Support = () => {
                 padding: '1rem 1.25rem',
               }}>
                 <div style={{ marginBottom: '0.5rem' }}>
-                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Diabetes Risk Test</strong>
+                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Chronic Disease Risk Test</strong>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
                   <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
-                    A quick quiz to learn your risk for type 2 diabetes.
+                    Find out your risk for chronic diseases like diabetes, heart disease, and stroke.
                   </p>
-                  <a
-                    href="https://www.cdc.gov/diabetes/risk-test/index.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to="/get-started"
                     style={{
                       display: 'inline-block',
                       padding: '0.5rem 1rem',
@@ -371,7 +356,7 @@ const Support = () => {
                     }}
                   >
                     Take the test
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -408,22 +393,32 @@ const Support = () => {
             </div>
           </div>
 
-          {/* Right Panel: Learn With Video */}
+          {/* Right Panel: Learn With Video (match left panel style) */}
           <div style={{
-            backgroundColor: '#2D3748',
+            backgroundColor: 'white',
             borderRadius: 16,
             padding: '1.5rem',
             boxShadow: '0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06)',
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                <polygon points="5 3 19 12 5 21 5 3"/>
-              </svg>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+              <div style={{
+                width: 36,
+                height: 36,
+                borderRadius: 8,
+                backgroundColor: '#EF4623',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+              </div>
               <h3 style={{
                 fontSize: '1.125rem',
                 fontFamily: 'var(--font-body)',
                 fontWeight: 600,
-                color: 'white',
+                color: '#333333',
                 margin: 0,
               }}>
                 Learn With Video
@@ -433,26 +428,37 @@ const Support = () => {
               margin: '0 0 1.25rem 0',
               fontFamily: 'var(--font-body)',
               fontSize: '0.9375rem',
-              color: '#CBD5E0',
+              color: '#555555',
               lineHeight: 1.5,
             }}>
               CDC educational videos to help you understand prevention.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {[
-                'What Is Prediabetes?',
-                'Steps to Heart-Healthy Eating',
-                'Moving More: Physical Activity Basics',
-              ].map((title, i) => (
+                {
+                  title: 'Meet Lisa: Preventing Prediabetes',
+                  href: 'https://www.youtube.com/watch?v=azKL5xutMJE',
+                },
+                {
+                  title: 'Imagine: You + National Diabetes Prevention Program',
+                  href: 'https://www.youtube.com/watch?v=k_XoHSIG20U&t=2s',
+                },
+                {
+                  title: 'Sneak Peek into the Lifestyle Change Program',
+                  href: 'https://www.youtube.com/watch?v=w0NDVI4M_Bs',
+                },
+              ].map((video, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={video.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.75rem',
-                    padding: '0.75rem 1rem',
-                    backgroundColor: '#4A5568',
+                    padding: '1rem 1.25rem',
+                    backgroundColor: '#F7F7F7',
                     borderRadius: 12,
                     textDecoration: 'none',
                   }}
@@ -471,8 +477,8 @@ const Support = () => {
                       <polygon points="5 3 19 12 5 21 5 3"/>
                     </svg>
                   </div>
-                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'white' }}>
-                    &quot;{title}&quot;
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#EF4623', fontWeight: 600 }}>
+                    {video.title}
                   </span>
                 </a>
               ))}
@@ -579,7 +585,7 @@ const Support = () => {
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
               <a
-                href="https://www.cdc.gov/diabetes/prevention/index.html"
+                href="https://www.cdc.gov/diabetes-prevention/index.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
