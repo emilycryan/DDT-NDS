@@ -372,8 +372,8 @@ const Support = () => {
                   <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
                     Printable trackers, goal planners, and habit tips.
                   </p>
-                  <a
-                    href="#"
+                  <Link
+                    to="/resources/healthy-living/building-healthy-habits"
                     style={{
                       display: 'inline-block',
                       padding: '0.5rem 1rem',
@@ -387,7 +387,7 @@ const Support = () => {
                     }}
                   >
                     Get tools
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -770,6 +770,7 @@ const Support = () => {
         }}>
           {[
             {
+              path: '/support/tips/how-to-read-food-labels',
               icon: (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
@@ -783,6 +784,7 @@ const Support = () => {
               description: 'Decode nutrition facts to make smarter choices at the grocery store — without guesswork.',
             },
             {
+              path: '/support/tips/meal-planning-on-budget',
               icon: (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
                   <line x1="8" y1="6" x2="21" y2="6"/>
@@ -797,6 +799,7 @@ const Support = () => {
               description: 'Healthy eating doesn\'t have to be expensive. Simple strategies for nutritious meals that fit your wallet.',
             },
             {
+              path: '/support/tips/moving-more-when-busy',
               icon: (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                   <circle cx="12" cy="12" r="10"/>
@@ -807,6 +810,7 @@ const Support = () => {
               description: "Small amounts of activity add up. Find easy ways to move throughout your day without a gym or extra time.",
             },
             {
+              path: '/support/tips/setting-realistic-goals',
               icon: (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -816,14 +820,18 @@ const Support = () => {
               description: 'Goals you can stick with start small. Learn how to build momentum through achievable milestones.',
             },
           ].map((tip, i) => (
-            <div
+            <Link
               key={i}
+              to={tip.path}
               style={{
                 backgroundColor: 'white',
                 borderRadius: 12,
                 padding: '1.5rem',
                 border: '1px solid #e8e8e8',
                 boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                textDecoration: 'none',
+                color: 'inherit',
+                display: 'block',
               }}
             >
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
@@ -847,7 +855,7 @@ const Support = () => {
                       fontSize: '1.0625rem',
                       fontFamily: 'var(--font-body)',
                       fontWeight: '700',
-                      color: '#333333',
+                      color: '#E05A4D',
                       margin: '0 0 0.5rem 0',
                     }}
                   >
@@ -867,7 +875,7 @@ const Support = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

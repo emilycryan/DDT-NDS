@@ -28,6 +28,10 @@ import BuildingHealthyHabits from './components/BuildingHealthyHabits'
 import SleepRecovery from './components/SleepRecovery'
 import MentalHealthResilience from './components/MentalHealthResilience'
 import SocialConnection from './components/SocialConnection'
+import HowToReadFoodLabels from './components/HowToReadFoodLabels'
+import MealPlanningOnBudget from './components/MealPlanningOnBudget'
+import MovingMoreWhenBusy from './components/MovingMoreWhenBusy'
+import SettingRealisticGoals from './components/SettingRealisticGoals'
 
 // Helper function to scroll to section
 const scrollToSection = (sectionId) => {
@@ -182,6 +186,26 @@ function App() {
       <Route path="/resources/healthy-living/social-connection" element={
         <main style={{ minHeight: '80vh' }}>
           <SocialConnection />
+        </main>
+      } />
+      <Route path="/support/tips/how-to-read-food-labels" element={
+        <main style={{ minHeight: '80vh' }}>
+          <HowToReadFoodLabels />
+        </main>
+      } />
+      <Route path="/support/tips/meal-planning-on-budget" element={
+        <main style={{ minHeight: '80vh' }}>
+          <MealPlanningOnBudget />
+        </main>
+      } />
+      <Route path="/support/tips/moving-more-when-busy" element={
+        <main style={{ minHeight: '80vh' }}>
+          <MovingMoreWhenBusy />
+        </main>
+      } />
+      <Route path="/support/tips/setting-realistic-goals" element={
+        <main style={{ minHeight: '80vh' }}>
+          <SettingRealisticGoals />
         </main>
       } />
       <Route path="/support" element={
