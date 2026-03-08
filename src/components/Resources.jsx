@@ -14,6 +14,7 @@ const educationalCards = [
     description: 'Over 96 million American adults have prediabetes — and most don\'t know it. Learn how modest weight loss and regular physical activity can cut your risk of type 2 diabetes by more than 50%.',
     bullets: ['Understanding Prediabetes', 'Nutrition & Blood Sugar', 'Exercise & Insulin Sensitivity', 'DPP Program Overview'],
     linkText: 'Explore diabetes resources →',
+    linkHref: '/resources/prediabetes/understanding-prediabetes',
   },
   {
     accentColor: '#3C4449',
@@ -27,6 +28,7 @@ const educationalCards = [
     description: 'Heart disease is the leading cause of death in the United States. Discover how lifestyle choices around diet, activity, stress, and sleep can measurably reduce your risk — at any age.',
     bullets: ['Know Your Numbers', 'Blood Pressure & Cholesterol', 'Heart-Healthy Eating', 'Stress & Cardiovascular Risk'],
     linkText: 'Explore heart health resources →',
+    linkHref: '/resources/heart-health/know-your-numbers',
   },
   {
     accentColor: '#1f9660',
@@ -41,6 +43,7 @@ const educationalCards = [
     description: 'Prevention isn\'t one thing — it\'s a combination of daily habits. Find practical guidance on nutrition, physical activity, sleep, stress management, and social well-being that fit real life.',
     bullets: ['Building Healthy Habits', 'Sleep & Recovery', 'Mental Health & Resilience', 'Social Connection'],
     linkText: 'Explore healthy living guides →',
+    linkHref: '/resources/healthy-living/building-healthy-habits',
   },
 ];
 
@@ -442,7 +445,7 @@ const Resources = ({ onNavigate }) => {
                 </ul>
 
                 <Link
-                  to="#"
+                  to={card.linkHref || '#'}
                   style={{
                     marginTop: 'auto',
                     fontFamily: 'var(--font-body)',

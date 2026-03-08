@@ -16,6 +16,18 @@ import ForPractitioners from './components/ForPractitioners'
 import PractitionerFeedback from './components/PractitionerFeedback'
 import LifestylePrograms from './components/LifestylePrograms'
 import FAQs from './components/FAQs'
+import UnderstandingPrediabetes from './components/UnderstandingPrediabetes'
+import NutritionBloodSugar from './components/NutritionBloodSugar'
+import ExerciseInsulinSensitivity from './components/ExerciseInsulinSensitivity'
+import DPPProgramOverview from './components/DPPProgramOverview'
+import KnowYourNumbers from './components/KnowYourNumbers'
+import BloodPressureCholesterol from './components/BloodPressureCholesterol'
+import HeartHealthyEating from './components/HeartHealthyEating'
+import StressCardiovascularRisk from './components/StressCardiovascularRisk'
+import BuildingHealthyHabits from './components/BuildingHealthyHabits'
+import SleepRecovery from './components/SleepRecovery'
+import MentalHealthResilience from './components/MentalHealthResilience'
+import SocialConnection from './components/SocialConnection'
 
 // Helper function to scroll to section
 const scrollToSection = (sectionId) => {
@@ -66,6 +78,10 @@ function App() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
   const onNavigate = (page) => {
     const path = PAGE_TO_PATH[page] || (page === 'home' ? '/' : `/${page}`)
     navigate(path)
@@ -106,6 +122,66 @@ function App() {
       <Route path="/resources" element={
         <main style={{ minHeight: '80vh' }}>
           <Resources onNavigate={navigateTo} />
+        </main>
+      } />
+      <Route path="/resources/prediabetes/understanding-prediabetes" element={
+        <main style={{ minHeight: '80vh' }}>
+          <UnderstandingPrediabetes />
+        </main>
+      } />
+      <Route path="/resources/prediabetes/nutrition-blood-sugar" element={
+        <main style={{ minHeight: '80vh' }}>
+          <NutritionBloodSugar />
+        </main>
+      } />
+      <Route path="/resources/prediabetes/exercise-insulin-sensitivity" element={
+        <main style={{ minHeight: '80vh' }}>
+          <ExerciseInsulinSensitivity />
+        </main>
+      } />
+      <Route path="/resources/prediabetes/dpp-program-overview" element={
+        <main style={{ minHeight: '80vh' }}>
+          <DPPProgramOverview />
+        </main>
+      } />
+      <Route path="/resources/heart-health/know-your-numbers" element={
+        <main style={{ minHeight: '80vh' }}>
+          <KnowYourNumbers />
+        </main>
+      } />
+      <Route path="/resources/heart-health/blood-pressure-cholesterol" element={
+        <main style={{ minHeight: '80vh' }}>
+          <BloodPressureCholesterol />
+        </main>
+      } />
+      <Route path="/resources/heart-health/heart-healthy-eating" element={
+        <main style={{ minHeight: '80vh' }}>
+          <HeartHealthyEating />
+        </main>
+      } />
+      <Route path="/resources/heart-health/stress-cardiovascular-risk" element={
+        <main style={{ minHeight: '80vh' }}>
+          <StressCardiovascularRisk />
+        </main>
+      } />
+      <Route path="/resources/healthy-living/building-healthy-habits" element={
+        <main style={{ minHeight: '80vh' }}>
+          <BuildingHealthyHabits />
+        </main>
+      } />
+      <Route path="/resources/healthy-living/sleep-recovery" element={
+        <main style={{ minHeight: '80vh' }}>
+          <SleepRecovery />
+        </main>
+      } />
+      <Route path="/resources/healthy-living/mental-health-resilience" element={
+        <main style={{ minHeight: '80vh' }}>
+          <MentalHealthResilience />
+        </main>
+      } />
+      <Route path="/resources/healthy-living/social-connection" element={
+        <main style={{ minHeight: '80vh' }}>
+          <SocialConnection />
         </main>
       } />
       <Route path="/support" element={
