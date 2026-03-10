@@ -49,7 +49,9 @@ const PrediabetesPageLayout = ({ title, children }) => {
             Resources
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <span style={{ color: 'var(--ink-70)' }}>Prediabetes</span>
+          <Link to="/resources/prediabetes/understanding-prediabetes" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+            Prediabetes
+          </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
           <span style={{ color: 'var(--ink)', fontWeight: 600 }}>{title}</span>
         </nav>

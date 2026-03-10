@@ -206,21 +206,15 @@ const ForPractitioners = () => {
         <ul style={{ listStyle: 'none', padding: 0, marginBottom: '2rem' }}>
           <li style={listItemStyles}>
             <span style={bulletStyles} />
-            <strong style={{ color: 'var(--ink)' }}>CDC Diabetes Path to Prevention</strong>
-            {' —'} Background and evidence on lifestyle interventions.{' '}
-            <a href="https://diabetespath2prevention.cdc.gov/about" target="_blank" rel="noopener noreferrer" style={linkStyles}>Learn more</a>
-          </li>
-          <li style={listItemStyles}>
-            <span style={bulletStyles} />
             <strong style={{ color: 'var(--ink)' }}>Community Preventive Services Task Force</strong>
             {' —'} Evidence summaries on what works for chronic disease prevention.{' '}
-            <a href="https://www.thecommunityguide.org/topic/chronic-disease" target="_blank" rel="noopener noreferrer" style={linkStyles}>Learn more</a>
+            <a href="https://www.thecommunityguide.org/" target="_blank" rel="noopener noreferrer" style={linkStyles}>Learn more</a>
           </li>
           <li style={listItemStyles}>
             <span style={bulletStyles} />
             <strong style={{ color: 'var(--ink)' }}>National Diabetes Prevention Program (DPP)</strong>
             {' —'} Framework, standards, and implementation guidance.{' '}
-            <a href="https://www.cdc.gov/diabetes/prevention/index.html" target="_blank" rel="noopener noreferrer" style={linkStyles}>Learn more</a>
+            <a href="https://www.cdc.gov/diabetes-prevention/programs/what-is-the-national-dpp.html" target="_blank" rel="noopener noreferrer" style={linkStyles}>Learn more</a>
           </li>
         </ul>
 

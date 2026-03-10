@@ -12,7 +12,12 @@ const educationalCards = [
     ),
     title: 'Diabetes Prevention',
     description: 'Over 96 million American adults have prediabetes — and most don\'t know it. Learn how modest weight loss and regular physical activity can cut your risk of type 2 diabetes by more than 50%.',
-    bullets: ['Understanding Prediabetes', 'Nutrition & Blood Sugar', 'Exercise & Insulin Sensitivity', 'DPP Program Overview'],
+    bullets: [
+      { text: 'Understanding Prediabetes', path: '/resources/prediabetes/understanding-prediabetes' },
+      { text: 'Nutrition & Blood Sugar', path: '/resources/prediabetes/nutrition-blood-sugar' },
+      { text: 'Exercise & Insulin Sensitivity', path: '/resources/prediabetes/exercise-insulin-sensitivity' },
+      { text: 'DPP Program Overview', path: '/resources/prediabetes/dpp-program-overview' },
+    ],
     linkText: 'Explore diabetes resources →',
     linkHref: '/resources/prediabetes/understanding-prediabetes',
   },
@@ -26,7 +31,12 @@ const educationalCards = [
     ),
     title: 'Heart Health',
     description: 'Heart disease is the leading cause of death in the United States. Discover how lifestyle choices around diet, activity, stress, and sleep can measurably reduce your risk — at any age.',
-    bullets: ['Know Your Numbers', 'Blood Pressure & Cholesterol', 'Heart-Healthy Eating', 'Stress & Cardiovascular Risk'],
+    bullets: [
+      { text: 'Know Your Numbers', path: '/resources/heart-health/know-your-numbers' },
+      { text: 'Blood Pressure & Cholesterol', path: '/resources/heart-health/blood-pressure-cholesterol' },
+      { text: 'Heart-Healthy Eating', path: '/resources/heart-health/heart-healthy-eating' },
+      { text: 'Stress & Cardiovascular Risk', path: '/resources/heart-health/stress-cardiovascular-risk' },
+    ],
     linkText: 'Explore heart health resources →',
     linkHref: '/resources/heart-health/know-your-numbers',
   },
@@ -41,7 +51,12 @@ const educationalCards = [
     ),
     title: 'Overall Healthy Living',
     description: 'Prevention isn\'t one thing — it\'s a combination of daily habits. Find practical guidance on nutrition, physical activity, sleep, stress management, and social well-being that fit real life.',
-    bullets: ['Building Healthy Habits', 'Sleep & Recovery', 'Mental Health & Resilience', 'Social Connection'],
+    bullets: [
+      { text: 'Building Healthy Habits', path: '/resources/healthy-living/building-healthy-habits' },
+      { text: 'Sleep & Recovery', path: '/resources/healthy-living/sleep-recovery' },
+      { text: 'Mental Health & Resilience', path: '/resources/healthy-living/mental-health-resilience' },
+      { text: 'Social Connection', path: '/resources/healthy-living/social-connection' },
+    ],
     linkText: 'Explore healthy living guides →',
     linkHref: '/resources/healthy-living/building-healthy-habits',
   },
@@ -439,7 +454,15 @@ const Resources = ({ onNavigate }) => {
                   {card.bullets.map((bullet, j) => (
                     <li key={j} style={{ marginBottom: '0.25rem', paddingLeft: '1.25rem', position: 'relative' }}>
                       <span style={{ position: 'absolute', left: 0, top: '0.65em', width: 6, height: 6, borderRadius: '50%', backgroundColor: '#9CA3AF', display: 'inline-block' }} />
-                      {bullet}
+                      <Link
+                        to={bullet.path}
+                        style={{
+                          color: 'inherit',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        {bullet.text}
+                      </Link>
                     </li>
                   ))}
                 </ul>

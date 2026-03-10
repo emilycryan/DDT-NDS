@@ -49,7 +49,9 @@ const HeartHealthPageLayout = ({ title, children }) => {
             Resources
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <span style={{ color: 'var(--ink-70)' }}>Heart Health</span>
+          <Link to="/resources/heart-health/know-your-numbers" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+            Heart Health
+          </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
           <span style={{ color: 'var(--ink)', fontWeight: 600 }}>{title}</span>
         </nav>

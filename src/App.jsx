@@ -290,8 +290,8 @@ function App() {
               <button onClick={() => onNavigate('risk-assessment')} className="btn btn-primary">
                 Am I At Risk?
               </button>
-              <button onClick={() => scrollToSection('how-it-works')} className="btn btn-secondary">
-                How It Works
+              <button onClick={() => onNavigate('lifestyle-programs')} className="btn btn-secondary">
+                Find a Program
               </button>
             </div>
           </div>
@@ -525,7 +525,7 @@ function App() {
               </p>
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 <button onClick={() => onNavigate('risk-assessment')} className="btn btn-white">Get Started</button>
-                <button className="btn btn-white">Learn More</button>
+                <button onClick={() => onNavigate('about')} className="btn btn-white">Learn More</button>
               </div>
               <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(255,255,255,0.9)', fontSize: '0.875rem', marginTop: '1.25rem', marginBottom: 0 }}>
                 You're not alone. We've helped thousands get started on their path to prevention.

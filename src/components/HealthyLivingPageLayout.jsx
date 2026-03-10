@@ -49,7 +49,9 @@ const HealthyLivingPageLayout = ({ title, children }) => {
             Resources
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <span style={{ color: 'var(--ink-70)' }}>Overall Healthy Living</span>
+          <Link to="/resources/healthy-living/building-healthy-habits" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+            Overall Healthy Living
+          </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
           <span style={{ color: 'var(--ink)', fontWeight: 600 }}>{title}</span>
         </nav>
