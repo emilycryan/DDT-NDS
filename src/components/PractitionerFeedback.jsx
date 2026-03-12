@@ -155,7 +155,7 @@ const PractitionerFeedback = () => {
             color: 'var(--text-secondary)',
             lineHeight: '1.6',
           }}>
-            Help us improve this prototype. Your responses inform how we shape the tool for clinical use.
+            Help us improve this site. Your responses inform how we shape the tool for clinical use.
           </p>
           <button
             type="button"
