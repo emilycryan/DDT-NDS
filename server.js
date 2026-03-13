@@ -184,10 +184,17 @@ app.get('/api/programs/all', async (req, res) => {
   }
 });
 
+// Helper to filter programs by name (organization_name)
+function filterProgramsByName(programs, name) {
+  if (!name || !String(name).trim() || !programs?.length) return programs;
+  const term = String(name).trim().toLowerCase();
+  return programs.filter(p => (p.organization_name || '').toLowerCase().includes(term));
+}
+
 // Program search endpoints
 app.get('/api/programs/search', async (req, res) => {
   try {
-    const { zipCode, state, city, radius, deliveryMode, freeOrLowCost, insuranceCovered, wholeHealthFocus, caregiverFamilyFriendly, languages, accessibilityOptions, faithBased, glp1Specific } = req.query;
+    const { zipCode, state, city, radius, deliveryMode, name, freeOrLowCost, insuranceCovered, wholeHealthFocus, caregiverFamilyFriendly, languages, accessibilityOptions, faithBased, glp1Specific } = req.query;
     const filters = { freeOrLowCost, insuranceCovered, wholeHealthFocus, caregiverFamilyFriendly, languages, accessibilityOptions, faithBased, glp1Specific };
 
     console.log('🔍 Search request received:', {
@@ -196,18 +203,35 @@ app.get('/api/programs/search', async (req, res) => {
       city,
       radius,
       deliveryMode,
+      name,
       filters,
       allQueryParams: req.query
     });
 
     let programs = [];
+    const nameTrimmed = name ? String(name).trim() : '';
+    const hasLocation = zipCode || state || city;
 
-    // If deliveryMode is specified, search by delivery mode (no location required)
-    if (deliveryMode) {
+    // Step 1: Get base programs (location > format > name-only > all)
+    if (hasLocation) {
+      try {
+        programs = await searchProgramsByLocation(zipCode || null, state || null, city || null, parseInt(radius) || 25);
+      } catch (dbError) {
+        console.warn('⚠️ Database unavailable, using fallback:', dbError.message);
+        const stateNorm = (state || '').toUpperCase();
+        const cityNorm = (city || '').toLowerCase();
+        programs = FALLBACK_PROGRAMS.filter(p => {
+          if (stateNorm && p.state !== stateNorm) return false;
+          if (cityNorm && !(p.city || '').toLowerCase().includes(cityNorm)) return false;
+          if (zipCode && p.zip_code !== zipCode) return false;
+          return true;
+        });
+      }
+    } else if (deliveryMode) {
       try {
         programs = await searchProgramsByDeliveryMode(deliveryMode);
       } catch (dbError) {
-        console.warn('⚠️ Database error (using fallback):', dbError?.message || dbError);
+        console.warn('⚠️ Database error, using fallback:', dbError.message);
         const mode = String(deliveryMode).toLowerCase();
         const virtualModes = ['virtual', 'remote', 'online', 'virtual-live', 'virtual-self-paced'];
         const isVirtual = virtualModes.includes(mode);
@@ -218,73 +242,34 @@ app.get('/api/programs/search', async (req, res) => {
           return (p.delivery_mode || '').toLowerCase().includes(mode);
         });
       }
-      programs = applyProgramFilters(programs, filters);
-      return res.status(200).json({
-        success: true,
-        count: programs.length,
-        programs: programs,
-        searchCriteria: { deliveryMode: deliveryMode, locationBased: false, filters }
-      });
-    }
-
-    // If only filters provided (no location, no deliveryMode), fetch all and filter
-    const hasFilters = [freeOrLowCost, insuranceCovered, wholeHealthFocus, caregiverFamilyFriendly, languages, accessibilityOptions, faithBased, glp1Specific].some(Boolean);
-    if (!zipCode && !state && !city && hasFilters) {
+    } else if (nameTrimmed) {
       try {
-        programs = await searchProgramsByLocation(null, null, null, 9999);
+        programs = await searchProgramsByName(nameTrimmed);
+      } catch (dbError) {
+        console.warn('⚠️ Database unavailable for name search, using fallback:', dbError.message);
+        programs = filterProgramsByName(FALLBACK_PROGRAMS, nameTrimmed);
+      }
+    } else {
+      try {
+        programs = await searchProgramsByLocation(null, null, null, 99999);
       } catch (dbError) {
         programs = FALLBACK_PROGRAMS;
       }
-      programs = applyProgramFilters(programs, filters);
-      return res.status(200).json({
-        success: true,
-        count: programs.length,
-        programs: programs,
-        searchCriteria: { locationBased: false, deliveryMode: null, filters }
-      });
     }
 
-    // Otherwise, require location parameters
-    if (!zipCode && !state && !city) {
-      console.log('❌ No location parameters and no deliveryMode provided');
-      return res.status(400).json({ 
-        message: 'At least one location parameter (zipCode, state, or city) is required, or specify deliveryMode, or use filters' 
-      });
+    // Step 2: Filter by name (always combines with other criteria)
+    if (nameTrimmed) {
+      programs = filterProgramsByName(programs, nameTrimmed);
     }
 
-    try {
-      programs = await searchProgramsByLocation(
-        zipCode || null, 
-        state || null, 
-        city || null, 
-        parseInt(radius) || 25
-      );
-    } catch (dbError) {
-      console.warn('⚠️ Database unavailable, using fallback programs:', dbError.message);
-      const stateNorm = (state || '').toUpperCase();
-      const cityNorm = (city || '').toLowerCase();
-      programs = FALLBACK_PROGRAMS.filter(p => {
-        if (stateNorm && p.state !== stateNorm) return false;
-        if (cityNorm && !(p.city || '').toLowerCase().includes(cityNorm)) return false;
-        if (zipCode && p.zip_code !== zipCode) return false;
-        return true;
-      });
-    }
-
+    // Step 3: Apply feature filters
     programs = applyProgramFilters(programs, filters);
 
     return res.status(200).json({
       success: true,
       count: programs.length,
-      programs: programs,
-      searchCriteria: {
-        zipCode: zipCode || null,
-        state: state || null,
-        city: city || null,
-        radius: parseInt(radius) || 25,
-        locationBased: true,
-        filters
-      }
+      programs,
+      searchCriteria: { zipCode: zipCode || null, state: state || null, city: city || null, deliveryMode: deliveryMode || null, name: nameTrimmed || null, filters }
     });
 
   } catch (error) {

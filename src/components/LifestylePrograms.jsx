@@ -247,15 +247,8 @@ const LifestylePrograms = () => {
     return { city: trimmed };
   };
 
-  // Function to search programs by location, format, and filters
+  // Function to search programs by location, format, name, and filters
   const searchPrograms = async () => {
-    const hasLocationOrFormat = searchInput.trim().length > 0 || programFormat;
-    const hasAnyFilter = Object.values(filters).some(Boolean);
-    if (!hasLocationOrFormat && !hasAnyFilter) {
-      setError('Please enter a location, select a program format, or choose at least one filter');
-      return;
-    }
-
     setIsLoading(true);
     setError(null);
     setHasSearched(true);
@@ -270,8 +263,20 @@ const LifestylePrograms = () => {
       if (filters.faithBased) params.append('faithBased', 'true');
       if (filters.glp1Specific) params.append('glp1Specific', 'true');
     };
+    const buildQueryParams = () => {
+      const params = new URLSearchParams();
+      const locationParams = parseLocationInput(searchInput);
+      if (locationParams.zipCode) params.append('zipCode', locationParams.zipCode);
+      if (locationParams.state) params.append('state', locationParams.state);
+      if (locationParams.city) params.append('city', locationParams.city);
+      if (programFormat) params.append('deliveryMode', programFormat);
+      addFilterParams(params);
+      return params;
+    };
 
     try {
+      setShowUserLocation(true);
+
       const testTrimmed = String(searchInput).trim().toLowerCase();
       const deliveryModeFromInput = detectDeliveryMode(searchInput) || 
         (testTrimmed === 'online' || testTrimmed === 'remote' || testTrimmed === 'virtual' ? 'virtual' : 
@@ -279,189 +284,82 @@ const LifestylePrograms = () => {
          (testTrimmed === 'in-person' || testTrimmed === 'in person' ? 'in-person' : null));
       const finalDeliveryMode = programFormat || deliveryModeFromInput;
 
-      if (finalDeliveryMode) {
-        // Search by program format (delivery mode)
-        // Show user location and center map on it if available
-        setShowUserLocation(true);
-        
-        const queryParams = new URLSearchParams();
-        queryParams.append('deliveryMode', finalDeliveryMode);
-        addFilterParams(queryParams);
-        
-        const url = `/api/programs/search?${queryParams}`;
-        
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
-        
-        if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}));
-          console.error('API Error:', errorData);
-          throw new Error(errorData.message || 'Failed to search programs');
-        }
+      const queryParams = buildQueryParams();
+      if (finalDeliveryMode && !queryParams.has('deliveryMode')) {
+        queryParams.set('deliveryMode', finalDeliveryMode);
+      }
 
-        const data = await response.json();
-        const programs = data.programs || [];
-        setSearchResults(programs);
-        
-        // Show appropriate message for 0 results
-        if (programs.length === 0) {
-          // Use more user-friendly labels
-          const modeLabel = finalDeliveryMode === 'virtual' ? 'virtual/remote/online' : finalDeliveryMode;
+      if (!queryParams.has('zipCode') && !queryParams.has('state') && !queryParams.has('city') && searchInput.trim()) {
+        const lp = parseLocationInput(searchInput);
+        if (lp.zipCode) queryParams.set('zipCode', lp.zipCode);
+        if (lp.state) queryParams.set('state', lp.state);
+        if (lp.city) queryParams.set('city', lp.city);
+      }
+
+      const response = await fetch(`/api/programs/search?${queryParams}`);
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Search failed');
+      }
+
+      const data = await response.json();
+      const programs = data.programs || [];
+      setSearchResults(programs);
+
+      if (programs.length === 0) {
+        if (searchInput.trim()) {
+          setError(`No programs found in ${searchInput.trim()}.`);
+        } else if (finalDeliveryMode) {
+          const modeLabel = finalDeliveryMode === 'virtual' ? 'virtual/online' : finalDeliveryMode;
           setError(`No ${modeLabel} programs found.`);
         } else {
-          setError(null);
+          setError('No programs found.');
         }
-        
-        // Set map bounds to show all programs (if they have coordinates)
-        // If user location is available, center on it and include it in bounds
-        if (programs.length > 0) {
-          const programsWithCoords = programs.filter(p => p.latitude && p.longitude);
-          if (programsWithCoords.length > 0) {
-            const bounds = programsWithCoords.map(p => [
-              parseFloat(p.latitude),
-              parseFloat(p.longitude)
-            ]);
-            // Include user location in bounds if available
-            if (userLocation) {
-              bounds.push(userLocation);
-              // Center map on user location
-              setMapCenter(userLocation);
-              setMapZoom(10);
-            }
-            setMapBounds(bounds);
-          } else {
-            // No program coordinates, but center on user location if available
-            if (userLocation) {
-              setMapCenter(userLocation);
-              setMapZoom(10);
-              setMapBounds(null);
-            } else {
-              // No coordinates at all, show default US view
-              setMapBounds(null);
-            }
-          }
-        } else {
-          // No results, but center on user location if available
-          if (userLocation) {
-            setMapCenter(userLocation);
-            setMapZoom(10);
-            setMapBounds(null);
-          } else {
-            setMapBounds(null);
-          }
-        }
-        
-        return;
+      } else {
+        setError(null);
       }
 
-      // Filters-only search (no location, no format)
-      if (!searchInput.trim() && hasAnyFilter) {
-        setShowUserLocation(true);
-        const queryParams = new URLSearchParams();
-        addFilterParams(queryParams);
-        const response = await fetch(`/api/programs/search?${queryParams}`);
-        if (!response.ok) throw new Error((await response.json().catch(() => ({}))).message || 'Failed to search');
-        const data = await response.json();
-        const programs = data.programs || [];
-        setSearchResults(programs);
-        setError(programs.length === 0 ? 'No programs match your filters.' : null);
-        if (programs.length > 0) {
-          const programsWithCoords = programs.filter(p => p.latitude && p.longitude);
-          if (programsWithCoords.length > 0) {
-            setMapBounds(programsWithCoords.map(p => [parseFloat(p.latitude), parseFloat(p.longitude)]));
-          } else if (userLocation) {
+      if (programs.length > 0) {
+        const programsWithCoords = programs.filter(p => p.latitude && p.longitude);
+        if (programsWithCoords.length > 0) {
+          const bounds = programsWithCoords.map(p => [parseFloat(p.latitude), parseFloat(p.longitude)]);
+          if (userLocation) bounds.push(userLocation);
+          setMapBounds(bounds);
+          if (userLocation && !searchInput.trim()) {
             setMapCenter(userLocation);
             setMapZoom(10);
           }
-        }
-        return;
-      }
-
-      {
-        // Location-based search
-        setShowUserLocation(true);
-        
-        // Try to geocode the search input to center map on the location
-        // This is optional - search will work even if geocoding fails
-        let coordinates = null;
-        try {
-          coordinates = await geocodeAddress(searchInput);
-          if (coordinates) {
-            setMapCenter(coordinates);
-            setMapZoom(10);
-          }
-        } catch (geocodeError) {
-          console.log('Geocoding failed, continuing with search:', geocodeError);
-          // Continue with search even if geocoding fails
-        }
-
-        const locationParams = parseLocationInput(searchInput);
-        const queryParams = new URLSearchParams();
-        if (locationParams.zipCode) queryParams.append('zipCode', locationParams.zipCode);
-        if (locationParams.state) queryParams.append('state', locationParams.state);
-        if (locationParams.city) queryParams.append('city', locationParams.city);
-        addFilterParams(queryParams);
-
-        const response = await fetch(`/api/programs/search?${queryParams}`);
-        
-        if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}));
-          throw new Error(errorData.message || 'Failed to search programs');
-        }
-
-        const data = await response.json();
-        const programs = data.programs || [];
-        setSearchResults(programs);
-        
-        // Show appropriate message for 0 results
-        if (programs.length === 0) {
-          setError(`No programs found in ${searchInput}.`);
-        } else {
-          setError(null);
-        }
-        
-        // If we have results with coordinates, adjust map bounds to show all programs
-        if (programs.length > 0) {
-          const programsWithCoords = programs.filter(p => p.latitude && p.longitude);
-          if (programsWithCoords.length > 0) {
-            // Create bounds from all program coordinates
-            const bounds = programsWithCoords.map(p => [
-              parseFloat(p.latitude),
-              parseFloat(p.longitude)
-            ]);
-            // Include user location or search location if available
-            if (coordinates) {
-              bounds.push(coordinates);
-            } else if (userLocation && showUserLocation) {
-              bounds.push(userLocation);
-            }
-            setMapBounds(bounds);
-          } else if (coordinates) {
-            // No program coordinates, but we have search location - center on it
-            setMapCenter(coordinates);
-            setMapZoom(10);
-            setMapBounds(null);
-          }
-        } else if (coordinates) {
-          // No results but we have coordinates - center on search location
-          setMapCenter(coordinates);
+        } else if (userLocation) {
+          setMapCenter(userLocation);
           setMapZoom(10);
           setMapBounds(null);
         } else {
           setMapBounds(null);
         }
+      } else {
+        let coordinates = null;
+        if (searchInput.trim()) {
+          try {
+            coordinates = await geocodeAddress(searchInput);
+            if (coordinates) {
+              setMapCenter(coordinates);
+              setMapZoom(10);
+            }
+          } catch (_) {}
+        }
+        setMapBounds(null);
       }
-      
     } catch (error) {
       console.error('Error searching programs:', error);
       const isNetworkError = error.message === 'Failed to fetch' || error.name === 'TypeError';
+      const rawMessage = error.message || '';
+      const isTechnicalError = /deliveryMode|zipCode|parameter|required/i.test(rawMessage);
       const message = isNetworkError
-        ? 'Cannot connect to the program search service. Please make sure the API server is running (npm run dev).'
-        : (error.message || 'Unable to search programs. Please try again.');
+        ? "We couldn't connect to the search service. Please check your connection and try again."
+        : isTechnicalError
+          ? "Something went wrong with your search. Try again or use different search options."
+          : (rawMessage || "Something went wrong. Please try again.");
       setError(message);
       setSearchResults([]);
       setMapBounds(null);
@@ -680,16 +578,16 @@ const LifestylePrograms = () => {
               </div>
               <button
                 onClick={searchPrograms}
-                disabled={isLoading || (!searchInput.trim() && !programFormat && !Object.values(filters).some(Boolean))}
+                disabled={isLoading}
                 style={{
-                  backgroundColor: isLoading || (!searchInput.trim() && !programFormat && !Object.values(filters).some(Boolean)) ? 'var(--text-secondary)' : 'var(--green-primary)',
+                  backgroundColor: isLoading ? 'var(--text-secondary)' : 'var(--green-primary)',
                   color: 'white',
                   padding: '0.75rem 2rem',
                   borderRadius: '0.375rem',
                   border: 'none',
                   fontSize: '1rem',
                   fontWeight: '600',
-                  cursor: isLoading || (!searchInput.trim() && !programFormat && !Object.values(filters).some(Boolean)) ? 'not-allowed' : 'pointer',
+                  cursor: isLoading ? 'not-allowed' : 'pointer',
                   whiteSpace: 'nowrap'
                 }}
               >
@@ -894,7 +792,7 @@ const LifestylePrograms = () => {
                     No programs found in this area
                   </p>
                   <p style={{ fontSize: '0.95rem' }}>
-                    Try searching with a different city, state, or zip code
+                    Try a different location or filter to broaden your results
                   </p>
                 </div>
               ) : (
