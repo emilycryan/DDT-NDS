@@ -51,11 +51,54 @@ app.get('/api/health', (req, res) => {
 
 // Fallback sample programs when database is unavailable
 const FALLBACK_PROGRAMS = [
-  { id: 1, organization_name: 'Atlanta Diabetes Prevention Center', city: 'Atlanta', state: 'GA', zip_code: '30309', address_line1: '123 Peachtree St', delivery_mode: 'in-person', latitude: 33.7490, longitude: -84.3880 },
-  { id: 2, organization_name: 'Virtual Health Solutions', city: 'Remote', state: 'GA', zip_code: '00000', address_line1: 'Online Platform', delivery_mode: 'virtual-live', latitude: null, longitude: null },
-  { id: 3, organization_name: 'Community Wellness Network', city: 'Savannah', state: 'GA', zip_code: '31401', address_line1: '456 River St', delivery_mode: 'hybrid', latitude: 32.0809, longitude: -81.0912 },
-  { id: 4, organization_name: 'Flexible Learning Health', city: 'Remote', state: 'FL', zip_code: '00000', address_line1: 'Self-Paced Online', delivery_mode: 'virtual-self-paced', latitude: null, longitude: null }
+  { id: 1, organization_name: 'Atlanta Diabetes Prevention Center', city: 'Atlanta', state: 'GA', zip_code: '30309', address_line1: '123 Peachtree St', delivery_mode: 'in-person', latitude: 33.7490, longitude: -84.3880, free_or_low_cost: true, insurance_covered: true, whole_health_focus: true, caregiver_family_friendly: false, languages: ['English'], accessibility_options: [], faith_based: false, glp1_specific: false },
+  { id: 2, organization_name: 'Virtual Health Solutions', city: 'Remote', state: 'GA', zip_code: '00000', address_line1: 'Online Platform', delivery_mode: 'virtual-live', latitude: null, longitude: null, free_or_low_cost: true, insurance_covered: true, whole_health_focus: true, caregiver_family_friendly: true, languages: ['English', 'Spanish'], accessibility_options: ['ASL'], faith_based: false, glp1_specific: true },
+  { id: 3, organization_name: 'Community Wellness Network', city: 'Savannah', state: 'GA', zip_code: '31401', address_line1: '456 River St', delivery_mode: 'hybrid', latitude: 32.0809, longitude: -81.0912, free_or_low_cost: true, insurance_covered: true, whole_health_focus: true, caregiver_family_friendly: true, languages: ['English'], accessibility_options: [], faith_based: true, glp1_specific: false },
+  { id: 4, organization_name: 'Flexible Learning Health', city: 'Remote', state: 'FL', zip_code: '00000', address_line1: 'Self-Paced Online', delivery_mode: 'virtual-self-paced', latitude: null, longitude: null, free_or_low_cost: false, insurance_covered: true, whole_health_focus: false, caregiver_family_friendly: false, languages: ['English'], accessibility_options: [], faith_based: false, glp1_specific: false }
 ];
+
+// Helper to filter programs by optional criteria
+function applyProgramFilters(programs, filters) {
+  if (!programs || programs.length === 0) return programs;
+  let result = [...programs];
+  if (filters.freeOrLowCost === 'true' || filters.freeOrLowCost === true) {
+    result = result.filter(p => p.free_or_low_cost === true);
+  }
+  if (filters.insuranceCovered === 'true' || filters.insuranceCovered === true) {
+    result = result.filter(p => p.insurance_covered === true);
+  }
+  if (filters.wholeHealthFocus === 'true' || filters.wholeHealthFocus === true) {
+    result = result.filter(p => p.whole_health_focus === true);
+  }
+  if (filters.caregiverFamilyFriendly === 'true' || filters.caregiverFamilyFriendly === true) {
+    result = result.filter(p => p.caregiver_family_friendly === true);
+  }
+  if (filters.languages) {
+    const langs = String(filters.languages).toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
+    if (langs.length) {
+      result = result.filter(p => {
+        const pLangs = (Array.isArray(p.languages) ? p.languages : (p.language ? [p.language] : [])).map(l => String(l || '').toLowerCase());
+        return langs.some(l => pLangs.some(pl => pl.includes(l) || l.includes(pl)));
+      });
+    }
+  }
+  if (filters.accessibilityOptions) {
+    const opts = String(filters.accessibilityOptions).toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
+    if (opts.length) {
+      result = result.filter(p => {
+        const pOpts = (p.accessibility_options || []).map(o => String(o || '').toLowerCase());
+        return opts.some(o => pOpts.some(po => po.includes(o) || o.includes(po)));
+      });
+    }
+  }
+  if (filters.faithBased === 'true' || filters.faithBased === true) {
+    result = result.filter(p => p.faith_based === true);
+  }
+  if (filters.glp1Specific === 'true' || filters.glp1Specific === true) {
+    result = result.filter(p => p.glp1_specific === true);
+  }
+  return result;
+}
 
 // Vector search endpoint for intelligent program matching (using pgvector)
 app.post('/api/programs/semantic-search', async (req, res) => {
@@ -144,14 +187,16 @@ app.get('/api/programs/all', async (req, res) => {
 // Program search endpoints
 app.get('/api/programs/search', async (req, res) => {
   try {
-    const { zipCode, state, city, radius, deliveryMode } = req.query;
-    
+    const { zipCode, state, city, radius, deliveryMode, freeOrLowCost, insuranceCovered, wholeHealthFocus, caregiverFamilyFriendly, languages, accessibilityOptions, faithBased, glp1Specific } = req.query;
+    const filters = { freeOrLowCost, insuranceCovered, wholeHealthFocus, caregiverFamilyFriendly, languages, accessibilityOptions, faithBased, glp1Specific };
+
     console.log('🔍 Search request received:', {
       zipCode,
       state,
       city,
       radius,
       deliveryMode,
+      filters,
       allQueryParams: req.query
     });
 
@@ -173,11 +218,29 @@ app.get('/api/programs/search', async (req, res) => {
           return (p.delivery_mode || '').toLowerCase().includes(mode);
         });
       }
+      programs = applyProgramFilters(programs, filters);
       return res.status(200).json({
         success: true,
         count: programs.length,
         programs: programs,
-        searchCriteria: { deliveryMode: deliveryMode, locationBased: false }
+        searchCriteria: { deliveryMode: deliveryMode, locationBased: false, filters }
+      });
+    }
+
+    // If only filters provided (no location, no deliveryMode), fetch all and filter
+    const hasFilters = [freeOrLowCost, insuranceCovered, wholeHealthFocus, caregiverFamilyFriendly, languages, accessibilityOptions, faithBased, glp1Specific].some(Boolean);
+    if (!zipCode && !state && !city && hasFilters) {
+      try {
+        programs = await searchProgramsByLocation(null, null, null, 9999);
+      } catch (dbError) {
+        programs = FALLBACK_PROGRAMS;
+      }
+      programs = applyProgramFilters(programs, filters);
+      return res.status(200).json({
+        success: true,
+        count: programs.length,
+        programs: programs,
+        searchCriteria: { locationBased: false, deliveryMode: null, filters }
       });
     }
 
@@ -185,7 +248,7 @@ app.get('/api/programs/search', async (req, res) => {
     if (!zipCode && !state && !city) {
       console.log('❌ No location parameters and no deliveryMode provided');
       return res.status(400).json({ 
-        message: 'At least one location parameter (zipCode, state, or city) is required, or specify deliveryMode' 
+        message: 'At least one location parameter (zipCode, state, or city) is required, or specify deliveryMode, or use filters' 
       });
     }
 
@@ -208,6 +271,8 @@ app.get('/api/programs/search', async (req, res) => {
       });
     }
 
+    programs = applyProgramFilters(programs, filters);
+
     return res.status(200).json({
       success: true,
       count: programs.length,
@@ -217,7 +282,8 @@ app.get('/api/programs/search', async (req, res) => {
         state: state || null,
         city: city || null,
         radius: parseInt(radius) || 25,
-        locationBased: true
+        locationBased: true,
+        filters
       }
     });
 

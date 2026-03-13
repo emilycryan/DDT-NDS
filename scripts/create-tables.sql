@@ -39,6 +39,14 @@ CREATE TABLE IF NOT EXISTS program_details (
   max_participants INTEGER,
   current_participants INTEGER DEFAULT 0,
   enrollment_status VARCHAR(20) DEFAULT 'open',
+  free_or_low_cost BOOLEAN DEFAULT FALSE,
+  insurance_covered BOOLEAN DEFAULT FALSE,
+  whole_health_focus BOOLEAN DEFAULT FALSE,
+  caregiver_family_friendly BOOLEAN DEFAULT FALSE,
+  languages TEXT[],
+  accessibility_options TEXT[] DEFAULT '{}',
+  faith_based BOOLEAN DEFAULT FALSE,
+  glp1_specific BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
 );

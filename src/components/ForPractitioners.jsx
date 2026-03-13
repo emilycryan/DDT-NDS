@@ -394,73 +394,103 @@ const ForPractitioners = () => {
               ),
               title: 'Risk Factor Checklist',
               description: 'A one-page patient-facing checklist covering the key risk factors for prediabetes and type 2 diabetes. Use before or during a visit.',
+              to: '/for-practitioners/risk-factor-checklist',
+              titleColor: '#E05A4D',
             },
             {
               icon: (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="1.5">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E05A4D" strokeWidth="1.5">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
                 </svg>
               ),
               title: 'Weekly Activity Tracking Sheet',
               description: 'A simple weekly log for patients to track physical activity minutes — built around the DPP goal of 150 minutes of moderate activity per week.',
+              to: '/for-practitioners/weekly-activity-tracking-sheet',
+              titleColor: '#E05A4D',
             },
             {
               icon: (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="1.5">
-                  <line x1="8" y1="6" x2="21" y2="6"/>
-                  <line x1="8" y1="12" x2="21" y2="12"/>
-                  <line x1="8" y1="18" x2="21" y2="18"/>
-                  <line x1="3" y1="6" x2="3.01" y2="6"/>
-                  <line x1="3" y1="12" x2="3.01" y2="12"/>
-                  <line x1="3" y1="18" x2="3.01" y2="18"/>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E05A4D" strokeWidth="1.5">
+                  <path d="M16 3c-.8 0-1.7.4-2.2 1-.5.6-.8 1.4-.7 2.2.8.1 1.7-.3 2.3-.9.5-.5.9-1.3.6-2.3z" />
+                  <path d="M11.5 6.5C10.4 5.6 8.9 5 7.5 5 5 5 3 7 3 9.8c0 2.1.8 4.4 2.2 6 1 1.1 2.1 1.7 3.3 1.7 1.1 0 1.8-.4 2.8-.4s1.7.4 2.8.4c1.2 0 2.3-.6 3.3-1.7 1.4-1.6 2.1-3.9 2.1-6.1C21.5 7 19.5 5 17 5c-1.4 0-2.9.6-4 1.5z" />
                 </svg>
               ),
               title: 'Healthy Eating Guide',
               description: 'A practical, plain-language overview of blood sugar-friendly eating patterns for patients newly diagnosed with prediabetes or elevated risk.',
+              href: 'https://ddt-nds.vercel.app/resources/heart-health/heart-healthy-eating',
+              titleColor: '#E05A4D',
             },
             {
               icon: (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6B7280" strokeWidth="1.5">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M12 6v6l4 2"/>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E05A4D" strokeWidth="1.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
                 </svg>
               ),
               title: 'Goal-Setting Worksheet',
               description: 'A guided worksheet that walks patients through writing a specific, achievable behavior goal using the SMART+ framework introduced in counseling.',
+              to: '/for-practitioners/goal-setting-worksheet',
+              titleColor: '#E05A4D',
             },
-          ].map((card, i) => (
-            <div
-              key={i}
-              style={{
-                backgroundColor: '#F7F7F7',
-                borderRadius: 'var(--radius-md)',
-                padding: '1.5rem',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.75rem',
-              }}
-            >
-              <div style={{ flexShrink: 0 }}>{card.icon}</div>
-              <h3 style={{
-                fontSize: '1.125rem',
-                fontFamily: 'var(--font-body)',
-                fontWeight: '700',
-                color: 'var(--ink)',
-                margin: 0,
-              }}>
-                {card.title}
-              </h3>
-              <p style={{
-                fontSize: '0.9375rem',
-                fontFamily: 'var(--font-body)',
-                color: 'var(--text-secondary)',
-                lineHeight: 1.55,
-                margin: 0,
-              }}>
-                {card.description}
-              </p>
-            </div>
-          ))}
+          ].map((card, i) => {
+            const cardContent = (
+              <>
+                <div style={{ flexShrink: 0 }}>{card.icon}</div>
+                <h3 style={{
+                  fontSize: '1.125rem',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: '700',
+                  color: card.titleColor || 'var(--ink)',
+                  margin: 0,
+                }}>
+                  {card.title}
+                </h3>
+                <p style={{
+                  fontSize: '0.9375rem',
+                  fontFamily: 'var(--font-body)',
+                  color: 'var(--text-secondary)',
+                  lineHeight: 1.55,
+                  margin: 0,
+                }}>
+                  {card.description}
+                </p>
+              </>
+            );
+            const cardStyle = {
+              backgroundColor: '#F7F7F7',
+              borderRadius: 'var(--radius-md)',
+              padding: '1.5rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem',
+            };
+            if (card.to) {
+              return (
+                <Link
+                  key={i}
+                  to={card.to}
+                  style={{ ...cardStyle, textDecoration: 'none', color: 'inherit' }}
+                >
+                  {cardContent}
+                </Link>
+              );
+            }
+            return card.href ? (
+              <a
+                key={i}
+                href={card.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...cardStyle, textDecoration: 'none', color: 'inherit' }}
+              >
+                {cardContent}
+              </a>
+            ) : (
+              <div key={i} style={cardStyle}>
+                {cardContent}
+              </div>
+            );
+          })}
         </div>
 
         {false && (

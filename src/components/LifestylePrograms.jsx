@@ -12,6 +12,15 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
+// Custom icon for the user's current location (distinct from program markers)
+const userLocationIcon = L.divIcon({
+  className: 'user-location-icon',
+  html:
+    '<div style="width:16px;height:16px;border-radius:999px;background:#2563eb;border:2px solid #ffffff;box-shadow:0 0 4px rgba(0,0,0,0.4);"></div>',
+  iconSize: [16, 16],
+  iconAnchor: [8, 8],
+});
+
 // Component to handle map view updates
 function MapViewUpdater({ center, zoom, bounds }) {
   const map = useMap();
@@ -32,6 +41,18 @@ function MapViewUpdater({ center, zoom, bounds }) {
 const LifestylePrograms = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [searchInput, setSearchInput] = useState('');
+  const [programFormat, setProgramFormat] = useState(''); // '', 'in-person', 'virtual', 'hybrid'
+  const [filters, setFilters] = useState({
+    freeOrLowCost: false,
+    insuranceCovered: false,
+    wholeHealthFocus: false,
+    caregiverFamilyFriendly: false,
+    languageSpanish: false,
+    accessibilitySignLanguage: false,
+    faithBased: false,
+    glp1Specific: false,
+  });
+  const [showFilters, setShowFilters] = useState(false);
   const [searchResults, setSearchResults] = useState([]); // Programs to show in search results list
   const [allPrograms, setAllPrograms] = useState([]); // All programs from database for map display
   const [isLoading, setIsLoading] = useState(false);
@@ -226,12 +247,12 @@ const LifestylePrograms = () => {
     return { city: trimmed };
   };
 
-  // Function to search programs by location
+  // Function to search programs by location, format, and filters
   const searchPrograms = async () => {
-    console.log('🚀 searchPrograms called with input:', searchInput);
-    
-    if (!searchInput.trim()) {
-      setError('Please enter a location or program type to search');
+    const hasLocationOrFormat = searchInput.trim().length > 0 || programFormat;
+    const hasAnyFilter = Object.values(filters).some(Boolean);
+    if (!hasLocationOrFormat && !hasAnyFilter) {
+      setError('Please enter a location, select a program format, or choose at least one filter');
       return;
     }
 
@@ -239,48 +260,35 @@ const LifestylePrograms = () => {
     setError(null);
     setHasSearched(true);
 
+    const addFilterParams = (params) => {
+      if (filters.freeOrLowCost) params.append('freeOrLowCost', 'true');
+      if (filters.insuranceCovered) params.append('insuranceCovered', 'true');
+      if (filters.wholeHealthFocus) params.append('wholeHealthFocus', 'true');
+      if (filters.caregiverFamilyFriendly) params.append('caregiverFamilyFriendly', 'true');
+      if (filters.languageSpanish) params.append('languages', 'Spanish');
+      if (filters.accessibilitySignLanguage) params.append('accessibilityOptions', 'sign language,ASL');
+      if (filters.faithBased) params.append('faithBased', 'true');
+      if (filters.glp1Specific) params.append('glp1Specific', 'true');
+    };
+
     try {
-      // First check if it's a delivery mode search
-      console.log('🔍 About to call detectDeliveryMode with:', searchInput);
-      console.log('🔍 searchInput type:', typeof searchInput);
-      console.log('🔍 searchInput value:', JSON.stringify(searchInput));
-      
-      // Test direct match for debugging
       const testTrimmed = String(searchInput).trim().toLowerCase();
-      console.log('🔍 Test trimmed:', testTrimmed);
-      console.log('🔍 Is "online"?', testTrimmed === 'online');
-      console.log('🔍 Is "remote"?', testTrimmed === 'remote');
-      console.log('🔍 Is "virtual"?', testTrimmed === 'virtual');
-      
-      const deliveryMode = detectDeliveryMode(searchInput);
-      console.log('🔍 Search input:', searchInput);
-      console.log('🔍 Detected delivery mode:', deliveryMode);
-      console.log('🔍 Delivery mode type:', typeof deliveryMode);
-      console.log('🔍 Delivery mode truthy?', !!deliveryMode);
-      console.log('🔍 Will enter if block?', !!deliveryMode);
-      
-      // Force check - if input is exactly "online", "remote", or "virtual", use delivery mode
-      const forcedDeliveryMode = testTrimmed === 'online' || testTrimmed === 'remote' || testTrimmed === 'virtual' 
-        ? 'virtual' 
-        : (testTrimmed === 'hybrid' ? 'hybrid' : (testTrimmed === 'in-person' || testTrimmed === 'in person' ? 'in-person' : null));
-      
-      console.log('🔍 Forced delivery mode:', forcedDeliveryMode);
-      const finalDeliveryMode = deliveryMode || forcedDeliveryMode;
-      console.log('🔍 Final delivery mode to use:', finalDeliveryMode);
-      
+      const deliveryModeFromInput = detectDeliveryMode(searchInput) || 
+        (testTrimmed === 'online' || testTrimmed === 'remote' || testTrimmed === 'virtual' ? 'virtual' : 
+         testTrimmed === 'hybrid' ? 'hybrid' : 
+         (testTrimmed === 'in-person' || testTrimmed === 'in person' ? 'in-person' : null));
+      const finalDeliveryMode = programFormat || deliveryModeFromInput;
+
       if (finalDeliveryMode) {
-        console.log('✅ Using delivery mode search path');
-        // Search by delivery mode (no location required)
+        // Search by program format (delivery mode)
         // Show user location and center map on it if available
         setShowUserLocation(true);
         
         const queryParams = new URLSearchParams();
         queryParams.append('deliveryMode', finalDeliveryMode);
+        addFilterParams(queryParams);
         
         const url = `/api/programs/search?${queryParams}`;
-        console.log('✅ Fetching URL:', url);
-        console.log('✅ Query params:', queryParams.toString());
-        console.log('✅ Delivery mode being sent:', deliveryMode);
         
         const response = await fetch(url, {
           method: 'GET',
@@ -347,10 +355,34 @@ const LifestylePrograms = () => {
           }
         }
         
-        // Return early - don't continue to location-based search
         return;
-      } else {
-        // Location-based search - show user location if available
+      }
+
+      // Filters-only search (no location, no format)
+      if (!searchInput.trim() && hasAnyFilter) {
+        setShowUserLocation(true);
+        const queryParams = new URLSearchParams();
+        addFilterParams(queryParams);
+        const response = await fetch(`/api/programs/search?${queryParams}`);
+        if (!response.ok) throw new Error((await response.json().catch(() => ({}))).message || 'Failed to search');
+        const data = await response.json();
+        const programs = data.programs || [];
+        setSearchResults(programs);
+        setError(programs.length === 0 ? 'No programs match your filters.' : null);
+        if (programs.length > 0) {
+          const programsWithCoords = programs.filter(p => p.latitude && p.longitude);
+          if (programsWithCoords.length > 0) {
+            setMapBounds(programsWithCoords.map(p => [parseFloat(p.latitude), parseFloat(p.longitude)]));
+          } else if (userLocation) {
+            setMapCenter(userLocation);
+            setMapZoom(10);
+          }
+        }
+        return;
+      }
+
+      {
+        // Location-based search
         setShowUserLocation(true);
         
         // Try to geocode the search input to center map on the location
@@ -369,10 +401,10 @@ const LifestylePrograms = () => {
 
         const locationParams = parseLocationInput(searchInput);
         const queryParams = new URLSearchParams();
-        
         if (locationParams.zipCode) queryParams.append('zipCode', locationParams.zipCode);
         if (locationParams.state) queryParams.append('state', locationParams.state);
         if (locationParams.city) queryParams.append('city', locationParams.city);
+        addFilterParams(queryParams);
 
         const response = await fetch(`/api/programs/search?${queryParams}`);
         
@@ -530,6 +562,27 @@ const LifestylePrograms = () => {
             Connect with CDC-recognized lifestyle change programs in your area or online. These evidence-based programs are proven to reduce the risk of chronic diseases by 58% or more when integrated into a healthy lifestyle.
           </p>
         </section>
+
+        {/* Program format cards */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+          gap: '1.5rem',
+          marginBottom: '2.5rem',
+          alignItems: 'stretch',
+        }}>
+          {[
+            { accentColor: '#DB3636', iconBgColor: '#FDE8E5', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>, title: 'In-Person Programs', description: 'Meet with a lifestyle coach and other participants in a classroom setting for interactive group sessions and community-based learning.' },
+            { accentColor: '#49534E', iconBgColor: '#E8E8E8', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>, title: 'Live Virtual Programs', description: 'Join interactive group sessions from home using video conferencing platforms like Zoom, with a real-time coach and live peer support.' },
+            { accentColor: '#1f9660', iconBgColor: '#e8f4ef', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>, title: 'On-Demand Programs', description: 'Complete sessions at your own pace using a smartphone, tablet, or computer — with no set meeting times and flexible scheduling.' },
+          ].map((card, i) => (
+            <div key={i} style={{ backgroundColor: 'white', borderRadius: 'var(--radius-md)', padding: '1.5rem', border: '1px solid #e5e5e5', borderTop: `3px solid ${card.accentColor}`, display: 'flex', flexDirection: 'column', minHeight: 180 }}>
+              <div style={{ width: 40, height: 40, borderRadius: 8, backgroundColor: card.iconBgColor, color: card.accentColor, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', flexShrink: 0 }}>{card.icon}</div>
+              <h3 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-serif)', fontWeight: 600, color: '#2e2e2e', margin: '0 0 0.75rem 0' }}>{card.title}</h3>
+              <p style={{ fontSize: '0.9375rem', fontFamily: 'var(--font-body)', fontWeight: 400, color: '#6B7280', lineHeight: 1.55, margin: 0 }}>{card.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Program Finder Section */}
@@ -549,10 +602,10 @@ const LifestylePrograms = () => {
             textAlign: 'center',
             marginBottom: '2rem'
           }}>
-            Find a Program Near You
+            Find Your Perfect Program
           </h2>
 
-          {/* Search Form Placeholder */}
+          {/* Search Form */}
           <div style={{
             backgroundColor: 'var(--bg-content)',
             padding: '2rem',
@@ -562,7 +615,7 @@ const LifestylePrograms = () => {
           }}>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: isMobile ? '1fr' : '1fr auto',
+              gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr auto',
               gap: '1rem',
               alignItems: 'end'
             }}>
@@ -574,11 +627,11 @@ const LifestylePrograms = () => {
                   color: '#374151',
                   marginBottom: '0.5rem'
                 }}>
-                  Enter location or program type
+                  Location
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g., Atlanta, GA or 30309 or 'virtual' or 'remote'"
+                  placeholder="e.g., Atlanta, GA or 30309"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   onKeyPress={handleKeyPress}
@@ -594,22 +647,105 @@ const LifestylePrograms = () => {
                   }}
                 />
               </div>
-              <button 
+              <div>
+                <label style={{
+                  display: 'block',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  color: '#374151',
+                  marginBottom: '0.5rem'
+                }}>
+                  Program format
+                </label>
+                <select
+                  value={programFormat}
+                  onChange={(e) => setProgramFormat(e.target.value)}
+                  disabled={isLoading}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem 1rem',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '0.375rem',
+                    fontSize: '1rem',
+                    boxSizing: 'border-box',
+                    backgroundColor: 'white',
+                    opacity: isLoading ? 0.6 : 1
+                  }}
+                >
+                  <option value="">Any</option>
+                  <option value="in-person">In-person</option>
+                  <option value="virtual">Virtual / Online</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+              </div>
+              <button
                 onClick={searchPrograms}
-                disabled={isLoading || !searchInput.trim()}
+                disabled={isLoading || (!searchInput.trim() && !programFormat && !Object.values(filters).some(Boolean))}
                 style={{
-                  backgroundColor: isLoading || !searchInput.trim() ? 'var(--text-secondary)' : 'var(--green-primary)',
+                  backgroundColor: isLoading || (!searchInput.trim() && !programFormat && !Object.values(filters).some(Boolean)) ? 'var(--text-secondary)' : 'var(--green-primary)',
                   color: 'white',
                   padding: '0.75rem 2rem',
                   borderRadius: '0.375rem',
                   border: 'none',
                   fontSize: '1rem',
                   fontWeight: '600',
-                  cursor: isLoading || !searchInput.trim() ? 'not-allowed' : 'pointer',
+                  cursor: isLoading || (!searchInput.trim() && !programFormat && !Object.values(filters).some(Boolean)) ? 'not-allowed' : 'pointer',
                   whiteSpace: 'nowrap'
-                }}>
+                }}
+              >
                 {isLoading ? 'Searching...' : 'Find Programs'}
               </button>
+            </div>
+
+            {/* Filters toggle and checkboxes */}
+            <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid #e2e8f0' }}>
+              <button
+                type="button"
+                onClick={() => setShowFilters(!showFilters)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#E05A4D',
+                  fontSize: '0.9375rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  padding: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}
+              >
+                {showFilters ? '▼' : '▶'} Filter by program features
+              </button>
+              {showFilters && (
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+                  gap: '0.75rem 2rem',
+                  marginTop: '1rem'
+                }}>
+                  {[
+                    { key: 'freeOrLowCost', label: 'Free or low-cost' },
+                    { key: 'insuranceCovered', label: 'Covered by insurance' },
+                    { key: 'wholeHealthFocus', label: 'Whole health focus (not just diabetes)' },
+                    { key: 'caregiverFamilyFriendly', label: 'Caregivers / family welcome' },
+                    { key: 'languageSpanish', label: 'Spanish or other languages' },
+                    { key: 'accessibilitySignLanguage', label: 'Sign language / accessibility options' },
+                    { key: 'faithBased', label: 'Faith-based' },
+                    { key: 'glp1Specific', label: 'GLP-1 / weight-loss medication support' },
+                  ].map(({ key, label }) => (
+                    <label key={key} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9375rem', color: '#374151' }}>
+                      <input
+                        type="checkbox"
+                        checked={!!filters[key]}
+                        onChange={(e) => setFilters(f => ({ ...f, [key]: e.target.checked }))}
+                        disabled={isLoading}
+                      />
+                      {label}
+                    </label>
+                  ))}
+                </div>
+              )}
             </div>
             
             {/* Error Message */}
@@ -656,7 +792,7 @@ const LifestylePrograms = () => {
               
               {/* User location marker - only show for location-based searches */}
               {userLocation && showUserLocation && (
-                <Marker position={userLocation}>
+                <Marker position={userLocation} icon={userLocationIcon}>
                   <Popup>Your Location</Popup>
                 </Marker>
               )}
@@ -889,145 +1025,6 @@ const LifestylePrograms = () => {
               )}
             </div>
           )}
-
-          {/* Program Types - matching Resources educational cards style */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-            gap: '1.5rem',
-            marginBottom: '3rem',
-          }}>
-          {[
-            {
-              accentColor: '#DB3636',
-              iconBgColor: '#FDE8E5',
-              icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4"/>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-              ),
-              title: 'In-Person Programs',
-              description: 'Meet with a lifestyle coach and other participants in a classroom setting for interactive group sessions and community-based learning.',
-              bullets: ['Group Coaching Sessions', 'Community Support Network', 'Hands-On Learning Activities', 'Local Program Finder'],
-              linkText: 'Explore in-person programs →',
-            },
-            {
-              accentColor: '#49534E',
-              iconBgColor: '#E8E8E8',
-              icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M23 7l-7 5 7 5V7z"/>
-                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-                </svg>
-              ),
-              title: 'Live Virtual Programs',
-              description: 'Join interactive group sessions from home using video conferencing platforms like Zoom, with a real-time coach and live peer support.',
-              bullets: ['Live Video Conferencing', 'Interactive Q&A Sessions', 'Digital Resource Library', 'Flexible Scheduling'],
-              linkText: 'Explore virtual programs →',
-            },
-            {
-              accentColor: '#1f9660',
-              iconBgColor: '#e8f4ef',
-              icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="2" y="3" width="20" height="14" rx="2"/>
-                  <line x1="8" y1="21" x2="16" y2="21"/>
-                  <line x1="12" y1="17" x2="12" y2="21"/>
-                </svg>
-              ),
-              title: 'On-Demand Programs',
-              description: 'Complete sessions at your own pace using a smartphone, tablet, or computer — with no set meeting times and flexible scheduling.',
-              bullets: ['Self-Paced Learning', 'Mobile & Tablet Friendly', 'Progress Tracking Tools', '24/7 Content Access'],
-              linkText: 'Explore on-demand programs →',
-            },
-          ].map((card, i) => (
-            <div
-              key={i}
-              style={{
-                backgroundColor: 'white',
-                borderRadius: 'var(--radius-md)',
-                padding: '1.5rem',
-                border: '1px solid #e5e5e5',
-                borderTop: `3px solid ${card.accentColor}`,
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <div
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 8,
-                  backgroundColor: card.iconBgColor,
-                  color: card.accentColor,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1rem',
-                }}
-              >
-                {card.icon}
-              </div>
-              <h3
-                style={{
-                  fontSize: '1.5rem',
-                  fontFamily: 'var(--font-serif)',
-                  fontWeight: 600,
-                  color: '#2e2e2e',
-                  margin: '0 0 0.75rem 0',
-                }}
-              >
-                {card.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: '0.9375rem',
-                  fontFamily: 'var(--font-body)',
-                  fontWeight: 400,
-                  color: '#6B7280',
-                  lineHeight: 1.55,
-                  margin: '0 0 1rem 0',
-                }}
-              >
-                {card.description}
-              </p>
-              <ul
-                style={{
-                  listStyle: 'none',
-                  paddingLeft: 0,
-                  margin: '0 0 1rem 0',
-                  fontSize: '0.9375rem',
-                  fontFamily: 'var(--font-body)',
-                  fontWeight: 400,
-                  color: '#6B7280',
-                  lineHeight: 1.6,
-                }}
-              >
-                {card.bullets.map((bullet, j) => (
-                  <li key={j} style={{ marginBottom: '0.25rem', paddingLeft: '1.25rem', position: 'relative' }}>
-                    <span style={{ position: 'absolute', left: 0, top: '0.65em', width: 6, height: 6, borderRadius: '50%', backgroundColor: '#9CA3AF', display: 'inline-block' }} />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to="#"
-                style={{
-                  marginTop: 'auto',
-                  fontFamily: 'var(--font-body)',
-                  fontWeight: 600,
-                  fontSize: '0.875rem',
-                  color: card.accentColor,
-                  textDecoration: 'none',
-                }}
-              >
-                {card.linkText}
-              </Link>
-            </div>
-          ))}
-          </div>
 
         </div>
       </section>

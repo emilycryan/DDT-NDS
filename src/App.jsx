@@ -14,6 +14,9 @@ import Resources from './components/Resources'
 import Support from './components/Support'
 import ForPractitioners from './components/ForPractitioners'
 import PractitionerFeedback from './components/PractitionerFeedback'
+import RiskFactorChecklist from './components/RiskFactorChecklist'
+import WeeklyActivityTrackingSheet from './components/WeeklyActivityTrackingSheet'
+import GoalSettingWorksheet from './components/GoalSettingWorksheet'
 import LifestylePrograms from './components/LifestylePrograms'
 import FAQs from './components/FAQs'
 import UnderstandingPrediabetes from './components/UnderstandingPrediabetes'
@@ -224,6 +227,21 @@ function App() {
       <Route path="/for-practitioners/feedback" element={
         <main style={{ minHeight: '80vh' }}>
           <PractitionerFeedback />
+        </main>
+      } />
+      <Route path="/for-practitioners/risk-factor-checklist" element={
+        <main style={{ minHeight: '80vh' }}>
+          <RiskFactorChecklist />
+        </main>
+      } />
+      <Route path="/for-practitioners/weekly-activity-tracking-sheet" element={
+        <main style={{ minHeight: '80vh' }}>
+          <WeeklyActivityTrackingSheet />
+        </main>
+      } />
+      <Route path="/for-practitioners/goal-setting-worksheet" element={
+        <main style={{ minHeight: '80vh' }}>
+          <GoalSettingWorksheet />
         </main>
       } />
       <Route path="/get-started" element={

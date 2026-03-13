@@ -247,7 +247,7 @@ const DPPProgramOverview = () => {
             }}
           >
             <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '1.125rem', color: 'white', margin: '0 0 0.5rem 0' }}>
-              Find a Program Near You
+              Find Your Perfect Program
             </h3>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.95)', lineHeight: 1.5, margin: '0 0 1rem 0' }}>
               In-person, live virtual, and on-demand options available nationwide.
