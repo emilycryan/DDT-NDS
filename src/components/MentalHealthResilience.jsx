@@ -57,7 +57,7 @@ const MentalHealthResilience = () => {
           margin: '0 0 2rem 0',
         }}
       >
-        Mental health underpins everything else: how we eat, sleep, move, and connect. Evidence-based practices in cognitive skills, mindfulness, and social support measurably reduce risk for depression, anxiety, and chronic disease.
+        Mental health underpins everything else: how we eat, sleep, move, and connect. Evidence-based practices in cognitive skills, mindfulness, and social support measurably reduce depression, anxiety, and chronic disease burden.
       </p>
 
       {/* Stats Bar */}
@@ -82,7 +82,7 @@ const MentalHealthResilience = () => {
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#1f9660', marginBottom: '0.5rem' }}>35%</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
-            lower risk of depression and anxiety in people who exercise regularly — equal to or better than medication for mild-to-moderate cases
+            lower rates of depression and anxiety in people who exercise regularly — equal to or better than medication for mild-to-moderate cases
           </div>
         </div>
         <div>

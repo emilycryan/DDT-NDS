@@ -120,7 +120,7 @@ const defaultSuggestions = [
   { title: "Resources when you're ready", text: "When you want to go deeper, we have articles, tools, and programs. Take what's useful and leave the rest." },
 ];
 
-function AssessmentJustCurious({ onBack }) {
+function QuestionsJustCuriousFlow({ onBack }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [isComplete, setIsComplete] = useState(false);
@@ -218,7 +218,7 @@ function AssessmentJustCurious({ onBack }) {
             </button>
             {onBack && (
               <button type="button" className="btn btn-primary" onClick={onBack}>
-                Back to assessments
+                Back to options
               </button>
             )}
           </div>
@@ -311,7 +311,7 @@ function AssessmentJustCurious({ onBack }) {
                 fontSize: '0.9375rem',
               }}
             >
-              ← Back to assessment options
+              ← Back to question options
             </button>
           </p>
         )}
@@ -320,4 +320,4 @@ function AssessmentJustCurious({ onBack }) {
   );
 }
 
-export default AssessmentJustCurious;
+export default QuestionsJustCuriousFlow;

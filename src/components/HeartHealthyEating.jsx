@@ -22,7 +22,7 @@ const prioritizeItems = [
 const limitItems = [
   { title: 'Sodium-heavy foods', desc: 'Canned soups, deli meats, fast food — single servings often exceed daily limits' },
   { title: 'Saturated & trans fats', desc: 'Butter, full-fat dairy, palm oil, fried foods — directly raise LDL cholesterol' },
-  { title: 'Added sugars', desc: 'Raise triglycerides and contribute to weight gain — a double cardiac risk' },
+  { title: 'Added sugars', desc: 'Raise triglycerides and contribute to weight gain — a double hit to heart health' },
   { title: 'Alcohol', desc: 'Raises blood pressure and triglycerides — limit to 1 drink/day for women, 2 for men at most' },
   { title: 'Red & processed meat', desc: 'Bacon, sausage, hot dogs — associated with increased cardiovascular mortality' },
 ];

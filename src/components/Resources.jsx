@@ -11,7 +11,7 @@ const educationalCards = [
       </svg>
     ),
     title: 'Diabetes Prevention',
-    description: 'Over 96 million American adults have prediabetes — and most don\'t know it. Learn how modest weight loss and regular physical activity can cut your risk of type 2 diabetes by more than 50%.',
+    description: 'Over 96 million American adults have prediabetes — and most don\'t know it. Learn how modest weight loss and regular physical activity can lower your chances of type 2 diabetes by more than 50%.',
     bullets: [
       { text: 'Understanding Prediabetes', path: '/resources/prediabetes/understanding-prediabetes' },
       { text: 'Nutrition & Blood Sugar', path: '/resources/prediabetes/nutrition-blood-sugar' },
@@ -30,12 +30,12 @@ const educationalCards = [
       </svg>
     ),
     title: 'Heart Health',
-    description: 'Heart disease is the leading cause of death in the United States. Discover how lifestyle choices around diet, activity, stress, and sleep can measurably reduce your risk — at any age.',
+    description: 'Heart disease is the leading cause of death in the United States. Discover how lifestyle choices around diet, activity, stress, and sleep can measurably support heart health — at any age.',
     bullets: [
       { text: 'Know Your Numbers', path: '/resources/heart-health/know-your-numbers' },
       { text: 'Blood Pressure & Cholesterol', path: '/resources/heart-health/blood-pressure-cholesterol' },
       { text: 'Heart-Healthy Eating', path: '/resources/heart-health/heart-healthy-eating' },
-      { text: 'Stress & Cardiovascular Risk', path: '/resources/heart-health/stress-cardiovascular-risk' },
+      { text: 'Stress & Heart Health', path: '/resources/heart-health/stress-and-heart-health' },
     ],
     linkText: 'Explore heart health resources →',
     linkHref: '/resources/heart-health/know-your-numbers',
@@ -231,7 +231,7 @@ const Resources = ({ onNavigate }) => {
                 margin: '0 0 1.5rem 0',
               }}
             >
-              CDC-recognized Lifestyle Change Intervention (LCI) programs are proven to reduce your risk of type 2 diabetes and other chronic conditions. Find a program in your community or online that fits your schedule and lifestyle.
+              CDC-recognized Lifestyle Change Intervention (LCI) programs are proven to lower the chances of type 2 diabetes and other chronic conditions. Find a program in your community or online that fits your schedule and lifestyle.
             </p>
 
             <button
@@ -258,7 +258,7 @@ const Resources = ({ onNavigate }) => {
             </button>
           </div>
 
-          {/* Right Card - Take Your Risk Assessment */}
+          {/* Right Card - Get started questions */}
           <div
             style={{
               backgroundColor: '#F35831',
@@ -269,7 +269,7 @@ const Resources = ({ onNavigate }) => {
               cursor: 'pointer',
               transition: 'transform 0.2s ease, box-shadow 0.2s ease',
             }}
-            onClick={() => onNavigate?.('risk-assessment')}
+            onClick={() => onNavigate?.('get-started')}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-2px)';
               e.currentTarget.style.boxShadow = '0 8px 24px rgba(239, 70, 35, 0.35)';
@@ -312,7 +312,7 @@ const Resources = ({ onNavigate }) => {
                 lineHeight: 1.2,
               }}
             >
-              Take Your Risk Assessment
+              Answer a Few Questions
             </h2>
 
             <p
@@ -324,7 +324,7 @@ const Resources = ({ onNavigate }) => {
                 margin: '0 0 1.5rem 0',
               }}
             >
-              Not sure where to start? Our free, confidential risk assessment helps you understand your personal risk for conditions like type 2 diabetes, heart disease, and more — and points you toward the right resources.
+              Not sure where to start? Our free, confidential questions help you understand how your health picture relates to conditions like type 2 diabetes, heart disease, and more — and point you toward the right resources.
             </p>
 
             <button
@@ -344,7 +344,7 @@ const Resources = ({ onNavigate }) => {
                 cursor: 'pointer',
               }}
             >
-              Begin Assessment
+              Get Started
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>

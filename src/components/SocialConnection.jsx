@@ -35,7 +35,7 @@ const SocialConnection = () => {
           margin: '0 0 0.75rem 0',
         }}
       >
-        Human connection is a biological need — and its absence carries the same health risk as smoking 15 cigarettes a day.
+        Human connection is a biological need — and its absence carries a similar health impact as smoking 15 cigarettes a day.
       </p>
       <p
         style={{
@@ -46,7 +46,7 @@ const SocialConnection = () => {
           margin: '0 0 2rem 0',
         }}
       >
-        Strong social ties reduce cortisol, strengthen immune response, and lower cardiovascular risk. Building community isn&apos;t just good for your mood — it&apos;s one of the most evidence-backed prevention strategies available.
+        Strong social ties reduce cortisol, strengthen immune response, and support cardiovascular health. Building community isn&apos;t just good for your mood — it&apos;s one of the most evidence-backed prevention strategies available.
       </p>
 
       {/* Stats Bar */}
@@ -65,7 +65,7 @@ const SocialConnection = () => {
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#E8A598', marginBottom: '0.5rem' }}>26%</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
-            higher mortality risk from social isolation — comparable to smoking, obesity, and physical inactivity
+            higher mortality from social isolation — comparable to smoking, obesity, and physical inactivity
           </div>
         </div>
         <div>
@@ -125,7 +125,7 @@ const SocialConnection = () => {
               margin: '0 0 1.25rem 0',
             }}
           >
-            Loneliness, by contrast, activates the same threat-detection system as physical pain. It raises inflammatory cytokines, disrupts sleep architecture, and increases the risk of depression, dementia, and cardiovascular disease — independent of other risk factors.
+            Loneliness, by contrast, activates the same threat-detection system as physical pain. It raises inflammatory cytokines, disrupts sleep architecture, and increases depression, dementia, and cardiovascular disease — independent of other health factors.
           </p>
           <div
             style={{

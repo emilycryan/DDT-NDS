@@ -4,8 +4,8 @@ import HeartHealthPageLayout from './HeartHealthPageLayout';
 const stressCycleSteps = [
   { num: 1, title: 'Chronic stress activates', desc: 'cortisol + adrenaline release, raising heart rate and BP' },
   { num: 2, title: 'Sleep disrupted', desc: 'poor sleep further raises cortisol and blood pressure' },
-  { num: 3, title: 'Inflammation increases', desc: 'arterial damage, plaque buildup, and clotting risk rise' },
-  { num: 4, title: 'Risk behaviors compound', desc: 'overeating, inactivity, and alcohol use amplify cardiac damage' },
+  { num: 3, title: 'Inflammation increases', desc: 'arterial damage, plaque buildup, and clotting concerns rise' },
+  { num: 4, title: 'Stress-related habits compound', desc: 'overeating, inactivity, and alcohol use amplify cardiac damage' },
 ];
 
 const stressReducers = [
@@ -15,7 +15,7 @@ const stressReducers = [
   { title: 'Social Connection', desc: 'Strong social ties lower cardiovascular mortality by up to 29%. Group-based lifestyle programs like DPP leverage community as a therapeutic tool.' },
 ];
 
-const StressCardiovascularRisk = () => {
+const StressHeartHealth = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const StressCardiovascularRisk = () => {
   }, []);
 
   return (
-    <HeartHealthPageLayout title="Stress & Cardiovascular Risk">
+    <HeartHealthPageLayout title="Stress & Heart Health">
       <p
         style={{
           fontSize: '1rem',
@@ -46,7 +46,7 @@ const StressCardiovascularRisk = () => {
           margin: '0 0 2rem 0',
         }}
       >
-        Ongoing stress raises blood pressure, increases inflammation, disrupts sleep, and triggers behaviors like overeating and inactivity that compound cardiovascular risk. Managing stress isn&apos;t a luxury — it&apos;s part of heart health.
+        Ongoing stress raises blood pressure, increases inflammation, disrupts sleep, and triggers behaviors like overeating and inactivity that strain the heart further. Managing stress isn&apos;t a luxury — it&apos;s part of heart health.
       </p>
 
       {/* Stats Bar */}
@@ -65,7 +65,7 @@ const StressCardiovascularRisk = () => {
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>2-3×</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
-            higher heart attack risk in people with chronic stress and poor sleep combined
+            higher heart attack rates in people with chronic stress and poor sleep combined
           </div>
         </div>
         <div>
@@ -124,7 +124,7 @@ const StressCardiovascularRisk = () => {
               margin: '0 0 1.25rem 0',
             }}
           >
-            Stress also triggers behaviors that compound cardiac risk: poor sleep, emotional eating, physical inactivity, and increased alcohol use. Managing stress directly addresses all of these upstream.
+            Stress also triggers behaviors that compound strain on the heart: poor sleep, emotional eating, physical inactivity, and increased alcohol use. Managing stress directly addresses all of these upstream.
           </p>
           <div
             style={{
@@ -135,7 +135,7 @@ const StressCardiovascularRisk = () => {
             }}
           >
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#333333', lineHeight: 1.6, margin: 0 }}>
-              <strong>Sleep apnea</strong> — in which breathing repeatedly stops during sleep — significantly raises heart disease risk and is closely linked to both high blood pressure and obesity.
+              <strong>Sleep apnea</strong> — in which breathing repeatedly stops during sleep — is closely tied to heart disease and is linked to both high blood pressure and obesity.
             </p>
           </div>
         </div>
@@ -227,7 +227,7 @@ const StressCardiovascularRisk = () => {
           margin: '0 0 1.5rem 0',
         }}
       >
-        These approaches have demonstrated measurable reductions in blood pressure, cortisol, and cardiac event risk.
+        These approaches have demonstrated measurable reductions in blood pressure, cortisol, and serious cardiac events.
       </p>
       <div
         style={{
@@ -260,4 +260,4 @@ const StressCardiovascularRisk = () => {
   );
 };
 
-export default StressCardiovascularRisk;
+export default StressHeartHealth;

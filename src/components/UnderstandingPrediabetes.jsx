@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PrediabetesPageLayout from './PrediabetesPageLayout';
 
-const riskFactors = [
-  { title: 'Age', description: '45 years or older. Risk increases significantly with age.' },
+const healthFactors = [
+  { title: 'Age', description: '45 years or older. Likelihood increases significantly with age.' },
   { title: 'Weight', description: 'Overweight or obese (BMI ≥ 25, or ≥ 23 for Asian Americans).' },
   { title: 'Physical Activity', description: 'Less than 3 times per week of moderate exercise.' },
   { title: 'Family History', description: 'Parent or sibling diagnosed with type 2 diabetes.' },
@@ -43,7 +43,7 @@ const UnderstandingPrediabetes = () => {
           margin: '0 0 2rem 0',
         }}
       >
-        With prediabetes, your blood sugar is higher than normal but not yet high enough for a type 2 diabetes diagnosis. The good news: modest lifestyle changes can cut your risk in half.
+        With prediabetes, your blood sugar is higher than normal but not yet high enough for a type 2 diabetes diagnosis. The good news: modest lifestyle changes can cut your chances in half.
       </p>
 
       {/* Stats Band */}
@@ -74,7 +74,7 @@ const UnderstandingPrediabetes = () => {
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#1f9660', marginBottom: '0.5rem' }}>58%</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.9, lineHeight: 1.4 }}>
-            lower risk of type 2 diabetes with lifestyle changes
+            lower chances of type 2 diabetes with lifestyle changes
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@ const UnderstandingPrediabetes = () => {
               margin: '0 0 1.5rem 0',
             }}
           >
-            Talk to your doctor about getting tested if you&apos;re over 45, have overweight, or have other risk factors. Early detection gives you the best chance to reverse course.
+            Talk to your doctor about getting tested if you&apos;re over 45, have overweight, or have other factors below. Early detection gives you the best chance to reverse course.
           </p>
           <div
             style={{
@@ -196,7 +196,7 @@ const UnderstandingPrediabetes = () => {
         </div>
       </div>
 
-      {/* Are You at Risk? */}
+      {/* Factors to discuss with your doctor */}
       <div
         style={{
           backgroundColor: '#F8F7F5',
@@ -214,7 +214,7 @@ const UnderstandingPrediabetes = () => {
             margin: '0 0 0.75rem 0',
           }}
         >
-          Are You at Risk?
+          Factors to discuss with your doctor
         </h2>
         <p
           style={{
@@ -225,7 +225,7 @@ const UnderstandingPrediabetes = () => {
             margin: '0 0 1.5rem 0',
           }}
         >
-          Talk to your doctor about getting tested if any of the following apply to you. Multiple risk factors increase your likelihood significantly.
+          Talk to your doctor about getting tested if any of the following apply to you. Multiple factors together can raise the likelihood significantly.
         </p>
         <div
           style={{
@@ -235,7 +235,7 @@ const UnderstandingPrediabetes = () => {
             marginBottom: '1.5rem',
           }}
         >
-          {riskFactors.map((item, i) => (
+          {healthFactors.map((item, i) => (
             <div
               key={i}
               style={{
@@ -271,7 +271,7 @@ const UnderstandingPrediabetes = () => {
               textDecoration: 'none',
             }}
           >
-            Take the Risk Test
+            Answer a few questions
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>

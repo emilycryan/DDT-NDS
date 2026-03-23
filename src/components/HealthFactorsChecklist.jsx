@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const RiskFactorChecklist = () => {
+const HealthFactorsChecklist = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const RiskFactorChecklist = () => {
             For Practitioners
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <span style={{ color: 'var(--ink)', fontWeight: 600 }}>Risk Factor Checklist</span>
+          <span style={{ color: 'var(--ink)', fontWeight: 600 }}>Health factors checklist</span>
         </nav>
 
         <span
@@ -115,7 +115,7 @@ const RiskFactorChecklist = () => {
             margin: '0 0 0.75rem 0',
           }}
         >
-          Risk Factor Checklist
+          Health factors checklist
         </h1>
 
         <p
@@ -127,7 +127,7 @@ const RiskFactorChecklist = () => {
             margin: '0 0 0.5rem 0',
           }}
         >
-          A simple checklist you can use with patients to quickly review common risk factors for prediabetes and
+          A simple checklist you can use with patients to quickly review common factors linked to prediabetes and
           type 2 diabetes. Complete together before or during a visit to guide conversation and next steps.
         </p>
 
@@ -182,7 +182,7 @@ const RiskFactorChecklist = () => {
               {checklistItem('Abnormal cholesterol', 'Low HDL (“good”) cholesterol or high triglycerides.')}
               {checklistItem('History of heart disease or stroke', 'Prior cardiovascular event or diagnosed condition.')}
               {checklistItem('Sleep problems', 'Obstructive sleep apnea or short sleep most nights.')}
-              {checklistItem('Other conditions that increase risk', 'Such as PCOS or certain medications that raise blood sugar.')}
+              {checklistItem('Other conditions to note', 'Such as PCOS or certain medications that raise blood sugar.')}
             </div>
           </div>
 
@@ -219,5 +219,5 @@ const RiskFactorChecklist = () => {
   );
 };
 
-export default RiskFactorChecklist;
+export default HealthFactorsChecklist;
 

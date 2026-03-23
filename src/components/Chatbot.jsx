@@ -19,13 +19,13 @@ const Chatbot = ({ onNavigate }) => {
   const [userState, setUserState] = useState({
     userName: null,
     careRecipientName: null,
-    assessmentType: null, // 'self', 'caregiver', 'curious'
+    questionFlowRole: null, // 'self', 'caregiver', 'curious'
     conversationContext: [],
     conversationHistory: [], // Full message history with metadata
     userPreferences: {
       preferredProgramType: null, // 'in-person', 'virtual', 'hybrid'
       topicsOfInterest: [], // ['diabetes', 'heart-disease', 'nutrition', etc.]
-      previousAssessments: [], // Track completed assessments
+      completedQuestionFlows: [], // Track completed short question flows
       locationPreference: null,
       communicationStyle: 'friendly' // 'formal', 'friendly', 'casual'
     },
@@ -97,7 +97,7 @@ const Chatbot = ({ onNavigate }) => {
   const extractRecommendationsFromText = (text) => {
     const recommendationKeywords = [
       'recommend', 'suggest', 'try', 'consider', 'should', 'might want to',
-      'assessment', 'program', 'exercise', 'diet', 'lifestyle change'
+      'question flow', 'program', 'exercise', 'diet', 'lifestyle change'
     ];
     
     const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 10);
@@ -124,7 +124,7 @@ const Chatbot = ({ onNavigate }) => {
       'smoking': ['smoking', 'tobacco', 'cigarette', 'quit smoking'],
       'stress': ['stress', 'anxiety', 'mental health', 'depression'],
       'programs': ['program', 'class', 'course', 'prevention program'],
-      'assessment': ['assessment', 'risk', 'evaluation', 'test', 'quiz']
+      'health-questions': ['questionnaire', 'evaluation', 'test', 'quiz', 'screening', 'checkup']
     };
 
     const detectedTopics = [];
@@ -310,8 +310,8 @@ const Chatbot = ({ onNavigate }) => {
   const extractQuestionContext = (questionText) => {
     const text = questionText.toLowerCase();
     
-    if (text.includes('assessment') || text.includes('risk')) {
-      return 'assessment';
+    if (text.includes('few questions') || text.includes('get started') || text.includes('personalized insights')) {
+      return 'get-started-flow';
     }
     if (text.includes('program') || text.includes('class')) {
       return 'programs';
@@ -391,9 +391,9 @@ const Chatbot = ({ onNavigate }) => {
     if (type === 'yes_no') {
       if (answer === 'yes') {
         switch (questionContext) {
-          case 'assessment':
-            responseText = `Great! I'll help you get started with the risk assessment. This will give you personalized insights about your health risks and prevention strategies.`;
-            quickOptions = ["Take assessment now", "Tell me more about it first"];
+          case 'get-started-flow':
+            responseText = `Great! I'll help you get started. Answering a few questions will give you personalized insights about your health and prevention strategies.`;
+            quickOptions = ["Answer questions now", "Tell me more about it first"];
             break;
           case 'programs':
             responseText = `Excellent! I'd be happy to help you find the right prevention program. Let me search for options that match your needs.`;
@@ -410,24 +410,24 @@ const Chatbot = ({ onNavigate }) => {
             break;
           default:
             responseText = `Great! I'm here to help you with whatever you need regarding chronic disease prevention.`;
-            quickOptions = ["Find prevention programs", "Take risk assessment", "Learn about healthy lifestyle"];
+            quickOptions = ["Find prevention programs", "Answer a few questions", "Learn about healthy lifestyle"];
         }
       } else { // answer === 'no'
         switch (questionContext) {
-          case 'assessment':
+          case 'get-started-flow':
             responseText = `No problem! Is there something specific about chronic disease prevention you'd like to learn about instead?`;
             quickOptions = ["Tell me about diabetes prevention", "Find prevention programs", "Learn about healthy eating"];
             break;
           case 'programs':
             responseText = `That's okay! Maybe I can help you with information about prevention strategies or answer any questions you have.`;
-            quickOptions = ["Learn prevention tips", "Ask a question", "Take risk assessment"];
+            quickOptions = ["Learn prevention tips", "Ask a question", "Answer a few questions"];
             break;
           case 'cost':
             responseText = `I understand. Let me show you all available options regardless of cost.`;
             break;
           default:
             responseText = `No worries! What would you like to know about chronic disease prevention?`;
-            quickOptions = ["Prevention tips", "Risk factors", "Healthy lifestyle advice"];
+            quickOptions = ["Prevention tips", "Health factors", "Healthy lifestyle advice"];
         }
       }
     } else if (type === 'specific') {
@@ -559,7 +559,7 @@ const Chatbot = ({ onNavigate }) => {
 
     let detectedUserName = userState.userName;
     let detectedCareRecipient = userState.careRecipientName;
-    let detectedAssessmentType = userState.assessmentType;
+    let detectedFlowRole = userState.questionFlowRole;
 
     // Extract user name
     for (const pattern of namePatterns) {
@@ -570,75 +570,75 @@ const Chatbot = ({ onNavigate }) => {
       }
     }
 
-    // Extract care recipient name and determine assessment type
+    // Extract care recipient name and determine question-flow role
     for (const pattern of carePatterns) {
       const match = userInput.match(pattern);
       if (match) {
         if (pattern.toString().includes('my (\\\w+) (\\\w+)')) {
           // "my mom Sarah" format
           detectedCareRecipient = match[2].charAt(0).toUpperCase() + match[2].slice(1);
-          detectedAssessmentType = 'caregiver';
+          detectedFlowRole = 'caregiver';
         } else if (pattern.toString().includes('(\\\w+) is my')) {
           // "Sarah is my mom" format
           detectedCareRecipient = match[1].charAt(0).toUpperCase() + match[1].slice(1);
-          detectedAssessmentType = 'caregiver';
+          detectedFlowRole = 'caregiver';
         } else {
           detectedCareRecipient = match[1].charAt(0).toUpperCase() + match[1].slice(1);
-          detectedAssessmentType = 'caregiver';
+          detectedFlowRole = 'caregiver';
         }
         break;
       }
     }
 
-    // Detect assessment intent
-    if (input.includes('myself') || input.includes('my health') || input.includes('my risk')) {
-      detectedAssessmentType = 'self';
+    // Detect intent for the Get Started question flows
+    if (input.includes('myself') || input.includes('my health') || input.includes('for me')) {
+      detectedFlowRole = 'self';
     } else if (input.includes('just curious') || input.includes('general information') || input.includes('learning about')) {
-      detectedAssessmentType = 'curious';
+      detectedFlowRole = 'curious';
     }
 
     return {
       userName: detectedUserName,
       careRecipientName: detectedCareRecipient,
-      assessmentType: detectedAssessmentType
+      questionFlowRole: detectedFlowRole
     };
   };
 
-  // Check if user wants to take assessment (more specific now)
-  const shouldRouteToAssessment = (userInput) => {
-    const directAssessmentKeywords = [
-      'take assessment', 'take the assessment', 'take the risk assessment', 'start assessment', 'start the assessment',
-      'i want to take', 'begin assessment', 'do the assessment', 'answer questions',
-      'answer some questions', 'take test', 'start test','quiz', 'take quiz','test', 'start test', 'take test'
+  const shouldRouteToGetStartedQuestions = (userInput) => {
+    const directKeywords = [
+      'answer questions', 'answer some questions', 'a few questions', 'few questions',
+      'get started', 'start questions', 'begin questions', 'take the quiz', 'take quiz',
+      'questionnaire', 'health questions', 'prediabetes quiz', 'screening questions',
+      'do the quiz', 'start quiz', 'complete the questions'
     ];
-    
-    return directAssessmentKeywords.some(keyword => 
+
+    return directKeywords.some(keyword =>
       userInput.toLowerCase().includes(keyword)
     );
   };
 
-  // Check if user wants assessment for someone else
-  const isAssessmentForOthers = (userInput) => {
+  const isQuestionFlowForOthers = (userInput) => {
     const input = userInput.toLowerCase();
     const forOthersKeywords = [
-      'assessment for', 'take it for', 'for my', 'for someone', 'for a family member',
+      'take it for', 'for my', 'for someone', 'for a family member',
       'for my mom', 'for my dad', 'for my husband', 'for my wife', 'for my parent',
       'for my child', 'for my partner', 'on behalf of', 'help someone else',
       'someone i care about', 'family member', 'loved one'
     ];
-    
+
     return forOthersKeywords.some(keyword => input.includes(keyword));
   };
 
-  // Check if user is asking about risk (but not requesting assessment)
-  const isRiskInquiry = (userInput) => {
-    const riskKeywords = [
-      'am i at risk', 'my risk', 'risk for', 'check my risk', 'evaluate my risk'
+  const isHealthLikelihoodInquiry = (userInput) => {
+    const likelihoodKeywords = [
+      'could i have', 'might i have', 'chances of', 'am i likely', 'likelihood',
+      'worried about diabetes', 'do i have diabetes', 'do i have prediabetes',
+      'could i get diabetes', 'will i get'
     ];
-    
-    return riskKeywords.some(keyword => 
+
+    return likelihoodKeywords.some(keyword =>
       userInput.toLowerCase().includes(keyword)
-    ) && !shouldRouteToAssessment(userInput);
+    ) && !shouldRouteToGetStartedQuestions(userInput);
   };
 
   // Check if user wants to find lifestyle programs
@@ -876,15 +876,15 @@ const Chatbot = ({ onNavigate }) => {
       return;
     }
 
-    // Check if user wants to take assessment for someone else
-    if (isAssessmentForOthers(inputValue)) {
+    // Check if user wants questions for someone else
+    if (isQuestionFlowForOthers(inputValue)) {
       setIsTyping(true);
       const caregiverMessage = {
         id: Date.now() + 1,
-        text: `That's wonderful that you're looking out for ${contextUpdate.careRecipientName || 'someone you care about'}${contextUpdate.userName ? `, ${contextUpdate.userName}` : ''}! Taking an assessment on behalf of a family member or loved one shows how much you care about their health.`,
+        text: `That's wonderful that you're looking out for ${contextUpdate.careRecipientName || 'someone you care about'}${contextUpdate.userName ? `, ${contextUpdate.userName}` : ''}! Answering questions on behalf of a family member or loved one shows how much you care about their health.`,
         sender: 'bot',
         timestamp: new Date(),
-        quickOptions: ["Take assessment for them", "Learn about caregiver resources", "Tell me more about their health"]
+        quickOptions: ["Answer questions for them", "Learn about caregiver resources", "Tell me more about their health"]
       };
       setMessages(prev => [...prev, caregiverMessage]);
       setIsTyping(false);
@@ -892,18 +892,17 @@ const Chatbot = ({ onNavigate }) => {
       return;
     }
 
-    // Check if user wants to take assessment
-    if (shouldRouteToAssessment(inputValue)) {
+    if (shouldRouteToGetStartedQuestions(inputValue)) {
       setIsTyping(true);
       
       // Determine context for routing message
-      const isForOthers = contextUpdate.assessmentType === 'caregiver' || contextUpdate.careRecipientName;
+      const isForOthers = contextUpdate.questionFlowRole === 'caregiver' || contextUpdate.careRecipientName;
       const recipientName = contextUpdate.careRecipientName;
       
       // First message - announce the routing
       const routingMessage1 = {
         id: Date.now() + 1,
-        text: `Excellent!${contextUpdate.userName ? ` ${contextUpdate.userName}, ` : ' '}I'll take you to our risk assessment page where you can get a ${isForOthers ? `personalized evaluation for ${recipientName || 'your loved one'}` : 'personalized evaluation'}.`,
+        text: `Excellent!${contextUpdate.userName ? ` ${contextUpdate.userName}, ` : ' '}I'll take you to our Get Started page where you can get a ${isForOthers ? `personalized evaluation for ${recipientName || 'your loved one'}` : 'personalized evaluation'}.`,
         sender: 'bot',
         timestamp: new Date()
       };
@@ -914,22 +913,21 @@ const Chatbot = ({ onNavigate }) => {
         const routingMessage2 = {
           id: Date.now() + 2,
           text: isForOthers ? 
-            `Taking you there now... The assessment will help us understand ${recipientName ? `${recipientName}'s` : 'their'} specific situation and provide tailored recommendations for their care.` :
-            "Taking you there now... The assessment will help us understand your specific situation and provide tailored recommendations.",
+            `Taking you there now... Your answers will help us understand ${recipientName ? `${recipientName}'s` : 'their'} specific situation and provide tailored recommendations for their care.` :
+            "Taking you there now... Your answers will help us understand your specific situation and provide tailored recommendations.",
           sender: 'bot',
           timestamp: new Date()
         };
         setMessages(prev => [...prev, routingMessage2]);
         setIsTyping(false);
         
-        // Route to assessment page after longer delay but keep chat open
         setTimeout(() => {
           if (onNavigate) {
-            console.log('Chatbot: Attempting to navigate to risk-assessment page');
-            onNavigate('risk-assessment');
-            // Scroll to the assessment selection section
+            console.log('Chatbot: Attempting to navigate to get-started page');
+            onNavigate('get-started');
+            // Scroll to the flow selection section
             setTimeout(() => {
-              const element = document.getElementById('assessment-selection');
+              const element = document.getElementById('get-started-flow-selection');
               if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }
@@ -1042,7 +1040,7 @@ const Chatbot = ({ onNavigate }) => {
             quickOptions.push("Filter by location");
           }
           
-          quickOptions.push("Take risk assessment");
+          quickOptions.push("Answer a few questions");
           
           const responseMessage = {
             id: Date.now() + 1,
@@ -1126,7 +1124,7 @@ const Chatbot = ({ onNavigate }) => {
             text: "I'm having trouble finding programs right now, but I'd love to help! Can you tell me more about what you're looking for?",
             sender: 'bot',
             timestamp: new Date(),
-            quickOptions: ["Search all programs", "Tell me about programs", "Take risk assessment", "I'm not sure"]
+            quickOptions: ["Search all programs", "Tell me about programs", "Answer a few questions", "I'm not sure"]
           };
         } else {
           errorMessage = {
@@ -1257,17 +1255,16 @@ const Chatbot = ({ onNavigate }) => {
       return;
     }
 
-    // Check if user is asking about risk (provide guidance instead of immediate routing)
-    if (isRiskInquiry(inputValue)) {
+    if (isHealthLikelihoodInquiry(inputValue)) {
       setIsTyping(true);
-      const riskGuidanceMessage = {
+      const healthLikelihoodGuidanceMessage = {
         id: Date.now() + 1,
-        text: `That's a great question${contextUpdate.userName ? `, ${contextUpdate.userName}` : ''}! Understanding your personal risk factors is important. I'd recommend taking our risk assessment to get personalized insights. Would you like to get started?`,
+        text: `That's a great question${contextUpdate.userName ? `, ${contextUpdate.userName}` : ''}! Understanding what affects your health is important. I'd recommend answering a few questions on this site to get personalized insights. Would you like to get started?`,
         sender: 'bot',
         timestamp: new Date(),
         quickOptions: ["Answer some questions", "Learn more about diabetes", "Tell me about prevention"]
       };
-      setMessages(prev => [...prev, riskGuidanceMessage]);
+      setMessages(prev => [...prev, healthLikelihoodGuidanceMessage]);
       setIsTyping(false);
       setInputValue('');
       return;
@@ -1318,8 +1315,8 @@ const Chatbot = ({ onNavigate }) => {
       if (currentState.careRecipientName) {
         personalContext.push(`Care recipient: ${currentState.careRecipientName}`);
       }
-      if (currentState.assessmentType) {
-        personalContext.push(`Assessment context: ${currentState.assessmentType}`);
+      if (currentState.questionFlowRole) {
+        personalContext.push(`Question flow context: ${currentState.questionFlowRole}`);
       }
 
       // Add conversation memory context
@@ -1370,7 +1367,7 @@ Key guidelines:
 - Provide evidence-based health information
 - Keep responses concise and helpful (2-3 sentences max)
 - Utilize plain language and avoid using jargon
-- Always suggest taking risk assessment when appropriate
+- Always suggest answering a few questions on the site when appropriate
 - Mention lifestyle changes like diet, exercise, and avoiding tobacco
 - Be encouraging and supportive
 - If asked about medical advice, remind users to consult healthcare providers
@@ -1378,8 +1375,8 @@ Key guidelines:
 - Use a professional but friendly tone appropriate for a government health website
 - If you know the user's name, use it occasionally to personalize the conversation
 - Be attentive to whether they're asking for themselves, someone they care about, or just general information
-- When someone wants to take an assessment for a family member or loved one, acknowledge their caring role and provide caregiver-focused guidance
-- Use names of care recipients when known (e.g., "Sarah's health", "your mom's risk factors")
+- When someone wants to answer questions for a family member or loved one, acknowledge their caring role and provide caregiver-focused guidance
+- Use names of care recipients when known (e.g., "Sarah's health", "your mom's health picture")
 - Be supportive of caregivers and recognize the challenges of advocating for someone else's health
 - IMPORTANT: Reference previous conversation topics and user preferences when relevant to show continuity
 - Avoid repeating the same recommendations if they were already discussed
@@ -1387,8 +1384,8 @@ Key guidelines:
 - If the user has expressed specific goals or interests, tailor your responses accordingly
 
 Available resources to mention:
-- The risk assessment on this website for various chronic diseases
-- Local lifestyle change programs (CDC-recognized programs that reduce diabetes risk by 58%)
+- The Get Started question flow on this website for various chronic diseases
+- Local lifestyle change programs (CDC-recognized programs that lower chances of type 2 diabetes by 58%)
 - Educational videos and interactive tools
 - CDC prevention guidelines and recommendations
 - In-person, hybrid,virtual, and on-demand program options`
@@ -1417,13 +1414,13 @@ Available resources to mention:
       const input = userInput.toLowerCase();
       
       if (input.includes('diabetes')) {
-        return "I can help you learn about diabetes prevention. Key steps include maintaining a healthy weight, eating a balanced diet, and staying physically active. Would you like to take our risk assessment to get personalized recommendations?";
+        return "I can help you learn about diabetes prevention. Key steps include maintaining a healthy weight, eating a balanced diet, and staying physically active. Would you like to answer a few questions to get personalized recommendations?";
       }
       if (input.includes('heart')) {
         return "Heart disease is preventable through lifestyle changes like regular exercise, healthy eating, not smoking, and managing stress. Are you interested in learning about specific prevention strategies or finding a program to help?";
       }
-      if (input.includes('risk') || input.includes('assessment')) {
-        return "Our risk assessment can help identify your personal risk factors for chronic diseases. It takes just a few minutes and provides personalized recommendations. Would you like to get started with the assessment?";
+      if (input.includes('quiz') || input.includes('questionnaire') || input.includes('chances') || input.includes('likelihood') || input.includes('could i have') || input.includes('might i have') || input.includes('worried')) {
+        return "Our short question flow can help clarify how your health picture relates to chronic diseases. It takes just a few minutes and provides personalized recommendations. Would you like to get started?";
       }
       if (input.includes('hybrid') || input.includes('in-person') || input.includes('virtual') || input.includes('online')) {
         return "I understand you're interested in programs. Let me help you find the right format. What type of program would work best for you - in-person, virtual, or hybrid?";
@@ -1450,9 +1447,9 @@ Available resources to mention:
   };
 
   const quickActions = [
-    "Am I at risk for diabetes?",
+    "Could I have diabetes?",
     "Heart disease prevention", 
-    "Take the risk assessment",
+    "Answer a few health questions",
     "Find a program"
   ];
 
@@ -1467,13 +1464,13 @@ Available resources to mention:
     setMessages(prev => [...prev, userMessage]);
 
     // Check if this action is caregiver-specific
-    if (action === "Take assessment for them") {
+    if (action === "Answer questions for them") {
       setIsTyping(true);
       
       // First message - announce the routing for caregiver
       const routingMessage1 = {
         id: Date.now() + 1,
-        text: `Perfect! I'll take you to our risk assessment page where you can complete an evaluation for ${userState.careRecipientName || 'your loved one'}.`,
+        text: `Perfect! I'll take you to our Get Started page where you can complete questions for ${userState.careRecipientName || 'your loved one'}.`,
         sender: 'bot',
         timestamp: new Date()
       };
@@ -1483,20 +1480,20 @@ Available resources to mention:
       setTimeout(() => {
         const routingMessage2 = {
           id: Date.now() + 2,
-          text: `Navigating to the assessment now... This will help create a prevention plan tailored for ${userState.careRecipientName ? `${userState.careRecipientName}'s` : 'their'} specific needs.`,
+          text: `Navigating there now... This will help create a prevention plan tailored for ${userState.careRecipientName ? `${userState.careRecipientName}'s` : 'their'} specific needs.`,
           sender: 'bot',
           timestamp: new Date()
         };
         setMessages(prev => [...prev, routingMessage2]);
         setIsTyping(false);
         
-        // Route to assessment page after longer delay but keep chat open
+        // Route to Get Started after longer delay but keep chat open
         setTimeout(() => {
           if (onNavigate) {
-            onNavigate('risk-assessment');
-            // Scroll to the assessment selection section
+            onNavigate('get-started');
+            // Scroll to the flow selection section
             setTimeout(() => {
-              const element = document.getElementById('assessment-selection');
+              const element = document.getElementById('get-started-flow-selection');
               if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }
@@ -1545,18 +1542,17 @@ Available resources to mention:
       return;
     }
 
-    // Check if this action should route to assessment
-    if (shouldRouteToAssessment(action)) {
+    if (shouldRouteToGetStartedQuestions(action)) {
       setIsTyping(true);
       
       // Determine context for routing message
-      const isForOthers = userState.assessmentType === 'caregiver' || userState.careRecipientName;
+      const isForOthers = userState.questionFlowRole === 'caregiver' || userState.careRecipientName;
       const recipientName = userState.careRecipientName;
       
       // First message - announce the routing
       const routingMessage1 = {
         id: Date.now() + 1,
-        text: `Perfect! Let me take you to our risk assessment page where you can get a ${isForOthers ? `personalized evaluation for ${recipientName || 'your loved one'}` : 'personalized evaluation'}.`,
+        text: `Perfect! Let me take you to our Get Started page where you can get a ${isForOthers ? `personalized evaluation for ${recipientName || 'your loved one'}` : 'personalized evaluation'}.`,
         sender: 'bot',
         timestamp: new Date()
       };
@@ -1567,21 +1563,21 @@ Available resources to mention:
         const routingMessage2 = {
           id: Date.now() + 2,
           text: isForOthers ? 
-            `Navigating to the assessment now... This will help create a prevention plan tailored for ${recipientName ? `${recipientName}'s` : 'their'} specific needs.` :
-            "Navigating to the assessment now... This will help us create a prevention plan tailored just for you!",
+            `Navigating there now... This will help create a prevention plan tailored for ${recipientName ? `${recipientName}'s` : 'their'} specific needs.` :
+            "Navigating there now... This will help us create a prevention plan tailored just for you!",
           sender: 'bot',
           timestamp: new Date()
         };
         setMessages(prev => [...prev, routingMessage2]);
         setIsTyping(false);
         
-        // Route to assessment page after longer delay but keep chat open
+        // Route to Get Started after longer delay but keep chat open
         setTimeout(() => {
           if (onNavigate) {
-            onNavigate('risk-assessment');
-            // Scroll to the assessment selection section
+            onNavigate('get-started');
+            // Scroll to the flow selection section
             setTimeout(() => {
-              const element = document.getElementById('assessment-selection');
+              const element = document.getElementById('get-started-flow-selection');
               if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }

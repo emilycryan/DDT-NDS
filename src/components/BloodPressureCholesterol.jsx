@@ -19,7 +19,7 @@ const movesTheNeedle = [
   { title: 'Reduce Sodium', desc: 'Cutting to under 2,300 mg/day (ideally 1,500 mg) can lower systolic BP by 5-6 mmHg. Avoid processed foods — they carry 70% of dietary sodium.' },
   { title: 'Move More', desc: '150 minutes of moderate aerobic exercise per week can lower BP by 5-8 mmHg and raise HDL cholesterol by up to 6%.' },
   { title: 'Lose 5-10 lbs', desc: 'Even modest weight loss reduces both blood pressure and LDL cholesterol. Blood pressure drops roughly 1 mmHg per kilogram lost.' },
-  { title: 'Quit Smoking', desc: 'Smoking raises BP immediately and damages artery walls over time. Within 1 year of quitting, heart disease risk drops by half.' },
+  { title: 'Quit Smoking', desc: 'Smoking raises BP immediately and damages artery walls over time. Within 1 year of quitting, heart disease rates drop by half.' },
 ];
 
 const BloodPressureCholesterol = () => {
@@ -42,7 +42,7 @@ const BloodPressureCholesterol = () => {
           margin: '0 0 2.5rem 0',
         }}
       >
-        Two of the most critical — and controllable — risk factors for heart disease. High blood pressure and high cholesterol often have no symptoms. That&apos;s what makes them dangerous. Understanding what these numbers mean — and how to improve them — can add years to your life.
+        Two of the most critical — and controllable — drivers of heart disease. High blood pressure and high cholesterol often have no symptoms. That&apos;s what makes them dangerous. Understanding what these numbers mean — and how to improve them — can add years to your life.
       </p>
 
       {/* Blood Pressure Categories + Cholesterol Targets - two columns */}
@@ -163,7 +163,7 @@ const BloodPressureCholesterol = () => {
             }}
           >
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#333333', lineHeight: 1.5, margin: 0 }}>
-              Get a lipid panel blood test every 4-6 years, or more often if you have risk factors like family history or high BMI.
+              Get a lipid panel blood test every 4-6 years, or more often if you have factors like family history or high BMI.
             </p>
           </div>
         </div>

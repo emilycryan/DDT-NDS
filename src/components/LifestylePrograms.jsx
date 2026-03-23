@@ -457,7 +457,7 @@ const LifestylePrograms = () => {
               margin: 0,
             }}
           >
-            Connect with CDC-recognized lifestyle change programs in your area or online. These evidence-based programs are proven to reduce the risk of chronic diseases by 58% or more when integrated into a healthy lifestyle.
+            Connect with CDC-recognized lifestyle change programs in your area or online. These evidence-based programs are proven to lower the chances of chronic diseases by 58% or more when integrated into a healthy lifestyle.
           </p>
         </section>
 

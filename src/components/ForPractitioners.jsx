@@ -146,7 +146,7 @@ const ForPractitioners = () => {
               58%
             </div>
             <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.5 }}>
-              lower risk of developing type 2 diabetes for patients enrolled in a CDC-recognized DPP
+              lower chances of developing type 2 diabetes for patients enrolled in a CDC-recognized DPP
             </p>
           </div>
           <div>
@@ -205,8 +205,8 @@ const ForPractitioners = () => {
                 </svg>
               ),
               title: 'Before a Visit',
-              description: 'Send educational links so patients arrive informed and ready to discuss risk factors, lifestyle goals, and program options — reducing time spent on basics.',
-              bullets: ['Share prediabetes risk education', 'Send DPP program overview', 'Prompt patients to take the risk test'],
+              description: 'Send educational links so patients arrive informed and ready to discuss health factors, lifestyle goals, and program options — reducing time spent on basics.',
+              bullets: ['Share prediabetes education', 'Send DPP program overview', 'Prompt patients to answer screening questions'],
             },
             {
               accentColor: '#6B7280',
@@ -304,7 +304,7 @@ const ForPractitioners = () => {
               {
                 label: 'CDC & FEDERAL RESOURCES',
                 title: 'National Diabetes Prevention Program (DPP)',
-                description: 'CDC\'s framework for lifestyle change programs recognized to reduce type 2 diabetes risk.',
+                description: 'CDC\'s framework for lifestyle change programs recognized to lower type 2 diabetes chances.',
                 bullets: ['Program standards and implementation guidance', 'Medicare coverage criteria for eligible patients', 'Referral pathways and documentation support'],
                 href: 'https://www.cdc.gov/diabetes-prevention/programs/what-is-the-national-dpp.html',
               },
@@ -392,9 +392,9 @@ const ForPractitioners = () => {
                   <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
                 </svg>
               ),
-              title: 'Risk Factor Checklist',
-              description: 'A one-page patient-facing checklist covering the key risk factors for prediabetes and type 2 diabetes. Use before or during a visit.',
-              to: '/for-practitioners/risk-factor-checklist',
+              title: 'Health factors checklist',
+              description: 'A one-page patient-facing checklist covering key factors linked to prediabetes and type 2 diabetes. Use before or during a visit.',
+              to: '/for-practitioners/health-factors-checklist',
               titleColor: '#E05A4D',
             },
             {
@@ -416,7 +416,7 @@ const ForPractitioners = () => {
                 </svg>
               ),
               title: 'Healthy Eating Guide',
-              description: 'A practical, plain-language overview of blood sugar-friendly eating patterns for patients newly diagnosed with prediabetes or elevated risk.',
+              description: 'A practical, plain-language overview of blood sugar-friendly eating patterns for patients newly diagnosed with prediabetes or elevated blood sugar.',
               href: 'https://ddt-nds.vercel.app/resources/heart-health/heart-healthy-eating',
               titleColor: '#E05A4D',
             },

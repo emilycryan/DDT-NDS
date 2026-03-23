@@ -9,7 +9,7 @@ const featureItems = [
       </svg>
     ),
     title: 'Trusted Information',
-    description: 'Clear, evidence-based guidance on the 12 major chronic conditions affecting Americans today.',
+    description: 'Clear, evidence-based guidance on many chronic conditions affecting Americans today.',
   },
   {
     icon: (
@@ -19,7 +19,7 @@ const featureItems = [
       </svg>
     ),
     title: 'Interactive Tools',
-    description: 'Self-assessments, videos, and checklists that help you understand risks and take the next step.',
+    description: 'Short question flows, videos, and checklists that help you understand your health picture and take the next step.',
   },
   {
     icon: (
@@ -60,8 +60,8 @@ const About = ({ onNavigate }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleBeginAssessment = () => {
-    if (onNavigate) onNavigate('risk-assessment');
+  const handleGetStarted = () => {
+    if (onNavigate) onNavigate('get-started');
   };
 
   const handleExploreResources = () => {
@@ -109,15 +109,15 @@ const About = ({ onNavigate }) => {
             margin: '0 0 1.25rem 0',
           }}
         >
-          Take the free risk assessment and get your personalized prevention plan.
+          Answer a few questions and get your personalized prevention plan.
         </p>
         <button
           type="button"
-          onClick={handleBeginAssessment}
+          onClick={handleGetStarted}
           className="btn btn-primary"
           style={{ width: '100%', marginBottom: '0.75rem' }}
         >
-          Begin Assessment
+          Get Started
         </button>
         <button
           type="button"
@@ -292,7 +292,7 @@ const About = ({ onNavigate }) => {
             </p>
 
             <p style={{ marginBottom: '2rem' }}>
-              Our goal is to make prevention practical. We bring together resources, tools, and stories that support everyday choices in areas like nutrition, physical activity, stress management, sleep, and social connection. Whether you are a busy parent, a caregiver, a health professional, or someone simply curious about your own risk, this site is designed to meet you where you are.
+              Our goal is to make prevention practical. We bring together resources, tools, and stories that support everyday choices in areas like nutrition, physical activity, stress management, sleep, and social connection. Whether you are a busy parent, a caregiver, a health professional, or someone simply curious about your own health, this site is designed to meet you where you are.
             </p>
 
             <h2
@@ -365,7 +365,7 @@ const About = ({ onNavigate }) => {
             </div>
 
             <p style={{ marginBottom: '1.5rem' }}>
-              This initiative reflects a simple truth: prevention is powerful. By addressing risks before conditions appear, we can improve quality of life, reduce healthcare costs, and build healthier families and communities.
+              This initiative reflects a simple truth: prevention is powerful. By addressing health concerns before conditions appear, we can improve quality of life, reduce healthcare costs, and build healthier families and communities.
             </p>
 
             <p

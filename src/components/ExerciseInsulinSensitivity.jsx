@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PrediabetesPageLayout from './PrediabetesPageLayout';
 
-const aerobicItems = ['Brisk walking', 'Swimming or water aerobics', 'Cycling (indoor or outdoor)', 'Dancing or aerobics classes', 'Jogging or running'];
+const aerobicItems = ['Lively walking', 'Swimming or water aerobics', 'Cycling (indoor or outdoor)', 'Dancing or aerobics classes', 'Jogging or running'];
 const strengthItems = ['Free weights or weight machines', 'Resistance bands', 'Bodyweight exercises (squats, push-ups)', 'Yoga and Pilates', 'Heavy gardening or yard work'];
 const gettingStartedSteps = [
   'Start with a 10-minute walk after your largest meal each day',
@@ -117,7 +117,7 @@ const ExerciseInsulinSensitivity = () => {
           >
             <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>58%</div>
             <div style={{ fontSize: '0.875rem', lineHeight: 1.4, opacity: 0.95 }}>
-              reduction in diabetes risk with combined diet and exercise changes
+              reduction in diabetes likelihood with combined diet and exercise changes
             </div>
           </div>
           <div

@@ -82,7 +82,7 @@ const WeeklyActivityTrackingSheet = () => {
             margin: '0 0 0.5rem 0',
           }}
         >
-          A simple weekly log for patients to track physical activity minutes. The 150-minute goal comes from the CDC National Diabetes Prevention Program lifestyle change program and the U.S. Department of Health and Human Services Physical Activity Guidelines for Americans — both recommend at least 150 minutes of moderate-intensity aerobic activity per week for adults to improve health and reduce chronic disease risk.
+          A simple weekly log for patients to track physical activity minutes. The 150-minute goal comes from the CDC National Diabetes Prevention Program lifestyle change program and the U.S. Department of Health and Human Services Physical Activity Guidelines for Americans — both recommend at least 150 minutes of moderate-intensity aerobic activity per week for adults to improve health and lower chronic disease burden.
         </p>
 
         <p
@@ -94,7 +94,7 @@ const WeeklyActivityTrackingSheet = () => {
             margin: '0 0 1.5rem 0',
           }}
         >
-          Moderate activity includes brisk walking, water aerobics, dancing, gardening, or anything that raises your heart rate. Patients can write notes about what they did each day if helpful.
+          Moderate activity includes lively walking, water aerobics, dancing, gardening, or anything that raises your heart rate. Patients can write notes about what they did each day if helpful.
         </p>
 
         <div

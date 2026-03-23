@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import HeartHealthPageLayout from './HeartHealthPageLayout';
 
 const fiveNumbers = [
-  { title: 'Blood Pressure', value: 'Below 120/80', range: 'mmHg — normal range', desc: 'Measures the force of blood against artery walls. High readings increase heart attack and stroke risk.' },
+  { title: 'Blood Pressure', value: 'Below 120/80', range: 'mmHg — normal range', desc: 'Measures the force of blood against artery walls. High readings raise the chance of heart attack and stroke.' },
   { title: 'Total Cholesterol', value: 'Below 200', range: 'mg/dL — desirable range', desc: 'Total amount of cholesterol in your blood. Elevated levels can lead to plaque buildup in arteries.' },
   { title: 'LDL "Bad" Cholesterol', value: 'Below 100', range: 'mg/dL — optimal range', desc: 'The main cholesterol that builds up in artery walls. Lower is better for heart health.' },
   { title: 'HDL "Good" Cholesterol', value: '60 or above', range: 'mg/dL — protective range', desc: 'Helps remove other cholesterol from your bloodstream. Higher levels are protective.' },
-  { title: 'Triglycerides', value: 'Below 150', range: 'mg/dL — normal range', desc: 'A type of fat in the blood. High levels are linked to heart disease and metabolic risk.' },
+  { title: 'Triglycerides', value: 'Below 150', range: 'mg/dL — normal range', desc: 'A type of fat in the blood. High levels are linked to heart disease and metabolic strain.' },
 ];
 
 const KnowYourNumbers = () => {
@@ -87,7 +87,7 @@ const KnowYourNumbers = () => {
           margin: '0 0 1.5rem 0',
         }}
       >
-        Ask your doctor to check all five at your next visit. Together they give a complete picture of your cardiovascular risk.
+        Ask your doctor to check all five at your next visit. Together they give a complete picture of your cardiovascular health.
       </p>
       <div
         style={{
@@ -153,7 +153,7 @@ const KnowYourNumbers = () => {
               margin: '0 0 1rem 0',
             }}
           >
-            Healthy adults should have blood pressure checked at least yearly and a full lipid panel every 4-6 years. If you have risk factors, your doctor may recommend more frequent monitoring.
+            Healthy adults should have blood pressure checked at least yearly and a full lipid panel every 4-6 years. If you have contributing factors, your doctor may recommend more frequent monitoring.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem' }}>
             <Link

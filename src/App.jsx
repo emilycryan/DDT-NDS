@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom'
 import * as motion from 'motion/react-client'
 import './App.css'
 import CDCHeader from './components/CDCHeader'
 import CDCFooter from './components/CDCFooter'
 import Chatbot from './components/Chatbot'
-import RiskAssessment from './components/RiskAssessment'
-import AssessmentChronicConditions from './components/AssessmentChronicConditions'
-import AssessmentCaregiver from './components/AssessmentCaregiver'
-import AssessmentJustCurious from './components/AssessmentJustCurious'
+import GetStartedHub from './components/GetStartedHub'
+import QuestionsChronicConditions from './components/QuestionsChronicConditions'
+import QuestionsCaregiverFlow from './components/QuestionsCaregiverFlow'
+import QuestionsJustCuriousFlow from './components/QuestionsJustCuriousFlow'
 import About from './components/About'
 import Resources from './components/Resources'
 import Support from './components/Support'
 import ForPractitioners from './components/ForPractitioners'
 import PractitionerFeedback from './components/PractitionerFeedback'
-import RiskFactorChecklist from './components/RiskFactorChecklist'
+import HealthFactorsChecklist from './components/HealthFactorsChecklist'
 import WeeklyActivityTrackingSheet from './components/WeeklyActivityTrackingSheet'
 import GoalSettingWorksheet from './components/GoalSettingWorksheet'
 import LifestylePrograms from './components/LifestylePrograms'
@@ -26,7 +26,7 @@ import DPPProgramOverview from './components/DPPProgramOverview'
 import KnowYourNumbers from './components/KnowYourNumbers'
 import BloodPressureCholesterol from './components/BloodPressureCholesterol'
 import HeartHealthyEating from './components/HeartHealthyEating'
-import StressCardiovascularRisk from './components/StressCardiovascularRisk'
+import StressHeartHealth from './components/StressHeartHealth'
 import BuildingHealthyHabits from './components/BuildingHealthyHabits'
 import SleepRecovery from './components/SleepRecovery'
 import MentalHealthResilience from './components/MentalHealthResilience'
@@ -65,11 +65,11 @@ const PAGE_TO_PATH = {
   'resources': '/resources',
   'support': '/support',
   'for-practitioners': '/for-practitioners',
-  'risk-assessment': '/get-started',
+  'get-started': '/get-started',
   'lifestyle-programs': '/lifestyle-programs',
-  'assessment-chronic': '/get-started/for-myself',
-  'assessment-caregiver': '/get-started/for-someone',
-  'assessment-just-curious': '/get-started/just-curious',
+  'questions-for-myself': '/get-started/for-myself',
+  'questions-for-someone': '/get-started/for-someone',
+  'questions-just-curious': '/get-started/just-curious',
 }
 
 const PATH_TO_PAGE = Object.fromEntries(Object.entries(PAGE_TO_PATH).map(([k, v]) => [v, k]))
@@ -101,12 +101,12 @@ function App() {
   }
 
   const handleChatbotNavigate = (target) => {
-    if (['about', 'resources', 'support', 'for-practitioners', 'risk-assessment', 'lifestyle-programs'].includes(target)) onNavigate(target)
+    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs'].includes(target)) onNavigate(target)
     else goToHomeSection(target)
   }
 
   const navigateTo = (target) => {
-    if (['about', 'resources', 'support', 'for-practitioners', 'risk-assessment', 'lifestyle-programs'].includes(target)) onNavigate(target)
+    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs'].includes(target)) onNavigate(target)
     else goToHomeSection(target)
   }
 
@@ -166,11 +166,12 @@ function App() {
           <HeartHealthyEating />
         </main>
       } />
-      <Route path="/resources/heart-health/stress-cardiovascular-risk" element={
+      <Route path="/resources/heart-health/stress-and-heart-health" element={
         <main style={{ minHeight: '80vh' }}>
-          <StressCardiovascularRisk />
+          <StressHeartHealth />
         </main>
       } />
+      <Route path="/resources/heart-health/stress-cardiovascular-risk" element={<Navigate to="/resources/heart-health/stress-and-heart-health" replace />} />
       <Route path="/resources/healthy-living/building-healthy-habits" element={
         <main style={{ minHeight: '80vh' }}>
           <BuildingHealthyHabits />
@@ -229,11 +230,12 @@ function App() {
           <PractitionerFeedback />
         </main>
       } />
-      <Route path="/for-practitioners/risk-factor-checklist" element={
+      <Route path="/for-practitioners/health-factors-checklist" element={
         <main style={{ minHeight: '80vh' }}>
-          <RiskFactorChecklist />
+          <HealthFactorsChecklist />
         </main>
       } />
+      <Route path="/for-practitioners/risk-factor-checklist" element={<Navigate to="/for-practitioners/health-factors-checklist" replace />} />
       <Route path="/for-practitioners/weekly-activity-tracking-sheet" element={
         <main style={{ minHeight: '80vh' }}>
           <WeeklyActivityTrackingSheet />
@@ -245,16 +247,16 @@ function App() {
         </main>
       } />
       <Route path="/get-started" element={
-        <RiskAssessment onNavigate={onNavigate} />
+        <GetStartedHub onNavigate={onNavigate} />
       } />
       <Route path="/get-started/for-myself" element={
-        <AssessmentChronicConditions onBack={() => onNavigate('risk-assessment')} />
+        <QuestionsChronicConditions onBack={() => onNavigate('get-started')} />
       } />
       <Route path="/get-started/for-someone" element={
-        <AssessmentCaregiver onBack={() => onNavigate('risk-assessment')} />
+        <QuestionsCaregiverFlow onBack={() => onNavigate('get-started')} />
       } />
       <Route path="/get-started/just-curious" element={
-        <AssessmentJustCurious onBack={() => onNavigate('risk-assessment')} />
+        <QuestionsJustCuriousFlow onBack={() => onNavigate('get-started')} />
       } />
       <Route path="/lifestyle-programs" element={<LifestylePrograms />} />
       <Route path="/" element={
@@ -305,11 +307,8 @@ function App() {
               flexWrap: 'wrap',
               justifyContent: 'center',
             }}>
-              <button onClick={() => onNavigate('risk-assessment')} className="btn btn-primary">
-                Am I At Risk?
-              </button>
-              <button onClick={() => onNavigate('lifestyle-programs')} className="btn btn-secondary">
-                Find a Program
+              <button onClick={() => onNavigate('get-started')} className="btn btn-primary">
+                Get Started
               </button>
             </div>
           </div>
@@ -349,7 +348,7 @@ function App() {
                 marginBottom: '2rem',
                 lineHeight: 1.6,
               }}>
-                CDC: Path2Prevention is an online resource for people who may be at risk for developing chronic diseases. Find videos, games, and other personalized information to help you learn more about prevention.
+                CDC: Path2Prevention is an online resource for people who want to focus on preventing chronic diseases. Find videos, resources, and other personalized information to help you learn more about prevention.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
@@ -366,8 +365,8 @@ function App() {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
                   </div>
                   <div>
-                    <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Interactive Games</div>
-                    <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)' }}>Engage with fun, evidence-based content.</div>
+                    <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Resources</div>
+                    <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)' }}>Download our guides and lifestyle planning tools.</div>
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
@@ -481,7 +480,7 @@ function App() {
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                 </div>
                 <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: '700', fontSize: '1.125rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>What is The Path?</h3>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)', lineHeight: 1.5, margin: 0 }}>Learn about chronic disease risk factors and how lifestyle changes can help prevent conditions like heart disease, stroke, and diabetes.</p>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)', lineHeight: 1.5, margin: 0 }}>Learn what influences long-term health and how lifestyle changes can help prevent conditions like heart disease, stroke, and diabetes.</p>
               </motion.div>
               <motion.div
                 variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
@@ -501,7 +500,7 @@ function App() {
                 variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ scale: 1.04, transition: { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] } }}
-                onClick={() => onNavigate('risk-assessment')}
+                onClick={() => onNavigate('get-started')}
                 className="card card-clickable"
                 style={{ textAlign: 'center', padding: '2rem', cursor: 'pointer', transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
               >
@@ -509,7 +508,7 @@ function App() {
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
                 </div>
                 <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: '700', fontSize: '1.125rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>Start Your Plan</h3>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)', lineHeight: 1.5, margin: 0 }}>Take a risk assessment and create a personalized action plan with interactive tools and resources tailored to your needs.</p>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)', lineHeight: 1.5, margin: 0 }}>Answer a few questions and create a personalized action plan with interactive tools and resources tailored to your needs.</p>
               </motion.div>
             </motion.div>
           </div>
@@ -539,10 +538,10 @@ function App() {
             </h2>
             <div>
               <p style={{ fontFamily: 'var(--font-body)', color: '#fff', fontSize: '1.125rem', marginBottom: '1.5rem', lineHeight: 1.5 }}>
-                Take the first step toward better health. Complete your assessment in under 10 minutes and get instant results.
+                Take the first step toward better health. Find out how you can make small changes for big impacts to improve your health.
               </p>
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <button onClick={() => onNavigate('risk-assessment')} className="btn btn-white">Get Started</button>
+                <button onClick={() => onNavigate('get-started')} className="btn btn-white">Get Started</button>
                 <button onClick={() => onNavigate('about')} className="btn btn-white">Learn More</button>
               </div>
               <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(255,255,255,0.9)', fontSize: '0.875rem', marginTop: '1.25rem', marginBottom: 0 }}>

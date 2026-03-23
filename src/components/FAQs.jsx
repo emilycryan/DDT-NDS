@@ -13,8 +13,8 @@ const FAQs = () => {
       answer: "A Lifestyle Change Intervention program is a CDC-recognized program designed to help people with prediabetes prevent or delay type 2 diabetes. Participants work with a trained lifestyle coach over 12 months to make modest changes to diet and physical activity — typically losing 5-7% of body weight and increasing activity to 150 minutes per week."
     },
     {
-      question: "How do I know if I'm at risk for a chronic condition?",
-      answer: "The best starting point is our free risk assessment, which takes under 10 minutes and covers key risk factors including age, weight, family history, physical activity levels, and existing health conditions. You can also speak with your primary care provider for clinical screenings like blood glucose and blood pressure tests."
+      question: "How do I know if a chronic condition might affect me?",
+      answer: "The best starting point is answering a few free questions on this site — it takes under 10 minutes and covers age, weight, family history, physical activity levels, and existing health conditions. You can also speak with your primary care provider for clinical screenings like blood glucose and blood pressure tests."
     },
     {
       question: "Is the information on this site specific to my state or location?",

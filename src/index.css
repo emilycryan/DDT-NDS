@@ -140,11 +140,43 @@ p {
 .btn-secondary {
   background-color: transparent;
   color: var(--ink);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--ink);
 }
 
 .btn-secondary:hover {
   background-color: var(--ink-10);
+}
+
+/* Header nav — text links only (not CTA buttons) */
+.header-nav-text-link {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.header-nav-text-link:hover {
+  color: var(--coral);
+  text-decoration: underline;
+}
+
+.header-nav-text-link:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}
+
+/* Mobile drawer: same hover, stacked layout */
+.header-nav-text-link--drawer {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 0;
 }
 
 .btn-white {

@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const navLinkStyle = {
+const primaryNavButtonStyle = {
   background: 'none',
   border: 'none',
   fontFamily: 'var(--font-body)',
   fontWeight: '600',
   fontSize: '14px',
-  color: 'var(--ink)',
   cursor: 'pointer',
   padding: 0,
-  textDecoration: 'none',
 };
 
 const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
@@ -35,7 +33,7 @@ const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
     else if (target === 'resources') navigate('/resources');
     else if (target === 'support') navigate('/support');
     else if (target === 'for-practitioners') navigate('/for-practitioners');
-    else if (target === 'risk-assessment') navigate('/get-started');
+    else if (target === 'get-started') navigate('/get-started');
     else if (target === 'lifestyle-programs') navigate('/lifestyle-programs');
     else if (goToHomeSection && typeof goToHomeSection === 'function') {
       goToHomeSection(target);
@@ -115,16 +113,29 @@ const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
             CDC Path2Prevention
           </Link>
 
-          <nav style={{ display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: '32px' }}>
-            <Link to="/about" style={navLinkStyle}>About</Link>
-            <Link to="/resources" style={navLinkStyle}>Resources</Link>
-            <Link to="/support" style={navLinkStyle}>Support</Link>
-            <Link to="/for-practitioners" style={navLinkStyle}>For Practitioners</Link>
+          <nav style={{ display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: '18px' }}>
+            <Link to="/about" className="header-nav-text-link">About</Link>
+            <Link to="/resources" className="header-nav-text-link">Resources</Link>
+            <Link to="/support" className="header-nav-text-link">Support</Link>
+            <Link to="/for-practitioners" className="header-nav-text-link">For Practitioners</Link>
+            <Link
+              to="/lifestyle-programs"
+              className="btn btn-secondary"
+              style={{
+                padding: '10px 20px',
+                fontSize: '14px',
+                fontWeight: '600',
+                borderRadius: 'var(--radius-md)',
+                textDecoration: 'none',
+              }}
+            >
+              Find a Program
+            </Link>
             <Link
               to="/get-started"
               className="btn btn-primary"
               style={{
-                ...navLinkStyle,
+                ...primaryNavButtonStyle,
                 padding: '10px 20px',
                 fontSize: '12px',
                 textTransform: 'uppercase',
@@ -167,10 +178,11 @@ const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
             zIndex: 999,
             padding: '16px 24px',
           }}>
-            <Link to="/about" onClick={() => setIsMenuOpen(false)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', textDecoration: 'none' }}>About</Link>
-            <Link to="/resources" onClick={() => setIsMenuOpen(false)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', textDecoration: 'none' }}>Resources</Link>
-            <Link to="/support" onClick={() => setIsMenuOpen(false)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', textDecoration: 'none' }}>Support</Link>
-            <Link to="/for-practitioners" onClick={() => setIsMenuOpen(false)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 0', fontFamily: 'var(--font-body)', fontWeight: '600', color: 'var(--ink)', textDecoration: 'none' }}>For Practitioners</Link>
+            <Link to="/about" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">About</Link>
+            <Link to="/resources" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">Resources</Link>
+            <Link to="/support" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">Support</Link>
+            <Link to="/for-practitioners" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">For Practitioners</Link>
+            <Link to="/lifestyle-programs" onClick={() => setIsMenuOpen(false)} className="btn btn-secondary" style={{ display: 'block', width: '100%', marginTop: 8, textAlign: 'center', textDecoration: 'none' }}>Find a Program</Link>
             <Link to="/get-started" onClick={() => setIsMenuOpen(false)} className="btn btn-primary" style={{ display: 'block', width: '100%', marginTop: 8, textAlign: 'center', textDecoration: 'none', color: 'white' }}>GET STARTED</Link>
           </div>
         )}

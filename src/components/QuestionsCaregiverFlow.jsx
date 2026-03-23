@@ -83,7 +83,7 @@ const optionStyle = (selected) => ({
   transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease',
 });
 
-function AssessmentCaregiver({ onBack }) {
+function QuestionsCaregiverFlow({ onBack }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [isComplete, setIsComplete] = useState(false);
@@ -164,7 +164,7 @@ function AssessmentCaregiver({ onBack }) {
 
   if (isComplete) {
     const scorePct = maxPossibleScore > 0 ? Math.round((totalScore / maxPossibleScore) * 100) : 0;
-    const riskLevel = scorePct >= 70 ? 'higher' : scorePct >= 40 ? 'moderate' : 'lower';
+    const summaryBand = scorePct >= 70 ? 'higher' : scorePct >= 40 ? 'moderate' : 'lower';
 
     return (
       <main style={{ backgroundColor: 'var(--bg-secondary)', minHeight: '80vh', padding: '2rem 1rem' }}>
@@ -177,7 +177,7 @@ function AssessmentCaregiver({ onBack }) {
           </p>
           <div className="card" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
             <div style={{ fontSize: '0.875rem', fontFamily: 'var(--font-body)', color: 'var(--ink-70)', marginBottom: '0.25rem' }}>
-              Assessment score
+              Your score
             </div>
             <div style={{ fontSize: '2rem', fontFamily: 'var(--font-serif)', fontWeight: '700', color: 'var(--ink)' }}>
               {totalScore} <span style={{ fontWeight: '400', color: 'var(--ink-70)' }}>/ {maxPossibleScore}</span>
@@ -187,9 +187,9 @@ function AssessmentCaregiver({ onBack }) {
                 marginTop: '0.75rem',
                 padding: '0.5rem 0.75rem',
                 backgroundColor:
-                  riskLevel === 'higher'
+                  summaryBand === 'higher'
                     ? 'rgba(239, 70, 35, 0.12)'
-                    : riskLevel === 'moderate'
+                    : summaryBand === 'moderate'
                     ? 'rgba(245, 158, 11, 0.12)'
                     : 'rgba(15, 76, 92, 0.12)',
                 borderRadius: 'var(--radius-sm)',
@@ -198,7 +198,7 @@ function AssessmentCaregiver({ onBack }) {
                 color: 'var(--ink)',
               }}
             >
-              Risk level: <strong>{riskLevel}</strong>
+              Summary: <strong>{summaryBand}</strong>
             </div>
           </div>
           <p style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)', fontSize: '0.9375rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
@@ -206,11 +206,11 @@ function AssessmentCaregiver({ onBack }) {
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <button type="button" className="btn btn-secondary" onClick={() => { setCurrentIndex(0); setIsComplete(false); setAnswers({}); }}>
-              Retake assessment
+              Start over
             </button>
             {onBack && (
               <button type="button" className="btn btn-primary" onClick={onBack}>
-                Back to assessments
+                Back to options
               </button>
             )}
           </div>
@@ -330,7 +330,7 @@ function AssessmentCaregiver({ onBack }) {
                 fontSize: '0.9375rem',
               }}
             >
-              ← Back to assessment options
+              ← Back to question options
             </button>
           </p>
         )}
@@ -339,4 +339,4 @@ function AssessmentCaregiver({ onBack }) {
   );
 }
 
-export default AssessmentCaregiver;
+export default QuestionsCaregiverFlow;

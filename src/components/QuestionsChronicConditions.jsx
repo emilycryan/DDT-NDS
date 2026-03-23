@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import * as motion from 'motion/react-client';
 
-// Prediabetes Risk Test — 7 questions + conditional Q6b for women (gestational diabetes)
+// Prediabetes question flow — 7 questions + conditional Q6b for women (gestational diabetes)
 const FAMILY_HISTORY_QUESTION = {
   id: 'familyHistory',
   question: 'Do you have a mother, father, sister, or brother with diabetes?',
@@ -123,7 +123,7 @@ const optionStyle = (selected) => ({
   transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease',
 });
 
-function AssessmentChronicConditions({ onBack }) {
+function QuestionsChronicConditions({ onBack }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [isComplete, setIsComplete] = useState(false);
@@ -218,7 +218,7 @@ function AssessmentChronicConditions({ onBack }) {
   };
 
   if (isComplete) {
-    const riskLevel = totalScore >= 5 ? 'higher' : totalScore >= 3 ? 'moderate' : 'lower';
+    const summaryBand = totalScore >= 5 ? 'higher' : totalScore >= 3 ? 'moderate' : 'lower';
 
     return (
       <main style={{ backgroundColor: 'var(--bg-secondary)', minHeight: '80vh', padding: '2rem 1rem' }}>
@@ -227,11 +227,11 @@ function AssessmentChronicConditions({ onBack }) {
             Your results
           </h1>
           <p style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-            Based on your answers, this is a snapshot of your prediabetes risk. This is not a diagnosis—it's a starting point for conversation with your care team. A score of 5 or higher suggests increased risk. Consider sharing these results with your doctor.
+            Based on your answers, this is a snapshot of how your answers relate to prediabetes. This is not a diagnosis—it's a starting point for conversation with your care team. A score of 5 or higher suggests you may want to follow up with your doctor. Consider sharing these results with your doctor.
           </p>
           <div className="card" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
             <div style={{ fontSize: '0.875rem', fontFamily: 'var(--font-body)', color: 'var(--ink-70)', marginBottom: '0.25rem' }}>
-              Prediabetes risk score
+              Prediabetes snapshot score
             </div>
             <div style={{ fontSize: '2rem', fontFamily: 'var(--font-serif)', fontWeight: '700', color: 'var(--ink)' }}>
               {totalScore} <span style={{ fontWeight: '400', color: 'var(--ink-70)' }}>/ {maxPossibleScore}</span>
@@ -241,9 +241,9 @@ function AssessmentChronicConditions({ onBack }) {
                 marginTop: '0.75rem',
                 padding: '0.5rem 0.75rem',
                 backgroundColor:
-                  riskLevel === 'higher'
+                  summaryBand === 'higher'
                     ? 'rgba(239, 70, 35, 0.12)'
-                    : riskLevel === 'moderate'
+                    : summaryBand === 'moderate'
                     ? 'rgba(245, 158, 11, 0.12)'
                     : 'rgba(15, 76, 92, 0.12)',
                 borderRadius: 'var(--radius-sm)',
@@ -252,7 +252,7 @@ function AssessmentChronicConditions({ onBack }) {
                 color: 'var(--ink)',
               }}
             >
-              Risk level: <strong>{riskLevel}</strong>
+              Summary: <strong>{summaryBand}</strong>
             </div>
           </div>
           <p style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)', fontSize: '0.9375rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
@@ -268,11 +268,11 @@ function AssessmentChronicConditions({ onBack }) {
                 setAnswers({});
               }}
             >
-              Retake assessment
+              Start over
             </button>
             {onBack && (
               <button type="button" className="btn btn-primary" onClick={onBack}>
-                Back to assessments
+                Back to options
               </button>
             )}
           </div>
@@ -461,7 +461,7 @@ function AssessmentChronicConditions({ onBack }) {
                 fontSize: '0.9375rem',
               }}
             >
-              ← Back to assessment options
+              ← Back to question options
             </button>
           </p>
         )}
@@ -470,4 +470,4 @@ function AssessmentChronicConditions({ onBack }) {
   );
 }
 
-export default AssessmentChronicConditions;
+export default QuestionsChronicConditions;

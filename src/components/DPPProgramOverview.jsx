@@ -5,7 +5,7 @@ import PrediabetesPageLayout from './PrediabetesPageLayout';
 const eligibilityItems = [
   'Are 18 years or older',
   'Have a BMI of 25 or higher (23+ for Asian Americans)',
-  'Have a blood test showing prediabetes (A1C 5.7-6.4%), or had gestational diabetes, or score positive on the CDC risk test',
+  'Have a blood test showing prediabetes (A1C 5.7-6.4%), or had gestational diabetes, or score positive on the CDC prediabetes screening',
   'Have not been previously diagnosed with type 1 or type 2 diabetes, and are not currently pregnant',
 ];
 
@@ -29,7 +29,7 @@ const DPPProgramOverview = () => {
           margin: '0 0 0.75rem 0',
         }}
       >
-        A proven, year-long program that cuts your diabetes risk by 58%.
+        A proven, year-long program that lowers your chances of type 2 diabetes by 58%.
       </h2>
       <p
         style={{
@@ -59,7 +59,7 @@ const DPPProgramOverview = () => {
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#1f9660', marginBottom: '0.5rem' }}>58%</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
-            lower risk of developing type 2 diabetes for program participants
+            lower chances of developing type 2 diabetes for program participants
           </div>
         </div>
         <div>

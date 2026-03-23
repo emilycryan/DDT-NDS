@@ -5,7 +5,7 @@ const PAGE_SEQUENCE = [
   { path: '/resources/heart-health/know-your-numbers', title: 'Know Your Numbers' },
   { path: '/resources/heart-health/blood-pressure-cholesterol', title: 'Blood Pressure & Cholesterol' },
   { path: '/resources/heart-health/heart-healthy-eating', title: 'Heart-Healthy Eating' },
-  { path: '/resources/heart-health/stress-cardiovascular-risk', title: 'Stress & Cardiovascular Risk' },
+  { path: '/resources/heart-health/stress-and-heart-health', title: 'Stress & Heart Health' },
 ];
 
 const HeartHealthPageLayout = ({ title, children }) => {

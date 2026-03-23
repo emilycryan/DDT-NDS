@@ -80,7 +80,7 @@ const NutritionBloodSugar = () => {
           margin: '0 0 0.75rem 0',
         }}
       >
-        What you eat directly shapes your blood sugar — and your risk.
+        What you eat directly shapes your blood sugar — and your long-term health.
       </h2>
       <p
         style={{
@@ -91,7 +91,7 @@ const NutritionBloodSugar = () => {
           margin: '0 0 2.5rem 0',
         }}
       >
-        You don&apos;t need a perfect diet. Small, sustainable shifts in what and how you eat can meaningfully lower blood sugar, support a healthy weight, and reduce your risk of type 2 diabetes.
+        You don&apos;t need a perfect diet. Small, sustainable shifts in what and how you eat can meaningfully lower blood sugar, support a healthy weight, and lower your chances of type 2 diabetes.
       </p>
 
       {/* Eat More Of / Limit or Avoid */}

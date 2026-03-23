@@ -206,7 +206,7 @@ const PractitionerFeedback = () => {
 
           <fieldset style={{ ...fieldsetStyles, paddingTop: '1.5rem' }}>
             <div style={fieldsetLabelStyles}>Patient population focus (optional, select all that apply)</div>
-            {['Diabetes', 'Prediabetes', 'Cardiovascular risk', 'General prevention', 'High-risk underserved populations'].map(opt => (
+            {['Diabetes', 'Prediabetes', 'Heart health', 'General prevention', 'Underserved populations'].map(opt => (
               <label key={opt} style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem', cursor: 'pointer' }}>
                 <input type="checkbox" checked={(formData.patientPopulation || []).includes(opt)} onChange={() => toggleMulti('patientPopulation', opt)} style={{ marginRight: '0.5rem' }} />
                 <span style={{ fontFamily: 'var(--font-body)' }}>{opt}</span>
@@ -242,7 +242,7 @@ const PractitionerFeedback = () => {
 
           <fieldset style={{ ...fieldsetStyles, paddingTop: '1.5rem' }}>
             <div style={fieldsetLabelStyles}>2. Which features are most valuable? (Select up to 3)</div>
-            {['Risk assessment tools', 'Patient-friendly education content', 'Lifestyle guidance', 'Referral pathways (e.g., DPP)', 'Printable materials', 'Visual explanations', 'Other'].map(opt => (
+            {['Question tools for patients', 'Patient-friendly education content', 'Lifestyle guidance', 'Referral pathways (e.g., DPP)', 'Printable materials', 'Visual explanations', 'Other'].map(opt => (
               <label key={opt} style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem', cursor: 'pointer' }}>
                 <input type="checkbox" checked={(formData.featuresValuable || []).includes(opt)} onChange={() => toggleMulti('featuresValuable', opt)} style={{ marginRight: '0.5rem' }} />
                 <span style={{ fontFamily: 'var(--font-body)' }}>{opt}</span>

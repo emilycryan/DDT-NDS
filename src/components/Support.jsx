@@ -11,8 +11,8 @@ const conditionCards = [
       </svg>
     ),
     title: 'What Is Type 2 Diabetes?',
-    description: 'Overview, risk factors, symptoms, and how to manage your risk.',
-    bullets: ['What prediabetes means', 'Key risk factors to watch', 'Screening and diagnosis options', 'Steps you can take today'],
+    description: 'Overview, common factors, symptoms, and how to stay on top of your health.',
+    bullets: ['What prediabetes means', 'Key health factors to watch', 'Screening and diagnosis options', 'Steps you can take today'],
     linkHref: 'https://www.cdc.gov/diabetes/basics/type2.html',
     linkText: 'Explore diabetes resources →',
   },
@@ -40,7 +40,7 @@ const conditionCards = [
       </svg>
     ),
     title: 'Preventing Chronic Disease',
-    description: 'Lifestyle steps that lower risk — from healthy eating to staying active.',
+    description: 'Lifestyle steps that support long-term health — from healthy eating to staying active.',
     bullets: ['Building healthy habits', 'Sleep & recovery', 'Mental health & resilience', 'Staying connected socially'],
     linkHref: 'https://www.cdc.gov/chronicdisease/index.htm',
     linkText: 'Explore healthy living guides →',
@@ -294,7 +294,7 @@ const Support = () => {
           gap: '1.5rem',
           marginBottom: '2rem',
         }}>
-          {/* Left Panel: Interactive Tools & Self-Assessments */}
+          {/* Left Panel: Interactive tools & question flows */}
           <div style={{
             backgroundColor: 'white',
             borderRadius: 16,
@@ -324,7 +324,7 @@ const Support = () => {
                 color: '#333333',
                 margin: 0,
               }}>
-                Interactive Tools & Self-Assessments
+                Interactive Tools & Quick Questions
               </h3>
             </div>
 
@@ -335,11 +335,11 @@ const Support = () => {
                 padding: '1rem 1.25rem',
               }}>
                 <div style={{ marginBottom: '0.5rem' }}>
-                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Chronic Disease Risk Test</strong>
+                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Chronic Health Questions</strong>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
                   <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
-                    Find out your risk for chronic diseases like diabetes, heart disease, and stroke.
+                    See how your answers relate to conditions like diabetes, heart disease, and stroke.
                   </p>
                   <Link
                     to="/get-started"
@@ -355,7 +355,7 @@ const Support = () => {
                       textDecoration: 'none',
                     }}
                   >
-                    Take the test
+                    Get started
                   </Link>
                 </div>
               </div>

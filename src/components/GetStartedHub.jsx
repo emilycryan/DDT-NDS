@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const RiskAssessment = ({ onNavigate }) => {
+const GetStartedHub = ({ onNavigate }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const RiskAssessment = ({ onNavigate }) => {
               marginBottom: '1rem',
               margin: '0 0 1rem 0'
             }}>
-              Am I at Risk?
+              Get Started
             </h1>
             <p style={{
               fontSize: isMobile ? '1rem' : '1.125rem',
@@ -50,7 +50,7 @@ const RiskAssessment = ({ onNavigate }) => {
               marginBottom: '2rem',
               margin: isMobile ? '0 auto 2rem auto' : '0 0 2rem 0'
             }}>
-              Take our comprehensive risk assessments to learn about your personal risk factors for chronic diseases. These evidence-based screening tools help identify areas where lifestyle changes can make a difference.
+              Answer a few questions to learn how everyday factors relate to chronic conditions like diabetes, heart disease, and stroke. These evidence-based tools help spot where small lifestyle changes can make the biggest difference.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '2rem' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
@@ -58,13 +58,13 @@ const RiskAssessment = ({ onNavigate }) => {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
                 </div>
                 <div>
-                  <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Evidence-Based Screening</div>
-                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)' }}>Identify key risk factors for diabetes, heart disease, stroke, and more.</div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Evidence-Based Questions</div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)' }}>Explore how weight, activity, family history, and more connect to diabetes, heart disease, stroke, and more.</div>
                 </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                 <div className="icon-circle icon-circle-coral">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
                 </div>
                 <div>
                   <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Personalized Results</div>
@@ -84,13 +84,13 @@ const RiskAssessment = ({ onNavigate }) => {
             <div style={{ display: 'flex', justifyContent: isMobile ? 'center' : 'flex-start' }}>
               <button
                 onClick={() => {
-                  const element = document.getElementById('assessment-selection');
+                  const element = document.getElementById('get-started-flow-selection');
                   if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
                 className="btn btn-primary"
                 style={{ minWidth: '200px' }}
               >
-                Start Assessment
+                Answer questions
               </button>
             </div>
           </div>
@@ -145,9 +145,8 @@ const RiskAssessment = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Assessment Types Section */}
       <section 
-        id="assessment-selection"
+        id="get-started-flow-selection"
         style={{
           backgroundColor: 'var(--bg-primary)',
           padding: isMobile ? '3rem 1rem' : '4rem 2rem',
@@ -177,22 +176,20 @@ const RiskAssessment = ({ onNavigate }) => {
             maxWidth: '600px',
             margin: '0 auto 3rem auto'
           }}>
-            Choose the option that best describes your situation. This helps us provide the most relevant assessment and recommendations.
+            Choose the option that best describes your situation. This helps us tailor the next questions and your recommendations.
           </p>
 
-          {/* Assessment Cards Grid */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
             gap: '2rem'
           }}>
-            {/* For Myself - Concerned */}
             <div 
               className="card card-clickable"
               role="button"
               tabIndex={0}
-              onClick={() => onNavigate && onNavigate('assessment-chronic')}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onNavigate && onNavigate('assessment-chronic'); } }}
+              onClick={() => onNavigate && onNavigate('questions-for-myself')}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onNavigate && onNavigate('questions-for-myself'); } }}
               style={{
                 textAlign: 'center',
                 padding: '2rem',
@@ -232,17 +229,16 @@ const RiskAssessment = ({ onNavigate }) => {
                 lineHeight: '1.5',
                 margin: 0
               }}>
-                I'm concerned about my own health and want to understand my risk factors for chronic diseases like diabetes, heart disease, or stroke.
+                I&apos;m focused on my own health and want to understand how everyday factors relate to conditions like diabetes, heart disease, or stroke.
               </p>
             </div>
 
-            {/* For Someone Else - Caregiver */}
             <div 
               className="card card-clickable"
               role="button"
               tabIndex={0}
-              onClick={() => onNavigate && onNavigate('assessment-caregiver')}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onNavigate && onNavigate('assessment-caregiver'); } }}
+              onClick={() => onNavigate && onNavigate('questions-for-someone')}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onNavigate && onNavigate('questions-for-someone'); } }}
               style={{
                 textAlign: 'center',
                 padding: '2rem',
@@ -282,17 +278,16 @@ const RiskAssessment = ({ onNavigate }) => {
                 lineHeight: '1.5',
                 margin: 0
               }}>
-                I'm a caregiver, family member, or friend who is concerned about someone else's health and want to help them understand their risks.
+                I&apos;m a caregiver, family member, or friend who wants to help someone I care about understand their health picture.
               </p>
             </div>
 
-            {/* Just Curious - Denial Friendly */}
             <div 
               className="card card-clickable"
               role="button"
               tabIndex={0}
-              onClick={() => onNavigate && onNavigate('assessment-just-curious')}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onNavigate && onNavigate('assessment-just-curious'); } }}
+              onClick={() => onNavigate && onNavigate('questions-just-curious')}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onNavigate && onNavigate('questions-just-curious'); } }}
               style={{
                 textAlign: 'center',
                 padding: '2rem',
@@ -332,7 +327,7 @@ const RiskAssessment = ({ onNavigate }) => {
                 lineHeight: '1.5',
                 margin: 0
               }}>
-                I'm generally interested in learning about chronic disease prevention. I feel pretty healthy but want to see what this is all about.
+                I&apos;m generally interested in learning about chronic disease prevention. I feel pretty healthy but want to see what this is all about.
               </p>
             </div>
           </div>
@@ -342,4 +337,4 @@ const RiskAssessment = ({ onNavigate }) => {
   );
 };
 
-export default RiskAssessment;
+export default GetStartedHub;
