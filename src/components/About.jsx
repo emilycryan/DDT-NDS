@@ -109,7 +109,7 @@ const About = ({ onNavigate }) => {
             margin: '0 0 1.25rem 0',
           }}
         >
-          Answer a few questions and get your personalized prevention plan.
+          Answer a few questions and begin your personalized prevention journey.
         </p>
         <button
           type="button"

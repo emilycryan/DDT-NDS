@@ -513,7 +513,7 @@ const Support = () => {
           gap: '1.5rem',
           marginBottom: '2rem',
         }}>
-          {/* Left Card - National Diabetes Prevention Program */}
+          {/* Left Card - Lifestyle Change Intervention (LCI) Programs */}
           <div
             style={{
               backgroundColor: '#2D363D',
@@ -568,7 +568,7 @@ const Support = () => {
                 lineHeight: 1.2,
               }}
             >
-              National Diabetes Prevention Program
+              Lifestyle Change Intervention (LCI) Programs
             </h3>
 
             <p
@@ -580,7 +580,7 @@ const Support = () => {
                 margin: '0 0 1.5rem 0',
               }}
             >
-              CDC-recognized evidence-based lifestyle change program proven to prevent or delay type 2 diabetes. Find a program that fits your schedule — in person or online.
+              CDC-recognized evidence-based lifestyle change programs proven to prevent or delay chronic conditions. Find a program that fits your schedule — in person or online.
             </p>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>

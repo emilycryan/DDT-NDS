@@ -366,7 +366,7 @@ function App() {
                   </div>
                   <div>
                     <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Resources</div>
-                    <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)' }}>Download our guides and lifestyle planning tools.</div>
+                    <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)' }}>Download our guides and lifestyle journey tools.</div>
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
@@ -507,8 +507,8 @@ function App() {
                 <div className="icon-circle icon-circle-coral" style={{ margin: '0 auto 1.25rem' }}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: '700', fontSize: '1.125rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>Start Your Plan</h3>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)', lineHeight: 1.5, margin: 0 }}>Answer a few questions and create a personalized action plan with interactive tools and resources tailored to your needs.</p>
+                <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: '700', fontSize: '1.125rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>Start Your Journey</h3>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)', lineHeight: 1.5, margin: 0 }}>Answer a few questions and begin a personalized journey with interactive tools and resources tailored to your needs.</p>
               </motion.div>
             </motion.div>
           </div>
@@ -545,7 +545,7 @@ function App() {
                 <button onClick={() => onNavigate('about')} className="btn btn-white">Learn More</button>
               </div>
               <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(255,255,255,0.9)', fontSize: '0.875rem', marginTop: '1.25rem', marginBottom: 0 }}>
-                You're not alone. We've helped thousands get started on their path to prevention.
+                You're not alone. We have the tools and resources to help you create your own path to prevention.
               </p>
             </div>
           </div>
