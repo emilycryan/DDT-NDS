@@ -335,7 +335,7 @@ const Support = () => {
                 padding: '1rem 1.25rem',
               }}>
                 <div style={{ marginBottom: '0.5rem' }}>
-                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Chronic Health Questions</strong>
+                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Quick questions to get started</strong>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
                   <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
