@@ -71,6 +71,13 @@ const Resources = ({ onNavigate }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  /* Compact hero cards — three across on desktop */
+  const heroPad = isMobile ? '1.5rem' : '1.25rem 1.1rem';
+  const heroTitle = isMobile ? '1.35rem' : 'clamp(1.2rem, 2.1vw, 1.5rem)';
+  const heroBody = '0.8125rem';
+  const heroBadgeMb = '0.85rem';
+  const heroPMb = '1rem';
+
   return (
     <div style={{ minHeight: '80vh', backgroundColor: 'white' }}>
       <div style={{
@@ -154,23 +161,23 @@ const Resources = ({ onNavigate }) => {
           </p>
         </section>
 
-        {/* Two Large Interactive Cards */}
+        {/* Three interactive hero cards (compact, one row on desktop) */}
         <section
           style={{
             display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-            gap: '1.5rem',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, minmax(0, 1fr))',
+            gap: '1rem',
             marginBottom: '3rem',
           }}
         >
-          {/* Left Card - Find a Lifestyle Change Program */}
+          {/* Left — Find a Lifestyle Change Program */}
           <div
             style={{
               backgroundColor: '#2D363D',
               backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 0.5px, transparent 1px)',
               backgroundSize: '24px 24px',
               borderRadius: 'var(--radius-lg)',
-              padding: '2rem',
+              padding: heroPad,
               cursor: 'pointer',
               transition: 'transform 0.2s ease, box-shadow 0.2s ease',
             }}
@@ -191,12 +198,12 @@ const Resources = ({ onNavigate }) => {
                 gap: '0.5rem',
                 backgroundColor: '#B0B5BA',
                 color: '#2D363D',
-                fontSize: '0.7rem',
+                fontSize: '0.65rem',
                 fontWeight: '600',
                 letterSpacing: '0.05em',
-                padding: '0.35rem 0.875rem',
+                padding: '0.3rem 0.7rem',
                 borderRadius: 'var(--radius-pill)',
-                marginBottom: '1.25rem',
+                marginBottom: heroBadgeMb,
                 fontFamily: 'var(--font-body)',
                 textTransform: 'uppercase',
               }}
@@ -211,11 +218,11 @@ const Resources = ({ onNavigate }) => {
 
             <h2
               style={{
-                fontSize: '2.5rem',
+                fontSize: heroTitle,
                 fontFamily: 'var(--font-serif)',
                 fontWeight: '600',
                 color: 'white',
-                margin: '0 0 1rem 0',
+                margin: '0 0 0.65rem 0',
                 lineHeight: 1.2,
               }}
             >
@@ -224,11 +231,11 @@ const Resources = ({ onNavigate }) => {
 
             <p
               style={{
-                fontSize: '1rem',
+                fontSize: heroBody,
                 fontFamily: 'var(--font-body)',
                 color: 'rgba(255,255,255,0.9)',
-                lineHeight: 1.6,
-                margin: '0 0 1.5rem 0',
+                lineHeight: 1.55,
+                margin: `0 0 ${heroPMb} 0`,
               }}
             >
               CDC-recognized Lifestyle Change Intervention (LCI) programs are proven to lower the chances of type 2 diabetes and other chronic conditions. Find a program in your community or online that fits your schedule and lifestyle.
@@ -244,10 +251,10 @@ const Resources = ({ onNavigate }) => {
                 color: '#2D363D',
                 border: 'none',
                 borderRadius: 30,
-                padding: '0.75rem 1.25rem',
+                padding: '0.55rem 1rem',
                 fontFamily: 'var(--font-body)',
                 fontWeight: '600',
-                fontSize: '0.9375rem',
+                fontSize: '0.8125rem',
                 cursor: 'pointer',
               }}
             >
@@ -258,14 +265,107 @@ const Resources = ({ onNavigate }) => {
             </button>
           </div>
 
-          {/* Right Card - Get started questions */}
+          {/* Center — Create a Plan (Action Plan) */}
+          <div
+            style={{
+              backgroundColor: '#007833',
+              backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 1px)',
+              backgroundSize: '24px 24px',
+              borderRadius: 'var(--radius-lg)',
+              padding: heroPad,
+              cursor: 'pointer',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            }}
+            onClick={() => onNavigate?.('action-plan')}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 119, 51, 0.35)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                backgroundColor: 'rgba(255,255,255,0.22)',
+                color: 'white',
+                fontSize: '0.65rem',
+                fontWeight: '600',
+                letterSpacing: '0.05em',
+                padding: '0.3rem 0.7rem',
+                borderRadius: 'var(--radius-pill)',
+                marginBottom: heroBadgeMb,
+                fontFamily: 'var(--font-body)',
+                textTransform: 'uppercase',
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Guided Plan
+            </span>
+
+            <h2
+              style={{
+                fontSize: heroTitle,
+                fontFamily: 'var(--font-serif)',
+                fontWeight: '600',
+                color: 'white',
+                margin: '0 0 0.65rem 0',
+                lineHeight: 1.2,
+              }}
+            >
+              Plan My Path
+            </h2>
+
+            <p
+              style={{
+                fontSize: heroBody,
+                fontFamily: 'var(--font-body)',
+                color: 'rgba(255,255,255,0.95)',
+                lineHeight: 1.55,
+                margin: `0 0 ${heroPMb} 0`,
+              }}
+            >
+              Build a personalized, step-by-step Action Plan that captures your motivators, logistics, and class preferences — then take it with you when you connect with a program.
+            </p>
+
+            <button
+              type="button"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                backgroundColor: 'white',
+                color: '#007833',
+                border: 'none',
+                borderRadius: 30,
+                padding: '0.55rem 1rem',
+                fontFamily: 'var(--font-body)',
+                fontWeight: '600',
+                fontSize: '0.8125rem',
+                cursor: 'pointer',
+              }}
+            >
+              Create Plan
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+
+          {/* Right — Get started questions */}
           <div
             style={{
               backgroundColor: '#F35831',
               backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 1px)',
               backgroundSize: '24px 24px',
               borderRadius: 'var(--radius-lg)',
-              padding: '2rem',
+              padding: heroPad,
               cursor: 'pointer',
               transition: 'transform 0.2s ease, box-shadow 0.2s ease',
             }}
@@ -286,12 +386,12 @@ const Resources = ({ onNavigate }) => {
                 gap: '0.5rem',
                 backgroundColor: '#FBE0D7',
                 color: '#F35831',
-                fontSize: '0.7rem',
+                fontSize: '0.65rem',
                 fontWeight: '600',
                 letterSpacing: '0.05em',
-                padding: '0.35rem 0.875rem',
+                padding: '0.3rem 0.7rem',
                 borderRadius: 'var(--radius-pill)',
-                marginBottom: '1.25rem',
+                marginBottom: heroBadgeMb,
                 fontFamily: 'var(--font-body)',
                 textTransform: 'uppercase',
               }}
@@ -304,11 +404,11 @@ const Resources = ({ onNavigate }) => {
 
             <h2
               style={{
-                fontSize: '2.5rem',
+                fontSize: heroTitle,
                 fontFamily: 'var(--font-serif)',
                 fontWeight: '600',
                 color: 'white',
-                margin: '0 0 1rem 0',
+                margin: '0 0 0.65rem 0',
                 lineHeight: 1.2,
               }}
             >
@@ -317,11 +417,11 @@ const Resources = ({ onNavigate }) => {
 
             <p
               style={{
-                fontSize: '1rem',
+                fontSize: heroBody,
                 fontFamily: 'var(--font-body)',
                 color: 'rgba(255,255,255,0.95)',
-                lineHeight: 1.6,
-                margin: '0 0 1.5rem 0',
+                lineHeight: 1.55,
+                margin: `0 0 ${heroPMb} 0`,
               }}
             >
               Not sure where to start? Our free, confidential questions help you understand how your health picture relates to conditions like type 2 diabetes, heart disease, and more — and point you toward the right resources.
@@ -337,10 +437,10 @@ const Resources = ({ onNavigate }) => {
                 color: '#F35831',
                 border: 'none',
                 borderRadius: 30,
-                padding: '0.75rem 1.25rem',
+                padding: '0.55rem 1rem',
                 fontFamily: 'var(--font-body)',
                 fontWeight: '600',
-                fontSize: '0.9375rem',
+                fontSize: '0.8125rem',
                 cursor: 'pointer',
               }}
             >

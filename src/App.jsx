@@ -35,6 +35,13 @@ import HowToReadFoodLabels from './components/HowToReadFoodLabels'
 import MealPlanningOnBudget from './components/MealPlanningOnBudget'
 import MovingMoreWhenBusy from './components/MovingMoreWhenBusy'
 import SettingRealisticGoals from './components/SettingRealisticGoals'
+import ActionPlanStart from './components/ActionPlanStart'
+import ActionPlanMotivators from './components/ActionPlanMotivators'
+import ActionPlanDppInfo from './components/ActionPlanDppInfo'
+import ActionPlanBarriers from './components/ActionPlanBarriers'
+import ActionPlanClassPreferences from './components/ActionPlanClassPreferences'
+import ActionPlanSelectDate from './components/ActionPlanSelectDate'
+import ActionPlanCompleted from './components/ActionPlanCompleted'
 
 // Helper function to scroll to section
 const scrollToSection = (sectionId) => {
@@ -67,6 +74,7 @@ const PAGE_TO_PATH = {
   'for-practitioners': '/for-practitioners',
   'get-started': '/get-started',
   'lifestyle-programs': '/lifestyle-programs',
+  'action-plan': '/support/action-plan',
   'questions-for-myself': '/get-started/for-myself',
   'questions-for-someone': '/get-started/for-someone',
   'questions-just-curious': '/get-started/just-curious',
@@ -101,12 +109,12 @@ function App() {
   }
 
   const handleChatbotNavigate = (target) => {
-    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs'].includes(target)) onNavigate(target)
+    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs', 'action-plan'].includes(target)) onNavigate(target)
     else goToHomeSection(target)
   }
 
   const navigateTo = (target) => {
-    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs'].includes(target)) onNavigate(target)
+    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs', 'action-plan'].includes(target)) onNavigate(target)
     else goToHomeSection(target)
   }
 
@@ -210,6 +218,41 @@ function App() {
       <Route path="/support/tips/setting-realistic-goals" element={
         <main style={{ minHeight: '80vh' }}>
           <SettingRealisticGoals />
+        </main>
+      } />
+      <Route path="/support/action-plan" element={
+        <main style={{ minHeight: '80vh' }}>
+          <ActionPlanStart />
+        </main>
+      } />
+      <Route path="/support/action-plan/motivators" element={
+        <main style={{ minHeight: '80vh' }}>
+          <ActionPlanMotivators />
+        </main>
+      } />
+      <Route path="/support/action-plan/dpp-information" element={
+        <main style={{ minHeight: '80vh' }}>
+          <ActionPlanDppInfo />
+        </main>
+      } />
+      <Route path="/support/action-plan/barriers" element={
+        <main style={{ minHeight: '80vh' }}>
+          <ActionPlanBarriers />
+        </main>
+      } />
+      <Route path="/support/action-plan/class-preferences" element={
+        <main style={{ minHeight: '80vh' }}>
+          <ActionPlanClassPreferences />
+        </main>
+      } />
+      <Route path="/support/action-plan/select-date" element={
+        <main style={{ minHeight: '80vh' }}>
+          <ActionPlanSelectDate />
+        </main>
+      } />
+      <Route path="/support/action-plan/completed" element={
+        <main style={{ minHeight: '80vh' }}>
+          <ActionPlanCompleted />
         </main>
       } />
       <Route path="/support" element={

@@ -39,6 +39,7 @@ const smartFramework = [
 
 const SettingRealisticGoals = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [actionPlanName, setActionPlanName] = useState(null);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -46,8 +47,32 @@ const SettingRealisticGoals = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    try {
+      const n = sessionStorage.getItem('actionPlanFirstName');
+      if (n) setActionPlanName(n);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   return (
     <TipsPageLayout title="Setting Realistic Goals">
+      {actionPlanName && (
+        <div
+          style={{
+            backgroundColor: '#f0f4f8',
+            border: '1px solid #e0e0e0',
+            borderRadius: 'var(--radius-md)',
+            padding: '1rem 1.25rem',
+            marginBottom: '1.25rem',
+          }}
+        >
+          <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#1b1b1b', lineHeight: 1.6 }}>
+            <strong style={{ fontWeight: 600 }}>Hi {actionPlanName}</strong> — you&apos;re continuing your personalized Action Plan. Use the ideas below to shape goals that fit your life.
+          </p>
+        </div>
+      )}
       <p style={{ fontSize: '1rem', fontFamily: 'var(--font-body)', color: '#555555', lineHeight: 1.6, margin: '0 0 0.75rem 0' }}>
         92% of people fail at their goals — not from lack of motivation, but from setting goals that were never designed to succeed in the first place.
       </p>

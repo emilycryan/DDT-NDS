@@ -343,16 +343,10 @@ const Support = () => {
                   </p>
                   <Link
                     to="/get-started"
+                    className="btn btn-primary btn--compact-cta"
                     style={{
-                      display: 'inline-block',
-                      padding: '0.5rem 1rem',
-                      backgroundColor: '#EE6C4E',
-                      color: 'white',
-                      fontFamily: 'var(--font-body)',
-                      fontWeight: 500,
-                      fontSize: '0.9375rem',
-                      borderRadius: 999,
                       textDecoration: 'none',
+                      color: 'var(--text-white)',
                     }}
                   >
                     Get started
@@ -366,27 +360,28 @@ const Support = () => {
                 padding: '1rem 1.25rem',
               }}>
                 <div style={{ marginBottom: '0.5rem' }}>
-                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Make a Plan: Healthy Living Tools</strong>
+                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Plan my Path</strong>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
                   <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
-                    Printable trackers, goal planners, and habit tips.
+                    Create a personalized Action Plan to support a healthy lifestyle
                   </p>
                   <Link
-                    to="/resources/healthy-living/building-healthy-habits"
+                    to="/support/action-plan"
+                    className="btn btn-secondary"
                     style={{
-                      display: 'inline-block',
-                      padding: '0.5rem 1rem',
-                      backgroundColor: '#EFEFEF',
-                      color: '#333333',
-                      fontFamily: 'var(--font-body)',
-                      fontWeight: 500,
-                      fontSize: '0.9375rem',
-                      borderRadius: 999,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '10px 20px',
+                      fontSize: '14px',
+                      fontWeight: 600,
+                      borderRadius: 'var(--radius-md)',
                       textDecoration: 'none',
+                      flexShrink: 0,
                     }}
                   >
-                    Get tools
+                    Create Plan
                   </Link>
                 </div>
               </div>
