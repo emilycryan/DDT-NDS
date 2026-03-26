@@ -273,7 +273,7 @@ p {
 
 .card-clickable:hover .get-started-tile-icon,
 .card-clickable:focus-visible .get-started-tile-icon {
-  background-color: #c05600; /* deep orange */
+  background-color: var(--coral); /* standard site orange */
 }
 
 .image-overlay {
