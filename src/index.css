@@ -230,10 +230,50 @@ p {
 
 /* Clickable cards — same hover bounce as buttons */
 .card-clickable {
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 .card-clickable:hover {
-  transform: scale(1.04);
+  transform: translateY(-2px) scale(1.03);
+  background-color: var(--soft-peach);
+  box-shadow: 0 12px 28px rgba(15, 76, 92, 0.18);
+  border-color: rgba(15, 76, 92, 0.22);
+}
+
+.card-clickable:active {
+  transform: translateY(0) scale(0.99);
+  background-color: #ffd7bf;
+  box-shadow: 0 6px 16px rgba(15, 76, 92, 0.14);
+}
+
+.card-clickable:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-clickable {
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .card-clickable:hover,
+  .card-clickable:active {
+    transform: none;
+  }
+}
+
+/* Get Started tiles: icon color affordance on hover */
+.get-started-tile-icon {
+  background-color: #0F4C5C; /* deep teal (default) */
+  transition: background-color 0.2s ease;
+}
+
+.card-clickable:hover .get-started-tile-icon,
+.card-clickable:focus-visible .get-started-tile-icon {
+  background-color: #c05600; /* deep orange */
 }
 
 .image-overlay {
