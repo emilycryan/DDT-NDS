@@ -435,7 +435,7 @@ const Support = () => {
                   href: 'https://www.youtube.com/watch?v=azKL5xutMJE',
                 },
                 {
-                  title: 'Imagine: You + National Diabetes Prevention Program',
+                  title: 'Imagine: You + National DPP',
                   href: 'https://www.youtube.com/watch?v=k_XoHSIG20U&t=2s',
                 },
                 {

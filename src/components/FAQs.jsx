@@ -10,7 +10,7 @@ const FAQs = () => {
   const faqs = [
     {
       question: "What is a Lifestyle Change Intervention (LCI) program?",
-      answer: "A Lifestyle Change Intervention program is a CDC-recognized program designed to help people with prediabetes prevent or delay type 2 diabetes. Participants work with a trained lifestyle coach over 12 months to make modest changes to diet and physical activity — typically losing 5-7% of body weight and increasing activity to 150 minutes per week."
+      answer: "A Lifestyle Change Intervention program is a CDC-recognized program designed to help people with prediabetes prevent or delay type 2 diabetes. Participants work with a trained lifestyle coach over 12 months to make modest changes to nutrition and physical activity — typically losing 5-7% of body weight and increasing activity to 150 minutes per week."
     },
     {
       question: "How do I know if a chronic condition might affect me?",

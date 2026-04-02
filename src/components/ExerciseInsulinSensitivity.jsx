@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PrediabetesPageLayout from './PrediabetesPageLayout';
 
 const aerobicItems = ['Lively walking', 'Swimming or water aerobics', 'Cycling (indoor or outdoor)', 'Dancing or aerobics classes', 'Jogging or running'];
-const strengthItems = ['Free weights or weight machines', 'Resistance bands', 'Bodyweight exercises (squats, push-ups)', 'Yoga and Pilates', 'Heavy gardening or yard work'];
+const strengthItems = ['Free weights or weight machines', 'Resistance bands', 'Bodyweight strength moves (squats, push-ups)', 'Yoga and Pilates', 'Heavy gardening or yard work'];
 const gettingStartedSteps = [
   'Start with a 10-minute walk after your largest meal each day',
   'Add 5 minutes every week until you reach 30 minutes',
@@ -20,7 +20,7 @@ const ExerciseInsulinSensitivity = () => {
   }, []);
 
   return (
-    <PrediabetesPageLayout title="Exercise & Insulin Sensitivity">
+    <PrediabetesPageLayout title="Physical Activity & Insulin Sensitivity">
       <p
         style={{
           fontSize: '1rem',
@@ -44,7 +44,7 @@ const ExerciseInsulinSensitivity = () => {
         Physical activity helps your body use insulin more effectively — meaning less glucose stays in your bloodstream. You don&apos;t need to run marathons. A 15-minute walk after meals can make a measurable difference.
       </p>
 
-      {/* How Exercise Lowers Blood Sugar + Factoid cards */}
+      {/* How physical activity lowers blood sugar + Factoid cards */}
       <div
         style={{
           display: 'grid',
@@ -64,7 +64,7 @@ const ExerciseInsulinSensitivity = () => {
               margin: '0 0 1rem 0',
             }}
           >
-            How Exercise Lowers Blood Sugar
+            How Physical Activity Lowers Blood Sugar
           </h2>
           <p
             style={{
@@ -75,7 +75,7 @@ const ExerciseInsulinSensitivity = () => {
               margin: '0 0 1rem 0',
             }}
           >
-            When you exercise, your muscles use glucose for energy — directly pulling sugar out of your bloodstream. Over time, regular activity also makes your cells more responsive to insulin, so your body needs less of it to do the same job.
+            When you are physically active, your muscles use glucose for energy — directly pulling sugar out of your bloodstream. Over time, regular activity also makes your cells more responsive to insulin, so your body needs less of it to do the same job.
           </p>
           <p
             style={{
@@ -86,7 +86,7 @@ const ExerciseInsulinSensitivity = () => {
               margin: '0 0 1.5rem 0',
             }}
           >
-            Even a single workout has a lasting effect: your insulin sensitivity can remain elevated for 24-72 hours after moderate exercise. Consistency is what creates lasting change.
+            Even a single bout of activity has a lasting effect: your insulin sensitivity can remain elevated for 24-72 hours after moderate physical activity. Consistency is what creates lasting change.
           </p>
           <div
             style={{
@@ -117,7 +117,7 @@ const ExerciseInsulinSensitivity = () => {
           >
             <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>58%</div>
             <div style={{ fontSize: '0.875rem', lineHeight: 1.4, opacity: 0.95 }}>
-              reduction in diabetes likelihood with combined diet and exercise changes
+              reduction in diabetes likelihood with combined nutrition and physical activity changes
             </div>
           </div>
           <div
@@ -130,7 +130,7 @@ const ExerciseInsulinSensitivity = () => {
           >
             <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#1f9660', marginBottom: '0.5rem' }}>5-7%</div>
             <div style={{ fontSize: '0.875rem', color: '#555555', lineHeight: 1.4 }}>
-              body weight loss target that produces meaningful blood sugar results (10-14 lbs for a 200 lb person)
+              body weight loss goal that produces meaningful blood sugar results (10-14 lbs for a 200 lb person)
             </div>
           </div>
           <div
@@ -143,13 +143,13 @@ const ExerciseInsulinSensitivity = () => {
           >
             <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#1f9660', marginBottom: '0.5rem' }}>24-72h</div>
             <div style={{ fontSize: '0.875rem', color: '#555555', lineHeight: 1.4 }}>
-              improved insulin sensitivity after a single bout of moderate exercise
+              improved insulin sensitivity after a single bout of moderate physical activity
             </div>
           </div>
         </div>
       </div>
 
-      {/* Types of Exercise That Help - Tan background */}
+      {/* Types of physical activity that help - Tan background */}
       <div
         style={{
           backgroundColor: '#F8F7F5',
@@ -166,7 +166,7 @@ const ExerciseInsulinSensitivity = () => {
             margin: '0 0 0.5rem 0',
           }}
         >
-          Types of Exercise That Help
+          Types of Physical Activity That Help
         </h2>
         <p
           style={{
@@ -177,7 +177,7 @@ const ExerciseInsulinSensitivity = () => {
             margin: '0 0 1.5rem 0',
           }}
         >
-          Both aerobic exercise and strength training improve insulin sensitivity — and they work differently, so combining them is ideal.
+          Both aerobic activity and strength training improve insulin sensitivity — and they work differently, so combining them is ideal.
         </p>
 
         <div
@@ -312,7 +312,7 @@ const ExerciseInsulinSensitivity = () => {
                 color: '#333333',
               }}
             >
-              Goal: Join a DPP
+              Goal: Find a National DPP lifestyle change program
             </div>
           </div>
         </div>

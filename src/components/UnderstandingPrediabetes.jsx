@@ -5,7 +5,7 @@ import PrediabetesPageLayout from './PrediabetesPageLayout';
 const healthFactors = [
   { title: 'Age', description: '45 years or older. Likelihood increases significantly with age.' },
   { title: 'Weight', description: 'Overweight or obese (BMI ≥ 25, or ≥ 23 for Asian Americans).' },
-  { title: 'Physical Activity', description: 'Less than 3 times per week of moderate exercise.' },
+  { title: 'Physical Activity', description: 'Less than 3 times per week of moderate physical activity.' },
   { title: 'Family History', description: 'Parent or sibling diagnosed with type 2 diabetes.' },
   { title: 'Race / Ethnicity', description: 'African American, Hispanic/Latino, American Indian, Alaska Native, Pacific Islander, or Asian American.' },
 ];

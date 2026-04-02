@@ -38,7 +38,7 @@ const CAREGIVER_QUESTIONS = [
   },
   {
     id: 'their_adherence',
-    question: "How would you rate their adherence to their treatment plan (medication, diet, exercise)?",
+    question: "How would you rate their adherence to their treatment plan (medication, nutrition, physical activity)?",
     type: 'radio',
     options: [
       { label: 'Always follows it', value: 'always', score: 0 },

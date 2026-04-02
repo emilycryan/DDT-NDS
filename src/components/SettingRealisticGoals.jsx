@@ -6,7 +6,7 @@ const goalMakeover = [
     bad: 'I want to eat healthier.',
     badWhy: 'Vague, unmeasurable, no defined action. Your brain has no idea what to do with this. When you\'re tired and hungry on Tuesday, this goal provides zero guidance.',
     good: 'After dinner on weeknights, I will eat a piece of fruit instead of a snack from the pantry.',
-    goodWhy: 'Specific trigger (after dinner), specific behavior (fruit), specific constraint (weeknights), replaces an existing habit. When it\'s 8pm Tuesday, you know exactly what to do.',
+    goodWhy: 'Specific cue (after dinner), specific behavior (fruit), specific constraint (weeknights), replaces an existing habit. When it\'s 8pm Tuesday, you know exactly what to do.',
   },
   {
     bad: "I'm going to start exercising.",
@@ -22,7 +22,7 @@ const goalMakeover = [
   },
   {
     bad: "I'll try to drink more water.",
-    badWhy: '"Try" is doing a lot of work here. No amount defined. No trigger. No tracking. This type of goal relies entirely on remembering and motivation — both unreliable.',
+    badWhy: '"Try" is doing a lot of work here. No amount defined. No cue. No tracking. This type of goal relies entirely on remembering and motivation — both unreliable.',
     good: 'When I sit down at my desk each morning, I will drink one full glass of water before opening email.',
     goodWhy: 'Habit-stacked to an existing behavior (sitting at desk), specific quantity, specific order. No willpower required. The cue is automatic and the behavior follows.',
   },

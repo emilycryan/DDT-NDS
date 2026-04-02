@@ -146,7 +146,7 @@ const ForPractitioners = () => {
               58%
             </div>
             <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.5 }}>
-              lower chances of developing type 2 diabetes for patients enrolled in a CDC-recognized DPP
+              lower chances of developing type 2 diabetes for patients enrolled in a CDC-recognized National DPP lifestyle change program
             </p>
           </div>
           <div>
@@ -206,7 +206,7 @@ const ForPractitioners = () => {
               ),
               title: 'Before a Visit',
               description: 'Send educational links so patients arrive informed and ready to discuss health factors, lifestyle goals, and program options — reducing time spent on basics.',
-              bullets: ['Share prediabetes education', 'Send DPP program overview', 'Prompt patients to answer screening questions'],
+              bullets: ['Share prediabetes education', 'Send National DPP LCP overview', 'Prompt patients to answer screening questions'],
             },
             {
               accentColor: '#6B7280',
@@ -218,7 +218,7 @@ const ForPractitioners = () => {
               ),
               title: 'During Counseling',
               description: 'Reference specific modules to anchor goal-setting conversations in evidence. Use the tools as a shared decision-making resource during the appointment.',
-              bullets: ['Pull up nutrition or exercise modules', 'Reference Know Your Numbers data', 'Set SMART goals collaboratively'],
+              bullets: ['Pull up nutrition or physical activity modules', 'Reference Know Your Numbers data', 'Set SMART goals collaboratively'],
             },
             {
               accentColor: '#6B7280',
@@ -231,7 +231,7 @@ const ForPractitioners = () => {
               ),
               title: 'After a Visit',
               description: 'Share personalized resource packets and follow-up links that extend the conversation — keeping patients engaged between appointments and supporting adherence.',
-              bullets: ['Send handouts and tracking sheets', 'Share local DPP program links', 'Provide follow-up reading by topic'],
+              bullets: ['Send handouts and tracking sheets', 'Share local National DPP lifestyle change program links', 'Provide follow-up reading by topic'],
             },
           ].map((col, i) => (
             <div
@@ -303,8 +303,8 @@ const ForPractitioners = () => {
               },
               {
                 label: 'CDC & FEDERAL RESOURCES',
-                title: 'National Diabetes Prevention Program (DPP)',
-                description: 'CDC\'s framework for lifestyle change programs recognized to lower type 2 diabetes chances.',
+                title: 'National Diabetes Prevention Program (National DPP)',
+                description: 'CDC\'s framework for the National DPP and for expanding access to the National DPP lifestyle change program.',
                 bullets: ['Program standards and implementation guidance', 'Medicare coverage criteria for eligible patients', 'Referral pathways and documentation support'],
                 href: 'https://www.cdc.gov/diabetes-prevention/programs/what-is-the-national-dpp.html',
               },
@@ -404,7 +404,7 @@ const ForPractitioners = () => {
                 </svg>
               ),
               title: 'Weekly Activity Tracking Sheet',
-              description: 'A simple weekly log for patients to track physical activity minutes — built around the DPP goal of 150 minutes of moderate activity per week.',
+              description: 'A simple weekly log for patients to track physical activity minutes — aligned with the common evidence-based goal of 150 minutes of moderate activity per week used in the National DPP lifestyle change program.',
               to: '/for-practitioners/weekly-activity-tracking-sheet',
               titleColor: '#E05A4D',
             },
@@ -557,7 +557,7 @@ const ForPractitioners = () => {
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   <li style={{ ...listItemStyles, marginBottom: '0.35rem', fontSize: '0.9375rem' }}><span style={bulletStyles} />Epic / Cerner smart phrase templates</li>
                   <li style={{ ...listItemStyles, marginBottom: '0.35rem', fontSize: '0.9375rem' }}><span style={bulletStyles} />ICD-10 coding reference for prediabetes</li>
-                  <li style={{ ...listItemStyles, marginBottom: 0, fontSize: '0.9375rem' }}><span style={bulletStyles} />DPP referral letter template</li>
+                  <li style={{ ...listItemStyles, marginBottom: 0, fontSize: '0.9375rem' }}><span style={bulletStyles} />National DPP lifestyle change program referral letter template</li>
                 </ul>
               </div>
             </div>

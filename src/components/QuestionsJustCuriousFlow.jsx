@@ -47,7 +47,7 @@ const JUST_CURIOUS_QUESTIONS = [
       { label: "It's a regular part of my routine", value: 'regular', score: 0 },
       { label: 'I fit it in when I can', value: 'when_can', score: 1 },
       { label: "I know I could do more", value: 'could_do_more', score: 2 },
-      { label: "I've never been one to exercise much", value: 'rarely', score: 3 },
+      { label: "I've never been one to be very physically active", value: 'rarely', score: 3 },
     ],
   },
   {

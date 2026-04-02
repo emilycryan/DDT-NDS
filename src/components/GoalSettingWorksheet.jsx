@@ -88,7 +88,7 @@ const GoalSettingWorksheet = () => {
             margin: '0 0 0.5rem 0',
           }}
         >
-          A guided worksheet that walks patients through writing a specific, achievable behavior goal using the SMART+ framework. Research shows that structured goal-setting — specific, measurable, and tied to personal values — increases the likelihood of successful behavior change. The CDC National Diabetes Prevention Program and other evidence-based lifestyle interventions use frameworks like SMART to support sustainable habits.
+          A guided worksheet that walks patients through writing a specific, achievable behavior goal using the SMART+ framework. Research shows that structured goal-setting — specific, measurable, and tied to personal values — increases the likelihood of successful behavior change. The National DPP lifestyle change program and other evidence-based lifestyle interventions use frameworks like SMART to support sustainable habits.
         </p>
 
         <p

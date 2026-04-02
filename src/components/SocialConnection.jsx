@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import HealthyLivingPageLayout from './HealthyLivingPageLayout';
 
 const biologyBoxes = [
-  { title: 'Oxytocin release', desc: 'Physical touch, eye-contact, and shared laughter all trigger oxytocin—lowering heart rate, blood pressure, and cortisol within minutes.' },
+  { title: 'Oxytocin release', desc: 'Physical touch, eye-contact, and shared laughter all promote oxytocin release — lowering heart rate, blood pressure, and cortisol within minutes.' },
   { title: 'Immune strengthening', desc: 'People with strong social networks have higher NK cell activity and antibody production—they fight off infections more effectively.' },
   { title: 'Cognitive protection', desc: 'Regular social engagement is one of the strongest modifiable protective factors against cognitive decline and Alzheimer\'s disease.' },
   { title: 'Longevity effect', desc: 'The Harvard Study of Adult Development—the longest study of happiness ever conducted—found strong relationships as the #1 predictor of health and longevity at 80.' },
 ];
 
 const connectionCards = [
-  { title: 'Join a Group Program', desc: 'Structured group programs like the Diabetes Prevention Program deliver connection as a core component. Shared goals, accountability, and group identity produce some of the strongest social bonds in adulthood.' },
+  { title: 'Join a Group Program', desc: 'Structured group programs like the National DPP lifestyle change program deliver connection as a core component. Shared goals, accountability, and group identity produce some of the strongest social bonds in adulthood.' },
   { title: 'Volunteer', desc: 'Volunteering consistently ranks as one of the most effective interventions for loneliness and depression. Helping others activates the same reward circuits as receiving help—and provides regular structured social contact.' },
   { title: 'Nurture Close Ties', desc: 'Invest in a handful of deep relationships rather than broadening a shallow network. Regular, unhurried time with people who know you well is the highest-value social investment available. Schedule it like a health appointment.' },
   { title: 'Get Into Community', desc: 'Faith communities, sports leagues, hobby groups, neighborhood organizations—any setting with regular in-person contact and shared purpose builds the social infrastructure that protects health over decades.' },
@@ -139,7 +139,7 @@ const SocialConnection = () => {
               Social Prescribing
             </div>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#555555', lineHeight: 1.5, margin: 0 }}>
-              Healthcare providers in the UK, Canada, and increasingly the U.S. now &quot;prescribe&quot; community activities — group exercise classes, volunteer programs, arts groups — as formally as they prescribe medication for loneliness and mild depression.
+              Healthcare providers in the UK, Canada, and increasingly the U.S. now &quot;prescribe&quot; community activities — group physical activity classes, volunteer programs, arts groups — as formally as they prescribe medication for loneliness and mild depression.
             </p>
           </div>
         </div>

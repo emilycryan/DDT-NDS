@@ -92,7 +92,7 @@ const ActionPlanDppInfo = () => {
             textAlign: 'center',
           }}
         >
-          National DPP Information &amp; Cost
+          National DPP LCP Information &amp; Cost
         </h1>
 
         <div
@@ -150,7 +150,7 @@ const ActionPlanDppInfo = () => {
             </h2>
           </div>
           <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#323a45', lineHeight: 1.65 }}>
-            The National Diabetes Prevention Program (DPP) is a <strong style={{ fontWeight: 600 }}>year-long</strong>, CDC-recognized lifestyle change program. You&apos;ll meet regularly with a <strong style={{ fontWeight: 600 }}>trained coach and a small group</strong>: often weekly at first, then about <strong style={{ fontWeight: 600 }}>once or twice a month</strong> for the rest of the year. Sessions may be <strong style={{ fontWeight: 600 }}>in person or online</strong> depending on the provider; all follow CDC guidance.
+            The <strong style={{ fontWeight: 600 }}>National DPP lifestyle change program</strong> (National DPP LCP) is a <strong style={{ fontWeight: 600 }}>year-long</strong>, CDC-recognized program. You&apos;ll meet regularly with a <strong style={{ fontWeight: 600 }}>trained coach and a small group</strong>: often weekly at first, then about <strong style={{ fontWeight: 600 }}>once or twice a month</strong> for the rest of the year. Sessions may be <strong style={{ fontWeight: 600 }}>in person or online</strong> depending on the provider; all follow CDC guidance.
           </p>
         </section>
 
@@ -187,7 +187,7 @@ const ActionPlanDppInfo = () => {
             </h2>
           </div>
           <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#323a45', lineHeight: 1.65 }}>
-            <strong style={{ fontWeight: 600 }}>It depends on the program.</strong> Many insurance plans (including Medicare and some Medicaid programs) cover DPP; some sites are free or offer reduced fees; employers sometimes pay. Contact the program you&apos;re interested in for <strong style={{ fontWeight: 600 }}>your</strong> cost and coverage.
+            <strong style={{ fontWeight: 600 }}>It depends on the program.</strong> Many insurance plans (including Medicare and some Medicaid programs) cover the National DPP lifestyle change program; some sites are free or offer reduced fees; employers sometimes pay. Contact the program you&apos;re interested in for <strong style={{ fontWeight: 600 }}>your</strong> cost and coverage.
           </p>
         </section>
 

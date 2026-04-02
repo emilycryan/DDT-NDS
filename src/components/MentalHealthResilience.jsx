@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import HealthyLivingPageLayout from './HealthyLivingPageLayout';
 
 const stressCycleSteps = [
-  { num: 1, title: 'Stressor perceived', desc: 'Amygdala triggers fight-or-flight; cortisol and adrenaline flood the system' },
+  { num: 1, title: 'Stressor perceived', desc: 'Amygdala activates fight-or-flight; cortisol and adrenaline flood the system' },
   { num: 2, title: 'Response activated', desc: 'Heart rate rises, digestion slows, immune activity shifts — useful short-term, harmful if chronic' },
   { num: 3, title: 'Cycle completion', desc: 'Physical movement, deep breathing, or social connection "completes" the cycle and returns the body to baseline' },
 ];
@@ -22,7 +22,7 @@ const resilienceCards = [
   },
   {
     title: 'Physical Movement',
-    desc: 'Exercise is the single most effective stress buffer available. A 20-minute walk raises serotonin and BDNF, reduces cortisol, and improves mood for hours. It\'s not a supplement to mental health care — it\'s a core part of it.',
+    desc: 'Physical activity is the single most effective stress buffer available. A 20-minute walk raises serotonin and BDNF, reduces cortisol, and improves mood for hours. It\'s not a supplement to mental health care — it\'s a core part of it.',
   },
 ];
 
@@ -82,7 +82,7 @@ const MentalHealthResilience = () => {
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#1f9660', marginBottom: '0.5rem' }}>35%</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
-            lower rates of depression and anxiety in people who exercise regularly — equal to or better than medication for mild-to-moderate cases
+            lower rates of depression and anxiety in people who are regularly physically active — equal to or better than medication for mild-to-moderate cases
           </div>
         </div>
         <div>

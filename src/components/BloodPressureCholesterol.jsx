@@ -8,16 +8,16 @@ const bpCategories = [
   { label: 'Stage 2 Hypertension', borderColor: '#C04A3A', text: 'Requires medical attention and treatment.', range: '140/90 or higher' },
 ];
 
-const cholesterolTargets = [
-  { type: 'LDL (bad)', desc: 'Keep as low as possible.', target: 'Below 100 mg/dL' },
-  { type: 'HDL (good)', desc: 'Higher is better.', target: '60+ mg/dL' },
-  { type: 'Triglycerides', desc: 'Linked to diet and inactivity.', target: 'Below 150 mg/dL' },
-  { type: 'Total Cholesterol', desc: 'Combined measure.', target: 'Below 200 mg/dL' },
+const cholesterolGoals = [
+  { type: 'LDL (bad)', desc: 'Keep as low as possible.', goal: 'Below 100 mg/dL' },
+  { type: 'HDL (good)', desc: 'Higher is better.', goal: '60+ mg/dL' },
+  { type: 'Triglycerides', desc: 'Linked to nutrition and inactivity.', goal: 'Below 150 mg/dL' },
+  { type: 'Total Cholesterol', desc: 'Combined measure.', goal: 'Below 200 mg/dL' },
 ];
 
 const movesTheNeedle = [
   { title: 'Reduce Sodium', desc: 'Cutting to under 2,300 mg/day (ideally 1,500 mg) can lower systolic BP by 5-6 mmHg. Avoid processed foods — they carry 70% of dietary sodium.' },
-  { title: 'Move More', desc: '150 minutes of moderate aerobic exercise per week can lower BP by 5-8 mmHg and raise HDL cholesterol by up to 6%.' },
+  { title: 'Move More', desc: '150 minutes of moderate aerobic physical activity per week can lower BP by 5-8 mmHg and raise HDL cholesterol by up to 6%.' },
   { title: 'Lose 5-10 lbs', desc: 'Even modest weight loss reduces both blood pressure and LDL cholesterol. Blood pressure drops roughly 1 mmHg per kilogram lost.' },
   { title: 'Quit Smoking', desc: 'Smoking raises BP immediately and damages artery walls over time. Within 1 year of quitting, heart disease rates drop by half.' },
 ];
@@ -45,7 +45,7 @@ const BloodPressureCholesterol = () => {
         Two of the most critical — and controllable — drivers of heart disease. High blood pressure and high cholesterol often have no symptoms. That&apos;s what makes them dangerous. Understanding what these numbers mean — and how to improve them — can add years to your life.
       </p>
 
-      {/* Blood Pressure Categories + Cholesterol Targets - two columns */}
+      {/* Blood Pressure Categories + Cholesterol Goals - two columns */}
       <div
         style={{
           display: 'grid',
@@ -114,7 +114,7 @@ const BloodPressureCholesterol = () => {
               margin: '0 0 0.75rem 0',
             }}
           >
-            Cholesterol Targets
+            Cholesterol Goals
           </h2>
           <p
             style={{
@@ -125,10 +125,10 @@ const BloodPressureCholesterol = () => {
               margin: '0 0 1.25rem 0',
             }}
           >
-            About 10% of U.S. adults have total cholesterol above 240 mg/dL. Diet, exercise, and medication can bring it down significantly.
+            About 10% of U.S. adults have total cholesterol above 240 mg/dL. Nutrition, physical activity, and medication can bring it down significantly.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.25rem' }}>
-            {cholesterolTargets.map((item, i) => (
+            {cholesterolGoals.map((item, i) => (
               <div
                 key={i}
                 style={{
@@ -149,7 +149,7 @@ const BloodPressureCholesterol = () => {
                   </div>
                 </div>
                 <span style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '0.9375rem', color: '#1f9660', flexShrink: 0 }}>
-                  {item.target}
+                  {item.goal}
                 </span>
               </div>
             ))}

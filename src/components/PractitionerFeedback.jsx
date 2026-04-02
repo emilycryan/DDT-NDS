@@ -242,7 +242,7 @@ const PractitionerFeedback = () => {
 
           <fieldset style={{ ...fieldsetStyles, paddingTop: '1.5rem' }}>
             <div style={fieldsetLabelStyles}>2. Which features are most valuable? (Select up to 3)</div>
-            {['Question tools for patients', 'Patient-friendly education content', 'Lifestyle guidance', 'Referral pathways (e.g., DPP)', 'Printable materials', 'Visual explanations', 'Other'].map(opt => (
+            {['Question tools for patients', 'Patient-friendly education content', 'Lifestyle guidance', 'Referral pathways (e.g., National DPP LCP)', 'Printable materials', 'Visual explanations', 'Other'].map(opt => (
               <label key={opt} style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem', cursor: 'pointer' }}>
                 <input type="checkbox" checked={(formData.featuresValuable || []).includes(opt)} onChange={() => toggleMulti('featuresValuable', opt)} style={{ marginRight: '0.5rem' }} />
                 <span style={{ fontFamily: 'var(--font-body)' }}>{opt}</span>

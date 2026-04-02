@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import TipsPageLayout from './TipsPageLayout';
 
-const exerciseSnacks = [
+const activitySnacks = [
   { title: 'Walk during phone calls', desc: 'The average office worker has 3–5 calls per day. Standing or pacing adds 20–40 min of movement with zero productivity loss.', dotColor: '#1f9660' },
   { title: "Set a \"move\" timer every hour", desc: '2–3 minutes of movement per hour — a lap of the hallway, a flight of stairs — adds up to 16–24 minutes across a workday.', dotColor: '#1f9660' },
   { title: 'Park one stop farther', desc: 'Parking a few blocks away or getting off transit one stop early adds a genuine 10-minute walk without carving out extra time.', dotColor: '#1f9660' },
   { title: 'TV + movement', desc: 'March in place, do light stretches, or use resistance bands during TV time. 30 minutes of passive TV becomes 30 minutes of gentle activity.', dotColor: '#1f9660' },
-  { title: '10-min walk after each meal', desc: 'Three post-meal walks = 30 minutes of targeted blood sugar management. One of the highest-impact, lowest-barrier habits available.', dotColor: '#E05A4D', dark: true },
+  { title: '10-min walk after each meal', desc: 'Three post-meal walks = 30 minutes of focused blood sugar management. One of the highest-impact, lowest-barrier habits available.', dotColor: '#E05A4D', dark: true },
 ];
 
 const movementCards = [
@@ -22,7 +22,7 @@ const movementCards = [
     ),
   },
   {
-    title: 'Make Sitting a Trigger',
+    title: 'Make Sitting a Cue',
     desc: 'Every time you sit down to work, set a 60-minute timer. When it goes off, stand and move for 2 minutes. Sitting becomes the cue to eventually move.',
     iconBg: '#EBF9F3',
     topBarColor: '#1f9660',
@@ -73,10 +73,10 @@ const MovingMoreWhenBusy = () => {
   return (
     <TipsPageLayout title="Moving More When You're Busy">
       <p style={{ fontSize: '1rem', fontFamily: 'var(--font-body)', color: '#555555', lineHeight: 1.6, margin: '0 0 0.75rem 0' }}>
-        You don&apos;t need a gym or an hour. Movement is available in small bursts throughout the day — and the research shows they add up. NEAT (Non-Exercise Activity Thermogenesis) is the energy you burn through everything that isn&apos;t formal exercise: walking to the kitchen, shifting in your chair, standing. It can be 350+ extra calories per day.
+        You don&apos;t need a gym or an hour. Movement is available in small bursts throughout the day — and the research shows they add up. NEAT (Non-Exercise Activity Thermogenesis) is the energy you burn through daily movement that isn&apos;t a structured workout: walking to the kitchen, shifting in your chair, standing. It can be 350+ extra calories per day.
       </p>
       <p style={{ fontSize: '1rem', fontFamily: 'var(--font-body)', color: '#555555', lineHeight: 1.6, margin: '0 0 2rem 0' }}>
-        &quot;Exercise snacks&quot; — short bouts of 10 minutes or less — produce the same cardiovascular and metabolic benefits as one 60-minute session. The key is consistency, not duration.
+        &quot;Activity snacks&quot; — short bouts of 10 minutes or less — produce the same cardiovascular and metabolic benefits as one 60-minute session. The key is consistency, not duration.
       </p>
 
       {/* Stats Bar */}
@@ -93,13 +93,13 @@ const MovingMoreWhenBusy = () => {
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>22 min</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
-            per day is all it takes to hit the CDC weekly activity target — less time than most people spend scrolling
+            per day is all it takes to hit the CDC weekly activity goal — less time than most people spend scrolling
           </div>
         </div>
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>10 min</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
-            &quot;exercise snacks&quot; produce the same cardiovascular and metabolic benefits as one 60-minute session
+            &quot;activity snacks&quot; produce the same cardiovascular and metabolic benefits as one 60-minute session
           </div>
         </div>
         <div>
@@ -110,7 +110,7 @@ const MovingMoreWhenBusy = () => {
         </div>
       </div>
 
-      {/* Science + Exercise Snacks sidebar */}
+      {/* Science + activity snacks sidebar */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: isMobile ? '1fr' : '1fr 340px',
@@ -123,7 +123,7 @@ const MovingMoreWhenBusy = () => {
             The Science of Everyday Movement
           </h2>
           <p style={{ fontSize: '1rem', fontFamily: 'var(--font-body)', color: '#555555', lineHeight: 1.6, margin: '0 0 1rem 0' }}>
-            NEAT is the energy you burn through everything that isn&apos;t formal exercise: walking to the kitchen, shifting in your chair, taking the stairs. Research shows that sedentary individuals can move 2+ hours more per day without &quot;exercising.&quot; The difference is in how you structure your environment and habits.
+            NEAT is the energy you burn through everything that isn&apos;t a structured workout: walking to the kitchen, shifting in your chair, taking the stairs. Research shows that sedentary individuals can move 2+ hours more per day without a formal gym session. The difference is in how you structure your environment and habits.
           </p>
           <p style={{ fontSize: '1rem', fontFamily: 'var(--font-body)', color: '#555555', lineHeight: 1.6, margin: '0 0 1.25rem 0' }}>
             10-minute walks produce the same blood sugar–lowering effect as one 60-minute session. A post-meal walk is one of the single most effective interventions for blood sugar control — sometimes more effective than medication.
@@ -145,10 +145,10 @@ const MovingMoreWhenBusy = () => {
 
         <div>
           <h3 style={{ fontSize: '0.75rem', fontFamily: 'var(--font-body)', fontWeight: 600, letterSpacing: '0.08em', color: '#555555', margin: '0 0 1rem 0', textTransform: 'uppercase' }}>
-            Exercise Snack Ideas
+            Activity Snack Ideas
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {exerciseSnacks.map((item, i) => (
+            {activitySnacks.map((item, i) => (
               <div
                 key={i}
                 style={{
