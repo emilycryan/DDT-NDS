@@ -40,19 +40,19 @@ const HowToReadFoodLabels = () => {
         marginBottom: '2.5rem',
       }}>
         <div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#E8A598', marginBottom: '0.5rem' }}>200+</div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-stat)', color: '#E8A598', marginBottom: '0.5rem' }}>200+</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
             food decisions the average American makes every day — most of them on autopilot, without reading a single label.
           </div>
         </div>
         <div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>77%</div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-stat)', marginBottom: '0.5rem' }}>77%</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
             of consumers check the Nutrition Facts panel, but most misinterpret serving size — making every other number meaningless.
           </div>
         </div>
         <div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>3x</div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-stat)', marginBottom: '0.5rem' }}>3x</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
             the daily recommended limit for added sugar consumed by the average American — mostly from foods that don&apos;t taste sweet.
           </div>

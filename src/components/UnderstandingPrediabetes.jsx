@@ -60,21 +60,21 @@ const UnderstandingPrediabetes = () => {
         }}
       >
         <div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>96M</div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-stat)', marginBottom: '0.5rem' }}>96M</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.9, lineHeight: 1.4 }}>
             American adults have prediabetes — more than 2 in 5 adults
           </div>
         </div>
         <div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>9 in 10</div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-stat)', marginBottom: '0.5rem' }}>9 in 10</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.9, lineHeight: 1.4 }}>
             people with prediabetes don&apos;t know they have it
           </div>
         </div>
         <div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#1f9660', marginBottom: '0.5rem' }}>58%</div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-stat)', color: '#1f9660', marginBottom: '0.5rem' }}>58%</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.9, lineHeight: 1.4 }}>
-            lower chances of type 2 diabetes with lifestyle changes
+            lower chances of developing type 2 diabetes for patients enrolled in a CDC-recognized National DPP lifestyle change program
           </div>
         </div>
       </div>

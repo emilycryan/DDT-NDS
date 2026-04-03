@@ -92,19 +92,19 @@ const SettingRealisticGoals = () => {
         marginBottom: '2.5rem',
       }}>
         <div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#E8A598', marginBottom: '0.5rem' }}>92%</div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-stat)', color: '#E8A598', marginBottom: '0.5rem' }}>92%</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
             of people fail to achieve their stated goals — The problem is almost never motivation, it&apos;s goal design
           </div>
         </div>
         <div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>42%</div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-stat)', marginBottom: '0.5rem' }}>42%</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
             more likely to achieve a goal when you write it down and track it — one of the most robust findings in behavior research
           </div>
         </div>
         <div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>3 to 1</div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-stat)', marginBottom: '0.5rem' }}>3 to 1</div>
           <div style={{ fontSize: '0.9375rem', opacity: 0.95, lineHeight: 1.4 }}>
             advantage for identity-based goals over outcome-based goals — &quot;I am someone who walks daily&quot; beats &quot;I want to lose 20 lbs&quot; every time
           </div>
@@ -193,7 +193,7 @@ const SettingRealisticGoals = () => {
                 borderRight: i < smartFramework.length - 1 ? '1px solid rgba(255,255,255,0.15)' : 'none',
               }}
             >
-              <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-serif)', color: item.letterColor, marginBottom: '0.5rem' }}>{item.letter}</div>
+              <div style={{ fontSize: '2.5rem', fontWeight: 700, fontFamily: 'var(--font-stat)', color: item.letterColor, marginBottom: '0.5rem' }}>{item.letter}</div>
               <div style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '0.75rem', letterSpacing: '0.05em', marginBottom: '0.5rem', color: 'white' }}>{item.title}</div>
               <div style={{ height: 1, backgroundColor: item.letterColor, marginBottom: '0.75rem' }} />
               <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', lineHeight: 1.5, margin: '0 0 0.75rem 0', color: 'white' }}>{item.desc}</p>

@@ -19,7 +19,7 @@ const ForPractitioners = () => {
 
   const h2Styles = {
     fontSize: isMobile ? '1.5rem' : '1.75rem',
-    fontFamily: 'var(--font-serif)',
+    fontFamily: 'var(--font-stat)',
     fontWeight: '600',
     color: 'var(--ink)',
     marginBottom: '1rem',
@@ -94,7 +94,7 @@ const ForPractitioners = () => {
         <h1
           style={{
             fontSize: isMobile ? '2.25rem' : '3rem',
-            fontFamily: 'var(--font-serif)',
+            fontFamily: 'var(--font-stat)',
             fontWeight: '600',
             color: '#333333',
             lineHeight: 1.15,
@@ -142,7 +142,7 @@ const ForPractitioners = () => {
           }}
         >
           <div>
-            <div style={{ fontSize: isMobile ? '2.5rem' : '3.5rem', fontFamily: 'var(--font-serif)', fontWeight: '700', color: '#1f9660', lineHeight: 1.1, marginBottom: '0.5rem' }}>
+            <div style={{ fontSize: isMobile ? '2.5rem' : '3.5rem', fontFamily: 'var(--font-stat)', fontWeight: '700', color: '#1f9660', lineHeight: 1.1, marginBottom: '0.5rem' }}>
               58%
             </div>
             <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.5 }}>
@@ -150,7 +150,7 @@ const ForPractitioners = () => {
             </p>
           </div>
           <div>
-            <div style={{ fontSize: isMobile ? '2.5rem' : '3.5rem', fontFamily: 'var(--font-serif)', fontWeight: '700', color: 'white', lineHeight: 1.1, marginBottom: '0.5rem' }}>
+            <div style={{ fontSize: isMobile ? '2.5rem' : '3.5rem', fontFamily: 'var(--font-stat)', fontWeight: '700', color: 'white', lineHeight: 1.1, marginBottom: '0.5rem' }}>
               34M
             </div>
             <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.5 }}>
@@ -158,7 +158,7 @@ const ForPractitioners = () => {
             </p>
           </div>
           <div>
-            <div style={{ fontSize: isMobile ? '2.5rem' : '3.5rem', fontFamily: 'var(--font-serif)', fontWeight: '700', color: 'white', lineHeight: 1.1, marginBottom: '0.5rem' }}>
+            <div style={{ fontSize: isMobile ? '2.5rem' : '3.5rem', fontFamily: 'var(--font-stat)', fontWeight: '700', color: 'white', lineHeight: 1.1, marginBottom: '0.5rem' }}>
               2×
             </div>
             <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.5 }}>
@@ -334,7 +334,7 @@ const ForPractitioners = () => {
                 </span>
                 <h3 style={{
                   fontSize: '1.25rem',
-                  fontFamily: 'var(--font-serif)',
+                  fontFamily: 'var(--font-stat)',
                   fontWeight: '600',
                   color: 'var(--ink)',
                   margin: '0 0 0.75rem 0',
@@ -508,7 +508,7 @@ const ForPractitioners = () => {
               <div>
                 <h3 style={{
                   fontSize: '1.25rem',
-                  fontFamily: 'var(--font-serif)',
+                  fontFamily: 'var(--font-stat)',
                   fontWeight: '600',
                   color: 'var(--ink)',
                   marginBottom: '1rem',
@@ -538,7 +538,7 @@ const ForPractitioners = () => {
                 </span>
                 <h3 style={{
                   fontSize: '1.25rem',
-                  fontFamily: 'var(--font-serif)',
+                  fontFamily: 'var(--font-stat)',
                   fontWeight: '600',
                   color: 'var(--ink)',
                   margin: '0 0 1rem 0',

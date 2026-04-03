@@ -115,9 +115,9 @@ const ExerciseInsulinSensitivity = () => {
               borderRadius: 'var(--radius-md)',
             }}
           >
-            <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-body)', marginBottom: '0.5rem' }}>58%</div>
+            <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-stat)', marginBottom: '0.5rem' }}>58%</div>
             <div style={{ fontSize: '0.875rem', lineHeight: 1.4, opacity: 0.95 }}>
-              reduction in diabetes likelihood with combined nutrition and physical activity changes
+              lower chances of developing type 2 diabetes for patients enrolled in a CDC-recognized National DPP lifestyle change program
             </div>
           </div>
           <div
@@ -128,7 +128,7 @@ const ExerciseInsulinSensitivity = () => {
               borderRadius: 'var(--radius-md)',
             }}
           >
-            <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#1f9660', marginBottom: '0.5rem' }}>5-7%</div>
+            <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-stat)', color: '#1f9660', marginBottom: '0.5rem' }}>5-7%</div>
             <div style={{ fontSize: '0.875rem', color: '#555555', lineHeight: 1.4 }}>
               body weight loss goal that produces meaningful blood sugar results (10-14 lbs for a 200 lb person)
             </div>
@@ -141,7 +141,7 @@ const ExerciseInsulinSensitivity = () => {
               borderRadius: 'var(--radius-md)',
             }}
           >
-            <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-body)', color: '#1f9660', marginBottom: '0.5rem' }}>24-72h</div>
+            <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-stat)', color: '#1f9660', marginBottom: '0.5rem' }}>24-72h</div>
             <div style={{ fontSize: '0.875rem', color: '#555555', lineHeight: 1.4 }}>
               improved insulin sensitivity after a single bout of moderate physical activity
             </div>
