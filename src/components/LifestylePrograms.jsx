@@ -820,7 +820,22 @@ const LifestylePrograms = () => {
                             color: '#1e293b',
                             marginBottom: '0.5rem'
                           }}>
-                            {program.organization_name}
+                            {program.website_url ? (
+                              <a
+                                href={program.website_url}
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{
+                                  color: '#1e293b',
+                                  textDecoration: 'underline',
+                                  textUnderlineOffset: '2px'
+                                }}
+                              >
+                                {program.organization_name}
+                              </a>
+                            ) : (
+                              program.organization_name
+                            )}
                           </h4>
                           
                           {program.description && (
@@ -843,7 +858,20 @@ const LifestylePrograms = () => {
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                               <span style={{ color: '#6b7280' }}>📍</span>
                               <span style={{ color: '#374151' }}>
-                                {program.city}, {program.state} {program.zip_code}
+                                {program.address_line1 ? (
+                                  <>
+                                    <span style={{ display: 'block' }}>
+                                      {program.address_line1}{program.address_line2 ? `, ${program.address_line2}` : ''}
+                                    </span>
+                                    <span style={{ display: 'block' }}>
+                                      {program.city}, {program.state} {program.zip_code}
+                                    </span>
+                                  </>
+                                ) : (
+                                  <span style={{ display: 'block' }}>
+                                    {program.city}, {program.state} {program.zip_code}
+                                  </span>
+                                )}
                               </span>
                             </div>
                             
@@ -856,11 +884,27 @@ const LifestylePrograms = () => {
                               </div>
                             )}
                             
-                            {program.cost && (
+                            {(program.cost !== null && program.cost !== undefined) && (
                               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                 <span style={{ color: '#6b7280' }}>💰</span>
-                                <span style={{ color: '#374151' }}>
-                                  ${program.cost}
+                                <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                                  <span style={{ color: '#374151' }}>
+                                    {Number(program.cost) === 0 ? 'Free' : `$${program.cost}`}
+                                  </span>
+                                  {Number(program.cost) > 0 && Array.isArray(program.insurance_accepted) && program.insurance_accepted.length > 0 && (
+                                    <span style={{
+                                      fontSize: '0.75rem',
+                                      fontWeight: '600',
+                                      color: '#1e40af',
+                                      backgroundColor: '#eff6ff',
+                                      border: '1px solid #bfdbfe',
+                                      padding: '0.15rem 0.5rem',
+                                      borderRadius: '999px',
+                                      whiteSpace: 'nowrap'
+                                    }}>
+                                      Insurance accepted
+                                    </span>
+                                  )}
                                 </span>
                               </div>
                             )}
@@ -871,6 +915,42 @@ const LifestylePrograms = () => {
                                 <span style={{ color: '#374151' }}>
                                   {program.duration_weeks} weeks
                                 </span>
+                              </div>
+                            )}
+
+                            {program.contact_phone && (
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <span style={{ color: '#6b7280' }}>📞</span>
+                                <a
+                                  href={`tel:${String(program.contact_phone).replace(/[^\d+]/g, '')}`}
+                                  style={{
+                                    color: '#374151',
+                                    textDecoration: 'underline',
+                                    textUnderlineOffset: '2px'
+                                  }}
+                                >
+                                  {program.contact_phone}
+                                </a>
+                              </div>
+                            )}
+
+                            {program.website_url && (
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <span style={{ color: '#6b7280' }}>🔗</span>
+                                <a
+                                  href={program.website_url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  style={{
+                                    color: '#005ea2',
+                                    textDecoration: 'underline',
+                                    fontWeight: '600',
+                                    wordBreak: 'break-word',
+                                    overflowWrap: 'anywhere'
+                                  }}
+                                >
+                                  {program.website_url}
+                                </a>
                               </div>
                             )}
                           </div>
@@ -905,12 +985,32 @@ const LifestylePrograms = () => {
                             }}>
                               {program.contact_phone && (
                                 <div style={{ marginBottom: '0.25rem' }}>
-                                  📞 {program.contact_phone}
+                                  📞{' '}
+                                  <a
+                                    href={`tel:${String(program.contact_phone).replace(/[^\d+]/g, '')}`}
+                                    style={{
+                                      color: '#64748b',
+                                      textDecoration: 'underline',
+                                      textUnderlineOffset: '2px'
+                                    }}
+                                  >
+                                    {program.contact_phone}
+                                  </a>
                                 </div>
                               )}
                               {program.contact_email && (
                                 <div>
-                                  📧 {program.contact_email}
+                                  📧{' '}
+                                  <a
+                                    href={`mailto:${program.contact_email}`}
+                                    style={{
+                                      color: '#64748b',
+                                      textDecoration: 'underline',
+                                      textUnderlineOffset: '2px'
+                                    }}
+                                  >
+                                    {program.contact_email}
+                                  </a>
                                 </div>
                               )}
                             </div>
