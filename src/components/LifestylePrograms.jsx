@@ -485,7 +485,7 @@ const LifestylePrograms = () => {
 
       {/* Program Finder Section */}
       <section style={{
-        backgroundColor: '#FFEDE9',
+        backgroundColor: 'var(--bg-secondary)',
         padding: isMobile ? '1.5rem 1rem' : '2rem 2rem',
         margin: '0'
       }}>
