@@ -108,14 +108,14 @@ function App() {
     setTimeout(() => scrollToSection(sectionId), 150)
   }
 
-  const handleChatbotNavigate = (target) => {
-    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs', 'action-plan'].includes(target)) onNavigate(target)
-    else goToHomeSection(target)
+  const handleChatbotNavigate = (destination) => {
+    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs', 'action-plan'].includes(destination)) onNavigate(destination)
+    else goToHomeSection(destination)
   }
 
-  const navigateTo = (target) => {
-    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs', 'action-plan'].includes(target)) onNavigate(target)
-    else goToHomeSection(target)
+  const navigateTo = (destination) => {
+    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs', 'action-plan'].includes(destination)) onNavigate(destination)
+    else goToHomeSection(destination)
   }
 
   const currentPage = location.pathname === '/' ? 'home' : (PATH_TO_PAGE[location.pathname] || 'home')
@@ -149,7 +149,7 @@ function App() {
           <NutritionBloodSugar />
         </main>
       } />
-      <Route path="/resources/prediabetes/exercise-insulin-sensitivity" element={
+      <Route path="/resources/prediabetes/physical-activity-insulin-sensitivity" element={
         <main style={{ minHeight: '80vh' }}>
           <ExerciseInsulinSensitivity />
         </main>

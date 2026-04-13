@@ -73,7 +73,7 @@ const MovingMoreWhenBusy = () => {
   return (
     <TipsPageLayout title="Moving More When You're Busy">
       <p style={{ fontSize: '1rem', fontFamily: 'var(--font-body)', color: '#555555', lineHeight: 1.6, margin: '0 0 0.75rem 0' }}>
-        You don&apos;t need a gym or an hour. Movement is available in small bursts throughout the day — and the research shows they add up. NEAT (Non-Exercise Activity Thermogenesis) is the energy you burn through daily movement that isn&apos;t a structured workout: walking to the kitchen, shifting in your chair, standing. It can be 350+ extra calories per day.
+        You don&apos;t need a gym or an hour. Movement is available in small bursts throughout the day — and the research shows they add up. NEAT (non-workout activity thermogenesis) is the energy you burn through daily movement that isn&apos;t a structured workout: walking to the kitchen, shifting in your chair, standing. It can be 350+ extra calories per day.
       </p>
       <p style={{ fontSize: '1rem', fontFamily: 'var(--font-body)', color: '#555555', lineHeight: 1.6, margin: '0 0 2rem 0' }}>
         &quot;Activity snacks&quot; — short bouts of 10 minutes or less — produce the same cardiovascular and metabolic benefits as one 60-minute session. The key is consistency, not duration.

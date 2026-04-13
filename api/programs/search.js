@@ -1,4 +1,5 @@
 import { searchProgramsByLocation } from '../../lib/db.js';
+const STRICT_DB_ERRORS = process.env.STRICT_DB_ERRORS === 'true';
 
 // Fallback when DB unavailable
 const FALLBACK_PROGRAMS = [
@@ -126,6 +127,15 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error('Program search error:', error.message);
+    if (STRICT_DB_ERRORS) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database unavailable for program search',
+        error: error.message,
+        fallback: false,
+        searchCriteria: { zipCode: zipCode || null, state: state || null, city: city || null, deliveryMode: deliveryMode || null, radius: parseInt(radius) || 25 },
+      });
+    }
     const programs = filterFallback(zipCode, state, city, deliveryMode);
     return res.status(200).json({ success: true, count: programs.length, programs, searchCriteria: { zipCode: zipCode || null, state: state || null, city: city || null, deliveryMode: deliveryMode || null, radius: parseInt(radius) || 25 } });
   }

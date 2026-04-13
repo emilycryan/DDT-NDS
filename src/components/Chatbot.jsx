@@ -97,7 +97,7 @@ const Chatbot = ({ onNavigate }) => {
   const extractRecommendationsFromText = (text) => {
     const recommendationKeywords = [
       'recommend', 'suggest', 'try', 'consider', 'should', 'might want to',
-      'question flow', 'program', 'exercise', 'diet', 'lifestyle change'
+      'question flow', 'program', 'physical activity', 'move more', 'meal plan', 'healthy foods', 'nutrition', 'lifestyle change'
     ];
     
     const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 10);
@@ -118,8 +118,8 @@ const Chatbot = ({ onNavigate }) => {
     const topicKeywords = {
       'diabetes': ['diabetes', 'diabetic', 'blood sugar', 'glucose', 'insulin'],
       'heart-disease': ['heart', 'cardiac', 'cardiovascular', 'blood pressure', 'cholesterol'],
-      'nutrition': ['diet', 'food', 'eating', 'nutrition', 'meal', 'calories'],
-      'exercise': ['exercise', 'physical activity', 'workout', 'fitness', 'walking'],
+      'nutrition': ['meal plan', 'healthy foods', 'food', 'eating', 'nutrition', 'meal', 'calories'],
+      'physical-activity': ['physical activity', 'move more', 'workout', 'fitness', 'walking'],
       'weight': ['weight', 'obesity', 'bmi', 'overweight', 'lose weight'],
       'smoking': ['smoking', 'tobacco', 'cigarette', 'quit smoking'],
       'stress': ['stress', 'anxiety', 'mental health', 'depression'],
@@ -1369,6 +1369,7 @@ Key guidelines:
 - Utilize plain language and avoid using jargon
 - Always suggest answering a few questions on the site when appropriate
 - Mention lifestyle changes like healthy eating patterns, physical activity, and avoiding tobacco
+- Prefer phrases like "meal plan," "healthy foods," and "nutrition" instead of restrictive eating language
 - Be encouraging and supportive
 - If asked about medical advice, remind users to consult healthcare providers
 - Focus on prevention strategies and CDC resources

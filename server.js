@@ -15,6 +15,7 @@ import { getProgramStats } from './lib/pgvector-db.js';
 
 const app = express();
 const PORT = 3006;
+const STRICT_DB_ERRORS = process.env.STRICT_DB_ERRORS === 'true';
 
 // Middleware
 app.use(cors());
@@ -201,6 +202,26 @@ function applyProgramFilters(programs, filters) {
   return result;
 }
 
+function sendDbErrorOrFallback(res, message, error, fallbackPrograms, extra = {}) {
+  if (STRICT_DB_ERRORS) {
+    return res.status(503).json({
+      success: false,
+      message,
+      error: error.message,
+      fallback: false,
+      ...extra,
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    count: fallbackPrograms.length,
+    programs: fallbackPrograms,
+    fallback: true,
+    ...extra,
+  });
+}
+
 // Vector search endpoint for intelligent program matching (using pgvector)
 app.post('/api/programs/semantic-search', async (req, res) => {
   try {
@@ -229,14 +250,18 @@ app.post('/api/programs/semantic-search', async (req, res) => {
         });
       } catch (dbError) {
         console.warn('⚠️ Database unavailable for semantic search, using static fallback:', dbError.message);
-        return res.status(200).json({
-          success: true,
-          query,
-          intent_analysis: { intent: 'search_programs', confidence: 0.5 },
-          results: FALLBACK_PROGRAMS.slice(0, limit),
-          count: Math.min(FALLBACK_PROGRAMS.length, limit),
-          fallback: true
-        });
+        return sendDbErrorOrFallback(
+          res,
+          'Database unavailable for semantic search',
+          dbError,
+          FALLBACK_PROGRAMS.slice(0, limit),
+          {
+            query,
+            intent_analysis: { intent: 'search_programs', confidence: 0.5 },
+            count: Math.min(FALLBACK_PROGRAMS.length, limit),
+            results: FALLBACK_PROGRAMS.slice(0, limit),
+          }
+        );
       }
     }
 
@@ -281,7 +306,7 @@ app.get('/api/programs/all', async (req, res) => {
     return res.status(200).json({ success: true, count: programs.length, programs });
   } catch (error) {
     console.warn('⚠️ Database unavailable for /api/programs/all, using fallback:', error.message);
-    return res.status(200).json({ success: true, count: FALLBACK_PROGRAMS.length, programs: FALLBACK_PROGRAMS });
+    return sendDbErrorOrFallback(res, 'Database unavailable for /api/programs/all', error, FALLBACK_PROGRAMS);
   }
 });
 
@@ -319,6 +344,15 @@ app.get('/api/programs/search', async (req, res) => {
         programs = await searchProgramsByLocation(zipCode || null, state || null, city || null, parseInt(radius) || 25);
       } catch (dbError) {
         console.warn('⚠️ Database unavailable, using fallback:', dbError.message);
+        if (STRICT_DB_ERRORS) {
+          return res.status(503).json({
+            success: false,
+            message: 'Database unavailable for location search',
+            error: dbError.message,
+            fallback: false,
+            searchCriteria: { zipCode: zipCode || null, state: state || null, city: city || null, deliveryMode: deliveryMode || null, name: nameTrimmed || null, filters },
+          });
+        }
         const stateNorm = (state || '').toUpperCase();
         const cityNorm = (city || '').toLowerCase();
         programs = FALLBACK_PROGRAMS.filter(p => {
@@ -333,6 +367,15 @@ app.get('/api/programs/search', async (req, res) => {
         programs = await searchProgramsByDeliveryMode(deliveryMode);
       } catch (dbError) {
         console.warn('⚠️ Database error, using fallback:', dbError.message);
+        if (STRICT_DB_ERRORS) {
+          return res.status(503).json({
+            success: false,
+            message: 'Database unavailable for delivery mode search',
+            error: dbError.message,
+            fallback: false,
+            searchCriteria: { zipCode: zipCode || null, state: state || null, city: city || null, deliveryMode: deliveryMode || null, name: nameTrimmed || null, filters },
+          });
+        }
         const mode = String(deliveryMode).toLowerCase();
         const virtualModes = ['virtual', 'remote', 'online', 'virtual-live', 'virtual-self-paced'];
         const isVirtual = virtualModes.includes(mode);
@@ -348,12 +391,30 @@ app.get('/api/programs/search', async (req, res) => {
         programs = await searchProgramsByName(nameTrimmed);
       } catch (dbError) {
         console.warn('⚠️ Database unavailable for name search, using fallback:', dbError.message);
+        if (STRICT_DB_ERRORS) {
+          return res.status(503).json({
+            success: false,
+            message: 'Database unavailable for name search',
+            error: dbError.message,
+            fallback: false,
+            searchCriteria: { zipCode: zipCode || null, state: state || null, city: city || null, deliveryMode: deliveryMode || null, name: nameTrimmed || null, filters },
+          });
+        }
         programs = filterProgramsByName(FALLBACK_PROGRAMS, nameTrimmed);
       }
     } else {
       try {
         programs = await searchProgramsByLocation(null, null, null, 99999);
       } catch (dbError) {
+        if (STRICT_DB_ERRORS) {
+          return res.status(503).json({
+            success: false,
+            message: 'Database unavailable for default search',
+            error: dbError.message,
+            fallback: false,
+            searchCriteria: { zipCode: zipCode || null, state: state || null, city: city || null, deliveryMode: deliveryMode || null, name: nameTrimmed || null, filters },
+          });
+        }
         programs = FALLBACK_PROGRAMS;
       }
     }
@@ -394,6 +455,15 @@ app.get('/api/programs/search-by-name', async (req, res) => {
       programs = await searchProgramsByName(name);
     } catch (dbError) {
       console.warn('⚠️ Database unavailable for name search, using fallback:', dbError.message);
+      if (STRICT_DB_ERRORS) {
+        return res.status(503).json({
+          success: false,
+          message: 'Database unavailable for name search',
+          error: dbError.message,
+          fallback: false,
+          searchTerm: name,
+        });
+      }
       const term = (name || '').toLowerCase();
       programs = FALLBACK_PROGRAMS.filter(p => (p.organization_name || '').toLowerCase().includes(term));
     }

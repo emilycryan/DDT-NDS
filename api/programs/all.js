@@ -1,4 +1,5 @@
 import { searchProgramsByLocation } from '../../lib/db.js';
+const STRICT_DB_ERRORS = process.env.STRICT_DB_ERRORS === 'true';
 
 // Fallback when DB unavailable (e.g. DATABASE_URL not set in Vercel)
 const FALLBACK_PROGRAMS = [
@@ -60,6 +61,14 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true, count: programs.length, programs });
   } catch (error) {
     console.error('Get all programs error:', error.message);
+    if (STRICT_DB_ERRORS) {
+      return res.status(503).json({
+        success: false,
+        message: 'Database unavailable for /api/programs/all',
+        error: error.message,
+        fallback: false,
+      });
+    }
     return res.status(200).json({
       success: true,
       count: FALLBACK_PROGRAMS.length,

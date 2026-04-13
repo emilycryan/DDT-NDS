@@ -26,21 +26,21 @@ const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
 
   const navigate = useNavigate();
 
-  const goTo = (target) => {
-    if (target === 'home') {
+  const goTo = (destination) => {
+    if (destination === 'home') {
       navigate('/');
-    } else if (target === 'about') navigate('/about');
-    else if (target === 'resources') navigate('/resources');
-    else if (target === 'support') navigate('/support');
-    else if (target === 'for-practitioners') navigate('/for-practitioners');
-    else if (target === 'get-started') navigate('/get-started');
-    else if (target === 'lifestyle-programs') navigate('/lifestyle-programs');
+    } else if (destination === 'about') navigate('/about');
+    else if (destination === 'resources') navigate('/resources');
+    else if (destination === 'support') navigate('/support');
+    else if (destination === 'for-practitioners') navigate('/for-practitioners');
+    else if (destination === 'get-started') navigate('/get-started');
+    else if (destination === 'lifestyle-programs') navigate('/lifestyle-programs');
     else if (goToHomeSection && typeof goToHomeSection === 'function') {
-      goToHomeSection(target);
+      goToHomeSection(destination);
     } else if (scrollToSection && typeof scrollToSection === 'function') {
-      scrollToSection(target);
+      scrollToSection(destination);
     } else {
-      const el = document.getElementById(target);
+      const el = document.getElementById(destination);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     setIsMenuOpen(false);
