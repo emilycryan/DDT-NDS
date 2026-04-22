@@ -110,13 +110,13 @@ const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
               textDecoration: 'none',
             }}
           >
-            CDC Path2Prevention
+            Path2Prevention
           </Link>
 
           <nav style={{ display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: '18px' }}>
             <Link to="/about" className="header-nav-text-link">About</Link>
-            <Link to="/resources" className="header-nav-text-link">Resources</Link>
-            <Link to="/support" className="header-nav-text-link">Support</Link>
+            <Link to="/resources" className="header-nav-text-link">Learn More</Link>
+            <Link to="/support" className="header-nav-text-link">Take Action</Link>
             <Link to="/for-practitioners" className="header-nav-text-link">For Practitioners</Link>
             <Link
               to="/lifestyle-programs"
@@ -179,8 +179,8 @@ const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
             padding: '16px 24px',
           }}>
             <Link to="/about" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">About</Link>
-            <Link to="/resources" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">Resources</Link>
-            <Link to="/support" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">Support</Link>
+            <Link to="/resources" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">Learn More</Link>
+            <Link to="/support" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">Take Action</Link>
             <Link to="/for-practitioners" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">For Practitioners</Link>
             <Link to="/lifestyle-programs" onClick={() => setIsMenuOpen(false)} className="btn btn-secondary" style={{ display: 'block', width: '100%', marginTop: 8, textAlign: 'center', textDecoration: 'none' }}>Find a Program</Link>
             <Link to="/get-started" onClick={() => setIsMenuOpen(false)} className="btn btn-primary" style={{ display: 'block', width: '100%', marginTop: 8, textAlign: 'center', textDecoration: 'none', color: 'white' }}>GET STARTED</Link>

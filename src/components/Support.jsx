@@ -110,7 +110,7 @@ const Support = () => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <span style={{ color: 'var(--ink)', fontWeight: 600 }}>Support</span>
+          <span style={{ color: 'var(--ink)', fontWeight: 600 }}>Take Action</span>
         </nav>
 
         <span
@@ -128,7 +128,7 @@ const Support = () => {
             textTransform: 'uppercase',
           }}
         >
-          Support
+          Take Action
         </span>
 
         <h1
@@ -141,7 +141,7 @@ const Support = () => {
             margin: '0 0 0.5rem 0',
           }}
         >
-          Learn, Connect, and Take Action
+          Take Action
         </h1>
 
         <h2
@@ -153,7 +153,7 @@ const Support = () => {
             margin: '0 0 1rem 0',
           }}
         >
-          Your Health Journey Starts Here
+          Choose Your Next Step
         </h2>
 
         <p
@@ -165,7 +165,7 @@ const Support = () => {
             margin: '0 0 1rem 0',
           }}
         >
-          Chronic conditions like diabetes, heart disease, and stroke don&apos;t define you — they&apos;re part of a journey. This page brings together trusted information, tools, and support to help you understand your health, take informed steps, and connect with resources that meet you where you are.
+          Your life is already in motion. Chronic conditions like diabetes, heart disease, and stroke may be part of the path, but they don&apos;t decide where it leads. Use these tools, tips, and connections to take the next step that feels right for you.
         </p>
 
         {false && (

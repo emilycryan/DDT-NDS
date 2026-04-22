@@ -46,7 +46,7 @@ const HeartHealthPageLayout = ({ title, children }) => {
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
           <Link to="/resources" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
-            Resources
+            Learn More
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
           <Link to="/resources/heart-health/know-your-numbers" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>

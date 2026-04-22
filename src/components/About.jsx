@@ -136,7 +136,7 @@ const About = ({ onNavigate }) => {
             transition: 'background-color 0.2s ease, border-color 0.2s ease',
           }}
         >
-          Explore Resources
+          Explore Learn More
         </button>
       </div>
 

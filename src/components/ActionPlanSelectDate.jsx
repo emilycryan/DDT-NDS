@@ -84,7 +84,7 @@ const ActionPlanSelectDate = () => {
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
           <Link to="/support" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
-            Support
+            Take Action
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
           <span style={{ color: 'var(--ink)', fontWeight: 600 }}>Your Action Plan</span>

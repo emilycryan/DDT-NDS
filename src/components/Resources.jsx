@@ -99,7 +99,7 @@ const Resources = ({ onNavigate }) => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <span style={{ color: 'var(--ink)', fontWeight: 600 }}>Resources</span>
+          <span style={{ color: 'var(--ink)', fontWeight: 600 }}>Learn More</span>
         </nav>
 
         {/* Hero Section */}
@@ -119,7 +119,7 @@ const Resources = ({ onNavigate }) => {
               textTransform: 'uppercase',
             }}
           >
-            Prevention Resources
+            Learn More
           </span>
 
           <h1
@@ -132,7 +132,7 @@ const Resources = ({ onNavigate }) => {
               margin: '0 0 0.5rem 0',
             }}
           >
-            Prevention Resources
+            Learn More
           </h1>
 
           <p

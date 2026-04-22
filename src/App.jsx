@@ -342,7 +342,7 @@ function App() {
               margin: '0 auto 2rem',
               lineHeight: 1.6,
             }}>
-              Get started on your CDC: Path2Prevention journey to prevent chronic diseases. Find videos, interactive tools, and personalized information to help you learn more about preventing conditions like heart disease, stroke, diabetes, COPD, and obesity.
+              Get started on your Path2Prevention journey to prevent chronic diseases. Find videos, interactive tools, and personalized information to help you learn more about preventing conditions like heart disease, stroke, diabetes, COPD, and obesity.
             </p>
             <div style={{
               display: 'flex',
@@ -357,7 +357,7 @@ function App() {
           </div>
         </motion.section>
 
-        {/* Why CDC: Path2Prevention — two columns */}
+        {/* Why Path2Prevention — two columns */}
         <motion.section
           initial={{ opacity: 0, y: 36 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -382,7 +382,7 @@ function App() {
                 color: 'var(--ink)',
                 marginBottom: '1rem',
               }}>
-                Why CDC: Path2Prevention?
+                Why Path2Prevention?
               </h2>
               <p style={{
                 fontFamily: 'var(--font-body)',
@@ -391,7 +391,7 @@ function App() {
                 marginBottom: '2rem',
                 lineHeight: 1.6,
               }}>
-                CDC: Path2Prevention is an online resource for people who want to focus on preventing chronic diseases. Find videos, resources, and other personalized information to help you learn more about prevention.
+                Path2Prevention is an online resource for people who want to focus on preventing chronic diseases. Find videos, resources, and other personalized information to help you learn more about prevention.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
@@ -408,7 +408,7 @@ function App() {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
                   </div>
                   <div>
-                    <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Resources</div>
+                    <div style={{ fontFamily: 'var(--font-body)', fontWeight: '700', color: 'var(--ink)', marginBottom: '0.25rem' }}>Learn More</div>
                     <div style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)' }}>Download our guides and lifestyle journey tools.</div>
                   </div>
                 </div>
@@ -501,7 +501,7 @@ function App() {
                 lineHeight: 1.6,
               }}
             >
-              Click into a section below to find videos, interactive games, and more to start on your CDC: Path2Prevention.
+              Click into a section below to find videos, interactive games, and more to start on your Path2Prevention.
             </motion.p>
             <motion.div
               style={{

@@ -1,6 +1,6 @@
-# CDC: Path2Prevention Application
+# Path2Prevention Application
 
-A prototype for the new CDC: Path2Prevention platform
+A prototype for the new Path2Prevention platform
 
 ## Getting Started
 

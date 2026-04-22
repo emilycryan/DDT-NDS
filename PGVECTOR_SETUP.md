@@ -1,6 +1,6 @@
 # pgvector Setup Guide
 
-This guide will help you set up pgvector for semantic search in the CDC: Path2Prevention application.
+This guide will help you set up pgvector for semantic search in the Path2Prevention application.
 
 ## Overview
 

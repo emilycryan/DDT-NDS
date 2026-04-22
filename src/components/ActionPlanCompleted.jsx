@@ -137,7 +137,7 @@ const ActionPlanCompleted = () => {
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
           <Link to="/support" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
-            Support
+            Take Action
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
           <span style={{ color: 'var(--ink)', fontWeight: 600 }}>Your Action Plan</span>
@@ -363,7 +363,7 @@ const ActionPlanCompleted = () => {
 
         <p className="action-plan-no-print" style={{ textAlign: 'center', marginBottom: 0 }}>
           <Link to="/support" style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--ink-70)' }}>
-            ← Back to Support
+            ← Back to Take Action
           </Link>
         </p>
       </div>

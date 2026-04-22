@@ -143,7 +143,7 @@ const LifestylePrograms = () => {
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1`,
         {
           headers: {
-            'User-Agent': 'CDC-Path2Prevention-App' // Required by Nominatim
+            'User-Agent': 'Path2Prevention-App' // Required by Nominatim
           }
         }
       );
