@@ -331,7 +331,7 @@ const Learn = ({ onNavigate }) => {
         </section>
 
         {/* Learn With Video Section */}
-        <section style={{ marginTop: '3rem' }}>
+        <section style={{ marginTop: '2rem', marginBottom: 0, paddingBottom: 0 }}>
           <h2
             style={{
               fontSize: isMobile ? '1.75rem' : '2rem',
@@ -352,7 +352,7 @@ const Learn = ({ onNavigate }) => {
               margin: '0 0 1.5rem 0',
             }}
           >
-            CDC educational videos to help you understand chronic disease prevention.
+            CDC educational videos to help you understand how to manage prediabetes as part of a chronic disease prevention approach.
           </p>
           <div
             style={{

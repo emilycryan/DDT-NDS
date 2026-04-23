@@ -155,7 +155,7 @@ function App() {
       <Route path="/learn" element={
         <main style={{ minHeight: '80vh' }}>
           <Learn onNavigate={navigateTo} />
-          <section style={{ backgroundColor: 'var(--bg-content)', padding: isMobile ? '3rem 1rem' : '4rem 2rem' }}>
+          <section style={{ backgroundColor: 'var(--bg-content)', padding: isMobile ? '1.25rem 1rem 2.5rem' : '1.5rem 2rem 3rem' }}>
             <FAQs />
           </section>
         </main>

@@ -25,7 +25,7 @@ const FAQs = () => {
   }, []);
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '2rem 1rem' : '2rem 2rem' }}>
+    <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 1rem 1.5rem' : '0 2rem 2rem' }}>
       <h2
         style={{
           fontSize: isMobile ? '1.75rem' : '2rem',
