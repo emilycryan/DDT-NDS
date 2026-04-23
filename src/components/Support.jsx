@@ -277,12 +277,21 @@ const Support = () => {
       </div>
 
       {/* Content Sections */}
-      <section style={{ ...sectionStyles, maxWidth: 1200, backgroundColor: '#F8F7F5', padding: isMobile ? '2rem 1rem' : '3rem 2rem', borderRadius: 'var(--radius-md)' }}>
+      <section style={{
+        ...sectionStyles,
+        maxWidth: 'min(1200px, calc(100% - 4rem))',
+        margin: '0 auto',
+        backgroundColor: '#007833',
+        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 1px)',
+        backgroundSize: '24px 24px',
+        padding: isMobile ? '2rem 1.25rem' : '3rem 2rem',
+        borderRadius: 'var(--radius-md)',
+      }}>
         <h2 style={{
           fontSize: isMobile ? '1.75rem' : '2rem',
           fontFamily: 'var(--font-serif)',
           fontWeight: '600',
-          color: '#333333',
+          color: 'white',
           margin: '0 0 1.5rem 0',
         }}>
           Tools and Resources You Can Use Now
@@ -388,7 +397,7 @@ const Support = () => {
             </div>
           </div>
 
-          {/* Right Panel: Learn With Video (match left panel style) */}
+          {/* Right Panel: Find a Lifestyle Change Program */}
           <div style={{
             backgroundColor: 'white',
             borderRadius: 16,
@@ -400,13 +409,15 @@ const Support = () => {
                 width: 36,
                 height: 36,
                 borderRadius: 8,
-                backgroundColor: '#EF4623',
+                backgroundColor: '#2D363D',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <polygon points="5 3 19 12 5 21 5 3"/>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
                 </svg>
               </div>
               <h3 style={{
@@ -416,7 +427,7 @@ const Support = () => {
                 color: '#333333',
                 margin: 0,
               }}>
-                Learn With Video
+                Find a Lifestyle Change Program
               </h3>
             </div>
             <p style={{
@@ -426,57 +437,63 @@ const Support = () => {
               color: '#555555',
               lineHeight: 1.5,
             }}>
-              CDC educational videos to help you understand prevention.
+              CDC-recognized programs are proven to prevent or delay type 2 diabetes and other chronic conditions. Find one that fits your schedule — in person or online.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {[
-                {
-                  title: 'Meet Lisa: Preventing Prediabetes',
-                  href: 'https://www.youtube.com/watch?v=azKL5xutMJE',
-                },
-                {
-                  title: 'Imagine: You + National DPP',
-                  href: 'https://www.youtube.com/watch?v=k_XoHSIG20U&t=2s',
-                },
-                {
-                  title: 'Sneak Peek into the Lifestyle Change Program',
-                  href: 'https://www.youtube.com/watch?v=w0NDVI4M_Bs',
-                },
-              ].map((video, i) => (
-                <a
-                  key={i}
-                  href={video.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    padding: '1rem 1.25rem',
-                    backgroundColor: '#F7F7F7',
-                    borderRadius: 12,
-                    textDecoration: 'none',
-                  }}
-                >
-                  <div style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: '50%',
-                    backgroundColor: '#F45E4C',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                  }}>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 2 }}>
-                      <polygon points="5 3 19 12 5 21 5 3"/>
-                    </svg>
-                  </div>
-                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#EF4623', fontWeight: 600 }}>
-                    {video.title}
-                  </span>
-                </a>
-              ))}
+              <div style={{
+                backgroundColor: '#F7F7F7',
+                borderRadius: 12,
+                padding: '1rem 1.25rem',
+              }}>
+                <div style={{ marginBottom: '0.5rem' }}>
+                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Search for a program near you</strong>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
+                    Browse local and virtual programs in your area.
+                  </p>
+                  <a
+                    href="https://www.cdc.gov/diabetes-prevention/index.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn--compact-cta"
+                    style={{ textDecoration: 'none', color: 'var(--text-white)', flexShrink: 0 }}
+                  >
+                    Search Programs
+                  </a>
+                </div>
+              </div>
+              <div style={{
+                backgroundColor: '#F7F7F7',
+                borderRadius: 12,
+                padding: '1rem 1.25rem',
+              }}>
+                <div style={{ marginBottom: '0.5rem' }}>
+                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Support groups &amp; coaching</strong>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
+                  <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
+                    Connect with a coach or community group for ongoing support.
+                  </p>
+                  <a
+                    href="#"
+                    className="btn btn-secondary"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '10px 20px',
+                      fontSize: '14px',
+                      fontWeight: 600,
+                      borderRadius: 'var(--radius-md)',
+                      textDecoration: 'none',
+                      flexShrink: 0,
+                    }}
+                  >
+                    Learn More
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -732,7 +749,8 @@ const Support = () => {
 
       <section style={{
         ...sectionStyles,
-        maxWidth: 1200,
+        maxWidth: 'min(1200px, calc(100% - 4rem))',
+        margin: '0 auto',
         backgroundColor: '#fdfaf7',
         padding: isMobile ? '2rem 1rem' : '3rem 2rem',
         borderRadius: 'var(--radius-md)',

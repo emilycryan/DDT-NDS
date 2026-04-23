@@ -155,6 +155,9 @@ function App() {
       <Route path="/learn" element={
         <main style={{ minHeight: '80vh' }}>
           <Learn onNavigate={navigateTo} />
+          <section style={{ backgroundColor: 'var(--bg-content)', padding: isMobile ? '3rem 1rem' : '4rem 2rem' }}>
+            <FAQs />
+          </section>
         </main>
       } />
       <Route path="/learn/prediabetes/understanding-prediabetes" element={
@@ -276,9 +279,6 @@ function App() {
       <Route path="/action" element={
         <main style={{ minHeight: '80vh' }}>
           <Action />
-          <section style={{ backgroundColor: 'var(--bg-content)', padding: isMobile ? '3rem 1rem' : '4rem 2rem' }}>
-            <FAQs />
-          </section>
         </main>
       } />
       <Route path="/for-practitioners" element={

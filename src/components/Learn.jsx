@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 
 const educationalCards = [
   {
-    accentColor: '#E05A4D',
-    iconBgColor: '#FDE8E5',
+    bgColor: '#E05A4D',
+    badgeBg: '#FBE0D7',
+    badgeColor: '#c0392b',
+    badgeLabel: 'Diabetes Prevention',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
@@ -23,8 +25,10 @@ const educationalCards = [
     linkHref: '/learn/prediabetes/understanding-prediabetes',
   },
   {
-    accentColor: '#3C4449',
-    iconBgColor: '#E8E8E8',
+    bgColor: '#2D363D',
+    badgeBg: '#B0B5BA',
+    badgeColor: '#2D363D',
+    badgeLabel: 'Heart Health',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
@@ -43,8 +47,10 @@ const educationalCards = [
     linkHref: '/learn/heart-health/know-your-numbers',
   },
   {
-    accentColor: '#1f9660',
-    iconBgColor: '#e8f4ef',
+    bgColor: '#1f9660',
+    badgeBg: 'rgba(255,255,255,0.22)',
+    badgeColor: 'white',
+    badgeLabel: 'Healthy Living',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="12" cy="12" r="10" />
@@ -73,13 +79,6 @@ const Learn = ({ onNavigate }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  /* Compact hero cards — three across on desktop */
-  const heroPad = isMobile ? '1.5rem' : '1.25rem 1.1rem';
-  const heroTitle = isMobile ? '1.35rem' : 'clamp(1.2rem, 2.1vw, 1.5rem)';
-  const heroBody = '0.8125rem';
-  const heroBadgeMb = '0.85rem';
-  const heroPMb = '1rem';
 
   return (
     <div style={{ minHeight: '80vh', backgroundColor: 'white' }}>
@@ -150,7 +149,7 @@ const Learn = ({ onNavigate }) => {
               margin: '0 0 0.75rem 0',
             }}
           >
-            Tools and information to support your health journey
+            Evidence-based information to support your health journey
           </p>
 
           <p
@@ -162,309 +161,8 @@ const Learn = ({ onNavigate }) => {
               margin: 0,
             }}
           >
-            Access evidence-based resources, programs, and tools to help prevent chronic diseases and maintain a healthy
-            lifestyle.
+            Explore guides, videos, and expert resources to understand and prevent chronic diseases.
           </p>
-        </section>
-
-        {/* Three interactive hero cards (compact, one row on desktop) */}
-        <section
-          style={{
-            display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, minmax(0, 1fr))',
-            gap: '1rem',
-            marginBottom: '3rem',
-          }}
-        >
-          {/* Left — Find a Lifestyle Change Program */}
-          <div
-            style={{
-              backgroundColor: '#2D363D',
-              backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 0.5px, transparent 1px)',
-              backgroundSize: '24px 24px',
-              borderRadius: 'var(--radius-lg)',
-              padding: heroPad,
-              cursor: 'pointer',
-              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-            }}
-            onClick={() => onNavigate?.('lifestyle-programs')}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.15)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                backgroundColor: '#B0B5BA',
-                color: '#2D363D',
-                fontSize: '0.65rem',
-                fontWeight: '600',
-                letterSpacing: '0.05em',
-                padding: '0.3rem 0.7rem',
-                borderRadius: 'var(--radius-pill)',
-                marginBottom: heroBadgeMb,
-                fontFamily: 'var(--font-body)',
-                textTransform: 'uppercase',
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              Programs Near You
-            </span>
-
-            <h2
-              style={{
-                fontSize: heroTitle,
-                fontFamily: 'var(--font-serif)',
-                fontWeight: '600',
-                color: 'white',
-                margin: '0 0 0.65rem 0',
-                lineHeight: 1.2,
-              }}
-            >
-              Find a Lifestyle Change Program
-            </h2>
-
-            <p
-              style={{
-                fontSize: heroBody,
-                fontFamily: 'var(--font-body)',
-                color: 'rgba(255,255,255,0.9)',
-                lineHeight: 1.55,
-                margin: `0 0 ${heroPMb} 0`,
-              }}
-            >
-              CDC-recognized Lifestyle Change Intervention (LCI) programs are proven to lower the chances of type 2
-              diabetes and other chronic conditions. Find a program in your community or online that fits your schedule
-              and lifestyle.
-            </p>
-
-            <button
-              type="button"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                backgroundColor: 'white',
-                color: '#2D363D',
-                border: 'none',
-                borderRadius: 30,
-                padding: '0.55rem 1rem',
-                fontFamily: 'var(--font-body)',
-                fontWeight: '600',
-                fontSize: '0.8125rem',
-                cursor: 'pointer',
-              }}
-            >
-              Search Programs
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Center — Create a Plan (Action Plan) */}
-          <div
-            style={{
-              backgroundColor: '#007833',
-              backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 1px)',
-              backgroundSize: '24px 24px',
-              borderRadius: 'var(--radius-lg)',
-              padding: heroPad,
-              cursor: 'pointer',
-              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-            }}
-            onClick={() => onNavigate?.('action-plan')}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 119, 51, 0.35)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                backgroundColor: 'rgba(255,255,255,0.22)',
-                color: 'white',
-                fontSize: '0.65rem',
-                fontWeight: '600',
-                letterSpacing: '0.05em',
-                padding: '0.3rem 0.7rem',
-                borderRadius: 'var(--radius-pill)',
-                marginBottom: heroBadgeMb,
-                fontFamily: 'var(--font-body)',
-                textTransform: 'uppercase',
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Guided Plan
-            </span>
-
-            <h2
-              style={{
-                fontSize: heroTitle,
-                fontFamily: 'var(--font-serif)',
-                fontWeight: '600',
-                color: 'white',
-                margin: '0 0 0.65rem 0',
-                lineHeight: 1.2,
-              }}
-            >
-              Plan My Path
-            </h2>
-
-            <p
-              style={{
-                fontSize: heroBody,
-                fontFamily: 'var(--font-body)',
-                color: 'rgba(255,255,255,0.95)',
-                lineHeight: 1.55,
-                margin: `0 0 ${heroPMb} 0`,
-              }}
-            >
-              Build a personalized, step-by-step Action Plan that captures your motivators, logistics, and class
-              preferences — then take it with you when you connect with a program.
-            </p>
-
-            <button
-              type="button"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                backgroundColor: 'white',
-                color: '#007833',
-                border: 'none',
-                borderRadius: 30,
-                padding: '0.55rem 1rem',
-                fontFamily: 'var(--font-body)',
-                fontWeight: '600',
-                fontSize: '0.8125rem',
-                cursor: 'pointer',
-              }}
-            >
-              Create Plan
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Right — Get started questions */}
-          <div
-            style={{
-              backgroundColor: '#F35831',
-              backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 1px)',
-              backgroundSize: '24px 24px',
-              borderRadius: 'var(--radius-lg)',
-              padding: heroPad,
-              cursor: 'pointer',
-              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-            }}
-            onClick={() => onNavigate?.('get-started')}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(239, 70, 35, 0.35)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                backgroundColor: '#FBE0D7',
-                color: '#F35831',
-                fontSize: '0.65rem',
-                fontWeight: '600',
-                letterSpacing: '0.05em',
-                padding: '0.3rem 0.7rem',
-                borderRadius: 'var(--radius-pill)',
-                marginBottom: heroBadgeMb,
-                fontFamily: 'var(--font-body)',
-                textTransform: 'uppercase',
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1.5">
-                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-              </svg>
-              Free • 10 Minutes
-            </span>
-
-            <h2
-              style={{
-                fontSize: heroTitle,
-                fontFamily: 'var(--font-serif)',
-                fontWeight: '600',
-                color: 'white',
-                margin: '0 0 0.65rem 0',
-                lineHeight: 1.2,
-              }}
-            >
-              Answer a Few Questions
-            </h2>
-
-            <p
-              style={{
-                fontSize: heroBody,
-                fontFamily: 'var(--font-body)',
-                color: 'rgba(255,255,255,0.95)',
-                lineHeight: 1.55,
-                margin: `0 0 ${heroPMb} 0`,
-              }}
-            >
-              Not sure where to start? Our free, confidential questions help you understand how your health picture
-              relates to conditions like type 2 diabetes, heart disease, and more — and point you toward the right
-              resources.
-            </p>
-
-            <button
-              type="button"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                backgroundColor: 'white',
-                color: '#F35831',
-                border: 'none',
-                borderRadius: 30,
-                padding: '0.55rem 1rem',
-                fontFamily: 'var(--font-body)',
-                fontWeight: '600',
-                fontSize: '0.8125rem',
-                cursor: 'pointer',
-              }}
-            >
-              Get Started
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
         </section>
 
         {/* Educational Resources Section */}
@@ -498,44 +196,62 @@ const Learn = ({ onNavigate }) => {
               display: 'grid',
               gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
               gap: '1.5rem',
+              marginBottom: '0.5rem',
             }}
           >
             {educationalCards.map((card, i) => (
               <div
                 key={i}
                 style={{
-                  backgroundColor: 'white',
-                  borderRadius: 'var(--radius-md)',
-                  padding: '1.5rem',
-                  border: '1px solid #e5e5e5',
-                  borderTop: `3px solid ${card.accentColor}`,
+                  backgroundColor: card.bgColor,
+                  backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 1px)',
+                  backgroundSize: '24px 24px',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: isMobile ? '1.5rem' : '1.25rem 1.5rem',
                   display: 'flex',
                   flexDirection: 'column',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.18)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
                 }}
               >
-                <div
+                <span
                   style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 8,
-                    backgroundColor: card.iconBgColor,
-                    color: card.accentColor,
-                    display: 'flex',
+                    display: 'inline-flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '1rem',
+                    gap: '0.5rem',
+                    backgroundColor: card.badgeBg,
+                    color: card.badgeColor,
+                    fontSize: '0.65rem',
+                    fontWeight: '600',
+                    letterSpacing: '0.05em',
+                    padding: '0.3rem 0.7rem',
+                    borderRadius: 'var(--radius-pill)',
+                    marginBottom: '0.85rem',
+                    fontFamily: 'var(--font-body)',
+                    textTransform: 'uppercase',
+                    alignSelf: 'flex-start',
                   }}
                 >
                   {card.icon}
-                </div>
+                  {card.badgeLabel}
+                </span>
 
                 <h3
                   style={{
-                    fontSize: '1.5rem',
+                    fontSize: isMobile ? '1.35rem' : 'clamp(1.2rem, 2.1vw, 1.5rem)',
                     fontFamily: 'var(--font-serif)',
                     fontWeight: 600,
-                    color: '#2e2e2e',
-                    margin: '0 0 0.75rem 0',
+                    color: 'white',
+                    margin: '0 0 0.65rem 0',
+                    lineHeight: 1.2,
                   }}
                 >
                   {card.title}
@@ -543,10 +259,9 @@ const Learn = ({ onNavigate }) => {
 
                 <p
                   style={{
-                    fontSize: '0.9375rem',
+                    fontSize: '0.8125rem',
                     fontFamily: 'var(--font-body)',
-                    fontWeight: 400,
-                    color: '#6B7280',
+                    color: 'rgba(255,255,255,0.88)',
                     lineHeight: 1.55,
                     margin: '0 0 1rem 0',
                   }}
@@ -558,11 +273,10 @@ const Learn = ({ onNavigate }) => {
                   style={{
                     listStyle: 'none',
                     paddingLeft: 0,
-                    margin: '0 0 1rem 0',
-                    fontSize: '0.9375rem',
+                    margin: '0 0 1.25rem 0',
+                    fontSize: '0.8125rem',
                     fontFamily: 'var(--font-body)',
-                    fontWeight: 400,
-                    color: '#6B7280',
+                    color: 'rgba(255,255,255,0.82)',
                     lineHeight: 1.6,
                   }}
                 >
@@ -573,10 +287,10 @@ const Learn = ({ onNavigate }) => {
                           position: 'absolute',
                           left: 0,
                           top: '0.65em',
-                          width: 6,
-                          height: 6,
+                          width: 5,
+                          height: 5,
                           borderRadius: '50%',
-                          backgroundColor: '#9CA3AF',
+                          backgroundColor: 'rgba(255,255,255,0.6)',
                           display: 'inline-block',
                         }}
                       />
@@ -591,16 +305,114 @@ const Learn = ({ onNavigate }) => {
                   to={card.linkHref || '#'}
                   style={{
                     marginTop: 'auto',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    backgroundColor: 'white',
+                    color: card.bgColor,
+                    border: 'none',
+                    borderRadius: 30,
+                    padding: '0.55rem 1rem',
                     fontFamily: 'var(--font-body)',
-                    fontWeight: 600,
-                    fontSize: '0.875rem',
-                    color: card.accentColor,
+                    fontWeight: '600',
+                    fontSize: '0.8125rem',
                     textDecoration: 'none',
+                    alignSelf: 'flex-start',
                   }}
                 >
-                  {card.linkText}
+                  {card.linkText.replace(' →', '')}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
                 </Link>
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Learn With Video Section */}
+        <section style={{ marginTop: '3rem' }}>
+          <h2
+            style={{
+              fontSize: isMobile ? '1.75rem' : '2rem',
+              fontFamily: 'var(--font-serif)',
+              fontWeight: '600',
+              color: '#333333',
+              margin: '0 0 0.5rem 0',
+            }}
+          >
+            Learn With Video
+          </h2>
+          <p
+            style={{
+              fontSize: '1rem',
+              fontFamily: 'var(--font-body)',
+              color: '#555555',
+              lineHeight: 1.5,
+              margin: '0 0 1.5rem 0',
+            }}
+          >
+            CDC educational videos to help you understand chronic disease prevention.
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+              gap: '1rem',
+            }}
+          >
+            {[
+              { title: 'Meet Lisa: Preventing Prediabetes', href: 'https://www.youtube.com/watch?v=azKL5xutMJE' },
+              { title: 'Imagine: You + National DPP', href: 'https://www.youtube.com/watch?v=k_XoHSIG20U&t=2s' },
+              { title: 'Sneak Peek into the Lifestyle Change Program', href: 'https://www.youtube.com/watch?v=w0NDVI4M_Bs' },
+            ].map((video, i) => (
+              <a
+                key={i}
+                href={video.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  padding: '1rem 1.25rem',
+                  backgroundColor: 'white',
+                  border: '1px solid #e5e5e5',
+                  borderRadius: 12,
+                  textDecoration: 'none',
+                  transition: 'box-shadow 0.2s ease',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.boxShadow = 'none'; }}
+              >
+                <div
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    backgroundColor: '#F45E4C',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="white" style={{ marginLeft: 2 }}>
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                </div>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '0.9375rem',
+                    color: '#EF4623',
+                    fontWeight: 600,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {video.title}
+                </span>
+              </a>
             ))}
           </div>
         </section>
