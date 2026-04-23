@@ -86,7 +86,7 @@ const ActionPlanBarriers = () => {
     try {
       const n = sessionStorage.getItem('actionPlanFirstName');
       if (!n) {
-        navigate('/support/action-plan', { replace: true });
+        navigate('/action/action-plan', { replace: true });
         return;
       }
       const raw = sessionStorage.getItem('actionPlanBarrierIds');
@@ -101,7 +101,7 @@ const ActionPlanBarriers = () => {
       const o = sessionStorage.getItem('actionPlanBarrierOther');
       if (o) setOther(o);
     } catch {
-      navigate('/support/action-plan', { replace: true });
+      navigate('/action/action-plan', { replace: true });
     }
   }, [navigate]);
 
@@ -128,7 +128,7 @@ const ActionPlanBarriers = () => {
     } catch {
       /* ignore */
     }
-    navigate('/support/action-plan/class-preferences');
+    navigate('/action/action-plan/class-preferences');
   };
 
   return (
@@ -136,7 +136,7 @@ const ActionPlanBarriers = () => {
       <div style={{ maxWidth: 960, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', position: 'relative' }}>
           <Link
-            to="/support/action-plan/dpp-information"
+            to="/action/action-plan/dpp-information"
             aria-label="Back to previous step"
             style={{
               display: 'inline-flex',
@@ -173,7 +173,7 @@ const ActionPlanBarriers = () => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/support" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/action" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Take Action
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>

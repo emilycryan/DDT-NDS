@@ -58,7 +58,7 @@ const ActionPlanStart = () => {
     } catch {
       /* ignore */
     }
-    navigate('/support/action-plan/motivators');
+    navigate('/action/action-plan/motivators');
   };
 
   return (
@@ -77,7 +77,7 @@ const ActionPlanStart = () => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/support" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/action" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Take Action
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>

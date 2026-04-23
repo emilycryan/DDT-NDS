@@ -30,8 +30,8 @@ const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
     if (destination === 'home') {
       navigate('/');
     } else if (destination === 'about') navigate('/about');
-    else if (destination === 'resources') navigate('/resources');
-    else if (destination === 'support') navigate('/support');
+    else if (destination === 'learn' || destination === 'resources') navigate('/learn');
+    else if (destination === 'action' || destination === 'support') navigate('/action');
     else if (destination === 'for-practitioners') navigate('/for-practitioners');
     else if (destination === 'get-started') navigate('/get-started');
     else if (destination === 'lifestyle-programs') navigate('/lifestyle-programs');
@@ -115,8 +115,8 @@ const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
 
           <nav style={{ display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: '18px' }}>
             <Link to="/about" className="header-nav-text-link">About</Link>
-            <Link to="/resources" className="header-nav-text-link">Learn More</Link>
-            <Link to="/support" className="header-nav-text-link">Take Action</Link>
+            <Link to="/learn" className="header-nav-text-link">Learn More</Link>
+            <Link to="/action" className="header-nav-text-link">Take Action</Link>
             <Link to="/for-practitioners" className="header-nav-text-link">For Practitioners</Link>
             <Link
               to="/lifestyle-programs"
@@ -179,8 +179,8 @@ const CDCHeader = ({ goToHomeSection, scrollToSection, currentPage }) => {
             padding: '16px 24px',
           }}>
             <Link to="/about" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">About</Link>
-            <Link to="/resources" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">Learn More</Link>
-            <Link to="/support" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">Take Action</Link>
+            <Link to="/learn" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">Learn More</Link>
+            <Link to="/action" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">Take Action</Link>
             <Link to="/for-practitioners" onClick={() => setIsMenuOpen(false)} className="header-nav-text-link header-nav-text-link--drawer">For Practitioners</Link>
             <Link to="/lifestyle-programs" onClick={() => setIsMenuOpen(false)} className="btn btn-secondary" style={{ display: 'block', width: '100%', marginTop: 8, textAlign: 'center', textDecoration: 'none' }}>Find a Program</Link>
             <Link to="/get-started" onClick={() => setIsMenuOpen(false)} className="btn btn-primary" style={{ display: 'block', width: '100%', marginTop: 8, textAlign: 'center', textDecoration: 'none', color: 'white' }}>GET STARTED</Link>

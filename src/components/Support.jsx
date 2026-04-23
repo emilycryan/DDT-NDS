@@ -367,7 +367,7 @@ const Support = () => {
                     Create a personalized Action Plan to support a healthy lifestyle
                   </p>
                   <Link
-                    to="/support/action-plan"
+                    to="/action/action-plan"
                     className="btn btn-secondary"
                     style={{
                       display: 'inline-flex',
@@ -765,7 +765,7 @@ const Support = () => {
         }}>
           {[
             {
-              path: '/support/tips/how-to-read-food-labels',
+              path: '/action/tips/how-to-read-food-labels',
               icon: (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
@@ -779,7 +779,7 @@ const Support = () => {
               description: 'Decode nutrition facts to make smarter choices at the grocery store — without guesswork.',
             },
             {
-              path: '/support/tips/meal-planning-on-budget',
+              path: '/action/tips/meal-planning-on-budget',
               icon: (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
                   <line x1="8" y1="6" x2="21" y2="6"/>
@@ -794,7 +794,7 @@ const Support = () => {
               description: 'Healthy eating doesn\'t have to be expensive. Simple strategies for nutritious meals that fit your wallet.',
             },
             {
-              path: '/support/tips/moving-more-when-busy',
+              path: '/action/tips/moving-more-when-busy',
               icon: (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                   <circle cx="12" cy="12" r="10"/>
@@ -805,7 +805,7 @@ const Support = () => {
               description: "Small amounts of activity add up. Find easy ways to move throughout your day without a gym or extra time.",
             },
             {
-              path: '/support/tips/setting-realistic-goals',
+              path: '/action/tips/setting-realistic-goals',
               icon: (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>

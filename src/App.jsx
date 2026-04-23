@@ -10,8 +10,8 @@ import QuestionsChronicConditions from './components/QuestionsChronicConditions'
 import QuestionsCaregiverFlow from './components/QuestionsCaregiverFlow'
 import QuestionsJustCuriousFlow from './components/QuestionsJustCuriousFlow'
 import About from './components/About'
-import Resources from './components/Resources'
-import Support from './components/Support'
+import Learn from './components/Learn'
+import Action from './components/Action'
 import ForPractitioners from './components/ForPractitioners'
 import PractitionerFeedback from './components/PractitionerFeedback'
 import HealthFactorsChecklist from './components/HealthFactorsChecklist'
@@ -69,18 +69,32 @@ const scrollToSection = (sectionId) => {
 
 const PAGE_TO_PATH = {
   'about': '/about',
-  'resources': '/resources',
-  'support': '/support',
+  'learn': '/learn',
+  'action': '/action',
   'for-practitioners': '/for-practitioners',
   'get-started': '/get-started',
   'lifestyle-programs': '/lifestyle-programs',
-  'action-plan': '/support/action-plan',
+  'action-plan': '/action/action-plan',
   'questions-for-myself': '/get-started/for-myself',
   'questions-for-someone': '/get-started/for-someone',
   'questions-just-curious': '/get-started/just-curious',
+  // Back-compat aliases (old nav names)
+  'resources': '/learn',
+  'support': '/action',
 }
 
 const PATH_TO_PAGE = Object.fromEntries(Object.entries(PAGE_TO_PATH).map(([k, v]) => [v, k]))
+
+function PrefixRedirect({ fromPrefix, toPrefix }) {
+  const location = useLocation()
+
+  const pathname = location.pathname || '/'
+  if (!pathname.startsWith(fromPrefix)) return <Navigate to="/" replace />
+
+  const nextPathname = pathname.replace(fromPrefix, toPrefix)
+  const to = `${nextPathname}${location.search || ''}${location.hash || ''}`
+  return <Navigate to={to} replace />
+}
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
@@ -109,12 +123,12 @@ function App() {
   }
 
   const handleChatbotNavigate = (destination) => {
-    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs', 'action-plan'].includes(destination)) onNavigate(destination)
+    if (['about', 'learn', 'action', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs', 'action-plan'].includes(destination)) onNavigate(destination)
     else goToHomeSection(destination)
   }
 
   const navigateTo = (destination) => {
-    if (['about', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs', 'action-plan'].includes(destination)) onNavigate(destination)
+    if (['about', 'learn', 'action', 'resources', 'support', 'for-practitioners', 'get-started', 'lifestyle-programs', 'action-plan'].includes(destination)) onNavigate(destination)
     else goToHomeSection(destination)
   }
 
@@ -129,135 +143,139 @@ function App() {
       />
 
       <Routes>
+      {/* Backward-compatible URL prefixes */}
+      <Route path="/resources/*" element={<PrefixRedirect fromPrefix="/resources" toPrefix="/learn" />} />
+      <Route path="/support/*" element={<PrefixRedirect fromPrefix="/support" toPrefix="/action" />} />
+
       <Route path="/about" element={
         <main style={{ minHeight: '80vh' }}>
           <About onNavigate={navigateTo} />
         </main>
       } />
-      <Route path="/resources" element={
+      <Route path="/learn" element={
         <main style={{ minHeight: '80vh' }}>
-          <Resources onNavigate={navigateTo} />
+          <Learn onNavigate={navigateTo} />
         </main>
       } />
-      <Route path="/resources/prediabetes/understanding-prediabetes" element={
+      <Route path="/learn/prediabetes/understanding-prediabetes" element={
         <main style={{ minHeight: '80vh' }}>
           <UnderstandingPrediabetes />
         </main>
       } />
-      <Route path="/resources/prediabetes/nutrition-blood-sugar" element={
+      <Route path="/learn/prediabetes/nutrition-blood-sugar" element={
         <main style={{ minHeight: '80vh' }}>
           <NutritionBloodSugar />
         </main>
       } />
-      <Route path="/resources/prediabetes/physical-activity-insulin-sensitivity" element={
+      <Route path="/learn/prediabetes/physical-activity-insulin-sensitivity" element={
         <main style={{ minHeight: '80vh' }}>
           <ExerciseInsulinSensitivity />
         </main>
       } />
-      <Route path="/resources/prediabetes/dpp-program-overview" element={
+      <Route path="/learn/prediabetes/dpp-program-overview" element={
         <main style={{ minHeight: '80vh' }}>
           <DPPProgramOverview />
         </main>
       } />
-      <Route path="/resources/heart-health/know-your-numbers" element={
+      <Route path="/learn/heart-health/know-your-numbers" element={
         <main style={{ minHeight: '80vh' }}>
           <KnowYourNumbers />
         </main>
       } />
-      <Route path="/resources/heart-health/blood-pressure-cholesterol" element={
+      <Route path="/learn/heart-health/blood-pressure-cholesterol" element={
         <main style={{ minHeight: '80vh' }}>
           <BloodPressureCholesterol />
         </main>
       } />
-      <Route path="/resources/heart-health/heart-healthy-eating" element={
+      <Route path="/learn/heart-health/heart-healthy-eating" element={
         <main style={{ minHeight: '80vh' }}>
           <HeartHealthyEating />
         </main>
       } />
-      <Route path="/resources/heart-health/stress-and-heart-health" element={
+      <Route path="/learn/heart-health/stress-and-heart-health" element={
         <main style={{ minHeight: '80vh' }}>
           <StressHeartHealth />
         </main>
       } />
-      <Route path="/resources/heart-health/stress-cardiovascular-risk" element={<Navigate to="/resources/heart-health/stress-and-heart-health" replace />} />
-      <Route path="/resources/healthy-living/building-healthy-habits" element={
+      <Route path="/learn/heart-health/stress-cardiovascular-risk" element={<Navigate to="/learn/heart-health/stress-and-heart-health" replace />} />
+      <Route path="/learn/healthy-living/building-healthy-habits" element={
         <main style={{ minHeight: '80vh' }}>
           <BuildingHealthyHabits />
         </main>
       } />
-      <Route path="/resources/healthy-living/sleep-recovery" element={
+      <Route path="/learn/healthy-living/sleep-recovery" element={
         <main style={{ minHeight: '80vh' }}>
           <SleepRecovery />
         </main>
       } />
-      <Route path="/resources/healthy-living/mental-health-resilience" element={
+      <Route path="/learn/healthy-living/mental-health-resilience" element={
         <main style={{ minHeight: '80vh' }}>
           <MentalHealthResilience />
         </main>
       } />
-      <Route path="/resources/healthy-living/social-connection" element={
+      <Route path="/learn/healthy-living/social-connection" element={
         <main style={{ minHeight: '80vh' }}>
           <SocialConnection />
         </main>
       } />
-      <Route path="/support/tips/how-to-read-food-labels" element={
+      <Route path="/action/tips/how-to-read-food-labels" element={
         <main style={{ minHeight: '80vh' }}>
           <HowToReadFoodLabels />
         </main>
       } />
-      <Route path="/support/tips/meal-planning-on-budget" element={
+      <Route path="/action/tips/meal-planning-on-budget" element={
         <main style={{ minHeight: '80vh' }}>
           <MealPlanningOnBudget />
         </main>
       } />
-      <Route path="/support/tips/moving-more-when-busy" element={
+      <Route path="/action/tips/moving-more-when-busy" element={
         <main style={{ minHeight: '80vh' }}>
           <MovingMoreWhenBusy />
         </main>
       } />
-      <Route path="/support/tips/setting-realistic-goals" element={
+      <Route path="/action/tips/setting-realistic-goals" element={
         <main style={{ minHeight: '80vh' }}>
           <SettingRealisticGoals />
         </main>
       } />
-      <Route path="/support/action-plan" element={
+      <Route path="/action/action-plan" element={
         <main style={{ minHeight: '80vh' }}>
           <ActionPlanStart />
         </main>
       } />
-      <Route path="/support/action-plan/motivators" element={
+      <Route path="/action/action-plan/motivators" element={
         <main style={{ minHeight: '80vh' }}>
           <ActionPlanMotivators />
         </main>
       } />
-      <Route path="/support/action-plan/dpp-information" element={
+      <Route path="/action/action-plan/dpp-information" element={
         <main style={{ minHeight: '80vh' }}>
           <ActionPlanDppInfo />
         </main>
       } />
-      <Route path="/support/action-plan/barriers" element={
+      <Route path="/action/action-plan/barriers" element={
         <main style={{ minHeight: '80vh' }}>
           <ActionPlanBarriers />
         </main>
       } />
-      <Route path="/support/action-plan/class-preferences" element={
+      <Route path="/action/action-plan/class-preferences" element={
         <main style={{ minHeight: '80vh' }}>
           <ActionPlanClassPreferences />
         </main>
       } />
-      <Route path="/support/action-plan/select-date" element={
+      <Route path="/action/action-plan/select-date" element={
         <main style={{ minHeight: '80vh' }}>
           <ActionPlanSelectDate />
         </main>
       } />
-      <Route path="/support/action-plan/completed" element={
+      <Route path="/action/action-plan/completed" element={
         <main style={{ minHeight: '80vh' }}>
           <ActionPlanCompleted />
         </main>
       } />
-      <Route path="/support" element={
+      <Route path="/action" element={
         <main style={{ minHeight: '80vh' }}>
-          <Support />
+          <Action />
           <section style={{ backgroundColor: 'var(--bg-content)', padding: isMobile ? '3rem 1rem' : '4rem 2rem' }}>
             <FAQs />
           </section>
@@ -529,7 +547,7 @@ function App() {
                 variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ scale: 1.04, transition: { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] } }}
-                onClick={() => onNavigate('resources')}
+                onClick={() => onNavigate('learn')}
                 className="card card-clickable"
                 style={{ textAlign: 'center', padding: '2rem', cursor: 'pointer', transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
               >

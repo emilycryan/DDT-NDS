@@ -98,7 +98,7 @@ const ActionPlanMotivators = () => {
     try {
       const n = sessionStorage.getItem('actionPlanFirstName');
       if (!n) {
-        navigate('/support/action-plan', { replace: true });
+        navigate('/action/action-plan', { replace: true });
         return;
       }
       const raw = sessionStorage.getItem('actionPlanMotivatorIds');
@@ -113,7 +113,7 @@ const ActionPlanMotivators = () => {
       const o = sessionStorage.getItem('actionPlanMotivatorOther');
       if (o) setOther(o);
     } catch {
-      navigate('/support/action-plan', { replace: true });
+      navigate('/action/action-plan', { replace: true });
     }
   }, [navigate]);
 
@@ -140,7 +140,7 @@ const ActionPlanMotivators = () => {
     } catch {
       /* ignore */
     }
-    navigate('/support/action-plan/dpp-information');
+    navigate('/action/action-plan/dpp-information');
   };
 
   return (
@@ -159,7 +159,7 @@ const ActionPlanMotivators = () => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/support" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/action" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Take Action
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const PAGE_SEQUENCE = [
-  { path: '/resources/heart-health/know-your-numbers', title: 'Know Your Numbers' },
-  { path: '/resources/heart-health/blood-pressure-cholesterol', title: 'Blood Pressure & Cholesterol' },
-  { path: '/resources/heart-health/heart-healthy-eating', title: 'Heart-Healthy Eating' },
-  { path: '/resources/heart-health/stress-and-heart-health', title: 'Stress & Heart Health' },
+  { path: '/learn/heart-health/know-your-numbers', title: 'Know Your Numbers' },
+  { path: '/learn/heart-health/blood-pressure-cholesterol', title: 'Blood Pressure & Cholesterol' },
+  { path: '/learn/heart-health/heart-healthy-eating', title: 'Heart-Healthy Eating' },
+  { path: '/learn/heart-health/stress-and-heart-health', title: 'Stress & Heart Health' },
 ];
 
 const HeartHealthPageLayout = ({ title, children }) => {
@@ -45,11 +45,11 @@ const HeartHealthPageLayout = ({ title, children }) => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/resources" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/learn" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Learn More
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/resources/heart-health/know-your-numbers" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/learn/heart-health/know-your-numbers" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Heart Health
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>

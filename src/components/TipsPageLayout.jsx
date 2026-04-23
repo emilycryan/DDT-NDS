@@ -30,7 +30,7 @@ const TipsPageLayout = ({ title, children }) => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/support" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/action" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Take Action
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>

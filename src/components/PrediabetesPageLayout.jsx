@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const PAGE_SEQUENCE = [
-  { path: '/resources/prediabetes/understanding-prediabetes', title: 'Understanding Prediabetes' },
-  { path: '/resources/prediabetes/nutrition-blood-sugar', title: 'Nutrition & Blood Sugar' },
-  { path: '/resources/prediabetes/physical-activity-insulin-sensitivity', title: 'Physical Activity & Insulin Sensitivity' },
-  { path: '/resources/prediabetes/dpp-program-overview', title: 'National DPP Lifestyle Change Program Overview' },
+  { path: '/learn/prediabetes/understanding-prediabetes', title: 'Understanding Prediabetes' },
+  { path: '/learn/prediabetes/nutrition-blood-sugar', title: 'Nutrition & Blood Sugar' },
+  { path: '/learn/prediabetes/physical-activity-insulin-sensitivity', title: 'Physical Activity & Insulin Sensitivity' },
+  { path: '/learn/prediabetes/dpp-program-overview', title: 'National DPP Lifestyle Change Program Overview' },
 ];
 
 const PrediabetesPageLayout = ({ title, children }) => {
@@ -45,11 +45,11 @@ const PrediabetesPageLayout = ({ title, children }) => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/resources" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/learn" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Learn More
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/resources/prediabetes/understanding-prediabetes" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/learn/prediabetes/understanding-prediabetes" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Prediabetes
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>

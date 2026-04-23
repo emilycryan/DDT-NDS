@@ -54,11 +54,11 @@ const ActionPlanCompleted = () => {
       const first = sessionStorage.getItem('actionPlanFirstName');
       const contact = sessionStorage.getItem('actionPlanContactDate');
       if (!first) {
-        navigate('/support/action-plan', { replace: true });
+        navigate('/action/action-plan', { replace: true });
         return;
       }
       if (!contact) {
-        navigate('/support/action-plan/select-date', { replace: true });
+        navigate('/action/action-plan/select-date', { replace: true });
         return;
       }
       setSnapshot({
@@ -72,7 +72,7 @@ const ActionPlanCompleted = () => {
         contactDate: contact,
       });
     } catch {
-      navigate('/support/action-plan', { replace: true });
+      navigate('/action/action-plan', { replace: true });
     }
   }, [navigate]);
 
@@ -107,7 +107,7 @@ const ActionPlanCompleted = () => {
     } catch {
       /* ignore */
     }
-    navigate('/support/action-plan');
+    navigate('/action/action-plan');
   };
 
   const handlePrint = () => {
@@ -136,7 +136,7 @@ const ActionPlanCompleted = () => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/support" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/action" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Take Action
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
@@ -362,7 +362,7 @@ const ActionPlanCompleted = () => {
         </div>
 
         <p className="action-plan-no-print" style={{ textAlign: 'center', marginBottom: 0 }}>
-          <Link to="/support" style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--ink-70)' }}>
+          <Link to="/action" style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--ink-70)' }}>
             ← Back to Take Action
           </Link>
         </p>

@@ -19,13 +19,13 @@ const ActionPlanSelectDate = () => {
   useEffect(() => {
     try {
       if (!sessionStorage.getItem('actionPlanFirstName')) {
-        navigate('/support/action-plan', { replace: true });
+        navigate('/action/action-plan', { replace: true });
         return;
       }
       const saved = sessionStorage.getItem('actionPlanContactDate');
       if (saved) setDateValue(saved);
     } catch {
-      navigate('/support/action-plan', { replace: true });
+      navigate('/action/action-plan', { replace: true });
     }
   }, [navigate]);
 
@@ -40,7 +40,7 @@ const ActionPlanSelectDate = () => {
     } catch {
       /* ignore */
     }
-    navigate('/support/action-plan/completed');
+    navigate('/action/action-plan/completed');
   };
 
   return (
@@ -48,7 +48,7 @@ const ActionPlanSelectDate = () => {
       <div style={{ maxWidth: 520, margin: '0 auto' }}>
         <div style={{ marginBottom: '1rem' }}>
           <Link
-            to="/support/action-plan/class-preferences"
+            to="/action/action-plan/class-preferences"
             aria-label="Back to previous step"
             style={{
               display: 'inline-flex',
@@ -83,7 +83,7 @@ const ActionPlanSelectDate = () => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/support" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/action" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Take Action
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
@@ -215,7 +215,7 @@ const ActionPlanSelectDate = () => {
         </form>
 
         <p style={{ textAlign: 'center', marginTop: '1.5rem', marginBottom: 0 }}>
-          <Link to="/support/action-plan/class-preferences" style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--ink-70)' }}>
+          <Link to="/action/action-plan/class-preferences" style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--ink-70)' }}>
             ← Back
           </Link>
         </p>

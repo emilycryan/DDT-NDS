@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const PAGE_SEQUENCE = [
-  { path: '/resources/healthy-living/building-healthy-habits', title: 'Building Healthy Habits' },
-  { path: '/resources/healthy-living/sleep-recovery', title: 'Sleep & Recovery' },
-  { path: '/resources/healthy-living/mental-health-resilience', title: 'Mental Health & Resilience' },
-  { path: '/resources/healthy-living/social-connection', title: 'Social Connection' },
+  { path: '/learn/healthy-living/building-healthy-habits', title: 'Building Healthy Habits' },
+  { path: '/learn/healthy-living/sleep-recovery', title: 'Sleep & Recovery' },
+  { path: '/learn/healthy-living/mental-health-resilience', title: 'Mental Health & Resilience' },
+  { path: '/learn/healthy-living/social-connection', title: 'Social Connection' },
 ];
 
 const HealthyLivingPageLayout = ({ title, children }) => {
@@ -45,11 +45,11 @@ const HealthyLivingPageLayout = ({ title, children }) => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/resources" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/learn" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Learn More
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/resources/healthy-living/building-healthy-habits" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/learn/healthy-living/building-healthy-habits" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Overall Healthy Living
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>

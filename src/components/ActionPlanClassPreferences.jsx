@@ -83,7 +83,7 @@ const ActionPlanClassPreferences = () => {
   useEffect(() => {
     try {
       if (!sessionStorage.getItem('actionPlanFirstName')) {
-        navigate('/support/action-plan', { replace: true });
+        navigate('/action/action-plan', { replace: true });
         return;
       }
       const p = sessionStorage.getItem('actionPlanParticipationIds');
@@ -105,7 +105,7 @@ const ActionPlanClassPreferences = () => {
         }
       }
     } catch {
-      navigate('/support/action-plan', { replace: true });
+      navigate('/action/action-plan', { replace: true });
     }
   }, [navigate]);
 
@@ -141,7 +141,7 @@ const ActionPlanClassPreferences = () => {
     } catch {
       /* ignore */
     }
-    navigate('/support/action-plan/select-date');
+    navigate('/action/action-plan/select-date');
   };
 
   return (
@@ -149,7 +149,7 @@ const ActionPlanClassPreferences = () => {
       <div style={{ maxWidth: 960, margin: '0 auto' }}>
         <div style={{ marginBottom: '1rem' }}>
           <Link
-            to="/support/action-plan/barriers"
+            to="/action/action-plan/barriers"
             aria-label="Back to previous step"
             style={{
               display: 'inline-flex',
@@ -184,7 +184,7 @@ const ActionPlanClassPreferences = () => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/support" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/action" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Take Action
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
@@ -353,7 +353,7 @@ const ActionPlanClassPreferences = () => {
         </form>
 
         <p style={{ textAlign: 'center', marginTop: '1.5rem', marginBottom: 0 }}>
-          <Link to="/support/action-plan/barriers" style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--ink-70)' }}>
+          <Link to="/action/action-plan/barriers" style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--ink-70)' }}>
             ← Back
           </Link>
         </p>

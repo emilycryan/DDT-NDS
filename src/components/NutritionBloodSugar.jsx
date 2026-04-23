@@ -269,7 +269,7 @@ const NutritionBloodSugar = () => {
       {/* CTA */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
         <Link
-          to="/resources/prediabetes/dpp-program-overview"
+          to="/learn/prediabetes/dpp-program-overview"
           style={{
             display: 'inline-flex',
             alignItems: 'center',

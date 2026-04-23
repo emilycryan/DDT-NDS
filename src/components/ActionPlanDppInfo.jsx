@@ -19,9 +19,9 @@ const ActionPlanDppInfo = () => {
   useEffect(() => {
     try {
       const n = sessionStorage.getItem('actionPlanFirstName');
-      if (!n) navigate('/support/action-plan', { replace: true });
+      if (!n) navigate('/action/action-plan', { replace: true });
     } catch {
-      navigate('/support/action-plan', { replace: true });
+      navigate('/action/action-plan', { replace: true });
     }
   }, [navigate]);
 
@@ -34,7 +34,7 @@ const ActionPlanDppInfo = () => {
     } catch {
       /* ignore */
     }
-    navigate('/support/action-plan/barriers');
+    navigate('/action/action-plan/barriers');
   };
 
   return (
@@ -53,7 +53,7 @@ const ActionPlanDppInfo = () => {
             Home
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>
-          <Link to="/support" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
+          <Link to="/action" style={{ color: 'var(--ink-70)', textDecoration: 'none' }}>
             Take Action
           </Link>
           <span style={{ margin: '0 0.5rem' }}>/</span>

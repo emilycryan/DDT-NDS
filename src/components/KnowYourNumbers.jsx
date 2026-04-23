@@ -157,7 +157,7 @@ const KnowYourNumbers = () => {
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem' }}>
             <Link
-              to="/resources/heart-health/blood-pressure-cholesterol"
+              to="/learn/heart-health/blood-pressure-cholesterol"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',

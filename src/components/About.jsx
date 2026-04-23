@@ -65,7 +65,7 @@ const About = ({ onNavigate }) => {
   };
 
   const handleExploreResources = () => {
-    if (onNavigate) onNavigate('resources');
+    if (onNavigate) onNavigate('learn');
   };
 
   const sidebar = (

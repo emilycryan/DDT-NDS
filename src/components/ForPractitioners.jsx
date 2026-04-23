@@ -417,7 +417,7 @@ const ForPractitioners = () => {
               ),
               title: 'Healthy Eating Guide',
               description: 'A practical, plain-language overview of blood sugar-friendly eating patterns for patients newly diagnosed with prediabetes or elevated blood sugar.',
-              href: 'https://ddt-nds.vercel.app/resources/heart-health/heart-healthy-eating',
+              href: 'https://ddt-nds.vercel.app/learn/heart-health/heart-healthy-eating',
               titleColor: '#E05A4D',
             },
             {
