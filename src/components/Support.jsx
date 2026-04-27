@@ -281,221 +281,323 @@ const Support = () => {
         ...sectionStyles,
         maxWidth: 'min(1200px, calc(100% - 4rem))',
         margin: '0 auto',
-        backgroundColor: '#007833',
-        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 1px)',
-        backgroundSize: '24px 24px',
-        padding: isMobile ? '2rem 1.25rem' : '3rem 2rem',
+        backgroundColor: '#fdfaf7',
+        padding: isMobile ? '2rem 1rem' : '3rem 2rem',
+        borderRadius: 'var(--radius-md)',
+        border: '1px solid #f0e7e1',
+      }}>
+        <div style={{ maxWidth: 820, marginBottom: '2rem' }}>
+          <span style={{
+            display: 'inline-block',
+            color: 'var(--coral)',
+            fontSize: '0.75rem',
+            fontWeight: 700,
+            letterSpacing: '0.08em',
+            marginBottom: '0.75rem',
+            fontFamily: 'var(--font-body)',
+            textTransform: 'uppercase',
+          }}>
+            3 step approach
+          </span>
+          <h2 style={{
+            fontSize: isMobile ? '1.75rem' : '2rem',
+            fontFamily: 'var(--font-serif)',
+            fontWeight: '600',
+            color: 'var(--ink)',
+            margin: '0 0 0.75rem 0',
+          }}>
+            Tools and Resources You Can Use Now
+          </h2>
+          <p style={{
+            fontSize: '1rem',
+            fontFamily: 'var(--font-body)',
+            color: '#555555',
+            lineHeight: 1.6,
+            margin: 0,
+          }}>
+            Not sure what to do first? This path gives you a simple way to begin, make a plan, and find support when you are ready.
+          </p>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+          gap: isMobile ? '1rem' : '1.25rem',
+          alignItems: 'stretch',
+        }}>
+          {[
+            {
+              step: '1',
+              label: 'Start',
+              title: 'Start with a few questions',
+              description: 'Choose this step if you are just beginning or helping someone else. Answer a few questions to see which next steps may fit your situation.',
+              linkText: 'Go to Get Started',
+              to: '/get-started',
+              accent: '#EF4623',
+            },
+            {
+              step: '2',
+              label: 'Plan',
+              title: 'Build your health plan',
+              description: 'Choose this step when you have a health goal in mind. You will think through your goal, what may get in the way, and what support could help.',
+              linkText: 'Create Plan',
+              to: '/action/action-plan',
+              accent: '#007833',
+            },
+            {
+              step: '3',
+              label: 'Commit',
+              title: 'Find the right LCI',
+              description: 'Choose this step when you are ready to join a program. Find a Lifestyle Change Intervention that fits your schedule, needs, and support style.',
+              linkText: 'Find a Program',
+              to: '/lifestyle-programs',
+              accent: '#2D3B42',
+            },
+          ].map((phase, index, phases) => (
+            <div
+              key={phase.step}
+              style={{
+                position: 'relative',
+                backgroundColor: 'white',
+                borderRadius: 16,
+                padding: '1.5rem',
+                border: '1px solid #e8e8e8',
+                borderTop: `6px solid ${phase.accent}`,
+                boxShadow: '0 4px 12px rgba(45, 59, 66, 0.08)',
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: isMobile ? 'auto' : 325,
+              }}
+            >
+              {!isMobile && index < phases.length - 1 && (
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    right: '-1.25rem',
+                    top: '50%',
+                    width: '1.25rem',
+                    height: 2,
+                    backgroundColor: '#d7d0cb',
+                    transform: 'translateY(-50%)',
+                    zIndex: 1,
+                  }}
+                />
+              )}
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                <div style={{
+                  width: 46,
+                  height: 46,
+                  minWidth: 46,
+                  borderRadius: '50%',
+                  backgroundColor: phase.accent,
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontFamily: 'var(--font-serif)',
+                  fontWeight: 600,
+                  fontSize: '1.25rem',
+                }}>
+                  {phase.step}
+                </div>
+                <span style={{
+                  color: phase.accent,
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                }}>
+                  {phase.label}
+                </span>
+              </div>
+
+              <h3 style={{
+                fontSize: '1.35rem',
+                fontFamily: 'var(--font-serif)',
+                fontWeight: 600,
+                color: '#333333',
+                lineHeight: 1.25,
+                margin: '0 0 0.75rem 0',
+              }}>
+                {phase.title}
+              </h3>
+
+              <p style={{
+                fontSize: '0.9375rem',
+                fontFamily: 'var(--font-body)',
+                color: '#555555',
+                lineHeight: 1.55,
+                margin: '0 0 1.5rem 0',
+              }}>
+                {phase.description}
+              </p>
+
+              <Link
+                to={phase.to}
+                className="btn btn-primary btn--compact-cta"
+                style={{
+                  marginTop: 'auto',
+                  textDecoration: 'none',
+                  color: 'var(--text-white)',
+                  backgroundColor: phase.accent,
+                  borderColor: phase.accent,
+                  boxShadow: 'none',
+                  alignSelf: 'flex-start',
+                }}
+              >
+                {phase.linkText}
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section style={{
+        ...sectionStyles,
+        maxWidth: 'min(1200px, calc(100% - 4rem))',
+        margin: '0 auto',
+        backgroundColor: '#fdfaf7',
+        padding: isMobile ? '2rem 1rem' : '3rem 2rem',
         borderRadius: 'var(--radius-md)',
       }}>
         <h2 style={{
           fontSize: isMobile ? '1.75rem' : '2rem',
           fontFamily: 'var(--font-serif)',
           fontWeight: '600',
-          color: 'white',
+          color: '#333333',
+          margin: '0 0 0.5rem 0',
+        }}>
+          Tools That Fit Your Life
+        </h2>
+
+        <p style={{
+          fontSize: '1rem',
+          fontFamily: 'var(--font-body)',
+          fontWeight: 400,
+          color: '#555555',
+          lineHeight: 1.5,
           margin: '0 0 1.5rem 0',
         }}>
-          Tools and Resources You Can Use Now
-        </h2>
+          Everyday habits that make a difference — practical, actionable, and realistic.
+        </p>
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
           gap: '1.5rem',
-          marginBottom: '2rem',
         }}>
-          {/* Left Panel: Interactive tools & question flows */}
-          <div style={{
-            backgroundColor: 'white',
-            borderRadius: 16,
-            padding: '1.5rem',
-            boxShadow: '0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06)',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-              <div style={{
-                width: 36,
-                height: 36,
-                borderRadius: 8,
-                backgroundColor: '#F45E4C',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
-                  <rect x="2" y="2" width="20" height="14" rx="1"/>
-                  <rect x="5" y="5" width="14" height="8"/>
-                  <path d="M8 20h8M12 16v4" strokeLinecap="round"/>
+          {[
+            {
+              path: '/action/tips/how-to-read-food-labels',
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                  <polyline points="10 9 9 9 8 9"/>
                 </svg>
-              </div>
-              <h3 style={{
-                fontSize: '1.125rem',
-                fontFamily: 'var(--font-body)',
-                fontWeight: 600,
-                color: '#333333',
-                margin: 0,
-              }}>
-                Interactive Tools & Quick Questions
-              </h3>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{
-                backgroundColor: '#F7F7F7',
-                borderRadius: 12,
-                padding: '1rem 1.25rem',
-              }}>
-                <div style={{ marginBottom: '0.5rem' }}>
-                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Quick questions to get started</strong>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-                  <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
-                    See how your answers relate to conditions like diabetes, heart disease, and stroke.
-                  </p>
-                  <Link
-                    to="/get-started"
-                    className="btn btn-primary btn--compact-cta"
-                    style={{
-                      textDecoration: 'none',
-                      color: 'var(--text-white)',
-                    }}
-                  >
-                    Get started
-                  </Link>
-                </div>
-              </div>
-
-              <div style={{
-                backgroundColor: '#F7F7F7',
-                borderRadius: 12,
-                padding: '1rem 1.25rem',
-              }}>
-                <div style={{ marginBottom: '0.5rem' }}>
-                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Plan my Path</strong>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-                  <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
-                    Create a personalized Action Plan to support a healthy lifestyle
-                  </p>
-                  <Link
-                    to="/action/action-plan"
-                    className="btn btn-secondary"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: '10px 20px',
-                      fontSize: '14px',
-                      fontWeight: 600,
-                      borderRadius: 'var(--radius-md)',
-                      textDecoration: 'none',
-                      flexShrink: 0,
-                    }}
-                  >
-                    Create Plan
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Panel: Find a Lifestyle Change Program */}
-          <div style={{
-            backgroundColor: 'white',
-            borderRadius: 16,
-            padding: '1.5rem',
-            boxShadow: '0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06)',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-              <div style={{
-                width: 36,
-                height: 36,
-                borderRadius: 8,
-                backgroundColor: '#2D363D',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4"/>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              ),
+              title: 'How to Read Food Labels',
+              description: 'Decode nutrition facts to make smarter choices at the grocery store — without guesswork.',
+            },
+            {
+              path: '/action/tips/meal-planning-on-budget',
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+                  <line x1="8" y1="6" x2="21" y2="6"/>
+                  <line x1="8" y1="12" x2="21" y2="12"/>
+                  <line x1="8" y1="18" x2="21" y2="18"/>
+                  <line x1="3" y1="6" x2="3.01" y2="6"/>
+                  <line x1="3" y1="12" x2="3.01" y2="12"/>
+                  <line x1="3" y1="18" x2="3.01" y2="18"/>
                 </svg>
-              </div>
-              <h3 style={{
-                fontSize: '1.125rem',
-                fontFamily: 'var(--font-body)',
-                fontWeight: 600,
-                color: '#333333',
-                margin: 0,
-              }}>
-                Find a Lifestyle Change Program
-              </h3>
-            </div>
-            <p style={{
-              margin: '0 0 1.25rem 0',
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.9375rem',
-              color: '#555555',
-              lineHeight: 1.5,
-            }}>
-              CDC-recognized programs are proven to prevent or delay type 2 diabetes and other chronic conditions. Find one that fits your schedule — in person or online.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{
-                backgroundColor: '#F7F7F7',
+              ),
+              title: 'Meal Planning on a Budget',
+              description: 'Healthy eating doesn\'t have to be expensive. Simple strategies for nutritious meals that fit your wallet.',
+            },
+            {
+              path: '/action/tips/moving-more-when-busy',
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              ),
+              title: "Moving More When You're Busy",
+              description: "Small amounts of activity add up. Find easy ways to move throughout your day without a gym or extra time.",
+            },
+            {
+              path: '/action/tips/setting-realistic-goals',
+              icon: (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              ),
+              title: 'Setting Realistic Goals',
+              description: 'Goals you can stick with start small. Learn how to build momentum through achievable milestones.',
+            },
+          ].map((tip, i) => (
+            <Link
+              key={i}
+              to={tip.path}
+              style={{
+                backgroundColor: 'white',
                 borderRadius: 12,
-                padding: '1rem 1.25rem',
-              }}>
-                <div style={{ marginBottom: '0.5rem' }}>
-                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Search for a program near you</strong>
+                padding: '1.5rem',
+                border: '1px solid #e8e8e8',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                textDecoration: 'none',
+                color: 'inherit',
+                display: 'block',
+              }}
+            >
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <div
+                  style={{
+                    width: 44,
+                    height: 44,
+                    minWidth: 44,
+                    borderRadius: 10,
+                    backgroundColor: '#f7a79e',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {tip.icon}
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-                  <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
-                    Browse local and virtual programs in your area.
-                  </p>
-                  <a
-                    href="https://www.cdc.gov/diabetes-prevention/index.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary btn--compact-cta"
-                    style={{ textDecoration: 'none', color: 'var(--text-white)', flexShrink: 0 }}
-                  >
-                    Search Programs
-                  </a>
-                </div>
-              </div>
-              <div style={{
-                backgroundColor: '#F7F7F7',
-                borderRadius: 12,
-                padding: '1rem 1.25rem',
-              }}>
-                <div style={{ marginBottom: '0.5rem' }}>
-                  <strong style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: '#333333', fontSize: '1rem' }}>Support groups &amp; coaching</strong>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-                  <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#888888', flex: 1, minWidth: 200 }}>
-                    Connect with a coach or community group for ongoing support.
-                  </p>
-                  <a
-                    href="#"
-                    className="btn btn-secondary"
+                <div>
+                  <h4
                     style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: '10px 20px',
-                      fontSize: '14px',
-                      fontWeight: 600,
-                      borderRadius: 'var(--radius-md)',
-                      textDecoration: 'none',
-                      flexShrink: 0,
+                      fontSize: '1.0625rem',
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: '700',
+                      color: '#E05A4D',
+                      margin: '0 0 0.5rem 0',
                     }}
                   >
-                    Learn More
-                  </a>
+                    {tip.title}
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: '0.9375rem',
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: 400,
+                      color: '#555555',
+                      lineHeight: 1.5,
+                      margin: 0,
+                    }}
+                  >
+                    {tip.description}
+                  </p>
                 </div>
               </div>
-            </div>
-          </div>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -747,151 +849,6 @@ const Support = () => {
         </div>
       </section>
 
-      <section style={{
-        ...sectionStyles,
-        maxWidth: 'min(1200px, calc(100% - 4rem))',
-        margin: '0 auto',
-        backgroundColor: '#fdfaf7',
-        padding: isMobile ? '2rem 1rem' : '3rem 2rem',
-        borderRadius: 'var(--radius-md)',
-      }}>
-        <h2 style={{
-          fontSize: isMobile ? '1.75rem' : '2rem',
-          fontFamily: 'var(--font-serif)',
-          fontWeight: '600',
-          color: '#333333',
-          margin: '0 0 0.5rem 0',
-        }}>
-          Tips That Fit Your Life
-        </h2>
-
-        <p style={{
-          fontSize: '1rem',
-          fontFamily: 'var(--font-body)',
-          fontWeight: 400,
-          color: '#555555',
-          lineHeight: 1.5,
-          margin: '0 0 1.5rem 0',
-        }}>
-          Everyday habits that make a difference — practical, actionable, and realistic.
-        </p>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-          gap: '1.5rem',
-        }}>
-          {[
-            {
-              path: '/action/tips/how-to-read-food-labels',
-              icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                  <line x1="16" y1="13" x2="8" y2="13"/>
-                  <line x1="16" y1="17" x2="8" y2="17"/>
-                  <polyline points="10 9 9 9 8 9"/>
-                </svg>
-              ),
-              title: 'How to Read Food Labels',
-              description: 'Decode nutrition facts to make smarter choices at the grocery store — without guesswork.',
-            },
-            {
-              path: '/action/tips/meal-planning-on-budget',
-              icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
-                  <line x1="8" y1="6" x2="21" y2="6"/>
-                  <line x1="8" y1="12" x2="21" y2="12"/>
-                  <line x1="8" y1="18" x2="21" y2="18"/>
-                  <line x1="3" y1="6" x2="3.01" y2="6"/>
-                  <line x1="3" y1="12" x2="3.01" y2="12"/>
-                  <line x1="3" y1="18" x2="3.01" y2="18"/>
-                </svg>
-              ),
-              title: 'Meal Planning on a Budget',
-              description: 'Healthy eating doesn\'t have to be expensive. Simple strategies for nutritious meals that fit your wallet.',
-            },
-            {
-              path: '/action/tips/moving-more-when-busy',
-              icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M12 6v6l4 2"/>
-                </svg>
-              ),
-              title: "Moving More When You're Busy",
-              description: "Small amounts of activity add up. Find easy ways to move throughout your day without a gym or extra time.",
-            },
-            {
-              path: '/action/tips/setting-realistic-goals',
-              icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              ),
-              title: 'Setting Realistic Goals',
-              description: 'Goals you can stick with start small. Learn how to build momentum through achievable milestones.',
-            },
-          ].map((tip, i) => (
-            <Link
-              key={i}
-              to={tip.path}
-              style={{
-                backgroundColor: 'white',
-                borderRadius: 12,
-                padding: '1.5rem',
-                border: '1px solid #e8e8e8',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
-                textDecoration: 'none',
-                color: 'inherit',
-                display: 'block',
-              }}
-            >
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                <div
-                  style={{
-                    width: 44,
-                    height: 44,
-                    minWidth: 44,
-                    borderRadius: 10,
-                    backgroundColor: '#f7a79e',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {tip.icon}
-                </div>
-                <div>
-                  <h4
-                    style={{
-                      fontSize: '1.0625rem',
-                      fontFamily: 'var(--font-body)',
-                      fontWeight: '700',
-                      color: '#E05A4D',
-                      margin: '0 0 0.5rem 0',
-                    }}
-                  >
-                    {tip.title}
-                  </h4>
-                  <p
-                    style={{
-                      fontSize: '0.9375rem',
-                      fontFamily: 'var(--font-body)',
-                      fontWeight: 400,
-                      color: '#555555',
-                      lineHeight: 1.5,
-                      margin: 0,
-                    }}
-                  >
-                    {tip.description}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
     </div>
   );
 };
