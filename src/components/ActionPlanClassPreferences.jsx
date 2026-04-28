@@ -5,7 +5,7 @@ import { PARTICIPATION_LABELS, TIME_LABELS } from '../data/actionPlanLabels';
 
 const TOTAL_STEPS = 7;
 const STEP = 5;
-const ICON = '#005ea2';
+const ICON = '#1f9660';
 
 const PARTICIPATION = [
   { id: 'in-person', iconKey: 'chalk' },
@@ -14,10 +14,10 @@ const PARTICIPATION = [
 ];
 
 const TIME_OPTS = [
-  { id: 'morning', iconKey: 'sun', accent: '#E6B800' },
-  { id: 'afternoon', iconKey: 'partly', accent: '#5B9BD5' },
-  { id: 'evening', iconKey: 'moon', accent: '#1a365d' },
-  { id: 'weekend', iconKey: 'cal', accent: '#005ea2' },
+  { id: 'morning', iconKey: 'sun', accent: '#EF4623' },
+  { id: 'afternoon', iconKey: 'partly', accent: '#1f9660' },
+  { id: 'evening', iconKey: 'moon', accent: '#2D3B42' },
+  { id: 'weekend', iconKey: 'cal', accent: '#EF4623' },
 ];
 
 const Icons = {
@@ -43,27 +43,27 @@ const Icons = {
   ),
   sun: (
     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <circle cx="12" cy="12" r="5" fill="#E6B800" />
-      <path d="M12 3v2M12 19v2M3 12h2M19 12h2" stroke="#E6B800" strokeWidth="1.5" strokeLinecap="round" />
+      <circle cx="12" cy="12" r="5" fill="#EF4623" />
+      <path d="M12 3v2M12 19v2M3 12h2M19 12h2" stroke="#EF4623" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   ),
   partly: (
     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <circle cx="10" cy="12" r="4" fill="#5B9BD5" opacity="0.9" />
-      <path d="M16 10a4 4 0 11-4 7h-5a5 5 0 019-4z" fill="#87CEEB" />
+      <circle cx="10" cy="12" r="4" fill="#1f9660" opacity="0.9" />
+      <path d="M16 10a4 4 0 11-4 7h-5a5 5 0 019-4z" fill="#A9DEC6" />
     </svg>
   ),
   moon: (
     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path d="M14 4a6 6 0 100 12 7 7 0 01-7-7 6 6 0 0012-5z" fill="#1a365d" />
+      <path d="M14 4a6 6 0 100 12 7 7 0 01-7-7 6 6 0 0012-5z" fill="#2D3B42" />
       <circle cx="6" cy="6" r="0.8" fill="#fff" opacity="0.6" />
       <circle cx="9" cy="4" r="0.5" fill="#fff" opacity="0.5" />
     </svg>
   ),
   cal: (
     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect x="4" y="5" width="16" height="16" rx="2" stroke="#005ea2" strokeWidth="1.5" />
-      <path d="M4 10h16M9 5V3M15 5V3" stroke="#005ea2" strokeWidth="1.5" strokeLinecap="round" />
+      <rect x="4" y="5" width="16" height="16" rx="2" stroke="#EF4623" strokeWidth="1.5" />
+      <path d="M4 10h16M9 5V3M15 5V3" stroke="#EF4623" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   ),
 };
@@ -145,7 +145,7 @@ const ActionPlanClassPreferences = () => {
   };
 
   return (
-    <main style={{ backgroundColor: 'var(--bg-secondary)', minHeight: '80vh', padding: isMobile ? '2rem 1rem' : '2.5rem 1.5rem' }}>
+    <main style={{ backgroundColor: 'var(--bg-page)', minHeight: '80vh', padding: isMobile ? '2rem 1rem' : '2.5rem 1.5rem' }}>
       <div style={{ maxWidth: 960, margin: '0 auto' }}>
         <div style={{ marginBottom: '1rem' }}>
           <Link
@@ -158,7 +158,7 @@ const ActionPlanClassPreferences = () => {
               width: 40,
               height: 40,
               borderRadius: '50%',
-              border: '1px solid #e0e0e0',
+              border: '1px solid rgba(45, 59, 66, 0.16)',
               backgroundColor: '#fff',
               color: 'var(--ink)',
               textDecoration: 'none',
@@ -228,26 +228,27 @@ const ActionPlanClassPreferences = () => {
 
         <div
           style={{
-            backgroundColor: '#EBF5FB',
-            border: '1px solid #e0e0e0',
+            backgroundColor: 'var(--ink)',
+            border: '1px solid var(--ink)',
             borderRadius: 'var(--radius-md)',
             padding: '1rem 1.25rem',
             marginBottom: '1.5rem',
+            boxShadow: '0 14px 24px rgba(45, 59, 66, 0.16)',
           }}
         >
-          <p style={{ margin: '0 0 0.75rem 0', fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#1b1b1b', lineHeight: 1.65 }}>
+          <p style={{ margin: '0 0 0.75rem 0', fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#fff', lineHeight: 1.65 }}>
             Great work. Just a few more questions and your plan will be finished! Let&apos;s look at how the program and class schedule could fit into your life.
           </p>
-          <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#323a45', lineHeight: 1.65 }}>
+          <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.88)', lineHeight: 1.65 }}>
             Many providers offer the program, so you can find a class that works best for you. These providers must meet CDC standards for recognition and use CDC-approved materials for classes.
           </p>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '1rem', color: '#1b1b1b', margin: '0 0 0.25rem 0' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '1rem', color: 'var(--ink)', margin: '0 0 0.25rem 0' }}>
             I would prefer to participate in classes:
           </p>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: '#323a45', fontStyle: 'italic', margin: '0 0 0.75rem 0' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--ink-70)', fontStyle: 'italic', margin: '0 0 0.75rem 0' }}>
             Click all the boxes that are right for you.
           </p>
 
@@ -275,15 +276,15 @@ const ActionPlanClassPreferences = () => {
                     padding: '1rem',
                     minHeight: 130,
                     backgroundColor: isOn ? '#FDF1EE' : '#fff',
-                    border: `2px solid ${isOn ? 'var(--coral)' : '#e0e0e0'}`,
+                    border: `2px solid ${isOn ? 'var(--coral)' : 'rgba(45, 59, 66, 0.16)'}`,
                     borderRadius: 'var(--radius-md)',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.06)',
+                    boxShadow: isOn ? 'inset 0 4px 0 var(--coral), 0 12px 22px rgba(239, 70, 35, 0.14)' : 'inset 0 4px 0 #1f9660, 0 5px 14px rgba(45, 59, 66, 0.08)',
                     cursor: 'pointer',
                     textAlign: 'left',
                   }}
                 >
                   <span style={{ flexShrink: 0 }}>{Icons[iconKey]}</span>
-                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', fontWeight: 500, color: '#1b1b1b', lineHeight: 1.45 }}>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', fontWeight: 500, color: 'var(--ink)', lineHeight: 1.45 }}>
                     {PARTICIPATION_LABELS[id]}
                   </span>
                 </button>
@@ -291,10 +292,10 @@ const ActionPlanClassPreferences = () => {
             })}
           </div>
 
-          <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '1rem', color: '#1b1b1b', margin: '0 0 0.25rem 0' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '1rem', color: 'var(--ink)', margin: '0 0 0.25rem 0' }}>
             I would want to go to a class:
           </p>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: '#323a45', fontStyle: 'italic', margin: '0 0 0.75rem 0' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--ink-70)', fontStyle: 'italic', margin: '0 0 0.75rem 0' }}>
             Click all the boxes that are right for you.
           </p>
 
@@ -321,14 +322,14 @@ const ActionPlanClassPreferences = () => {
                     gap: '0.5rem',
                     padding: '1rem 0.65rem',
                     backgroundColor: isOn ? '#FDF1EE' : '#fff',
-                    border: `2px solid ${isOn ? 'var(--coral)' : '#e0e0e0'}`,
+                    border: `2px solid ${isOn ? 'var(--coral)' : 'rgba(45, 59, 66, 0.16)'}`,
                     borderRadius: 'var(--radius-md)',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.06)',
+                    boxShadow: isOn ? 'inset 0 4px 0 var(--coral), 0 12px 22px rgba(239, 70, 35, 0.14)' : 'inset 0 4px 0 #1f9660, 0 5px 14px rgba(45, 59, 66, 0.08)',
                     cursor: 'pointer',
                   }}
                 >
                   <span>{Icons[iconKey]}</span>
-                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', fontWeight: 500, color: '#1b1b1b', lineHeight: 1.35, textAlign: 'center' }}>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', fontWeight: 500, color: 'var(--ink)', lineHeight: 1.35, textAlign: 'center' }}>
                     {TIME_LABELS[id]}
                   </span>
                 </button>

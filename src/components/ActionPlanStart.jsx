@@ -17,20 +17,20 @@ function TwoPeopleIllustration() {
       aria-hidden
       style={{ maxWidth: 360, margin: '0 auto', display: 'block' }}
     >
-      <rect width="400" height="220" fill="#F8FAFB" rx="12" />
-      <circle cx="80" cy="60" r="40" fill="#E8EEF2" opacity="0.9" />
-      <circle cx="340" cy="170" r="50" fill="#E8EEF2" opacity="0.7" />
+      <rect width="400" height="220" fill="#2D3B42" rx="12" />
+      <circle cx="80" cy="60" r="40" fill="#EF4623" opacity="0.24" />
+      <circle cx="340" cy="170" r="50" fill="#1f9660" opacity="0.24" />
       {/* Person 1 */}
-      <ellipse cx="140" cy="175" rx="36" ry="10" fill="rgba(45,59,66,0.08)" />
-      <path d="M120 120c0-15 12-28 28-28s28 13 28 28v55h-56v-55z" fill="#0F4C5C" />
+      <ellipse cx="140" cy="175" rx="36" ry="10" fill="rgba(255,255,255,0.16)" />
+      <path d="M120 120c0-15 12-28 28-28s28 13 28 28v55h-56v-55z" fill="#EF4623" />
       <circle cx="148" cy="95" r="22" fill="#E8C4A8" />
       <path d="M130 88c4-10 16-16 26-14" stroke="#2D3B42" strokeWidth="3" strokeLinecap="round" />
       {/* Person 2 */}
-      <ellipse cx="260" cy="178" rx="38" ry="10" fill="rgba(45,59,66,0.08)" />
-      <path d="M235 118c0-14 11-26 25-26s25 12 25 26v58h-50v-58z" fill="#B8C5CC" />
+      <ellipse cx="260" cy="178" rx="38" ry="10" fill="rgba(255,255,255,0.16)" />
+      <path d="M235 118c0-14 11-26 25-26s25 12 25 26v58h-50v-58z" fill="#1f9660" />
       <circle cx="260" cy="95" r="22" fill="#8D5524" />
       <path d="M248 82c6-8 18-12 28-8" stroke="#2D3B42" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M200 40h3M210 55h2M185 70h2" stroke="#C5D0D6" strokeWidth="2" strokeLinecap="round" strokeDasharray="2 6" />
+      <path d="M200 40h3M210 55h2M185 70h2" stroke="#FDF1EE" strokeWidth="2" strokeLinecap="round" strokeDasharray="2 6" />
     </svg>
   );
 }
@@ -62,7 +62,7 @@ const ActionPlanStart = () => {
   };
 
   return (
-    <main style={{ backgroundColor: 'var(--bg-secondary)', minHeight: '80vh', padding: isMobile ? '2rem 1rem' : '2.5rem 1.5rem' }}>
+    <main style={{ backgroundColor: 'var(--bg-page)', minHeight: '80vh', padding: isMobile ? '2rem 1rem' : '2.5rem 1.5rem' }}>
       <div style={{ maxWidth: 560, margin: '0 auto' }}>
         <nav
           style={{
@@ -121,11 +121,12 @@ const ActionPlanStart = () => {
 
         <div
           style={{
-            backgroundColor: '#f0f4f8',
-            border: '1px solid #e0e0e0',
+            backgroundColor: 'var(--ink)',
+            border: '1px solid var(--ink)',
             borderRadius: 'var(--radius-md)',
             padding: '1rem 1.25rem',
             marginBottom: '1.5rem',
+            boxShadow: '0 14px 24px rgba(45, 59, 66, 0.16)',
           }}
         >
           <p
@@ -133,7 +134,7 @@ const ActionPlanStart = () => {
               margin: 0,
               fontFamily: 'var(--font-body)',
               fontSize: '0.9375rem',
-              color: '#1b1b1b',
+              color: '#fff',
               lineHeight: 1.6,
             }}
           >
@@ -149,7 +150,7 @@ const ActionPlanStart = () => {
               fontFamily: 'var(--font-body)',
               fontWeight: 600,
               fontSize: '0.9375rem',
-              color: '#1b1b1b',
+              color: 'var(--ink)',
               marginBottom: '0.5rem',
             }}
           >
@@ -169,8 +170,8 @@ const ActionPlanStart = () => {
               padding: '0.75rem 1rem',
               fontSize: '1rem',
               fontFamily: 'var(--font-body)',
-              color: '#1b1b1b',
-              border: '1px solid #e0e0e0',
+              color: 'var(--ink)',
+              border: '2px solid var(--ink-10)',
               borderRadius: 'var(--radius-sm)',
               marginBottom: '1.5rem',
               backgroundColor: '#fff',

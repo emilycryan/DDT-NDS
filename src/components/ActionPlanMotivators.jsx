@@ -4,7 +4,7 @@ import * as motion from 'motion/react-client';
 
 const TOTAL_STEPS = 7;
 const STEP = 2;
-const ICON_COLOR = '#005ea2';
+const ICON_COLOR = '#1f9660';
 
 const MotivatorIcons = {
   scale: (
@@ -26,7 +26,7 @@ const MotivatorIcons = {
       <circle cx="9" cy="10" r="3" stroke={ICON_COLOR} strokeWidth="1.5" />
       <circle cx="15" cy="10" r="3" stroke={ICON_COLOR} strokeWidth="1.5" />
       <path d="M12 16c-2 0-3.5 1-4 2.5M12 16c2 0 3.5 1 4 2.5" stroke={ICON_COLOR} strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M12 13v3" stroke="#E05A4D" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M12 13v3" stroke="#EF4623" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   ),
   dumbbell: (
@@ -46,7 +46,7 @@ const MotivatorIcons = {
     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
       <path d="M8 18c0-4 2-7 4-9 2 2 4 5 4 9" stroke={ICON_COLOR} strokeWidth="1.5" strokeLinecap="round" />
       <path d="M10 14h2M12 12v6" stroke={ICON_COLOR} strokeWidth="1.2" strokeLinecap="round" />
-      <circle cx="14" cy="8" r="2" fill="#5BC0DE" opacity="0.6" />
+      <circle cx="14" cy="8" r="2" fill="#EF4623" opacity="0.75" />
     </svg>
   ),
   bills: (
@@ -144,7 +144,7 @@ const ActionPlanMotivators = () => {
   };
 
   return (
-    <main style={{ backgroundColor: 'var(--bg-secondary)', minHeight: '80vh', padding: isMobile ? '2rem 1rem' : '2.5rem 1.5rem' }}>
+    <main style={{ backgroundColor: 'var(--bg-page)', minHeight: '80vh', padding: isMobile ? '2rem 1rem' : '2.5rem 1.5rem' }}>
       <div style={{ maxWidth: 960, margin: '0 auto' }}>
         <nav
           style={{
@@ -203,11 +203,12 @@ const ActionPlanMotivators = () => {
 
         <div
           style={{
-            backgroundColor: '#EBF5FB',
-            border: '1px solid #e0e0e0',
+            backgroundColor: 'var(--ink)',
+            border: '1px solid var(--ink)',
             borderRadius: 'var(--radius-md)',
             padding: '1rem 1.25rem',
             marginBottom: '1.25rem',
+            boxShadow: '0 14px 24px rgba(45, 59, 66, 0.16)',
           }}
         >
           <p
@@ -215,7 +216,7 @@ const ActionPlanMotivators = () => {
               margin: 0,
               fontFamily: 'var(--font-body)',
               fontSize: '0.9375rem',
-              color: '#1b1b1b',
+              color: '#fff',
               lineHeight: 1.6,
               textAlign: 'center',
             }}
@@ -230,7 +231,7 @@ const ActionPlanMotivators = () => {
               fontFamily: 'var(--font-body)',
               fontWeight: 600,
               fontSize: '1rem',
-              color: '#1b1b1b',
+              color: 'var(--ink)',
               margin: '0 0 0.35rem 0',
             }}
           >
@@ -240,7 +241,7 @@ const ActionPlanMotivators = () => {
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: '0.875rem',
-              color: '#323a45',
+              color: 'var(--ink-70)',
               fontStyle: 'italic',
               margin: '0 0 1rem 0',
             }}
@@ -275,14 +276,14 @@ const ActionPlanMotivators = () => {
                     padding: '1rem 0.75rem',
                     minHeight: 120,
                     backgroundColor: isOn ? '#FDF1EE' : '#fff',
-                    border: `2px solid ${isOn ? 'var(--coral)' : '#e0e0e0'}`,
+                    border: `2px solid ${isOn ? 'var(--coral)' : 'rgba(45, 59, 66, 0.16)'}`,
                     borderRadius: 'var(--radius-md)',
-                    boxShadow: isOn ? '0 4px 12px rgba(239, 70, 35, 0.12)' : '0 2px 6px rgba(0,0,0,0.06)',
+                    boxShadow: isOn ? 'inset 0 4px 0 var(--coral), 0 12px 22px rgba(239, 70, 35, 0.14)' : 'inset 0 4px 0 #1f9660, 0 5px 14px rgba(45, 59, 66, 0.08)',
                     cursor: 'pointer',
                     fontFamily: 'var(--font-body)',
                     fontSize: '0.8125rem',
                     fontWeight: 500,
-                    color: '#1b1b1b',
+                    color: 'var(--ink)',
                     textAlign: 'center',
                     lineHeight: 1.35,
                     transition: 'border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease',
@@ -302,7 +303,7 @@ const ActionPlanMotivators = () => {
               fontFamily: 'var(--font-body)',
               fontWeight: 600,
               fontSize: '0.9375rem',
-              color: '#1b1b1b',
+              color: 'var(--ink)',
               marginBottom: '0.5rem',
             }}
           >
@@ -321,8 +322,8 @@ const ActionPlanMotivators = () => {
               padding: '0.75rem 1rem',
               fontSize: '1rem',
               fontFamily: 'var(--font-body)',
-              color: '#1b1b1b',
-              border: '1px solid #e0e0e0',
+              color: 'var(--ink)',
+              border: '2px solid var(--ink-10)',
               borderRadius: 'var(--radius-sm)',
               marginBottom: '1.5rem',
               resize: 'vertical',

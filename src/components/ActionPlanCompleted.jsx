@@ -11,7 +11,7 @@ import {
 
 const TOTAL_STEPS = 7;
 const STEP = 7;
-const BOX_BORDER = '2px solid #005ea2';
+const BOX_BORDER = '1px solid rgba(45, 59, 66, 0.14)';
 
 function parseJsonArray(key) {
   try {
@@ -119,7 +119,7 @@ const ActionPlanCompleted = () => {
   return (
     <main
       className="action-plan-completed"
-      style={{ backgroundColor: 'var(--bg-secondary)', minHeight: '80vh', padding: isMobile ? '2rem 1rem' : '2.5rem 1.5rem' }}
+      style={{ backgroundColor: 'var(--bg-page)', minHeight: '80vh', padding: isMobile ? '2rem 1rem' : '2.5rem 1.5rem' }}
     >
       <div style={{ maxWidth: 720, margin: '0 auto' }}>
         <nav
@@ -176,58 +176,26 @@ const ActionPlanCompleted = () => {
             textAlign: 'center',
           }}
         >
-          Completed Plan
+          {snapshot.firstName}&apos;s Completed Action Plan
         </h1>
 
         <div
           style={{
-            backgroundColor: '#EBF5FB',
-            border: '1px solid #e0e0e0',
+            backgroundColor: 'var(--ink)',
+            border: '1px solid var(--ink)',
             borderRadius: 'var(--radius-md)',
             padding: '1rem 1.25rem',
             marginBottom: '1.5rem',
+            boxShadow: '0 14px 24px rgba(45, 59, 66, 0.16)',
           }}
         >
-          <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#1b1b1b', lineHeight: 1.65, textAlign: 'center' }}>
+          <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#fff', lineHeight: 1.65, textAlign: 'center' }}>
             You have completed your Path2Prevention Action Plan! Review your plan below, print a copy, then move forward.
           </p>
         </div>
 
-        <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 48,
-              height: 48,
-              borderRadius: 'var(--radius-sm)',
-              backgroundColor: '#0F4C5C',
-              color: '#fff',
-              fontFamily: 'var(--font-body)',
-              fontWeight: 800,
-              fontSize: '0.85rem',
-              letterSpacing: '0.06em',
-              marginBottom: '0.5rem',
-            }}
-          >
-            P2P
-          </div>
-          <h2
-            style={{
-              margin: 0,
-              fontFamily: 'var(--font-serif)',
-              fontWeight: 700,
-              fontSize: isMobile ? '1.25rem' : '1.4rem',
-              color: 'var(--ink)',
-            }}
-          >
-            {snapshot.firstName}&apos;s Action Plan
-          </h2>
-        </div>
-
         <SummaryBox title="I am taking this step towards a healthier life because I want to:">
-          <ul style={{ margin: 0, paddingLeft: '1.25rem', fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#323a45', lineHeight: 1.55 }}>
+          <ul style={{ margin: 0, paddingLeft: '1.25rem', fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink)', lineHeight: 1.55 }}>
             {motivationBullets.length ? (
               motivationBullets.map((t, i) => <li key={i}>{t}</li>)
             ) : (
@@ -237,7 +205,7 @@ const ActionPlanCompleted = () => {
         </SummaryBox>
 
         <SummaryBox title="Before enrolling in the program and attending classes for a year, I need to plan for:">
-          <ul style={{ margin: 0, paddingLeft: '1.25rem', fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#323a45', lineHeight: 1.55 }}>
+          <ul style={{ margin: 0, paddingLeft: '1.25rem', fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink)', lineHeight: 1.55 }}>
             {logisticsBullets.length ? (
               logisticsBullets.map((t, i) => <li key={i}>{t}</li>)
             ) : (
@@ -247,7 +215,7 @@ const ActionPlanCompleted = () => {
         </SummaryBox>
 
         <SummaryBox title="My preferred program provider will offer classes that take place:">
-          <ul style={{ margin: 0, paddingLeft: '1.25rem', fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: '#323a45', lineHeight: 1.55 }}>
+          <ul style={{ margin: 0, paddingLeft: '1.25rem', fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink)', lineHeight: 1.55 }}>
             {preferenceBullets.length ? (
               preferenceBullets.map((t, i) => <li key={i}>{t}</li>)
             ) : (
@@ -259,13 +227,13 @@ const ActionPlanCompleted = () => {
               margin: '1rem 0 0 0',
               fontFamily: 'var(--font-body)',
               fontSize: '0.8125rem',
-              color: '#323a45',
+              color: 'var(--ink-70)',
               fontStyle: 'italic',
               lineHeight: 1.5,
             }}
           >
             Don&apos;t forget to use our{' '}
-            <Link to="/lifestyle-programs" style={{ color: '#005ea2', fontWeight: 600 }}>
+            <Link to="/lifestyle-programs" style={{ color: 'var(--ink)', fontWeight: 700 }}>
               Find a Program
             </Link>{' '}
             search to find a provider that meets your preferences and contact them!
@@ -273,7 +241,7 @@ const ActionPlanCompleted = () => {
         </SummaryBox>
 
         <SummaryBox title="Once I find a program provider, I will contact them by:">
-          <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '1rem', fontWeight: 600, color: '#1b1b1b' }}>
+          <p style={{ margin: 0, fontFamily: 'var(--font-body)', fontSize: '1rem', fontWeight: 700, color: 'var(--ink)' }}>
             {formatContactDate(snapshot.contactDate)}
           </p>
         </SummaryBox>
@@ -283,7 +251,7 @@ const ActionPlanCompleted = () => {
             textAlign: 'center',
             fontFamily: 'var(--font-body)',
             fontSize: '1rem',
-            color: '#1b1b1b',
+            color: 'var(--ink)',
             margin: '1.75rem 0 1.5rem',
             lineHeight: 1.5,
           }}
@@ -303,23 +271,15 @@ const ActionPlanCompleted = () => {
             marginBottom: '1.5rem',
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'stretch' : 'center', gap: '0.75rem' }}>
             <button
               type="button"
+              className="btn btn-secondary"
               onClick={handleEdit}
               style={{
-                background: 'none',
-                border: 'none',
-                padding: 0,
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.9375rem',
-                fontWeight: 600,
-                color: '#005ea2',
-                cursor: 'pointer',
-                textAlign: 'left',
-                display: 'inline-flex',
-                alignItems: 'center',
                 gap: '0.35rem',
+                minHeight: 44,
+                padding: '0.65rem 1rem',
               }}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -329,20 +289,12 @@ const ActionPlanCompleted = () => {
             </button>
             <button
               type="button"
+              className="btn btn-secondary"
               onClick={handlePrint}
               style={{
-                background: 'none',
-                border: 'none',
-                padding: 0,
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.9375rem',
-                fontWeight: 600,
-                color: '#005ea2',
-                cursor: 'pointer',
-                textAlign: 'left',
-                display: 'inline-flex',
-                alignItems: 'center',
                 gap: '0.35rem',
+                minHeight: 44,
+                padding: '0.65rem 1rem',
               }}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -376,10 +328,12 @@ function SummaryBox({ title, children }) {
     <section
       style={{
         border: BOX_BORDER,
+        borderTop: '4px solid var(--ink)',
         borderRadius: 'var(--radius-md)',
         padding: '1.15rem 1.25rem',
         marginBottom: '1rem',
         backgroundColor: '#fff',
+        boxShadow: '0 8px 18px rgba(45, 59, 66, 0.08)',
       }}
     >
       <h3
@@ -388,7 +342,7 @@ function SummaryBox({ title, children }) {
           fontFamily: 'var(--font-body)',
           fontWeight: 700,
           fontSize: '0.9375rem',
-          color: '#1b1b1b',
+          color: 'var(--ink)',
         }}
       >
         {title}

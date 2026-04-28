@@ -31,6 +31,14 @@ import BuildingHealthyHabits from './components/BuildingHealthyHabits'
 import SleepRecovery from './components/SleepRecovery'
 import MentalHealthResilience from './components/MentalHealthResilience'
 import SocialConnection from './components/SocialConnection'
+import RecognizingStrokeSymptomsFast from './components/RecognizingStrokeSymptomsFast'
+import StrokeRiskFactorsPrevention from './components/StrokeRiskFactorsPrevention'
+import BloodPressureBrainHealth from './components/BloodPressureBrainHealth'
+import RecoveryReducingFutureRisk from './components/RecoveryReducingFutureRisk'
+import UnderstandingCOPD from './components/UnderstandingCOPD'
+import RiskFactorsLungHealth from './components/RiskFactorsLungHealth'
+import SmokingAirQualityTriggers from './components/SmokingAirQualityTriggers'
+import BreathingActivityDailyManagement from './components/BreathingActivityDailyManagement'
 import HowToReadFoodLabels from './components/HowToReadFoodLabels'
 import MealPlanningOnBudget from './components/MealPlanningOnBudget'
 import MovingMoreWhenBusy from './components/MovingMoreWhenBusy'
@@ -219,6 +227,46 @@ function App() {
       <Route path="/learn/healthy-living/social-connection" element={
         <main style={{ minHeight: '80vh' }}>
           <SocialConnection />
+        </main>
+      } />
+      <Route path="/learn/stroke-prevention/recognizing-stroke-symptoms-fast" element={
+        <main style={{ minHeight: '80vh' }}>
+          <RecognizingStrokeSymptomsFast />
+        </main>
+      } />
+      <Route path="/learn/stroke-prevention/risk-factors-prevention" element={
+        <main style={{ minHeight: '80vh' }}>
+          <StrokeRiskFactorsPrevention />
+        </main>
+      } />
+      <Route path="/learn/stroke-prevention/blood-pressure-brain-health" element={
+        <main style={{ minHeight: '80vh' }}>
+          <BloodPressureBrainHealth />
+        </main>
+      } />
+      <Route path="/learn/stroke-prevention/recovery-reducing-future-risk" element={
+        <main style={{ minHeight: '80vh' }}>
+          <RecoveryReducingFutureRisk />
+        </main>
+      } />
+      <Route path="/learn/copd-prevention/understanding-copd" element={
+        <main style={{ minHeight: '80vh' }}>
+          <UnderstandingCOPD />
+        </main>
+      } />
+      <Route path="/learn/copd-prevention/risk-factors-lung-health" element={
+        <main style={{ minHeight: '80vh' }}>
+          <RiskFactorsLungHealth />
+        </main>
+      } />
+      <Route path="/learn/copd-prevention/smoking-air-quality-triggers" element={
+        <main style={{ minHeight: '80vh' }}>
+          <SmokingAirQualityTriggers />
+        </main>
+      } />
+      <Route path="/learn/copd-prevention/breathing-activity-daily-management" element={
+        <main style={{ minHeight: '80vh' }}>
+          <BreathingActivityDailyManagement />
         </main>
       } />
       <Route path="/action/tips/how-to-read-food-labels" element={
