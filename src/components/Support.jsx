@@ -284,7 +284,7 @@ const Support = () => {
         backgroundColor: '#fdfaf7',
         padding: isMobile ? '2rem 1rem' : '3rem 2rem',
         borderRadius: 'var(--radius-md)',
-        border: '1px solid #f0e7e1',
+        marginBottom: isMobile ? '1.5rem' : '2rem',
       }}>
         <div style={{ maxWidth: 820, marginBottom: '2rem' }}>
           <span style={{
