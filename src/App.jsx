@@ -116,8 +116,13 @@ function App() {
   }, [])
 
   useEffect(() => {
+    if (location.hash) {
+      scrollToSection(location.hash.slice(1))
+      return
+    }
+
     window.scrollTo(0, 0)
-  }, [location.pathname])
+  }, [location.pathname, location.hash])
 
   const onNavigate = (page) => {
     const path = PAGE_TO_PATH[page] || (page === 'home' ? '/' : `/${page}`)
@@ -609,7 +614,7 @@ function App() {
                 variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ scale: 1.04, transition: { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] } }}
-                onClick={() => onNavigate('get-started')}
+                onClick={() => navigate('/action#tools-and-resources')}
                 className="card card-clickable"
                 style={{ textAlign: 'center', padding: '2rem', cursor: 'pointer', transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
               >
@@ -617,7 +622,7 @@ function App() {
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
                 </div>
                 <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: '700', fontSize: '1.125rem', color: 'var(--ink)', marginBottom: '0.75rem' }}>Start Your Journey</h3>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)', lineHeight: 1.5, margin: 0 }}>Answer a few questions and begin a personalized journey with interactive tools and resources tailored to your needs.</p>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--ink-70)', lineHeight: 1.5, margin: 0 }}>Answer a few questions, create a practical health plan, and find the Lifestyle Change Intervention that best fits your needs.</p>
               </motion.div>
             </motion.div>
           </div>

@@ -277,7 +277,7 @@ const Support = () => {
       </div>
 
       {/* Content Sections */}
-      <section style={{
+      <section id="tools-and-resources" style={{
         ...sectionStyles,
         maxWidth: 'min(1200px, calc(100% - 4rem))',
         margin: '0 auto',
